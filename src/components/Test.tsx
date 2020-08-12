@@ -5,7 +5,7 @@ interface Props {
     number: number;
 }
 
-function Test({text, number}: Props): React.ReactNode {
+function Test({text, number}: Props): JSX.Element{
     return (
         <div className="test-div">
             testtest{text}{number}

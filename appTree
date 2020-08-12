@@ -1,0 +1,7 @@
+
+App.tsx
+  <MainUI>
+    <Hints>?
+    <Round counter>?
+    <Board>
+      <Tile>
