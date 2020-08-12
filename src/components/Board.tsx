@@ -7,7 +7,7 @@ interface Props {
 
 function Board({board}: Props): JSX.Element{
     return (
-      <div>
+      <div className="grid grid-cols-8">
         {board.map( (el, i) => {
           return <Tile boardTile={el} key={i}/>
         })}

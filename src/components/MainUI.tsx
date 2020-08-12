@@ -4,15 +4,16 @@ import Board from "./Board";
 interface Props {}
 
 function MainUI({}: Props): JSX.Element {
-
   let board = makeBoard(8, 8);
 
-  function makeBoard(x: number, y: number) {
-    let boardArr = [];
+  function makeBoard(x: number, y: number): number[][] {
+    let boardArr: number[][] = [];
 
-    for (let i = 0; i < x; i++) {
-      for (let j = 0; j < y; j++) {
-        let cordinateArr = [];
+    for (let i = 1; i <= x; i++) {
+    for (let j = y; j > 0; j--) {
+      
+
+        let cordinateArr: number[] = [];
         cordinateArr.push(i);
         cordinateArr.push(j);
 
@@ -26,9 +27,11 @@ function MainUI({}: Props): JSX.Element {
   }
 
   return (
-    <Board board={board}/>
-  )
-
+    <div className="mx-64 my-64">
+      <Board board={board} />;
+    </div>
+  ) 
+  
 }
 
 export default MainUI;

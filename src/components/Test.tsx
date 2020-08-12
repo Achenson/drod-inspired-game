@@ -7,7 +7,7 @@ interface Props {
 
 function Test({text, number}: Props): JSX.Element{
     return (
-        <div className="test-div">
+        <div>
             testtest{text}{number}
         </div>
     )

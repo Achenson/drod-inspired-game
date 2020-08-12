@@ -23,9 +23,21 @@ module.exports = {
 
 8. delete both .ccs file in root, delete react logo
 
-9. index.tsx 
+9. package.json:
+
+"start": "npm run watch:css && react-scripts start",
+"build": "npm run build:css && react-scripts build",
+   ...
+"build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
+"watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css"
+
+10. Tailwind css intelisense extension
+
+11.  index.tsx 
 
     import './assets/main.css';
+
+
 ==================================
 
 

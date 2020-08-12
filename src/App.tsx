@@ -6,7 +6,7 @@ function App(): JSX.Element {
   let myString = "dfs";
 
   return (
-    <div className="App">
+    <div>
       <MainUI />
     </div>
   );
