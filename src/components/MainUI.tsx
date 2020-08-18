@@ -9,8 +9,8 @@ function MainUI({}: Props): JSX.Element {
   function makeBoard(x: number, y: number): number[][] {
     let boardArr: number[][] = [];
 
-    for (let i = 1; i <= x; i++) {
     for (let j = y; j > 0; j--) {
+    for (let i = 1; i <= x; i++) {
       
 
         let cordinateArr: number[] = [];
@@ -28,7 +28,7 @@ function MainUI({}: Props): JSX.Element {
 
   return (
     <div className="mx-64 my-64">
-      <Board board={board} />;
+      <Board board={board} />
     </div>
   ) 
   
