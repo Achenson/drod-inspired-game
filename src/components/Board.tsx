@@ -3,13 +3,14 @@ import Tile from "./Tile";
 
 interface Props {
   board: number[][];
+  boardObj: any;
 }
 
-function Board({board}: Props): JSX.Element{
+function Board({board, boardObj}: Props): JSX.Element{
     return (
       <div className="grid grid-cols-8 col-gap-0" style={{width: "320px"}}>
         {board.map( (el, i) => {
-          return <Tile boardTile={el} key={i}/>
+          return <Tile boardTile={el} boardObj={boardObj} key={i}/>
         })}
 
       </div>

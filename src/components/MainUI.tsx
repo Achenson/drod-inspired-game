@@ -1,10 +1,30 @@
 import React from "react";
 import Board from "./Board";
+import {useState} from "react";
 
 interface Props {}
 
 function MainUI({}: Props): JSX.Element {
   let board = makeBoard(8, 8);
+
+  
+  let boardObj = {} as any;
+
+  // boardMap.set(arrEl, "full");
+  // console.log(boardMap.get(arrEl));
+  
+  for (let i = 1; i <= board.length; i++) {
+
+    
+    boardObj[i] = "empty"
+    
+
+  }
+
+ 
+  // console.log(boardMap.get(arrEl));
+  // console.log(JSON.stringify(board, null, 2));
+  
 
   function makeBoard(x: number, y: number): number[][] {
     let boardArr: number[][] = [];
@@ -21,14 +41,14 @@ function MainUI({}: Props): JSX.Element {
       }
     }
 
-    console.log(boardArr);
+    // console.log(boardArr);
 
     return boardArr;
   }
 
   return (
     <div className="mx-64 my-64">
-      <Board board={board} />
+      <Board board={board} boardObj={boardObj} />
     </div>
   ) 
   
