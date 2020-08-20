@@ -1,16 +1,23 @@
 import React from 'react';
 import Tile from "./Tile";
 
-interface Props {
-  board: number[][];
-  boardObj: any;
+interface BoardObj {
+  [key: string]: string
 }
 
-function Board({board, boardObj}: Props): JSX.Element{
+interface Props {
+  board: number[][];
+  boardRendering: BoardObj;
+}
+
+
+
+
+function Board({board, boardRendering}: Props): JSX.Element{
     return (
       <div className="grid grid-cols-8 col-gap-0" style={{width: "320px"}}>
         {board.map( (el, i) => {
-          return <Tile boardTile={el} boardObj={boardObj} key={i} arrIndex={i}/>
+          return <Tile boardTile={el} boardRendering={boardRendering} key={i} arrIndex={i}/>
         })}
 
       </div>

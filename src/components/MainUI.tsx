@@ -31,6 +31,8 @@ function MainUI({}: Props): JSX.Element {
  
   // console.log(boardMap.get(arrEl));
   // console.log(JSON.stringify(board, null, 2));
+
+  const [boardRendering, setBoardRendering] = useState(boardObj);
   
 
   function makeBoard(x: number, y: number): number[][] {
@@ -55,7 +57,7 @@ function MainUI({}: Props): JSX.Element {
 
   return (
     <div className="mx-64 my-64">
-      <Board board={board} boardObj={boardObj} />
+      <Board board={board} boardRendering={boardRendering} />
     </div>
   ) 
   

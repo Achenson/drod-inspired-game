@@ -1,12 +1,16 @@
 import React from "react";
 
+interface BoardObj {
+  [key: string]: string
+}
+
 interface Props {
   boardTile: number[];
-  boardObj: any;
+  boardRendering: BoardObj;
   arrIndex: number;
 }
 
-function Tile({ boardTile, boardObj, arrIndex }: Props): JSX.Element {
+function Tile({ boardTile, boardRendering, arrIndex }: Props): JSX.Element {
   //  let backgroundColor = "w-10 h-10 bg-gray-300";
   let backgroundColor;
 
@@ -19,13 +23,13 @@ function Tile({ boardTile, boardObj, arrIndex }: Props): JSX.Element {
     backgroundColor = "bg-gray-400";
   }
 
-  let boardRendering = boardObj[arrIndex];
+  let boardR = boardRendering[arrIndex];
   console.log("boardRendering");
   console.log(boardRendering);
 
   let entityColor;
 
-  if (boardRendering === "empty") {
+  if (boardR === "empty") {
     entityColor = "bg-red-100";
   } else {
     entityColor = "bg-red-800";
