@@ -8,14 +8,20 @@ interface BoardObj {
 interface Props {
   board: number[][];
   boardRendering: BoardObj;
+  boardSize: number;
 }
 
 
 
 
-function Board({board, boardRendering}: Props): JSX.Element{
+function Board({board, boardRendering, boardSize}: Props): JSX.Element{
+
+
+  const boardWidth = boardSize * 40;
+
+
     return (
-      <div className="grid grid-cols-9 col-gap-0" style={{width: "360px"}}>
+      <div className={`grid grid-cols-${boardSize} col-gap-0`} style={{width: `${boardWidth}px`}}>
         {board.map( (el, i) => {
           return <Tile boardTile={el} boardRendering={boardRendering} key={i} arrIndex={i}/>
         })}

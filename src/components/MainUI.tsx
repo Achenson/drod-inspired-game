@@ -10,7 +10,10 @@ interface BoardObj {
 }
 
 function MainUI({}: Props): JSX.Element {
-  let board = makeBoard(9, 9);
+
+  const boardSize = 9;
+
+  let board = makeBoard(boardSize);
 
   let boardObj: BoardObj = {};
 
@@ -38,10 +41,10 @@ function MainUI({}: Props): JSX.Element {
 
   // setBoardRendering({...boardRendering, 6: "full"})
 
-  function makeBoard(x: number, y: number): number[][] {
+  function makeBoard(x: number): number[][] {
     let boardArr: number[][] = [];
 
-    for (let j = y; j > 0; j--) {
+    for (let j = x; j > 0; j--) {
       for (let i = 1; i <= x; i++) {
         let cordinateArr: number[] = [];
         cordinateArr.push(i);
@@ -58,7 +61,7 @@ function MainUI({}: Props): JSX.Element {
 
   return (
     <div className="mx-64 my-64">
-      <Board board={board} boardRendering={boardRendering} />
+      <Board board={board} boardRendering={boardRendering} boardSize={boardSize} />
     </div>
   );
 }
