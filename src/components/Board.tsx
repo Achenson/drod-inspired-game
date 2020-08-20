@@ -15,7 +15,7 @@ interface Props {
 
 function Board({board, boardRendering}: Props): JSX.Element{
     return (
-      <div className="grid grid-cols-8 col-gap-0" style={{width: "320px"}}>
+      <div className="grid grid-cols-9 col-gap-0" style={{width: "360px"}}>
         {board.map( (el, i) => {
           return <Tile boardTile={el} boardRendering={boardRendering} key={i} arrIndex={i}/>
         })}
