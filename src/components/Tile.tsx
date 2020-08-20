@@ -63,6 +63,9 @@ function Tile({ boardTile, boardRendering, arrIndex }: Props): JSX.Element {
     case "enemy":
       entityColor = "w-4 h-4 bg-red-800 transform rotate-45";
       break;
+    case "dead":
+      entityColor = "w-5 h-5 bg-black";
+      break;
 
     default:
       entityColor = "hidden";

@@ -9,6 +9,23 @@ interface BoardObj {
   [key: string]: string;
 }
 
+interface EnemiesObj {
+  [key: number]: (number | "dead");
+}
+
+interface HeroObj {
+  "position": number,
+  "alive": boolean  
+}
+
+interface SwordObj {
+  "position": number,
+  "direction": ("n" | "ne" | "e" | "se" | "s" | "sw" | "w" | "nw")  
+}
+
+
+
+
 function MainUI({}: Props): JSX.Element {
 
   const boardSize = 9;
@@ -27,17 +44,37 @@ function MainUI({}: Props): JSX.Element {
   boardObj[40] = "hero";
 
   boardObj[31] = "sword-n";
-  boardObj[32] = "sword-ne";
+ /*  boardObj[32] = "sword-ne";
   boardObj[41] = "sword-e";
   boardObj[50] = "sword-se";
   boardObj[49] = "sword-s";
   boardObj[48] = "sword-sw";
   boardObj[39] = "sword-w";
-  boardObj[30] = "sword-nw";
+  boardObj[30] = "sword-nw"; */
 
   boardObj[4] = "enemy";
+  // boardObj[5] = "dead";
+
+
+
+  let enemiesObj: EnemiesObj = {
+    1: 4,
+  };
+
+  let heroObj: HeroObj {
+    "position": 40,
+    "alive": true;
+  }
+
+
+
+
 
   const [boardRendering, setBoardRendering] = useState(boardObj);
+
+  const [enemies, setEnemies] = useState()
+  const [hero, setHero] = useState()
+
 
   // setBoardRendering({...boardRendering, 6: "full"})
 
