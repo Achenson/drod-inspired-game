@@ -10,7 +10,7 @@ function Board({board, boardObj}: Props): JSX.Element{
     return (
       <div className="grid grid-cols-8 col-gap-0" style={{width: "320px"}}>
         {board.map( (el, i) => {
-          return <Tile boardTile={el} boardObj={boardObj} key={i}/>
+          return <Tile boardTile={el} boardObj={boardObj} key={i} arrIndex={i}/>
         })}
 
       </div>

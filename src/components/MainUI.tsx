@@ -4,22 +4,29 @@ import {useState} from "react";
 
 interface Props {}
 
+// unknown key name, unkown number of keys
+interface BoardObj {
+  [key: string]: string
+}
+
 function MainUI({}: Props): JSX.Element {
   let board = makeBoard(8, 8);
 
   
-  let boardObj = {} as any;
+  let boardObj: BoardObj = {};
 
   // boardMap.set(arrEl, "full");
   // console.log(boardMap.get(arrEl));
   
-  for (let i = 1; i <= board.length; i++) {
+  for (let i = 0; i < board.length; i++) {
 
     
     boardObj[i] = "empty"
     
 
   }
+
+  boardObj[5] = "full";
 
  
   // console.log(boardMap.get(arrEl));
