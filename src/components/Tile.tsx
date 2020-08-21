@@ -81,6 +81,8 @@ function Tile({ boardTile, boardRendering, arrIndex }: Props): JSX.Element {
     <div
       className={`flex items-center justify-center w-10 h-10 ${backgroundColor}`}
     >
+      {/* {boardTile[0]} */}
+      {/* {boardTile[1]} */}
       {arrIndex}
       <div className={`${entityColor}`}></div>
     </div>
