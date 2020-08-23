@@ -93,38 +93,47 @@ function MainUI({}: Props): JSX.Element {
     switch (event.code) {
       case "KeyQ":
         console.log("q");
+        rotateHero("anticlockwise");
         break;
       case "KeyW":
         console.log("w");
+        rotateHero("clockwise");
         break;
       case "Numpad7":
         console.log("numpad 7");
         moveHero(Directions.nw);
-
         break;
       case "Numpad8":
         console.log("numpad 8");
+        moveHero(Directions.n);
         break;
       case "Numpad9":
         console.log("numpad 9");
+        moveHero(Directions.ne);
         break;
       case "Numpad4":
         console.log("numpad 4");
+        moveHero(Directions.w);
         break;
       case "Numpad5":
         console.log("numpad 5");
+        moveHero(Directions.wait);
         break;
       case "Numpad6":
         console.log("numpad 6");
+        moveHero(Directions.e);
         break;
       case "Numpad1":
         console.log("numpad 1");
+        moveHero(Directions.sw);
         break;
       case "Numpad2":
         console.log("numpad 2");
+        moveHero(Directions.s);
         break;
       case "Numpad3":
         console.log("numpad 3");
+        moveHero(Directions.se);
         break;
     }
   }
@@ -138,25 +147,94 @@ function MainUI({}: Props): JSX.Element {
     s = 9,
     sw = 8,
     w = -1,
+    wait = 0,
   }
 
-  function moveHero(direction: Directions) {
-    let tileIndexToMove = hero.heroPosition + direction;
-    console.log("tileIndexToMOve");
-    console.log(tileIndexToMove);
+  function rotateHero(direction: "clockwise" | "anticlockwise") {
+    let relativeSwordHeroPosition = hero.heroPosition - hero.swordPosition;
 
-    //return if here would move out of the board
+    let swordIndexToAdd: number;
+
+    if (direction === "clockwise") {
+      switch (relativeSwordHeroPosition) {
+        case 10 || 9:
+          swordIndexToAdd = 1;
+          break;
+        case 8 || -1:
+          swordIndexToAdd = 9;
+          break;
+        case -10 || -9:
+          swordIndexToAdd = -1;
+          break;
+        case -8 || 1:
+          swordIndexToAdd = -9;
+          break;
+        default:
+          swordIndexToAdd = 0;
+      }
+    } else {
+      switch (relativeSwordHeroPosition) {
+        case 10 || 1:
+          swordIndexToAdd = 9;
+          break;
+        case -8 || -9:
+          swordIndexToAdd = 1;
+          break;
+        case -10 || -1:
+          swordIndexToAdd = -9;
+          break;
+        case 8 || 9:
+          swordIndexToAdd = -1;
+          break;
+        default:
+          swordIndexToAdd = 0;
+      }
+    }
+
+    let swordIndexToMove = hero.swordPosition + swordIndexToAdd;
+
+    console.log("swordIndexToMove");
+    console.log(swordIndexToMove);
+
+    //return if here would move out of the board (sword)
     if (
       // board x,y cordinates go from 0 to boardSize-1
-      board[tileIndexToMove][0] > boardSize - 1 ||
-      board[tileIndexToMove][0] < 0 ||
-      board[tileIndexToMove][1] > boardSize - 1 ||
-      board[tileIndexToMove][1]
+      board[swordIndexToMove][0] > boardSize - 1 ||
+      board[swordIndexToMove][0] < 0 ||
+      board[swordIndexToMove][1] > boardSize - 1 ||
+      board[swordIndexToMove][1]
     ) {
       return;
     }
+  }
 
+  function moveHero(direction: Directions) {
+    if (direction === 0) {
+      return;
+    }
 
+    let heroIndexToMove = hero.heroPosition + direction;
+    let swordIndexToMove = hero.swordPosition + direction;
+
+    console.log("heroIndexToMOve");
+    console.log(heroIndexToMove);
+    console.log("swordIndexToMOve");
+    console.log(swordIndexToMove);
+
+    //return if here would move out of the board (hero or sword)
+    if (
+      // board x,y cordinates go from 0 to boardSize-1
+      board[heroIndexToMove][0] > boardSize - 1 ||
+      board[heroIndexToMove][0] < 0 ||
+      board[heroIndexToMove][1] > boardSize - 1 ||
+      board[heroIndexToMove][1] ||
+      board[swordIndexToMove][0] > boardSize - 1 ||
+      board[swordIndexToMove][0] < 0 ||
+      board[swordIndexToMove][1] > boardSize - 1 ||
+      board[swordIndexToMove][1]
+    ) {
+      return;
+    }
   }
 
   return (
