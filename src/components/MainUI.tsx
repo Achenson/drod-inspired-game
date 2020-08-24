@@ -26,6 +26,8 @@ function MainUI({}: Props): JSX.Element {
 
   const boardSize = 9;
 
+  const adjacentTilesRelativeIndexes = [10, 9, 8, -1, -10, -9, -8, 1];
+
   let board = makeBoard(boardSize);
 
   let boardObj: BoardObj = {};
@@ -153,45 +155,35 @@ function MainUI({}: Props): JSX.Element {
   function rotateHero(direction: "clockwise" | "anticlockwise") {
     let relativeSwordHeroPosition = hero.heroPosition - hero.swordPosition;
 
-    let swordIndexToAdd: number;
+    let indexOfRelativeSwordHeroPosition = adjacentTilesRelativeIndexes.indexOf(
+      relativeSwordHeroPosition
+    );
+
+    let swordPositionToAdd: number = 0;
 
     if (direction === "clockwise") {
-      switch (relativeSwordHeroPosition) {
-        case 10 || 9:
-          swordIndexToAdd = 1;
-          break;
-        case 8 || -1:
-          swordIndexToAdd = 9;
-          break;
-        case -10 || -9:
-          swordIndexToAdd = -1;
-          break;
-        case -8 || 1:
-          swordIndexToAdd = -9;
-          break;
-        default:
-          swordIndexToAdd = 0;
-      }
-    } else {
-      switch (relativeSwordHeroPosition) {
-        case 10 || 1:
-          swordIndexToAdd = 9;
-          break;
-        case -8 || -9:
-          swordIndexToAdd = 1;
-          break;
-        case -10 || -1:
-          swordIndexToAdd = -9;
-          break;
-        case 8 || 9:
-          swordIndexToAdd = -1;
-          break;
-        default:
-          swordIndexToAdd = 0;
+      if (
+        indexOfRelativeSwordHeroPosition ===
+        adjacentTilesRelativeIndexes.length - 1
+      ) {
+        swordPositionToAdd = adjacentTilesRelativeIndexes[0];
+      } else {
+        swordPositionToAdd =
+          adjacentTilesRelativeIndexes[indexOfRelativeSwordHeroPosition + 1];
       }
     }
 
-    let swordIndexToMove = hero.swordPosition + swordIndexToAdd;
+    if (direction === "anticlockwise") {
+      if (indexOfRelativeSwordHeroPosition === 0) {
+        swordPositionToAdd =
+          adjacentTilesRelativeIndexes[adjacentTilesRelativeIndexes.length - 1];
+      } else {
+        swordPositionToAdd =
+          adjacentTilesRelativeIndexes[indexOfRelativeSwordHeroPosition - 1];
+      }
+    }
+
+    let swordIndexToMove = hero.heroPosition - swordPositionToAdd;
 
     console.log("swordIndexToMove");
     console.log(swordIndexToMove);
