@@ -42,18 +42,18 @@ function MainUI({}: Props): JSX.Element {
 
   let board = makeBoard(boardSize);
 
-  let boardObj: BoardObj = {};
+  // let boardObj: BoardObj = {};
 
   // boardMap.set(arrEl, "full");
   // console.log(boardMap.get(arrEl));
 
-  for (let i = 0; i < board.length; i++) {
-    boardObj[i] = "empty";
-  }
+  // for (let i = 0; i < board.length; i++) {
+  //   boardObj[i] = "empty";
+  // }
 
-  boardObj[40] = "hero";
+  // boardObj[40] = "hero";
 
-  boardObj[31] = "sword-n";
+  // boardObj[31] = "sword-n";
   /*  boardObj[32] = "sword-ne";
   boardObj[41] = "sword-e";
   boardObj[50] = "sword-se";
@@ -62,30 +62,34 @@ function MainUI({}: Props): JSX.Element {
   boardObj[39] = "sword-w";
   boardObj[30] = "sword-nw"; */
 
-  boardObj[4] = "enemy";
+  // boardObj[4] = "enemy";
   // boardObj[5] = "dead";
 
-  let emptyBoardObj: BoardObj = {};
+  // let emptyBoardObj: BoardObj = {};
 
-  for (let i = 0; i < board.length; i++) {
-    emptyBoardObj[i] = "empty";
-  }
+  // for (let i = 0; i < board.length; i++) {
+  //   emptyBoardObj[i] = "empty";
+  // }
 
 
 
-  const [boardRendering, setBoardRendering] = useState<BoardObj>({...boardObj});
+  // const [boardRendering, setBoardRendering] = useState<BoardObj>({...boardObj});
 
   const [enemies, setEnemies] = useState<Array<number | null>>([4]);
-  // const [hero, setHero] = useState<HeroObj>({
-  //   heroPosition: 40,
-  //   alive: true,
-  //   swordPosition: 31,
-  // });
 
-  const [heroPosition, setHeroPosition] = useState(40);
-  const [prevSwordPosition, setPrevSwordPosition] = useState(0);
-  const [swordPosition, setSwordPosition] = useState(31);
-  const [alive, setAlive] = useState(true);
+  const [hero, setHero] = useState<HeroObj>({
+    heroPosition: 40,
+    alive: true,
+    swordPosition: 31,
+  });
+
+  useEffect(() => {
+    
+  })
+  // const [heroPosition, setHeroPosition] = useState(40);
+  // const [prevSwordPosition, setPrevSwordPosition] = useState(0);
+  // const [swordPosition, setSwordPosition] = useState(31);
+  // const [alive, setAlive] = useState(true);
 
   // useEffect(() => {
 
@@ -164,9 +168,8 @@ function MainUI({}: Props): JSX.Element {
 
   function rotateHero(direction: "clockwise" | "anticlockwise") {
 
-    let swordPositionCopy = swordPosition;
 
-    let relativeSwordHeroPosition = heroPosition - swordPosition;
+    let relativeSwordHeroPosition = hero.heroPosition - hero.swordPosition;
 
     let indexOfRelativeSwordHeroPosition = adjacentTilesRelativeIndexes.indexOf(
       relativeSwordHeroPosition
@@ -197,20 +200,21 @@ function MainUI({}: Props): JSX.Element {
       }
     }
 
-    let swordIndexToMove = heroPosition - swordPositionToAdd;
+    let swordIndexToMove = hero.heroPosition - swordPositionToAdd;
 
     console.log("swordIndexToMove");
     console.log(swordIndexToMove);
 
     // setPrevSwordPosition(swordPosition);
-    setBoardRendering({...boardRendering, [swordIndexToMove]: "sword-n", [swordPositionCopy]: "empty"})
-    setSwordPosition(swordIndexToMove);
+    // setBoardRendering({...boardRendering, [swordIndexToMove]: "sword-n", [swordPositionCopy]: "empty"})
+    // setSwordPosition(swordIndexToMove);,
+
+    setHero({...hero, swordPosition: swordIndexToMove})
 
 
     console.log("hero swordPosition");
-    console.log(swordPosition);
+    console.log(hero.swordPosition);
 
-    console.log("antygsd");
     //return if here would move out of the board (sword)
     if (
       // board x,y cordinates go from 0 to boardSize-1
@@ -228,8 +232,8 @@ function MainUI({}: Props): JSX.Element {
       return;
     }
 
-    let heroIndexToMove = heroPosition + direction;
-    let swordIndexToMove = swordPosition + direction;
+    let heroIndexToMove = hero.heroPosition + direction;
+    let swordIndexToMove = hero.swordPosition + direction;
 
     console.log("heroIndexToMOve");
     console.log(heroIndexToMove);
@@ -256,8 +260,8 @@ function MainUI({}: Props): JSX.Element {
     <div className="mx-64 my-64">
       <Board
         board={board}
-        boardRendering={boardRendering}
         boardSize={boardSize}
+        hero={hero}
       />
     </div>
   );

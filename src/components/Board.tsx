@@ -5,16 +5,22 @@ interface BoardObj {
   [key: string]: string
 }
 
+interface HeroObj {
+  heroPosition: number;
+  alive: boolean;
+  swordPosition: number;
+}
+
 interface Props {
   board: number[][];
-  boardRendering: BoardObj;
   boardSize: number;
+  hero: HeroObj 
 }
 
 
 
 
-function Board({board, boardRendering, boardSize}: Props): JSX.Element{
+function Board({board, boardSize, hero}: Props): JSX.Element{
 
 
   const boardWidth = boardSize * 40;
@@ -23,7 +29,7 @@ function Board({board, boardRendering, boardSize}: Props): JSX.Element{
     return (
       <div className={`grid grid-cols-${boardSize} col-gap-0`} style={{width: `${boardWidth}px`}}>
         {board.map( (el, i) => {
-          return <Tile boardTile={el} boardRendering={boardRendering} key={i} arrIndex={i}/>
+          return <Tile boardTile={el} hero={hero} key={i} arrIndex={i}/>
         })}
 
       </div>

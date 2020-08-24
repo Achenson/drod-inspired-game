@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 interface BoardObj {
   [key: string]: string;
@@ -6,11 +7,17 @@ interface BoardObj {
 
 interface Props {
   boardTile: number[];
-  boardRendering: BoardObj;
   arrIndex: number;
+  hero: HeroObj;
 }
 
-function Tile({ boardTile, boardRendering, arrIndex }: Props): JSX.Element {
+interface HeroObj {
+  heroPosition: number;
+  alive: boolean;
+  swordPosition: number;
+}
+
+function Tile({ boardTile, arrIndex, hero }: Props): JSX.Element {
   //  let backgroundColor = "w-10 h-10 bg-gray-300";
   let backgroundColor;
 
@@ -23,53 +30,69 @@ function Tile({ boardTile, boardRendering, arrIndex }: Props): JSX.Element {
     backgroundColor = "bg-gray-400";
   }
 
-  let boardElement = boardRendering[arrIndex];
+  // let boardElement = boardRendering[arrIndex];
   // console.log("boardRendering");
   // console.log(boardRendering);
 
-  let entityColor: string;
+  const [entityCSS, setEntityCSS] = useState("hidden");
 
-  switch (boardElement) {
-    case "empty":
-      entityColor = "hidden";
-      break;
-    case "hero":
-      entityColor = "w-5 h-5 bg-green-600 rounded-full";
-      break;
-    case "sword-n":
-      entityColor = "w-3 h-8 bg-blue-800 ";
-      break;
-    case "sword-ne":
-      entityColor = "w-3 h-8 bg-blue-800 transform rotate-45";
-      break;
-    case "sword-e":
-      entityColor = "w-8 h-3 bg-blue-800 ";
-      break;
-    case "sword-se":
-      entityColor = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
-      break;
-    case "sword-s":
-      entityColor = "w-3 h-8 bg-blue-800";
-      break;
-    case "sword-sw":
-      entityColor = "w-3 h-8 bg-blue-800 transform rotate-45";
-      break;
-    case "sword-w":
-      entityColor = "w-8 h-3 bg-blue-800";
-      break;
-    case "sword-nw":
-      entityColor = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
-      break;
-    case "enemy":
-      entityColor = "w-4 h-4 bg-red-800 transform rotate-45";
-      break;
-    case "dead":
-      entityColor = "w-5 h-5 bg-black";
-      break;
+  useEffect(() => {
 
-    default:
-      entityColor = "hidden";
-  }
+    if (hero.heroPosition !== arrIndex && hero.swordPosition !== arrIndex) {
+      setEntityCSS("hidden");
+    }
+
+
+    if (hero.heroPosition === arrIndex) {
+      setEntityCSS("w-5 h-5 bg-green-600 rounded-full");
+    }
+
+    if (hero.swordPosition === arrIndex) {
+      setEntityCSS("w-3 h-8 bg-blue-800");
+    }
+  }, [hero, arrIndex]);
+
+  // switch (boardElement) {
+  //   case "empty":
+  //     entityColor = "hidden";
+  //     break;
+  //   case "hero":
+  //     entityColor = "w-5 h-5 bg-green-600 rounded-full";
+  //     break;
+  //   case "sword-n":
+  //     entityColor = "w-3 h-8 bg-blue-800 ";
+  //     break;
+  //   case "sword-ne":
+  //     entityColor = "w-3 h-8 bg-blue-800 transform rotate-45";
+  //     break;
+  //   case "sword-e":
+  //     entityColor = "w-8 h-3 bg-blue-800 ";
+  //     break;
+  //   case "sword-se":
+  //     entityColor = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
+  //     break;
+  //   case "sword-s":
+  //     entityColor = "w-3 h-8 bg-blue-800";
+  //     break;
+  //   case "sword-sw":
+  //     entityColor = "w-3 h-8 bg-blue-800 transform rotate-45";
+  //     break;
+  //   case "sword-w":
+  //     entityColor = "w-8 h-3 bg-blue-800";
+  //     break;
+  //   case "sword-nw":
+  //     entityColor = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
+  //     break;
+  //   case "enemy":
+  //     entityColor = "w-4 h-4 bg-red-800 transform rotate-45";
+  //     break;
+  //   case "dead":
+  //     entityColor = "w-5 h-5 bg-black";
+  //     break;
+
+  //   default:
+  //     entityColor = "hidden";
+  // }
 
   /*  if (boardR === "empty") {
     entityColor = "bg-red-100";
@@ -84,7 +107,7 @@ function Tile({ boardTile, boardRendering, arrIndex }: Props): JSX.Element {
       {/* {boardTile[0]} */}
       {/* {boardTile[1]} */}
       {arrIndex}
-      <div className={`${entityColor}`}></div>
+      <div className={`${entityCSS}`}></div>
     </div>
   );
 }
