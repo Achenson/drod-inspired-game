@@ -24,8 +24,8 @@ function Tile({ boardTile, boardRendering, arrIndex }: Props): JSX.Element {
   }
 
   let boardElement = boardRendering[arrIndex];
-  console.log("boardRendering");
-  console.log(boardRendering);
+  // console.log("boardRendering");
+  // console.log(boardRendering);
 
   let entityColor: string;
 

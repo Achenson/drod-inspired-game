@@ -19,6 +19,18 @@ interface HeroObj {
   swordPosition: number;
 }
 
+enum Directions {
+  nw = -10,
+  n = -9,
+  ne = -8,
+  e = 1,
+  se = 10,
+  s = 9,
+  sw = 8,
+  w = -1,
+  wait = 0,
+}
+
 function MainUI({}: Props): JSX.Element {
   useEffect(() => {
     document.addEventListener("keypress", handleKeyPress);
@@ -53,23 +65,32 @@ function MainUI({}: Props): JSX.Element {
   boardObj[4] = "enemy";
   // boardObj[5] = "dead";
 
-  // let enemiesObj: EnemiesObj = {
-  //   1: 4,
-  // };
+  let emptyBoardObj: BoardObj = {};
 
-  // let heroObj: HeroObj {
-  //   position: 40,
-  //   alive: true;
-  // }
+  for (let i = 0; i < board.length; i++) {
+    emptyBoardObj[i] = "empty";
+  }
 
-  const [boardRendering, setBoardRendering] = useState<BoardObj>(boardObj);
+
+
+  const [boardRendering, setBoardRendering] = useState<BoardObj>({...boardObj});
 
   const [enemies, setEnemies] = useState<Array<number | null>>([4]);
-  const [hero, setHero] = useState<HeroObj>({
-    heroPosition: 40,
-    alive: true,
-    swordPosition: 31,
-  });
+  // const [hero, setHero] = useState<HeroObj>({
+  //   heroPosition: 40,
+  //   alive: true,
+  //   swordPosition: 31,
+  // });
+
+  const [heroPosition, setHeroPosition] = useState(40);
+  const [prevSwordPosition, setPrevSwordPosition] = useState(0);
+  const [swordPosition, setSwordPosition] = useState(31);
+  const [alive, setAlive] = useState(true);
+
+  // useEffect(() => {
+
+  //   setBoardRendering({ ...emptyBoardObj, [swordPosition]: "sword-n"});
+  // }, [swordPosition]);
 
   // setBoardRendering({...boardRendering, 6: "full"})
 
@@ -100,6 +121,7 @@ function MainUI({}: Props): JSX.Element {
       case "KeyW":
         console.log("w");
         rotateHero("clockwise");
+
         break;
       case "Numpad7":
         console.log("numpad 7");
@@ -140,25 +162,17 @@ function MainUI({}: Props): JSX.Element {
     }
   }
 
-  enum Directions {
-    nw = -10,
-    n = -9,
-    ne = -8,
-    e = 1,
-    se = 10,
-    s = 9,
-    sw = 8,
-    w = -1,
-    wait = 0,
-  }
-
   function rotateHero(direction: "clockwise" | "anticlockwise") {
-    let relativeSwordHeroPosition = hero.heroPosition - hero.swordPosition;
+
+    let swordPositionCopy = swordPosition;
+
+    let relativeSwordHeroPosition = heroPosition - swordPosition;
 
     let indexOfRelativeSwordHeroPosition = adjacentTilesRelativeIndexes.indexOf(
       relativeSwordHeroPosition
     );
 
+    // to change???
     let swordPositionToAdd: number = 0;
 
     if (direction === "clockwise") {
@@ -183,11 +197,20 @@ function MainUI({}: Props): JSX.Element {
       }
     }
 
-    let swordIndexToMove = hero.heroPosition - swordPositionToAdd;
+    let swordIndexToMove = heroPosition - swordPositionToAdd;
 
     console.log("swordIndexToMove");
     console.log(swordIndexToMove);
 
+    // setPrevSwordPosition(swordPosition);
+    setBoardRendering({...boardRendering, [swordIndexToMove]: "sword-n", [swordPositionCopy]: "empty"})
+    setSwordPosition(swordIndexToMove);
+
+
+    console.log("hero swordPosition");
+    console.log(swordPosition);
+
+    console.log("antygsd");
     //return if here would move out of the board (sword)
     if (
       // board x,y cordinates go from 0 to boardSize-1
@@ -205,8 +228,8 @@ function MainUI({}: Props): JSX.Element {
       return;
     }
 
-    let heroIndexToMove = hero.heroPosition + direction;
-    let swordIndexToMove = hero.swordPosition + direction;
+    let heroIndexToMove = heroPosition + direction;
+    let swordIndexToMove = swordPosition + direction;
 
     console.log("heroIndexToMOve");
     console.log(heroIndexToMove);
