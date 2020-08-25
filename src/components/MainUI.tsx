@@ -9,10 +9,6 @@ interface BoardObj {
   [key: string]: string;
 }
 
-// interface EnemiesObj {
-//   [key: number]: (number | "dead");
-// }
-
 interface HeroObj {
   heroPosition: number;
   alive: boolean;
@@ -47,7 +43,7 @@ function MainUI({}: Props): JSX.Element {
 
   let board = makeBoard(boardSize);
 
-  const [enemies, setEnemies] = useState<Array<number | null>>([4]);
+  const [enemies, setEnemies] = useState<Array<number|null>>([4]);
 
   const [hero, setHero] = useState<HeroObj>({
     heroPosition: 40,
@@ -127,6 +123,7 @@ function MainUI({}: Props): JSX.Element {
     let relativePosition = hero.heroPosition - hero.swordPosition;
 
     // indexOfRelativePosition taken from the array of all possible relative positions
+    // "clockwise" circle between indexes to the right, "anticlockwise" the other way around
     let indexOfRelativePosition = adjacentTilesRelativePositions.indexOf(
       relativePosition
     );
@@ -160,10 +157,8 @@ function MainUI({}: Props): JSX.Element {
 
     let swordIndexToMove = hero.heroPosition - swordPositionToAdd;
 
-    // console.log("swordIndexToMove");
-    // console.log(swordIndexToMove);
 
-    //return if here would move out of the board (hero or sword) up or down
+    //return if here would move sword out of the board up or down
     if (swordIndexToMove < 0 || swordIndexToMove > (boardSize - 1) * 10) {
       return;
     }
@@ -171,7 +166,7 @@ function MainUI({}: Props): JSX.Element {
     //                                      nw  n ne   e   se   s  sw  w
     // const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
-    //return if here would move out of the board (hero or sword) left or right
+    //return if here would move sword out of the board  left or right
     if (
       // board x,y cordinates go from 0 to boardSize-1
       (((relativePosition === -9 && board[hero.swordPosition][0] === 0) ||
@@ -192,10 +187,6 @@ function MainUI({}: Props): JSX.Element {
 
     setHero({ ...hero, swordPosition: swordIndexToMove });
 
-    // console.log("hero swordPosition");
-    // console.log(hero.swordPosition);
-
-    //return if here would move out of the board (sword)
   }
 
   function moveHero(direction: Directions) {
@@ -248,7 +239,7 @@ function MainUI({}: Props): JSX.Element {
 
   return (
     <div className="mx-64 my-64">
-      <Board board={board} boardSize={boardSize} hero={hero} />
+      <Board board={board} boardSize={boardSize} hero={hero} enemies={enemies} />
     </div>
   );
 }

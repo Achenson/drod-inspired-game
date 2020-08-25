@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import Tile from "./Tile";
 
 interface BoardObj {
-  [key: string]: string
+  [key: string]: string;
 }
 
 interface HeroObj {
@@ -14,26 +14,31 @@ interface HeroObj {
 interface Props {
   board: number[][];
   boardSize: number;
-  hero: HeroObj 
+  hero: HeroObj;
+  enemies: Array<number | null>;
 }
 
-
-
-
-function Board({board, boardSize, hero}: Props): JSX.Element{
-
-
+function Board({ board, boardSize, hero, enemies }: Props): JSX.Element {
   const boardWidth = boardSize * 40;
 
-
-    return (
-      <div className={`grid grid-cols-${boardSize} col-gap-0`} style={{width: `${boardWidth}px`}}>
-        {board.map( (el, i) => {
-          return <Tile boardTile={el} hero={hero} key={i} arrIndex={i}/>
-        })}
-
-      </div>
-    )
-};
+  return (
+    <div
+      className={`grid grid-cols-${boardSize} col-gap-0`}
+      style={{ width: `${boardWidth}px` }}
+    >
+      {board.map((el, i) => {
+        return (
+          <Tile
+            boardTile={el}
+            hero={hero}
+            key={i}
+            arrIndex={i}
+            enemies={enemies}
+          />
+        );
+      })}
+    </div>
+  );
+}
 
 export default Board;
