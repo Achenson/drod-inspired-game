@@ -38,16 +38,14 @@ function MainUI({}: Props): JSX.Element {
     // !!!! without this everything will be recalculated from start - lag
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-    }
+    };
   });
 
   const boardSize = 9;
-
-  const adjacentTilesRelativeIndexes = [10, 9, 8, -1, -10, -9, -8, 1];
+  // starts with sword NW of hero
+  const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
   let board = makeBoard(boardSize);
-
- 
 
   const [enemies, setEnemies] = useState<Array<number | null>>([4]);
 
@@ -57,8 +55,6 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: 31,
   });
 
-  
- 
   function makeBoard(x: number): number[][] {
     let boardArr: number[][] = [];
 
@@ -128,12 +124,11 @@ function MainUI({}: Props): JSX.Element {
   }
 
   function rotateHero(direction: "clockwise" | "anticlockwise") {
+    let relativePosition = hero.heroPosition - hero.swordPosition;
 
-
-    let relativeSwordHeroPosition = hero.heroPosition - hero.swordPosition;
-
-    let indexOfRelativeSwordHeroPosition = adjacentTilesRelativeIndexes.indexOf(
-      relativeSwordHeroPosition
+    // indexOfRelativePosition taken from the array of all possible relative positions
+    let indexOfRelativePosition = adjacentTilesRelativePositions.indexOf(
+      relativePosition
     );
 
     // to change???
@@ -141,23 +136,25 @@ function MainUI({}: Props): JSX.Element {
 
     if (direction === "clockwise") {
       if (
-        indexOfRelativeSwordHeroPosition ===
-        adjacentTilesRelativeIndexes.length - 1
+        indexOfRelativePosition ===
+        adjacentTilesRelativePositions.length - 1
       ) {
-        swordPositionToAdd = adjacentTilesRelativeIndexes[0];
+        swordPositionToAdd = adjacentTilesRelativePositions[0];
       } else {
         swordPositionToAdd =
-          adjacentTilesRelativeIndexes[indexOfRelativeSwordHeroPosition + 1];
+          adjacentTilesRelativePositions[indexOfRelativePosition + 1];
       }
     }
 
     if (direction === "anticlockwise") {
-      if (indexOfRelativeSwordHeroPosition === 0) {
+      if (indexOfRelativePosition === 0) {
         swordPositionToAdd =
-          adjacentTilesRelativeIndexes[adjacentTilesRelativeIndexes.length - 1];
+          adjacentTilesRelativePositions[
+            adjacentTilesRelativePositions.length - 1
+          ];
       } else {
         swordPositionToAdd =
-          adjacentTilesRelativeIndexes[indexOfRelativeSwordHeroPosition - 1];
+          adjacentTilesRelativePositions[indexOfRelativePosition - 1];
       }
     }
 
@@ -166,32 +163,39 @@ function MainUI({}: Props): JSX.Element {
     // console.log("swordIndexToMove");
     // console.log(swordIndexToMove);
 
-    if(swordIndexToMove <0) {
+    //return if here would move out of the board (hero or sword) up or down
+    if (swordIndexToMove < 0 || swordIndexToMove > (boardSize - 1) * 10) {
+      return;
+    }
+
+    //                                      nw  n ne   e   se   s  sw  w
+    // const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
+
+    //return if here would move out of the board (hero or sword) left or right
+    if (
+      // board x,y cordinates go from 0 to boardSize-1
+      (((relativePosition === -9 && board[hero.swordPosition][0] === 0) ||
+        (relativePosition === 9 &&
+          board[hero.swordPosition][0] === boardSize - 1)) &&
+        direction === "clockwise") ||
+      (((relativePosition === -9 &&
+        board[hero.swordPosition][0] === boardSize - 1) ||
+        (relativePosition === 9 && board[hero.swordPosition][0] === 0)) &&
+        direction === "anticlockwise")
+    ) {
+      console.log("OUT");
       return;
     }
 
     console.log(board[swordIndexToMove][0]);
-    
     console.log(board[swordIndexToMove][1]);
 
-    if (
-      // board x,y cordinates go from 0 to boardSize-1
-      board[swordIndexToMove][0] > boardSize - 1 ||
-      board[swordIndexToMove][0] < 0 ||
-      board[swordIndexToMove][1] > boardSize - 1 ||
-      board[swordIndexToMove][1] < 0
-    ) {
-      return;
-    }
-
-    setHero({...hero, swordPosition: swordIndexToMove})
-
+    setHero({ ...hero, swordPosition: swordIndexToMove });
 
     // console.log("hero swordPosition");
     // console.log(hero.swordPosition);
 
     //return if here would move out of the board (sword)
-
   }
 
   function moveHero(direction: Directions) {
@@ -208,50 +212,46 @@ function MainUI({}: Props): JSX.Element {
     // console.log("swordIndexToMOve");
     // console.log(swordIndexToMove);
 
-
-
-
-    if(heroIndexToMove <0 || swordIndexToMove <0) {
+    //return if here would move out of the board (hero or sword) up or down
+    if (
+      heroIndexToMove < 0 ||
+      swordIndexToMove < 0 ||
+      heroIndexToMove > (boardSize - 1) * 10 ||
+      swordIndexToMove > (boardSize - 1) * 10
+    ) {
       return;
     }
 
-    console.log(board[heroIndexToMove][0]);
-    console.log(board[heroIndexToMove][1]);
-    
+    //return if here would move out of the board (hero or sword) left or right
+    if (
+      // board x,y cordinates go from 0 to boardSize-1
+      ((board[hero.heroPosition][0] === 0 ||
+        board[hero.swordPosition][0] === 0) &&
+        (direction === -10 || direction === 8 || direction === -1)) ||
+      ((board[hero.heroPosition][0] === boardSize - 1 ||
+        board[hero.swordPosition][0] === boardSize - 1) &&
+        (direction === -8 || direction === 1 || direction === 10)) ||
+      ((board[hero.heroPosition][0] === boardSize - 1 ||
+        board[hero.swordPosition][0] === boardSize - 1) &&
+        (direction === -8 || direction === 1 || direction === 10))
+    ) {
+      console.log("OUT");
+      return;
+    }
 
-      //return if here would move out of the board (hero or sword)
-      if (
-        // board x,y cordinates go from 0 to boardSize-1
-        board[heroIndexToMove][0] > boardSize - 1 ||
-        board[heroIndexToMove][0] < 0 ||
-        board[heroIndexToMove][1] > boardSize - 1 ||
-        board[heroIndexToMove][1] < 0||
-        board[swordIndexToMove][0] > boardSize - 1 ||
-        board[swordIndexToMove][0] < 0 ||
-        board[swordIndexToMove][1] > boardSize - 1 ||
-        board[swordIndexToMove][1] < 0
-       
-        
-      ) {
-        console.log("OUT");
-        return;
-      }
-
-
-    setHero({...hero, swordPosition: swordIndexToMove, heroPosition: heroIndexToMove})
-
-  
+    setHero({
+      ...hero,
+      swordPosition: swordIndexToMove,
+      heroPosition: heroIndexToMove,
+    });
   }
 
   return (
     <div className="mx-64 my-64">
-      <Board
-        board={board}
-        boardSize={boardSize}
-        hero={hero}
-      />
+      <Board board={board} boardSize={boardSize} hero={hero} />
     </div>
   );
 }
 
 export default MainUI;
+
