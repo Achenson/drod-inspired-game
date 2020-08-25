@@ -232,7 +232,8 @@ function MainUI({}: Props): JSX.Element {
 
     let aliveBoolean = true;
 
-    if(heroIndexToMove === enemies[enemies.indexOf(heroIndexToMove)]) {
+    // if(heroIndexToMove === enemies[enemies.indexOf(heroIndexToMove)]) {
+    if(enemies.indexOf(heroIndexToMove) > -1) {
       aliveBoolean = false;
     }
 
