@@ -92,6 +92,10 @@ function Tile({ boardTile, arrIndex, hero, enemies }: Props): JSX.Element {
     if (hero.swordPosition === arrIndex) {
       setEntityCSS(`${swordCSS}`);
     }
+
+    if (enemies.indexOf(arrIndex) > -1) {
+      setEntityCSS("w-4 h-4 bg-red-800 transform rotate-45");
+    }
   }, [hero, arrIndex]);
 
   return (
