@@ -230,10 +230,17 @@ function MainUI({}: Props): JSX.Element {
       return;
     }
 
+    let aliveBoolean = true;
+
+    if(heroIndexToMove === enemies[enemies.indexOf(heroIndexToMove)]) {
+      aliveBoolean = false;
+    }
+
     setHero({
       ...hero,
       swordPosition: swordIndexToMove,
       heroPosition: heroIndexToMove,
+      alive: aliveBoolean
     });
   }
 

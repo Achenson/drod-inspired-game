@@ -81,21 +81,30 @@ function Tile({ boardTile, arrIndex, hero, enemies }: Props): JSX.Element {
       */
 
   useEffect(() => {
-    if (hero.heroPosition !== arrIndex && hero.swordPosition !== arrIndex) {
+    if (hero.heroPosition !== arrIndex && hero.swordPosition !== arrIndex && enemies.indexOf(arrIndex) === -1 ) {
       setEntityCSS("hidden");
-    }
-
-    if (hero.heroPosition === arrIndex) {
-      setEntityCSS("w-5 h-5 bg-green-600 rounded-full");
-    }
-
-    if (hero.swordPosition === arrIndex) {
-      setEntityCSS(`${swordCSS}`);
     }
 
     if (enemies.indexOf(arrIndex) > -1) {
       setEntityCSS("w-4 h-4 bg-red-800 transform rotate-45");
     }
+
+    if (hero.heroPosition === arrIndex && hero.alive) {
+      setEntityCSS("w-5 h-5 bg-green-600 rounded-full");
+    }
+
+    if (hero.heroPosition === arrIndex && !hero.alive) {
+      setEntityCSS("w-5 h-5 bg-black");
+    }
+
+
+    if (hero.swordPosition === arrIndex && hero.alive) {
+      setEntityCSS(`${swordCSS}`);
+    }
+
+   
+
+
   }, [hero, arrIndex]);
 
   return (
