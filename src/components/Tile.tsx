@@ -52,53 +52,7 @@ function Tile({ boardTile, arrIndex, hero }: Props): JSX.Element {
     }
   }, [hero, arrIndex]);
 
-  // switch (boardElement) {
-  //   case "empty":
-  //     entityColor = "hidden";
-  //     break;
-  //   case "hero":
-  //     entityColor = "w-5 h-5 bg-green-600 rounded-full";
-  //     break;
-  //   case "sword-n":
-  //     entityColor = "w-3 h-8 bg-blue-800 ";
-  //     break;
-  //   case "sword-ne":
-  //     entityColor = "w-3 h-8 bg-blue-800 transform rotate-45";
-  //     break;
-  //   case "sword-e":
-  //     entityColor = "w-8 h-3 bg-blue-800 ";
-  //     break;
-  //   case "sword-se":
-  //     entityColor = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
-  //     break;
-  //   case "sword-s":
-  //     entityColor = "w-3 h-8 bg-blue-800";
-  //     break;
-  //   case "sword-sw":
-  //     entityColor = "w-3 h-8 bg-blue-800 transform rotate-45";
-  //     break;
-  //   case "sword-w":
-  //     entityColor = "w-8 h-3 bg-blue-800";
-  //     break;
-  //   case "sword-nw":
-  //     entityColor = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
-  //     break;
-  //   case "enemy":
-  //     entityColor = "w-4 h-4 bg-red-800 transform rotate-45";
-  //     break;
-  //   case "dead":
-  //     entityColor = "w-5 h-5 bg-black";
-  //     break;
 
-  //   default:
-  //     entityColor = "hidden";
-  // }
-
-  /*  if (boardR === "empty") {
-    entityColor = "bg-red-100";
-  } else {
-    entityColor = "bg-red-800";
-  } */
 
   return (
     <div
