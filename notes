@@ -43,3 +43,4 @@ module.exports = {
 
 
 1. enums: are they needed here?
+2. useState with arrays -> wrapper funcions??

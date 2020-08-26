@@ -43,7 +43,7 @@ function MainUI({}: Props): JSX.Element {
 
   let board = makeBoard(boardSize);
 
-  const [enemies, setEnemies] = useState<Array<number|null>>([4]);
+  const [enemies, setEnemies] = useState<Array<number | null>>([4]);
 
   const [hero, setHero] = useState<HeroObj>({
     heroPosition: 40,
@@ -157,7 +157,6 @@ function MainUI({}: Props): JSX.Element {
 
     let swordIndexToMove = hero.heroPosition - swordPositionToAdd;
 
-
     //return if here would move sword out of the board up or down
     if (swordIndexToMove < 0 || swordIndexToMove > (boardSize - 1) * 10) {
       return;
@@ -185,8 +184,15 @@ function MainUI({}: Props): JSX.Element {
     console.log(board[swordIndexToMove][0]);
     console.log(board[swordIndexToMove][1]);
 
-    setHero({ ...hero, swordPosition: swordIndexToMove });
+    if (enemies.indexOf(swordIndexToMove) > -1) {
+      let newEnemies = [...enemies];
 
+      newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
+
+      setEnemies([...newEnemies]);
+    }
+
+    setHero({ ...hero, swordPosition: swordIndexToMove });
   }
 
   function moveHero(direction: Directions) {
@@ -233,24 +239,36 @@ function MainUI({}: Props): JSX.Element {
     let aliveBoolean = true;
 
     // if(heroIndexToMove === enemies[enemies.indexOf(heroIndexToMove)]) {
-    if(enemies.indexOf(heroIndexToMove) > -1) {
+    if (enemies.indexOf(heroIndexToMove) > -1) {
       aliveBoolean = false;
+    }
+
+    if (enemies.indexOf(swordIndexToMove) > -1) {
+      let newEnemies = [...enemies];
+
+      newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
+
+      setEnemies([...newEnemies]);
     }
 
     setHero({
       ...hero,
       swordPosition: swordIndexToMove,
       heroPosition: heroIndexToMove,
-      alive: aliveBoolean
+      alive: aliveBoolean,
     });
   }
 
   return (
     <div className="mx-64 my-64">
-      <Board board={board} boardSize={boardSize} hero={hero} enemies={enemies} />
+      <Board
+        board={board}
+        boardSize={boardSize}
+        hero={hero}
+        enemies={enemies}
+      />
     </div>
   );
 }
 
 export default MainUI;
-
