@@ -187,7 +187,9 @@ function MainUI({}: Props): JSX.Element {
     if (enemies.indexOf(swordIndexToMove) > -1) {
       let newEnemies = [...enemies];
 
-      newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
+      // newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
+
+      newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
 
       setEnemies([...newEnemies]);
     }
@@ -246,8 +248,9 @@ function MainUI({}: Props): JSX.Element {
     if (enemies.indexOf(swordIndexToMove) > -1) {
       let newEnemies = [...enemies];
 
-      newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
+      // newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
 
+      newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
       setEnemies([...newEnemies]);
     }
 
@@ -258,6 +261,8 @@ function MainUI({}: Props): JSX.Element {
       alive: aliveBoolean,
     });
   }
+
+  function moveEnemies() {}
 
   return (
     <div className="mx-64 my-64">
