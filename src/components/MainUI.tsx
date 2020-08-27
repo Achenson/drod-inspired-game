@@ -44,7 +44,7 @@ function MainUI({}: Props): JSX.Element {
   let board = makeBoard(boardSize);
 
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
-  const [enemies, setEnemies] = useState<Array<number>>([4]);
+  const [enemies, setEnemies] = useState<Array<number>>([4, 61]);
 
   const [hero, setHero] = useState<HeroObj>({
     heroPosition: 40,
@@ -185,8 +185,9 @@ function MainUI({}: Props): JSX.Element {
     console.log(board[swordIndexToMove][0]);
     console.log(board[swordIndexToMove][1]);
 
+    let newEnemies = [...enemies];
+
     if (enemies.indexOf(swordIndexToMove) > -1) {
-      let newEnemies = [...enemies];
 
       // newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
 
@@ -199,7 +200,7 @@ function MainUI({}: Props): JSX.Element {
 
     setEnemies([
       ...moveEnemies(
-        enemies,
+        newEnemies,
         boardSize,
         adjacentTilesRelativePositions,
         hero.heroPosition,
@@ -342,6 +343,10 @@ function MainUI({}: Props): JSX.Element {
         possiblePositions.push(nIC);
       }
 
+      console.log("possiblePositions");
+      console.log(possiblePositions);
+      
+
       // won't move
       if (possiblePositions.length === 0) {
         nextEnemiesPositions.push(enemy);
@@ -356,16 +361,21 @@ function MainUI({}: Props): JSX.Element {
       if (possiblePositions.length >= 1) {
         let randomNumber = makeRandomNumber(1, possiblePositions.length);
 
-        let randomPosition = possiblePositions[randomNumber - 1];
+        let randomNextPosition = possiblePositions[randomNumber - 1];
 
         // if this nextPosition will be already taken by another enemy - don't move
-        if (nextEnemiesPositions.indexOf(randomPosition)) {
+
+        if (nextEnemiesPositions.indexOf(randomNextPosition) > -1) {
           nextEnemiesPositions.push(enemy);
         } else {
-          nextEnemiesPositions.push(randomPosition);
+          nextEnemiesPositions.push(randomNextPosition);
         }
       }
     }
+
+    console.log("nextEnemiesPositions");
+    console.log(nextEnemiesPositions);
+    
 
     return nextEnemiesPositions;
 
