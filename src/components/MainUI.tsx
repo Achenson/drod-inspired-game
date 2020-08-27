@@ -295,7 +295,7 @@ function MainUI({}: Props): JSX.Element {
   ) {
     let nextEnemiesPositions = [];
 
-    // enemy === index of this enemies' position
+    // enemy === enemy's position on board
     for (let enemy of enemies) {
       let possiblePositions: number[] = [];
 
@@ -324,14 +324,14 @@ function MainUI({}: Props): JSX.Element {
           continue;
         }
 
-        // no moving out of the board up or down
+        // no moving out of the board left or right
         if (
           (enemy % boardSize === 0 &&
             // nw                     w            sw
-            (enemy === 10 || enemy === 1 || enemy === -8)) ||
+            (el === 10 || el === 1 || el === -8)) ||
           (enemy % (boardSize - 1) === 0 &&
             // ne                     e            se
-            (enemy === 8 || enemy === -1 || enemy === -10))
+            (el === 8 || el === -1 || el === -10))
         ) {
           continue;
         }
