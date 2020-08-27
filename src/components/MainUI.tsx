@@ -43,7 +43,8 @@ function MainUI({}: Props): JSX.Element {
 
   let board = makeBoard(boardSize);
 
-  const [enemies, setEnemies] = useState<Array<number | null>>([4]);
+  // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
+  const [enemies, setEnemies] = useState<Array<number>>([4]);
 
   const [hero, setHero] = useState<HeroObj>({
     heroPosition: 40,
@@ -158,7 +159,7 @@ function MainUI({}: Props): JSX.Element {
     let swordIndexToMove = hero.heroPosition - swordPositionToAdd;
 
     //return if here would move sword out of the board up or down
-    if (swordIndexToMove < 0 || swordIndexToMove > (boardSize - 1) * 10) {
+    if (swordIndexToMove < 0 || swordIndexToMove > boardSize * boardSize - 1) {
       return;
     }
 
@@ -195,6 +196,16 @@ function MainUI({}: Props): JSX.Element {
     }
 
     setHero({ ...hero, swordPosition: swordIndexToMove });
+
+    setEnemies([
+      ...moveEnemies(
+        enemies,
+        boardSize,
+        adjacentTilesRelativePositions,
+        hero.heroPosition,
+        hero.swordPosition
+      ),
+    ]);
   }
 
   function moveHero(direction: Directions) {
@@ -215,8 +226,8 @@ function MainUI({}: Props): JSX.Element {
     if (
       heroIndexToMove < 0 ||
       swordIndexToMove < 0 ||
-      heroIndexToMove > (boardSize - 1) * 10 ||
-      swordIndexToMove > (boardSize - 1) * 10
+      heroIndexToMove > boardSize * boardSize - 1 ||
+      swordIndexToMove > boardSize * boardSize - 1
     ) {
       return;
     }
@@ -245,8 +256,9 @@ function MainUI({}: Props): JSX.Element {
       aliveBoolean = false;
     }
 
-    if (enemies.indexOf(swordIndexToMove) > -1) {
+
       let newEnemies = [...enemies];
+    if (enemies.indexOf(swordIndexToMove) > -1) {
 
       // newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
 
@@ -260,9 +272,111 @@ function MainUI({}: Props): JSX.Element {
       heroPosition: heroIndexToMove,
       alive: aliveBoolean,
     });
+
+
+    setEnemies([
+      ...moveEnemies(
+        newEnemies,
+        boardSize,
+        adjacentTilesRelativePositions,
+        hero.heroPosition,
+        hero.swordPosition
+      ),
+    ]);
   }
 
-  function moveEnemies() {}
+  function moveEnemies(
+    enemies: number[],
+    boardSize: number,
+    adjacentTilesRelativePositions: number[],
+    heroPosition: number,
+    swordPostion: number
+  ) {
+    let nextEnemiesPositions = [];
+
+    // enemy === index of this enemies' position
+    for (let enemy of enemies) {
+      let possiblePositions: number[] = [];
+
+      for (let el of adjacentTilesRelativePositions) {
+        const nextIndexCalculated = enemy - el;
+
+        let nIC = nextIndexCalculated;
+
+        // if it is possible to kill hero, this will be only possible option to move
+        if (nIC === heroPosition) {
+          possiblePositions.splice(0, possiblePositions.length, heroPosition);
+          break;
+        }
+        // enemy won't kill itself on purpose
+        if (nIC === swordPostion) {
+          continue;
+        }
+
+        // enemy won't collide with each other
+        if (enemies.indexOf(nextIndexCalculated) > -1) {
+          continue;
+        }
+
+        // no moving out of the board up or down
+        if (nIC < 0 || nIC > boardSize * boardSize - 1) {
+          continue;
+        }
+
+        // no moving out of the board up or down
+        if (
+          (enemy % boardSize === 0 &&
+            // nw                     w            sw
+            (enemy === 10 || enemy === 1 || enemy === -8)) ||
+          (enemy % (boardSize - 1) === 0 &&
+            // ne                     e            se
+            (enemy === 8 || enemy === -1 || enemy === -10))
+        ) {
+          continue;
+        }
+
+        // if(possiblePositions.indexOf(nIC) > -1) {
+        //   possiblePositions.push(enemy)
+        // }
+
+        possiblePositions.push(nIC);
+      }
+
+      // won't move
+      if (possiblePositions.length === 0) {
+        nextEnemiesPositions.push(enemy);
+      }
+
+      // only 1 possible move
+      // if (possiblePositions.length === 1) {
+
+      //   initialNextEnemiesPositions.push(possiblePositions[0]);
+      // }
+
+      if (possiblePositions.length >= 1) {
+        let randomNumber = makeRandomNumber(1, possiblePositions.length);
+
+        let randomPosition = possiblePositions[randomNumber - 1];
+
+        // if this nextPosition will be already taken by another enemy - don't move
+        if (nextEnemiesPositions.indexOf(randomPosition)) {
+          nextEnemiesPositions.push(enemy);
+        } else {
+          nextEnemiesPositions.push(randomPosition);
+        }
+      }
+    }
+
+    return nextEnemiesPositions;
+
+
+
+  }
+
+  function makeRandomNumber(min: number, max: number) {
+    let random = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(random);
+  }
 
   return (
     <div className="mx-64 my-64">
