@@ -44,13 +44,21 @@ function MainUI({}: Props): JSX.Element {
   let board = makeBoard(boardSize);
 
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
-  const [enemies, setEnemies] = useState<Array<number>>([4, 61]);
+  const [enemies, setEnemies] = useState<Array<number>>([36]);
 
   const [hero, setHero] = useState<HeroObj>({
     heroPosition: 40,
     alive: true,
     swordPosition: 31,
   });
+
+  // useEffect(() => {
+
+  //   if(hero.heroPosition === enemies.indexOf(hero.heroPosition)) {
+  //     setHero({...hero, alive: false})
+  //   }
+
+  // }, [hero, enemies])
 
   function makeBoard(x: number): number[][] {
     let boardArr: number[][] = [];
@@ -188,7 +196,6 @@ function MainUI({}: Props): JSX.Element {
     let newEnemies = [...enemies];
 
     if (enemies.indexOf(swordIndexToMove) > -1) {
-
       // newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
 
       newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
@@ -198,15 +205,24 @@ function MainUI({}: Props): JSX.Element {
 
     setHero({ ...hero, swordPosition: swordIndexToMove });
 
-    setEnemies([
-      ...moveEnemies(
-        newEnemies,
-        boardSize,
-        adjacentTilesRelativePositions,
-        hero.heroPosition,
-        hero.swordPosition
-      ),
-    ]);
+    // setEnemies([
+    //   ...moveEnemies(
+    //     newEnemies,
+    //     boardSize,
+    //     adjacentTilesRelativePositions,
+    //     hero.heroPosition,
+    //     hero.swordPosition
+    //   ),
+    // ]);
+
+    moveEnemies(
+      newEnemies,
+      boardSize,
+      adjacentTilesRelativePositions,
+      hero.heroPosition,
+      hero.swordPosition,
+      hero.heroPosition
+    );
   }
 
   function moveHero(direction: Directions) {
@@ -255,12 +271,17 @@ function MainUI({}: Props): JSX.Element {
     // if(heroIndexToMove === enemies[enemies.indexOf(heroIndexToMove)]) {
     if (enemies.indexOf(heroIndexToMove) > -1) {
       aliveBoolean = false;
+      setHero({
+        ...hero,
+        swordPosition: swordIndexToMove,
+        heroPosition: heroIndexToMove,
+        alive: aliveBoolean,
+      });
+      return;
     }
 
-
-      let newEnemies = [...enemies];
+    let newEnemies = [...enemies];
     if (enemies.indexOf(swordIndexToMove) > -1) {
-
       // newEnemies[newEnemies.indexOf(swordIndexToMove)] = null;
 
       newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
@@ -274,16 +295,23 @@ function MainUI({}: Props): JSX.Element {
       alive: aliveBoolean,
     });
 
-
-    setEnemies([
-      ...moveEnemies(
-        newEnemies,
-        boardSize,
-        adjacentTilesRelativePositions,
-        hero.heroPosition,
-        hero.swordPosition
-      ),
-    ]);
+    // setEnemies([
+    //   ...moveEnemies(
+    //     newEnemies,
+    //     boardSize,
+    //     adjacentTilesRelativePositions,
+    //     hero.heroPosition,
+    //     hero.swordPosition
+    //   ),
+    // ]);
+    moveEnemies(
+      newEnemies,
+      boardSize,
+      adjacentTilesRelativePositions,
+      hero.heroPosition,
+      hero.swordPosition,
+      heroIndexToMove
+    );
   }
 
   function moveEnemies(
@@ -291,9 +319,10 @@ function MainUI({}: Props): JSX.Element {
     boardSize: number,
     adjacentTilesRelativePositions: number[],
     heroPosition: number,
-    swordPostion: number
+    swordPostion: number,
+    heroIndexToMove: number
   ) {
-    let nextEnemiesPositions = [];
+    let nextEnemiesPositions: number[] = [];
 
     // enemy === enemy's position on board
     for (let enemy of enemies) {
@@ -325,6 +354,14 @@ function MainUI({}: Props): JSX.Element {
         }
 
         // no moving out of the board left or right
+
+        // starts with sword NW of hero
+        // const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
+
+        // console.log(el);
+        // console.log(enemy);
+        // console.log(enemy % boardSize);
+
         if (
           (enemy % boardSize === 0 &&
             // nw                     w            sw
@@ -333,6 +370,8 @@ function MainUI({}: Props): JSX.Element {
             // ne                     e            se
             (el === 8 || el === -1 || el === -10))
         ) {
+          console.log("sth");
+
           continue;
         }
 
@@ -345,7 +384,6 @@ function MainUI({}: Props): JSX.Element {
 
       console.log("possiblePositions");
       console.log(possiblePositions);
-      
 
       // won't move
       if (possiblePositions.length === 0) {
@@ -375,12 +413,26 @@ function MainUI({}: Props): JSX.Element {
 
     console.log("nextEnemiesPositions");
     console.log(nextEnemiesPositions);
-    
 
-    return nextEnemiesPositions;
+    // setEnemies([
+    //   ...moveEnemies(
+    //     newEnemies,
+    //     boardSize,
+    //     adjacentTilesRelativePositions,
+    //     hero.heroPosition,
+    //     hero.swordPosition
+    //   ),
+    // ]);
 
+    // enemy kills if hero is adjacent & didn't move this turn
+    // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
+    if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
+      setHero({ ...hero, alive: false });
+    }
 
+    setEnemies([...nextEnemiesPositions]);
 
+    // return nextEnemiesPositions;
   }
 
   function makeRandomNumber(min: number, max: number) {

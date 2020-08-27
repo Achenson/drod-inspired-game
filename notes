@@ -44,4 +44,4 @@ module.exports = {
 
 1. enums: are they needed here?
 2. useState with arrays -> wrapper funcions??
-3. better leaving to the side
+3. better leaving to the side -> make it the same in moveHero & moveEnemies

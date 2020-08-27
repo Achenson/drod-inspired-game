@@ -88,6 +88,13 @@ function Tile({ boardTile, arrIndex, hero, enemies }: Props): JSX.Element {
       // return;
     }
 
+    // if (hero.heroPosition === arrIndex && ) {
+    //   setEntityCSS("w-5 h-5 bg-black");
+    //   return;
+    //   // return;
+    // }
+
+
     if (hero.heroPosition === arrIndex && hero.alive) {
       setEntityCSS("w-5 h-5 bg-green-600 rounded-full");
       return;
