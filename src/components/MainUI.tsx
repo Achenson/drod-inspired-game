@@ -43,8 +43,9 @@ function MainUI({}: Props): JSX.Element {
 
   let board = makeBoard(boardSize);
 
+  const [currentTurn, setCurrentTurn] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
-  const [enemies, setEnemies] = useState<Array<number>>([36]);
+  const [enemies, setEnemies] = useState<Array<number>>([22]);
 
   const [hero, setHero] = useState<HeroObj>({
     heroPosition: 40,
@@ -220,7 +221,8 @@ function MainUI({}: Props): JSX.Element {
       boardSize,
       adjacentTilesRelativePositions,
       hero.heroPosition,
-      hero.swordPosition,
+      swordIndexToMove,
+      // next position is the same as current
       hero.heroPosition
     );
   }
@@ -228,6 +230,16 @@ function MainUI({}: Props): JSX.Element {
   function moveHero(direction: Directions) {
     // direction === 0 in case of "wait" btn
     if (direction === 0) {
+      moveEnemies(
+        enemies,
+        boardSize,
+        adjacentTilesRelativePositions,
+        hero.heroPosition,
+        hero.swordPosition,
+        // next position is the same as current
+        hero.heroPosition
+      );
+
       return;
     }
 
@@ -309,7 +321,8 @@ function MainUI({}: Props): JSX.Element {
       boardSize,
       adjacentTilesRelativePositions,
       hero.heroPosition,
-      hero.swordPosition,
+      // hero.swordPosition,
+      swordIndexToMove,
       heroIndexToMove
     );
   }
@@ -319,7 +332,7 @@ function MainUI({}: Props): JSX.Element {
     boardSize: number,
     adjacentTilesRelativePositions: number[],
     heroPosition: number,
-    swordPostion: number,
+    nextSwordPosition: number,
     heroIndexToMove: number
   ) {
     let nextEnemiesPositions: number[] = [];
@@ -333,14 +346,18 @@ function MainUI({}: Props): JSX.Element {
 
         let nIC = nextIndexCalculated;
 
-        // if it is possible to kill hero, this will be only possible option to move
+        // order is important! this must be before the next, otherwise enemy will stumble upon
+        // the sword if chasing hero
+
+        // enemy won't kill itself on purpose
+        if (nIC === nextSwordPosition) {
+          continue;
+        }
+
+        // if it is possible to kill hero(or chase him), this will be only possible option to move
         if (nIC === heroPosition) {
           possiblePositions.splice(0, possiblePositions.length, heroPosition);
           break;
-        }
-        // enemy won't kill itself on purpose
-        if (nIC === swordPostion) {
-          continue;
         }
 
         // enemy won't collide with each other
@@ -425,14 +442,57 @@ function MainUI({}: Props): JSX.Element {
     // ]);
 
     // enemy kills if hero is adjacent & didn't move this turn
-    // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
+    // !!!! nextEnemiesPostions & heroIndexToMove belong to the same(2nd) turn
     if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
       setHero({ ...hero, alive: false });
+    } else {
+      // if hero is killed, round counter(how many turns you survived) doesn't go up
+      setCurrentTurn((n) => n + 1);
+      console.log(currentTurn);
+    }
+
+    if (currentTurn % 2 === 0 && currentTurn !== 0) {
+      nextEnemiesPositions = [
+        ...nextEnemiesPositions,
+        createEnemy(
+          nextEnemiesPositions,
+          heroIndexToMove,
+          nextSwordPosition,
+          boardSize
+        ),
+      ];
     }
 
     setEnemies([...nextEnemiesPositions]);
 
     // return nextEnemiesPositions;
+  }
+
+  function createEnemy(
+    nextEnemiesPositions: number[],
+    heroIndexToMOve: number,
+    nextSwordPosition: number,
+    boardSize: number
+  ): number {
+    let possiblePositions = [];
+
+    let takenPositions = [
+      ...nextEnemiesPositions,
+      heroIndexToMOve,
+      nextSwordPosition,
+    ];
+
+    for (let i = 0; i < boardSize * boardSize - 1; i++) {
+      if (takenPositions.indexOf(i) === -1) {
+        possiblePositions.push(i);
+      }
+    }
+
+    let randomIndex = makeRandomNumber(1, possiblePositions.length);
+
+    let newEnemyPosition = possiblePositions[randomIndex - 1];
+
+    return newEnemyPosition;
   }
 
   function makeRandomNumber(min: number, max: number) {
