@@ -83,57 +83,64 @@ function MainUI({}: Props): JSX.Element {
     return boardArr;
   }
 
-  function handleKeyDown(event: KeyboardEvent) {
+  function handleKeyDown(
+    event: KeyboardEvent,
+  ) {
     switch (event.code) {
       case "KeyQ":
         console.log("q");
-        rotateHero("anticlockwise");
+        rotateHero("anticlockwise", setHero, setEnemies, setEnemiesKilled);
         break;
       case "KeyW":
         console.log("w");
-        rotateHero("clockwise");
+        rotateHero("clockwise", setHero, setEnemies, setEnemiesKilled);
 
         break;
       case "Numpad7":
         console.log("numpad 7");
-        moveHero(Directions.nw);
+        moveHero(Directions.nw, setHero, setEnemies, setEnemiesKilled);
         break;
       case "Numpad8":
         console.log("numpad 8");
-        moveHero(Directions.n);
+        moveHero(Directions.n, setHero, setEnemies, setEnemiesKilled);
         break;
       case "Numpad9":
         console.log("numpad 9");
-        moveHero(Directions.ne);
+        moveHero(Directions.ne, setHero, setEnemies, setEnemiesKilled);
         break;
       case "Numpad4":
         console.log("numpad 4");
-        moveHero(Directions.w);
+        moveHero(Directions.w, setHero, setEnemies, setEnemiesKilled);
         break;
       case "Numpad5":
         console.log("numpad 5");
-        moveHero(Directions.wait);
+        moveHero(Directions.wait, setHero, setEnemies, setEnemiesKilled);
         break;
       case "Numpad6":
         console.log("numpad 6");
-        moveHero(Directions.e);
+        moveHero(Directions.e, setHero, setEnemies, setEnemiesKilled);
         break;
       case "Numpad1":
         console.log("numpad 1");
-        moveHero(Directions.sw);
+        moveHero(Directions.sw, setHero, setEnemies, setEnemiesKilled);
         break;
       case "Numpad2":
         console.log("numpad 2");
-        moveHero(Directions.s);
+        moveHero(Directions.s, setHero, setEnemies, setEnemiesKilled);
         break;
       case "Numpad3":
         console.log("numpad 3");
-        moveHero(Directions.se);
+        moveHero(Directions.se, setHero, setEnemies, setEnemiesKilled);
         break;
     }
   }
 
-  function rotateHero(direction: "clockwise" | "anticlockwise") {
+  function rotateHero(
+    direction: "clockwise" | "anticlockwise",
+    setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
+    setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
+    setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>
+  ) {
     let relativePosition = hero.heroPosition - hero.swordPosition;
 
     // indexOfRelativePosition taken from the array of all possible relative positions
@@ -228,11 +235,18 @@ function MainUI({}: Props): JSX.Element {
       hero.heroPosition,
       swordIndexToMove,
       // next position is the same as current
-      hero.heroPosition
+      hero.heroPosition,
+      setHero,
+      setEnemies
     );
   }
 
-  function moveHero(direction: Directions) {
+  function moveHero(
+    direction: Directions,
+    setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
+    setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
+    setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>
+  ) {
     // direction === 0 in case of "wait" btn
     if (direction === 0) {
       moveEnemies(
@@ -242,7 +256,9 @@ function MainUI({}: Props): JSX.Element {
         hero.heroPosition,
         hero.swordPosition,
         // next position is the same as current
-        hero.heroPosition
+        hero.heroPosition,
+        setHero,
+        setEnemies
       );
 
       return;
@@ -329,7 +345,9 @@ function MainUI({}: Props): JSX.Element {
       hero.heroPosition,
       // hero.swordPosition,
       swordIndexToMove,
-      heroIndexToMove
+      heroIndexToMove,
+      setHero,
+      setEnemies
     );
   }
 
@@ -339,7 +357,9 @@ function MainUI({}: Props): JSX.Element {
     adjacentTilesRelativePositions: number[],
     heroPosition: number,
     nextSwordPosition: number,
-    heroIndexToMove: number
+    heroIndexToMove: number,
+    setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
+    setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
   ) {
     let nextEnemiesPositions: number[] = [];
 
@@ -374,7 +394,7 @@ function MainUI({}: Props): JSX.Element {
             // nw                     w            sw
             (el === 10 || el === 1 || el === -8)) ||
           // (enemy % (boardSize - 1) === 0 &&
-          ( (enemy + 1) % boardSize === 0 &&
+          ((enemy + 1) % boardSize === 0 &&
             // ne                     e            se
             (el === 8 || el === -1 || el === -10))
         ) {
