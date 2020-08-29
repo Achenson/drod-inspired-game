@@ -40,7 +40,10 @@ module.exports = {
 
 ==================================
 
+bugs:
+kill hero sometimes appear in the wrong place
 
+notes:
 
 1. enums: are they needed here?
 2. useState with arrays -> wrapper funcions??

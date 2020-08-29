@@ -206,7 +206,7 @@ function MainUI({}: Props): JSX.Element {
       newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
 
       setEnemies([...newEnemies]);
-      setEnemiesKilled(n => n+1 );
+      setEnemiesKilled((n) => n + 1);
     }
 
     setHero({ ...hero, swordPosition: swordIndexToMove });
@@ -303,7 +303,7 @@ function MainUI({}: Props): JSX.Element {
 
       newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
       setEnemies([...newEnemies]);
-      setEnemiesKilled(n => n+1 );
+      setEnemiesKilled((n) => n + 1);
     }
 
     setHero({
@@ -355,22 +355,6 @@ function MainUI({}: Props): JSX.Element {
         // order is important! this must be before the next, otherwise enemy will stumble upon
         // the sword if chasing hero
 
-        // enemy won't kill itself on purpose
-        if (nIC === nextSwordPosition) {
-          continue;
-        }
-
-        // if it is possible to kill hero(or chase him), this will be only possible option to move
-        if (nIC === heroPosition) {
-          possiblePositions.splice(0, possiblePositions.length, heroPosition);
-          break;
-        }
-
-        // enemy won't collide with each other
-        if (enemies.indexOf(nextIndexCalculated) > -1) {
-          continue;
-        }
-
         // no moving out of the board up or down
         if (nIC < 0 || nIC > boardSize * boardSize - 1) {
           continue;
@@ -389,12 +373,29 @@ function MainUI({}: Props): JSX.Element {
           (enemy % boardSize === 0 &&
             // nw                     w            sw
             (el === 10 || el === 1 || el === -8)) ||
-          (enemy % (boardSize - 1) === 0 &&
+          // (enemy % (boardSize - 1) === 0 &&
+          ( (enemy + 1) % boardSize === 0 &&
             // ne                     e            se
             (el === 8 || el === -1 || el === -10))
         ) {
           console.log("sth");
 
+          continue;
+        }
+
+        // enemy won't kill itself on purpose
+        if (nIC === nextSwordPosition) {
+          continue;
+        }
+
+        // if it is possible to kill hero(or chase him), this will be only possible option to move
+        if (nIC === heroPosition) {
+          possiblePositions.splice(0, possiblePositions.length, heroPosition);
+          break;
+        }
+
+        // enemy won't collide with each other
+        if (enemies.indexOf(nextIndexCalculated) > -1) {
           continue;
         }
 
@@ -498,6 +499,8 @@ function MainUI({}: Props): JSX.Element {
 
     let newEnemyPosition = possiblePositions[randomIndex - 1];
 
+    console.log("newEnemyPosition");
+    console.log(newEnemyPosition);
     return newEnemyPosition;
   }
 
@@ -508,7 +511,7 @@ function MainUI({}: Props): JSX.Element {
 
   return (
     <div className="mx-64 my-64">
-      <Turns currentTurn={currentTurn} enemiesKilled={enemiesKilled}/>
+      <Turns currentTurn={currentTurn} enemiesKilled={enemiesKilled} />
       <Board
         board={board}
         boardSize={boardSize}
