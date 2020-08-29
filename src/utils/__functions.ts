@@ -1,5 +1,5 @@
 import {HeroObj} from "./interfaces"
-import { Directions } from "../utils/interfaces";
+import { Directions } from "./interfaces";
 
 
 function makeBoard(x: number): number[][] {
