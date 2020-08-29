@@ -5,28 +5,8 @@ import Turns from "./Turns";
 
 interface Props {}
 
-// unknown key name, unkown number of keys
-interface BoardObj {
-  [key: string]: string;
-}
-
-interface HeroObj {
-  heroPosition: number;
-  alive: boolean;
-  swordPosition: number;
-}
-
-enum Directions {
-  nw = -10,
-  n = -9,
-  ne = -8,
-  e = 1,
-  se = 10,
-  s = 9,
-  sw = 8,
-  w = -1,
-  wait = 0,
-}
+import { HeroObj } from "../utils/interfaces";
+import { Directions } from "../utils/interfaces";
 
 function MainUI({}: Props): JSX.Element {
   useEffect(() => {
@@ -65,6 +45,156 @@ function MainUI({}: Props): JSX.Element {
 
   // }, [hero, enemies])
 
+  function handleKeyDown(event: KeyboardEvent) {
+    switch (event.code) {
+      case "KeyQ":
+        console.log("q");
+        rotateHero(
+          "anticlockwise",
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize,
+          setHero,
+          setEnemies,
+          setEnemiesKilled
+        );
+        break;
+      case "KeyW":
+        console.log("w");
+        rotateHero(
+          "clockwise",
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize,
+          setHero,
+          setEnemies,
+          setEnemiesKilled
+        );
+
+        break;
+      case "Numpad7":
+        console.log("numpad 7");
+        moveHero(
+          Directions.nw,
+          setHero,
+          setEnemies,
+          setEnemiesKilled,
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize
+        );
+        break;
+      case "Numpad8":
+        console.log("numpad 8");
+        moveHero(
+          Directions.n,
+          setHero,
+          setEnemies,
+          setEnemiesKilled,
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize
+        );
+        break;
+      case "Numpad9":
+        console.log("numpad 9");
+        moveHero(
+          Directions.ne,
+          setHero,
+          setEnemies,
+          setEnemiesKilled,
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize
+        );
+        break;
+      case "Numpad4":
+        console.log("numpad 4");
+        moveHero(
+          Directions.w,
+          setHero,
+          setEnemies,
+          setEnemiesKilled,
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize
+        );
+        break;
+      case "Numpad5":
+        console.log("numpad 5");
+        moveHero(
+          Directions.wait,
+          setHero,
+          setEnemies,
+          setEnemiesKilled,
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize
+        );
+        break;
+      case "Numpad6":
+        console.log("numpad 6");
+        moveHero(
+          Directions.e,
+          setHero,
+          setEnemies,
+          setEnemiesKilled,
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize
+        );
+        break;
+      case "Numpad1":
+        console.log("numpad 1");
+        moveHero(
+          Directions.sw,
+          setHero,
+          setEnemies,
+          setEnemiesKilled,
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize
+        );
+        break;
+      case "Numpad2":
+        console.log("numpad 2");
+        moveHero(
+          Directions.s,
+          setHero,
+          setEnemies,
+          setEnemiesKilled,
+          hero,
+          enemies,
+          adjacentTilesRelativePositions,
+          board,
+          boardSize
+        );
+        break;
+      case "Numpad3":
+        console.log("numpad 3");
+        moveHero(Directions.se, setHero, setEnemies, setEnemiesKilled);
+        break;
+    }
+  }
+
   function makeBoard(x: number): number[][] {
     let boardArr: number[][] = [];
 
@@ -83,63 +213,18 @@ function MainUI({}: Props): JSX.Element {
     return boardArr;
   }
 
-  function handleKeyDown(
-    event: KeyboardEvent,
-  ) {
-    switch (event.code) {
-      case "KeyQ":
-        console.log("q");
-        rotateHero("anticlockwise", setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "KeyW":
-        console.log("w");
-        rotateHero("clockwise", setHero, setEnemies, setEnemiesKilled);
-
-        break;
-      case "Numpad7":
-        console.log("numpad 7");
-        moveHero(Directions.nw, setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "Numpad8":
-        console.log("numpad 8");
-        moveHero(Directions.n, setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "Numpad9":
-        console.log("numpad 9");
-        moveHero(Directions.ne, setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "Numpad4":
-        console.log("numpad 4");
-        moveHero(Directions.w, setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "Numpad5":
-        console.log("numpad 5");
-        moveHero(Directions.wait, setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "Numpad6":
-        console.log("numpad 6");
-        moveHero(Directions.e, setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "Numpad1":
-        console.log("numpad 1");
-        moveHero(Directions.sw, setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "Numpad2":
-        console.log("numpad 2");
-        moveHero(Directions.s, setHero, setEnemies, setEnemiesKilled);
-        break;
-      case "Numpad3":
-        console.log("numpad 3");
-        moveHero(Directions.se, setHero, setEnemies, setEnemiesKilled);
-        break;
-    }
-  }
-
   function rotateHero(
     direction: "clockwise" | "anticlockwise",
+    hero: HeroObj,
+    enemies: number[],
+    adjacentTilesRelativePositions: number[],
+    board: number[][],
+    boardSize: number,
     setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
     setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
-    setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>
+    setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>,
+    currentTurn: number,
+    setCurrentTurn: React.Dispatch<React.SetStateAction<number>>
   ) {
     let relativePosition = hero.heroPosition - hero.swordPosition;
 
@@ -236,8 +321,11 @@ function MainUI({}: Props): JSX.Element {
       swordIndexToMove,
       // next position is the same as current
       hero.heroPosition,
+      hero,
       setHero,
-      setEnemies
+      setEnemies,
+      currentTurn,
+      setCurrentTurn
     );
   }
 
@@ -245,7 +333,14 @@ function MainUI({}: Props): JSX.Element {
     direction: Directions,
     setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
     setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
-    setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>
+    setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>,
+    currentTurn: number,
+    setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
+    hero: HeroObj,
+    enemies: number[],
+    adjacentTilesRelativePositions: number[],
+    board: number[][],
+    boardSize: number
   ) {
     // direction === 0 in case of "wait" btn
     if (direction === 0) {
@@ -257,8 +352,11 @@ function MainUI({}: Props): JSX.Element {
         hero.swordPosition,
         // next position is the same as current
         hero.heroPosition,
+        hero,
         setHero,
-        setEnemies
+        setEnemies,
+        currentTurn,
+        setCurrentTurn
       );
 
       return;
@@ -266,11 +364,6 @@ function MainUI({}: Props): JSX.Element {
 
     let heroIndexToMove = hero.heroPosition + direction;
     let swordIndexToMove = hero.swordPosition + direction;
-
-    // console.log("heroIndexToMOve");
-    // console.log(heroIndexToMove);
-    // console.log("swordIndexToMOve");
-    // console.log(swordIndexToMove);
 
     //return if here would move out of the board (hero or sword) up or down
     if (
@@ -346,8 +439,11 @@ function MainUI({}: Props): JSX.Element {
       // hero.swordPosition,
       swordIndexToMove,
       heroIndexToMove,
+      hero,
       setHero,
-      setEnemies
+      setEnemies,
+      currentTurn,
+      setCurrentTurn
     );
   }
 
@@ -358,8 +454,11 @@ function MainUI({}: Props): JSX.Element {
     heroPosition: number,
     nextSwordPosition: number,
     heroIndexToMove: number,
+    hero: HeroObj,
     setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
     setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
+    currentTurn: number,
+    setCurrentTurn: React.Dispatch<React.SetStateAction<number>>
   ) {
     let nextEnemiesPositions: number[] = [];
 
