@@ -1,15 +1,17 @@
-import React from 'react'
+import React from "react";
 
 interface Props {
-   currentTurn: number
+  currentTurn: number;
+  enemiesKilled: number;
 }
 
-function Turns({currentTurn}: Props): JSX.Element{
-    return (
-        <div>
-            {currentTurn}
-        </div>
-    )
+function Turns({ currentTurn, enemiesKilled }: Props): JSX.Element {
+  return (
+    <div>
+      <p>turn: {currentTurn}</p>
+      <p>kills: {enemiesKilled}</p>
+    </div>
+  );
 }
 
 export default Turns;

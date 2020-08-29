@@ -47,8 +47,9 @@ function MainUI({}: Props): JSX.Element {
   // const [turnsPassed, setTurnsPassed] = useState()
 
   const [currentTurn, setCurrentTurn] = useState<number>(0);
+  const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
-  const [enemies, setEnemies] = useState<Array<number>>([22]);
+  const [enemies, setEnemies] = useState<Array<number>>([4]);
 
   const [hero, setHero] = useState<HeroObj>({
     heroPosition: 40,
@@ -205,6 +206,7 @@ function MainUI({}: Props): JSX.Element {
       newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
 
       setEnemies([...newEnemies]);
+      setEnemiesKilled(n => n+1 );
     }
 
     setHero({ ...hero, swordPosition: swordIndexToMove });
@@ -301,6 +303,7 @@ function MainUI({}: Props): JSX.Element {
 
       newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
       setEnemies([...newEnemies]);
+      setEnemiesKilled(n => n+1 );
     }
 
     setHero({
@@ -505,7 +508,7 @@ function MainUI({}: Props): JSX.Element {
 
   return (
     <div className="mx-64 my-64">
-      <Turns currentTurn={currentTurn}/>
+      <Turns currentTurn={currentTurn} enemiesKilled={enemiesKilled}/>
       <Board
         board={board}
         boardSize={boardSize}
