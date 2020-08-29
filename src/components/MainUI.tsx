@@ -1,6 +1,7 @@
 import React, { ReactElement, ReactEventHandler } from "react";
 import Board from "./Board";
 import { useState, useEffect } from "react";
+import Turns from "./Turns";
 
 interface Props {}
 
@@ -42,6 +43,8 @@ function MainUI({}: Props): JSX.Element {
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
   let board = makeBoard(boardSize);
+
+  // const [turnsPassed, setTurnsPassed] = useState()
 
   const [currentTurn, setCurrentTurn] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
@@ -502,6 +505,7 @@ function MainUI({}: Props): JSX.Element {
 
   return (
     <div className="mx-64 my-64">
+      <Turns currentTurn={currentTurn}/>
       <Board
         board={board}
         boardSize={boardSize}
