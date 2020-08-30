@@ -106,7 +106,6 @@ export default function rotateHero(
       newEnemies,
       boardSize,
       adjacentTilesRelativePositions,
-      hero.heroPosition,
       swordIndexToMove,
       // next position is the same as current
       hero.heroPosition,

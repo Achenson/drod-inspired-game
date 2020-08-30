@@ -22,7 +22,6 @@ export default function moveHero(
         enemies,
         boardSize,
         adjacentTilesRelativePositions,
-        hero.heroPosition,
         hero.swordPosition,
         // next position is the same as current
         hero.heroPosition,
@@ -109,7 +108,6 @@ export default function moveHero(
       newEnemies,
       boardSize,
       adjacentTilesRelativePositions,
-      hero.heroPosition,
       // hero.swordPosition,
       swordIndexToMove,
       heroIndexToMove,

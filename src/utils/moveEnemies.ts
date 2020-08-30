@@ -6,7 +6,7 @@ export default function moveEnemies(
   enemies: number[],
   boardSize: number,
   adjacentTilesRelativePositions: number[],
-  heroPosition: number,
+  // heroPosition: number,
   nextSwordPosition: number,
   heroIndexToMove: number,
   hero: HeroObj,
