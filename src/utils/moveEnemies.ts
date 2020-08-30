@@ -118,7 +118,7 @@ export default function moveEnemies(
     console.log(currentTurn);
   }
 
-  if (currentTurn % 2 === 0 && currentTurn !== 0) {
+  if (currentTurn % 2 !== 0 && currentTurn !== 0) {
     nextEnemiesPositions = [
       ...nextEnemiesPositions,
       createEnemy(

@@ -1,20 +1,23 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-
 import { HeroObj } from "../utils/interfaces";
-import { BoardObj } from "../utils/interfaces";
 
 interface Props {
   boardTile: number[];
   arrIndex: number;
   hero: HeroObj;
   enemies: Array<number | null>;
+  currentTurn: number;
 }
 
-
-
-function Tile({ boardTile, arrIndex, hero, enemies }: Props): JSX.Element {
+function Tile({
+  boardTile,
+  arrIndex,
+  hero,
+  enemies,
+  currentTurn,
+}: Props): JSX.Element {
   //  let backgroundColor = "w-10 h-10 bg-gray-300";
   let backgroundColor;
 
@@ -77,7 +80,6 @@ function Tile({ boardTile, arrIndex, hero, enemies }: Props): JSX.Element {
       */
 
   useEffect(() => {
-
     if (hero.heroPosition === arrIndex && !hero.alive) {
       setEntityCSS("w-5 h-5 bg-black");
       return;
@@ -90,20 +92,29 @@ function Tile({ boardTile, arrIndex, hero, enemies }: Props): JSX.Element {
     //   // return;
     // }
 
-
     if (hero.heroPosition === arrIndex && hero.alive) {
       setEntityCSS("w-5 h-5 bg-green-600 rounded-full");
       return;
     }
-
 
     if (hero.swordPosition === arrIndex && hero.alive) {
       setEntityCSS(`${swordCSS}`);
       return;
     }
 
+    // newly arrived enemy color for 1 turn
+    if (
+      arrIndex === enemies[enemies.length - 1] &&
+      currentTurn % 2 === 0 &&
+      currentTurn !== 1 &&
+      currentTurn !== 0 
+    ) {
+      setEntityCSS("w-4 h-4 bg-red-900 transform rotate-45");
+      return;
+    }
+
     if (enemies.indexOf(arrIndex) > -1) {
-      setEntityCSS("w-4 h-4 bg-red-800 transform rotate-45");
+      setEntityCSS("w-4 h-4 bg-red-600 transform rotate-45");
       return;
     }
 

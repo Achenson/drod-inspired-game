@@ -148,6 +148,7 @@ function MainUI({}: Props): JSX.Element {
         boardSize={boardSize}
         hero={hero}
         enemies={enemies}
+        currentTurn={currentTurn}
       />
     </div>
   );
