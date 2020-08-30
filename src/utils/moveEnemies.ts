@@ -59,8 +59,8 @@ export default function moveEnemies(
       }
 
       // if it is possible to kill hero(or chase him), this will be only possible option to move
-      if (nIC === heroPosition) {
-        possiblePositions.splice(0, possiblePositions.length, heroPosition);
+      if (nIC === heroIndexToMove) {
+        possiblePositions.splice(0, possiblePositions.length, heroIndexToMove);
         break;
       }
 
