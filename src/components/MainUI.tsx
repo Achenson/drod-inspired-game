@@ -1,8 +1,7 @@
-import React, { ReactElement, ReactEventHandler } from "react";
+import React, { ReactElement, ReactEventHandler, createElement } from "react";
 import Board from "./Board";
 import { useState, useEffect } from "react";
 import Turns from "./Turns";
-
 
 import { HeroObj } from "../utils/interfaces";
 import { Directions } from "../utils/interfaces";
@@ -10,6 +9,8 @@ import { Directions } from "../utils/interfaces";
 import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
 import rotateHero from "../utils/rotateHero";
+import moveEnemies from "../utils/moveEnemies";
+import createEnemy from "../utils/createEnemy";
 
 interface Props {}
 
@@ -215,7 +216,9 @@ function MainUI({}: Props): JSX.Element {
         break;
       case "Numpad3":
         console.log("numpad 3");
-        moveHero(Directions.se, setHero,
+        moveHero(
+          Directions.se,
+          setHero,
           setEnemies,
           setEnemiesKilled,
           currentTurn,
@@ -224,8 +227,46 @@ function MainUI({}: Props): JSX.Element {
           enemies,
           adjacentTilesRelativePositions,
           board,
-          boardSize);
+          boardSize
+        );
         break;
+    }
+  }
+
+  function heroMovement(
+    directionToMove: "clockwise" | "anticlockwise" | Directions
+  ) {
+    if (
+      directionToMove === "clockwise" ||
+      directionToMove === "anticlockwise"
+    ) {
+      rotateHero(
+        directionToMove,
+        hero,
+        enemies,
+        adjacentTilesRelativePositions,
+        board,
+        boardSize,
+        setHero,
+        setEnemies,
+        setEnemiesKilled,
+        currentTurn,
+        setCurrentTurn
+      );
+    } else {
+      moveHero(
+        directionToMove,
+        setHero,
+        setEnemies,
+        setEnemiesKilled,
+        currentTurn,
+        setCurrentTurn,
+        hero,
+        enemies,
+        adjacentTilesRelativePositions,
+        board,
+        boardSize
+      );
     }
   }
 
