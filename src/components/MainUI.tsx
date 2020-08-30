@@ -9,8 +9,6 @@ import { Directions } from "../utils/interfaces";
 import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
 import rotateHero from "../utils/rotateHero";
-import moveEnemies from "../utils/moveEnemies";
-import createEnemy from "../utils/createEnemy";
 
 interface Props {}
 

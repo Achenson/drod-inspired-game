@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-interface BoardObj {
-  [key: string]: string;
-}
+
+import { HeroObj } from "../utils/interfaces";
+import { BoardObj } from "../utils/interfaces";
 
 interface Props {
   boardTile: number[];
@@ -12,11 +12,7 @@ interface Props {
   enemies: Array<number | null>;
 }
 
-interface HeroObj {
-  heroPosition: number;
-  alive: boolean;
-  swordPosition: number;
-}
+
 
 function Tile({ boardTile, arrIndex, hero, enemies }: Props): JSX.Element {
   //  let backgroundColor = "w-10 h-10 bg-gray-300";

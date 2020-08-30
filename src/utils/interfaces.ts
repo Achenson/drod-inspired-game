@@ -4,6 +4,10 @@ export interface HeroObj {
     swordPosition: number;
   }
 
+export interface BoardObj {
+  [key: string]: string;
+}
+
 export enum Directions {
     nw = -10,
     n = -9,

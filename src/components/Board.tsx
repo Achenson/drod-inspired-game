@@ -1,15 +1,7 @@
 import React from "react";
 import Tile from "./Tile";
 
-interface BoardObj {
-  [key: string]: string;
-}
-
-interface HeroObj {
-  heroPosition: number;
-  alive: boolean;
-  swordPosition: number;
-}
+import { HeroObj } from "../utils/interfaces";
 
 interface Props {
   board: number[][];
