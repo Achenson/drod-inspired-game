@@ -48,3 +48,12 @@ notes:
 1. enums: are they needed here?
 2. useState with arrays -> wrapper funcions??
 3. better leaving to the side -> make it the same in moveHero & moveEnemies
+
+to do:
+no movement after kill
+color for new enemy
+enemies arrive at borders
+color for just killed enemy
+cleaning functions
+clear wait?
+rotate & move -> much samish code?
