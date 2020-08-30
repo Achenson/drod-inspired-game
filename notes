@@ -50,7 +50,7 @@ notes:
 3. better leaving to the side -> make it the same in moveHero & moveEnemies
 
 to do:
-no movement after kill
+DONE no movement after kill DONE
 color for new enemy
 enemies arrive at borders
 color for just killed enemy

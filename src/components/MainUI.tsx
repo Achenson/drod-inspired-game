@@ -104,6 +104,10 @@ function MainUI({}: Props): JSX.Element {
   function heroMovement(
     directionToMove: "clockwise" | "anticlockwise" | Directions
   ) {
+    if (!hero.alive) {
+      return;
+    }
+
     if (
       directionToMove === "clockwise" ||
       directionToMove === "anticlockwise"
