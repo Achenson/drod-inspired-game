@@ -8,7 +8,6 @@ import { Directions } from "../utils/interfaces";
 
 import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
-import rotateHero from "../utils/rotateHero";
 
 interface Props {}
 
@@ -53,12 +52,11 @@ function MainUI({}: Props): JSX.Element {
     switch (event.code) {
       case "KeyQ":
         console.log("q");
-        heroMovement("anticlockwise");
+        heroMovement(Directions.anticlockwise);
         break;
       case "KeyW":
         console.log("w");
-        heroMovement("clockwise");
-
+        heroMovement(Directions.clockwise);
         break;
       case "Numpad7":
         console.log("numpad 7");
@@ -99,45 +97,19 @@ function MainUI({}: Props): JSX.Element {
     }
   }
 
-  function heroMovement(
-    directionToMove: "clockwise" | "anticlockwise" | Directions
-  ) {
-    if (!hero.alive) {
-      return;
-    }
-
-    if (
-      directionToMove === "clockwise" ||
-      directionToMove === "anticlockwise"
-    ) {
-      rotateHero(
-        directionToMove,
-        hero,
-        enemies,
-        adjacentTilesRelativePositions,
-        board,
-        boardSize,
-        setHero,
-        setEnemies,
-        setEnemiesKilled,
-        currentTurn,
-        setCurrentTurn
-      );
-    } else {
-      moveHero(
-        directionToMove,
-        setHero,
-        setEnemies,
-        setEnemiesKilled,
-        currentTurn,
-        setCurrentTurn,
-        hero,
-        enemies,
-        adjacentTilesRelativePositions,
-        board,
-        boardSize
-      );
-    }
+  function heroMovement(directionToMove: Directions) {
+    moveHero(
+      directionToMove,
+      setHero,
+      setEnemies,
+      setEnemiesKilled,
+      currentTurn,
+      setCurrentTurn,
+      hero,
+      enemies,
+      adjacentTilesRelativePositions,
+      boardSize
+    );
   }
 
   return (

@@ -13,30 +13,66 @@ export default function moveHero(
   hero: HeroObj,
   enemies: number[],
   adjacentTilesRelativePositions: number[],
-  board: number[][],
   boardSize: number
 ) {
-  // direction === 0 in case of "wait" btn
-  if (direction === 0) {
-    moveEnemies(
-      enemies,
-      boardSize,
-      adjacentTilesRelativePositions,
-      hero.swordPosition,
-      // next position is the same as current
-      hero.heroPosition,
-      hero,
-      setHero,
-      setEnemies,
-      currentTurn,
-      setCurrentTurn
-    );
-
+  if (!hero.alive) {
     return;
   }
 
-  let heroIndexToMove = hero.heroPosition + direction;
-  let swordIndexToMove = hero.swordPosition + direction;
+  let relativePosition = hero.heroPosition - hero.swordPosition;
+
+  let indexOfRelativePosition = adjacentTilesRelativePositions.indexOf(
+    relativePosition
+  );
+
+  let heroIndexToMove: number;
+  let swordIndexToMove: number;
+
+  // if waiting
+  // direction === 0 in case of "wait" btn
+  if (direction === 0) {
+    heroIndexToMove = hero.heroPosition;
+    swordIndexToMove = hero.swordPosition;
+  } else if (
+    // if moving
+    direction !== 45 &&
+    direction !== -45
+  ) {
+    heroIndexToMove = hero.heroPosition + direction;
+    swordIndexToMove = hero.swordPosition + direction;
+    // if rotating
+  } else {
+    heroIndexToMove = hero.heroPosition;
+
+    // to change???
+    let swordPositionToAdd: number = 0;
+
+    if (direction === 45) {
+      if (
+        indexOfRelativePosition ===
+        adjacentTilesRelativePositions.length - 1
+      ) {
+        swordPositionToAdd = adjacentTilesRelativePositions[0];
+      } else {
+        swordPositionToAdd =
+          adjacentTilesRelativePositions[indexOfRelativePosition + 1];
+      }
+    }
+
+    if (direction === -45) {
+      if (indexOfRelativePosition === 0) {
+        swordPositionToAdd =
+          adjacentTilesRelativePositions[
+            adjacentTilesRelativePositions.length - 1
+          ];
+      } else {
+        swordPositionToAdd =
+          adjacentTilesRelativePositions[indexOfRelativePosition - 1];
+      }
+    }
+
+    swordIndexToMove = hero.heroPosition - swordPositionToAdd;
+  }
 
   //return if here would move out of the board (hero or sword) up or down
   if (
@@ -50,13 +86,10 @@ export default function moveHero(
 
   //return if here would move out of the board (hero or sword) left or right
   if (
-    // board x,y cordinates go from 0 to boardSize-1
-
     ((hero.heroPosition % boardSize === 0 ||
       hero.swordPosition % boardSize === 0) &&
       // nw                     w            sw
       (direction === 8 || direction === -1 || direction === -10)) ||
-    // (enemy % (boardSize - 1) === 0 &&
     (((hero.heroPosition + 1) % boardSize === 0 ||
       (hero.swordPosition + 1) % boardSize === 0) &&
       // ne                     e            se
@@ -66,9 +99,21 @@ export default function moveHero(
     return;
   }
 
+  //return if here would move out of the board (sword only when rotating) left or right
+  if (
+    (((relativePosition === -9 && hero.swordPosition % boardSize === 0) ||
+      (relativePosition === 9 && (hero.swordPosition + 1) % boardSize === 0)) &&
+      direction === 45) ||
+    (((relativePosition === -9 && (hero.swordPosition + 1) % boardSize === 0) ||
+      (relativePosition === 9 && hero.swordPosition % boardSize === 0)) &&
+      direction === -45)
+  ) {
+    console.log("OUT");
+    return;
+  }
+
   let aliveBoolean = true;
 
-  // if(heroIndexToMove === enemies[enemies.indexOf(heroIndexToMove)]) {
   if (enemies.indexOf(heroIndexToMove) > -1) {
     aliveBoolean = false;
     setHero({

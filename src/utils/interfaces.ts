@@ -18,4 +18,7 @@ export enum Directions {
     sw = 8,
     w = -1,
     wait = 0,
+    // rotating 45deg / -45deg
+    clockwise = 45,
+    anticlockwise = -45
   }
