@@ -13,11 +13,14 @@ export default function moveHero(
   hero: HeroObj,
   enemies: number[],
   adjacentTilesRelativePositions: number[],
-  boardSize: number
+  boardSize: number,
+  setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>
 ) {
   if (!hero.alive) {
     return;
   }
+  // reseting different look of sword if enemy was just killed
+  setLastEnemiesKilled(null);
 
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
@@ -131,6 +134,7 @@ export default function moveHero(
     newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
     setEnemies([...newEnemies]);
     setEnemiesKilled((n) => n + 1);
+    setLastEnemiesKilled(swordIndexToMove);
   }
 
   setHero({

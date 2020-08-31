@@ -13,7 +13,7 @@ export default function moveEnemies(
   setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
   setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
   currentTurn: number,
-  setCurrentTurn: React.Dispatch<React.SetStateAction<number>>
+  setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
 ) {
   let nextEnemiesPositions: number[] = [];
 

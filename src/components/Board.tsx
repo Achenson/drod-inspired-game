@@ -8,10 +8,11 @@ interface Props {
   boardSize: number;
   hero: HeroObj;
   enemies: Array<number | null>;
-  currentTurn: number
+  currentTurn: number;
+  lastEnemyKilled: (number | null);
 }
 
-function Board({ board, boardSize, hero, enemies, currentTurn }: Props): JSX.Element {
+function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled }: Props): JSX.Element {
   const boardWidth = boardSize * 40;
 
   return (
@@ -28,6 +29,7 @@ function Board({ board, boardSize, hero, enemies, currentTurn }: Props): JSX.Ele
             arrIndex={i}
             enemies={enemies}
             currentTurn={currentTurn}
+            lastEnemyKilled={lastEnemyKilled}
           />
         );
       })}

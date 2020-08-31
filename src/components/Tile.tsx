@@ -9,6 +9,7 @@ interface Props {
   hero: HeroObj;
   enemies: Array<number | null>;
   currentTurn: number;
+  lastEnemyKilled: number | null;
 }
 
 function Tile({
@@ -17,6 +18,7 @@ function Tile({
   hero,
   enemies,
   currentTurn,
+  lastEnemyKilled,
 }: Props): JSX.Element {
   //  let backgroundColor = "w-10 h-10 bg-gray-300";
   let backgroundColor;
@@ -39,6 +41,7 @@ function Tile({
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
   let swordCSS = "w-3 h-8 bg-blue-800";
+  let bloodySwordCSS = "w-3 h-8 bg-red-800";
 
   //                                            nw  n ne   e   se   s  sw  w
   // const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
@@ -46,27 +49,35 @@ function Tile({
   switch (relativePosition) {
     case 9:
       swordCSS = "w-3 h-8 bg-blue-800 ";
+      bloodySwordCSS = "w-3 h-8 bg-red-800";
       break;
     case 8:
       swordCSS = "w-3 h-8 bg-blue-800 transform rotate-45";
+      bloodySwordCSS = "w-3 h-8 bg-red-800 transform rotate-45";
       break;
     case -1:
       swordCSS = "w-8 h-3 bg-blue-800 ";
+      bloodySwordCSS = "w-8 h-3 bg-red-800";
       break;
     case -10:
-      swordCSS = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
+      swordCSS = "w-3 h-8 bg-blue-800 transform -rotate-45";
+      bloodySwordCSS = "w-3 h-8 bg-red-800 transform -rotate-45";
       break;
     case -9:
       swordCSS = "w-3 h-8 bg-blue-800";
+      bloodySwordCSS = "w-3 h-8 bg-red-800";
       break;
     case -8:
       swordCSS = "w-3 h-8 bg-blue-800 transform rotate-45";
+      bloodySwordCSS = "w-3 h-8 bg-red-800 transform rotate-45";
       break;
     case 1:
       swordCSS = "w-8 h-3 bg-blue-800";
+      bloodySwordCSS = "w-8 h-3 bg-red-800";
       break;
     case 10:
       swordCSS = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
+      bloodySwordCSS = "w-3 h-8 bg-red-800 transform -rotate-45";
       break;
   }
 
@@ -97,6 +108,15 @@ function Tile({
       return;
     }
 
+    if (
+      hero.swordPosition === arrIndex &&
+      hero.alive &&
+      lastEnemyKilled === arrIndex
+    ) {
+      setEntityCSS(`${bloodySwordCSS}`);
+      return;
+    }
+
     if (hero.swordPosition === arrIndex && hero.alive) {
       setEntityCSS(`${swordCSS}`);
       return;
@@ -107,7 +127,7 @@ function Tile({
       arrIndex === enemies[enemies.length - 1] &&
       currentTurn % 2 === 0 &&
       currentTurn !== 1 &&
-      currentTurn !== 0 
+      currentTurn !== 0
     ) {
       setEntityCSS("w-4 h-4 bg-red-900 transform rotate-45");
       return;

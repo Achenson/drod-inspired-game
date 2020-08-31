@@ -4,7 +4,7 @@ export default function createEnemy(
     nextEnemiesPositions: number[],
     heroIndexToMOve: number,
     nextSwordPosition: number,
-    boardSize: number
+    boardSize: number,
   ): number {
     let possiblePositions = [];
   

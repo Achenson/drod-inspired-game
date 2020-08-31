@@ -34,6 +34,8 @@ function MainUI({}: Props): JSX.Element {
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([4]);
 
+  const [lastEnemyKilled, setLastEnemyKilled] = useState<number | null>(null);
+
   const [hero, setHero] = useState<HeroObj>({
     heroPosition: 40,
     alive: true,
@@ -108,7 +110,8 @@ function MainUI({}: Props): JSX.Element {
       hero,
       enemies,
       adjacentTilesRelativePositions,
-      boardSize
+      boardSize,
+      setLastEnemyKilled
     );
   }
 
@@ -121,6 +124,7 @@ function MainUI({}: Props): JSX.Element {
         hero={hero}
         enemies={enemies}
         currentTurn={currentTurn}
+        lastEnemyKilled={lastEnemyKilled}
       />
     </div>
   );
