@@ -48,7 +48,6 @@ export default function moveEnemies(
           // ne                     e            se
           (el === 8 || el === -1 || el === -10))
       ) {
-        console.log("sth");
 
         continue;
       }

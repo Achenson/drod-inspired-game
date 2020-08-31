@@ -47,9 +47,9 @@ notes:
 
 1. enums: are they needed here?
 2. useState with arrays -> wrapper funcions??
-3. better leaving to the side -> make it the same in moveHero & moveEnemies
 
 to do:
+DONE 3. better leaving to the side -> make it the same in moveHero & moveEnemies DONe
 DONE no movement after kill DONE
 DONE color for new enemy DONE
 enemies arrive at borders
@@ -58,3 +58,12 @@ DONE cleaning functions DONE
 clear wait?
 DONE no chasing hero DONE
 dead animation on wrong tile
+
+
+
+// ((board[hero.heroPosition][0] === 0 ||
+    //   board[hero.swordPosition][0] === 0) &&
+    //   (direction === -10 || direction === 8 || direction === -1)) ||
+    // ((board[hero.heroPosition][0] === boardSize - 1 ||
+    //   board[hero.swordPosition][0] === boardSize - 1) &&
+    //   (direction === -8 || direction === 1 || direction === 10))
