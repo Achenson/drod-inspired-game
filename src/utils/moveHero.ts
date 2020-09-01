@@ -16,9 +16,11 @@ export default function moveHero(
   boardSize: number,
   setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>
 ) {
+
   if (!hero.alive) {
     return;
   }
+  
   // reseting different look of sword if enemy was just killed
   setLastEnemiesKilled(null);
 

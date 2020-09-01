@@ -52,14 +52,15 @@ to do:
 DONE 3. better leaving to the side -> make it the same in moveHero & moveEnemies DONe
 DONE no movement after kill DONE
 DONE color for new enemy DONE
-enemies arrive at borders
+DONE enemies arrive at borders DONE
 DONE color for just killed enemy DONE
 DONE cleaning functions DONE
 DONE clear wait? DONE 
 DONE no chasing hero DONE
 DONE dead animation on wrong tile DONE
 hero move & enemy move -> time difference
-corners not moveable to?
+corners not moveable to? plus styling
+enemy won't arrive next to hero?
 
 
 

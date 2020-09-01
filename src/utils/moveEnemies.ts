@@ -13,7 +13,7 @@ export default function moveEnemies(
   setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
   setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
   currentTurn: number,
-  setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
+  setCurrentTurn: React.Dispatch<React.SetStateAction<number>>
 ) {
   let nextEnemiesPositions: number[] = [];
 
@@ -48,7 +48,6 @@ export default function moveEnemies(
           // ne                     e            se
           (el === 8 || el === -1 || el === -10))
       ) {
-
         continue;
       }
 
@@ -111,9 +110,6 @@ export default function moveEnemies(
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same(2nd) turn
   if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
     setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
-
-
-    
   } else {
     // if hero is killed, round counter(how many turns you survived) doesn't go up
     setCurrentTurn((n) => n + 1);

@@ -42,13 +42,6 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: 31,
   });
 
-  // useEffect(() => {
-
-  //   if(hero.heroPosition === enemies.indexOf(hero.heroPosition)) {
-  //     setHero({...hero, alive: false})
-  //   }
-
-  // }, [hero, enemies])
 
   function handleKeyDown(event: KeyboardEvent) {
     switch (event.code) {
