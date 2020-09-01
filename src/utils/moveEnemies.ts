@@ -107,10 +107,13 @@ export default function moveEnemies(
   console.log("nextEnemiesPositions");
   console.log(nextEnemiesPositions);
 
-  // enemy kills if hero is adjacent & didn't move this turn
+  // enemy kills if hero is adjacent
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same(2nd) turn
   if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
-    setHero({ ...hero, alive: false });
+    setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
+
+
+    
   } else {
     // if hero is killed, round counter(how many turns you survived) doesn't go up
     setCurrentTurn((n) => n + 1);
