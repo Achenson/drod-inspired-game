@@ -23,7 +23,11 @@ function Tile({
   //  let backgroundColor = "w-10 h-10 bg-gray-300";
   let backgroundColor;
 
-  if (
+  const corners = [0, 8, 72, 80];
+
+  if (corners.indexOf(arrIndex) > -1) {
+    backgroundColor = "bg-gray-600";
+  } else if (
     (boardTile[0] % 2 === 0 && boardTile[1] % 2 === 0) ||
     (boardTile[0] % 2 !== 0 && boardTile[1] % 2 !== 0)
   ) {

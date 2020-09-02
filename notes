@@ -59,7 +59,7 @@ DONE clear wait? DONE
 DONE no chasing hero DONE
 DONE dead animation on wrong tile DONE
 hero move & enemy move -> time difference
-corners not moveable to? plus styling
+DONE corners not moveable to? plus styling DONE
 enemy won't arrive next to hero?
 performance issues after many turns?
 
