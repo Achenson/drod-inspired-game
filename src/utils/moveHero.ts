@@ -133,6 +133,9 @@ export default function moveHero(
       heroPosition: heroIndexToMove,
       alive: aliveBoolean,
     });
+
+    setCurrentTurn((n) => n + 1);
+
     return;
   }
 

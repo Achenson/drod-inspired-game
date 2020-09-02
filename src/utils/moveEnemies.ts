@@ -110,6 +110,7 @@ export default function moveEnemies(
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same(2nd) turn
   if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
     setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
+    setCurrentTurn((n) => n + 1);
   } else {
     // if hero is killed, round counter(how many turns you survived) doesn't go up
     setCurrentTurn((n) => n + 1);
