@@ -16,11 +16,10 @@ export default function moveHero(
   boardSize: number,
   setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>
 ) {
-
   if (!hero.alive) {
     return;
   }
-  
+
   // reseting different look of sword if enemy was just killed
   setLastEnemiesKilled(null);
 
@@ -77,6 +76,13 @@ export default function moveHero(
     }
 
     swordIndexToMove = hero.heroPosition - swordPositionToAdd;
+  }
+
+  // no moving to corners
+  const corners = [0, 8, 72, 80];
+
+  if (corners.indexOf(heroIndexToMove) > -1) {
+    return;
   }
 
   //return if here would move out of the board (hero or sword) up or down
