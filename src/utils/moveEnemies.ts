@@ -1,5 +1,6 @@
 import { HeroObj } from "./interfaces";
 import createEnemy from "./createEnemy";
+import makeRecordScore from "./makeRecordScore";
 import makeRandomNumber from "./makeRandomNumber";
 
 export default function moveEnemies(
@@ -13,7 +14,9 @@ export default function moveEnemies(
   setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
   setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
   currentTurn: number,
-  setCurrentTurn: React.Dispatch<React.SetStateAction<number>>
+  setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
+  recordScore: string,
+  setRecordScore: React.Dispatch<React.SetStateAction<string>>
 ) {
   let nextEnemiesPositions: number[] = [];
 
@@ -111,8 +114,8 @@ export default function moveEnemies(
   if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
     setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
     setCurrentTurn((n) => n + 1);
+    makeRecordScore(currentTurn, recordScore, setRecordScore);
   } else {
-    // if hero is killed, round counter(how many turns you survived) doesn't go up
     setCurrentTurn((n) => n + 1);
     console.log(currentTurn);
   }

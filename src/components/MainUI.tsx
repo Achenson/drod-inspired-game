@@ -30,6 +30,18 @@ function MainUI({}: Props): JSX.Element {
   // const [turnsPassed, setTurnsPassed] = useState()
 
   const [currentTurn, setCurrentTurn] = useState<number>(0);
+  const [recordScore, setRecordScore] = useState<string>("0");
+
+  useEffect(() => {
+    let record = localStorage.getItem("record");
+
+    if (record) {
+      setRecordScore(record);
+    } else {
+      localStorage.setItem("record", "0");
+    }
+  }, []);
+
   const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([4]);
@@ -41,7 +53,6 @@ function MainUI({}: Props): JSX.Element {
     alive: true,
     swordPosition: 31,
   });
-
 
   function handleKeyDown(event: KeyboardEvent) {
     switch (event.code) {
@@ -104,13 +115,19 @@ function MainUI({}: Props): JSX.Element {
       enemies,
       adjacentTilesRelativePositions,
       boardSize,
-      setLastEnemyKilled
+      setLastEnemyKilled,
+      recordScore,
+      setRecordScore
     );
   }
 
   return (
     <div className="mx-64 my-64">
-      <Turns currentTurn={currentTurn} enemiesKilled={enemiesKilled} />
+      <Turns
+        currentTurn={currentTurn}
+        enemiesKilled={enemiesKilled}
+        recordScore={recordScore}
+      />
       <Board
         board={board}
         boardSize={boardSize}

@@ -2,6 +2,7 @@ import { HeroObj } from "./interfaces";
 import { Directions } from "../utils/interfaces";
 
 import moveEnemies from "./moveEnemies";
+import makeRecordScore from "./makeRecordScore";
 
 export default function moveHero(
   direction: Directions,
@@ -14,7 +15,9 @@ export default function moveHero(
   enemies: number[],
   adjacentTilesRelativePositions: number[],
   boardSize: number,
-  setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>
+  setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>,
+  recordScore: string,
+  setRecordScore: React.Dispatch<React.SetStateAction<string>>
 ) {
   if (!hero.alive) {
     return;
@@ -135,6 +138,7 @@ export default function moveHero(
     });
 
     setCurrentTurn((n) => n + 1);
+    makeRecordScore(currentTurn, recordScore, setRecordScore);
 
     return;
   }
@@ -166,6 +170,15 @@ export default function moveHero(
     setHero,
     setEnemies,
     currentTurn,
-    setCurrentTurn
+    setCurrentTurn,
+    recordScore,
+    setRecordScore
   );
 }
+
+// function makeRecordScore() {
+//   if (currentTurn > parseInt(recordScore)) {
+//     setRecordScore(currentTurn.toString());
+//     localStorage.setItem("record", currentTurn.toString());
+//   }
+// }
