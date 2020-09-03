@@ -58,12 +58,14 @@ DONE cleaning functions DONE
 DONE clear wait? DONE 
 DONE no chasing hero DONE
 DONE dead animation on wrong tile DONE
-hero move & enemy move -> time difference?
+XXX hero move & enemy move -> time difference?XXX
 DONE corners not moveable to? plus styling DONE
-enemy won't arrive next to hero?
+XXX enemy won't arrive next to hero? XXX
 performance issues after many turns?
 DONE last turn should be also counted DONE
+localStorage custom hook?
 
+sometimes enemies disappear??
 
 
 
