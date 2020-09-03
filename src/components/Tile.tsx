@@ -41,6 +41,7 @@ function Tile({
   // console.log(boardRendering);
 
   const [entityCSS, setEntityCSS] = useState("hidden");
+  const [enemySVG, setEnemySVG] = useState("hidden");
 
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
@@ -127,21 +128,41 @@ function Tile({
     }
 
     // newly arrived enemy color for 1 turn
-    if (
+    // if (
+    //   arrIndex === enemies[enemies.length - 1] &&
+    //   currentTurn % 2 === 0 &&
+    //   currentTurn !== 1 &&
+    //   currentTurn !== 0
+    // ) {
+    //   setEntityCSS("w-4 h-4 bg-red-900 transform rotate-45");
+    //   return;
+    // }
+
+    // if (enemies.indexOf(arrIndex) > -1) {
+    //   setEntityCSS("w-4 h-4 bg-red-600 transform rotate-45");
+    //   return;
+    // }
+
+     // newly arrived enemy color for 1 turn
+       if (
       arrIndex === enemies[enemies.length - 1] &&
       currentTurn % 2 === 0 &&
       currentTurn !== 1 &&
       currentTurn !== 0
     ) {
-      setEntityCSS("w-4 h-4 bg-red-900 transform rotate-45");
+      setEntityCSS("hidden");
+      setEnemySVG("h-8 fill-current text-red-900")
+
       return;
     }
 
     if (enemies.indexOf(arrIndex) > -1) {
-      setEntityCSS("w-4 h-4 bg-red-600 transform rotate-45");
+      setEntityCSS("hidden");
+      setEnemySVG("h-8 fill-current text-red-600")
       return;
     }
 
+    setEnemySVG("hidden")
     setEntityCSS("hidden");
   }, [hero, arrIndex, enemies, swordCSS]);
 
@@ -151,8 +172,13 @@ function Tile({
     >
       {/* {boardTile[0]} */}
       {/* {boardTile[1]} */}
-      {arrIndex}
+      {/* {arrIndex} */}
       <div className={`${entityCSS}`}></div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={`${enemySVG}`}>
+  <path fillRule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
+</svg>
+
+
     </div>
   );
 }
