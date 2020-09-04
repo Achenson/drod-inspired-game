@@ -22,7 +22,7 @@ function MainUI({}: Props): JSX.Element {
   });
 
   const boardSize = 9;
-  // starts with sword NW of hero
+  // starts with sword NW of hero         nw
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
   let board = makeBoard(boardSize);
@@ -45,6 +45,8 @@ function MainUI({}: Props): JSX.Element {
   const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([4]);
+
+ const [enemiesDirections, setEnemiesDirections] = useState<Array<number>>([-9])
 
   const [lastEnemyKilled, setLastEnemyKilled] = useState<number | null>(null);
 
@@ -117,7 +119,9 @@ function MainUI({}: Props): JSX.Element {
       boardSize,
       setLastEnemyKilled,
       recordScore,
-      setRecordScore
+      setRecordScore,
+      enemiesDirections,
+      setEnemiesDirections
     );
   }
 
@@ -135,6 +139,7 @@ function MainUI({}: Props): JSX.Element {
         enemies={enemies}
         currentTurn={currentTurn}
         lastEnemyKilled={lastEnemyKilled}
+        enemiesDirections={enemiesDirections}
       />
     </div>
   );

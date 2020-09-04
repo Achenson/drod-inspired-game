@@ -10,6 +10,7 @@ interface Props {
   enemies: Array<number | null>;
   currentTurn: number;
   lastEnemyKilled: number | null;
+  enemiesDirections: number[];
 }
 
 function Tile({
@@ -19,6 +20,7 @@ function Tile({
   enemies,
   currentTurn,
   lastEnemyKilled,
+  enemiesDirections,
 }: Props): JSX.Element {
   //  let backgroundColor = "w-10 h-10 bg-gray-300";
   let backgroundColor;
@@ -48,7 +50,7 @@ function Tile({
   let swordCSS = "w-3 h-8 bg-blue-800";
   let bloodySwordCSS = "w-3 h-8 bg-red-800";
 
-  //                                            nw  n ne   e   se   s  sw  w
+  //                                         nw  n ne   e   se   s  sw  w
   // const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
   switch (relativePosition) {
@@ -83,6 +85,41 @@ function Tile({
     case 10:
       swordCSS = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
       bloodySwordCSS = "w-3 h-8 bg-red-800 transform -rotate-45";
+      break;
+  }
+
+  let enemySVGvar = "hidden";
+
+  switch (enemiesDirections[enemies.indexOf(arrIndex)]) {
+    case 9:
+      enemySVGvar = "h-8";
+      break;
+    case 8:
+      enemySVGvar = "h-8 transform rotate-45";
+      break;
+    case -1:
+      enemySVGvar = "h-8 transform rotate-90";
+
+      break;
+    case -10:
+      enemySVGvar = "h-8 transform rotate-180";
+
+      break;
+    case -9:
+      enemySVGvar = "h-8 transform rotate-180";
+
+      break;
+    case -8:
+      enemySVGvar = "h-8 transform rotate-180";
+
+      break;
+    case 1:
+      enemySVGvar = "h-8 transform -rotate-90";
+
+      break;
+    case 10:
+      enemySVGvar = "h-8 transform -rotate-45 ";
+
       break;
   }
 
@@ -143,26 +180,27 @@ function Tile({
     //   return;
     // }
 
-     // newly arrived enemy color for 1 turn
-       if (
+    // newly arrived enemy color for 1 turn
+    if (
       arrIndex === enemies[enemies.length - 1] &&
       currentTurn % 2 === 0 &&
       currentTurn !== 1 &&
       currentTurn !== 0
     ) {
       setEntityCSS("hidden");
-      setEnemySVG("h-8 fill-current text-red-900")
+      setEnemySVG(`${enemySVGvar} fill-current text-red-900`);
 
       return;
     }
 
     if (enemies.indexOf(arrIndex) > -1) {
       setEntityCSS("hidden");
-      setEnemySVG("h-8 fill-current text-red-600")
+      // setEnemySVG("h-8 fill-current text-red-600")
+      setEnemySVG(`${enemySVGvar} fill-current text-red-600`);
       return;
     }
 
-    setEnemySVG("hidden")
+    setEnemySVG("hidden");
     setEntityCSS("hidden");
   }, [hero, arrIndex, enemies, swordCSS]);
 
@@ -174,11 +212,18 @@ function Tile({
       {/* {boardTile[1]} */}
       {/* {arrIndex} */}
       <div className={`${entityCSS}`}></div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={`${enemySVG}`}>
-  <path fillRule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
-</svg>
-
-
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className={`${enemySVG}`}
+      >
+        <path
+          fillRule="evenodd"
+          d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+          clipRule="evenodd"
+        />
+      </svg>
     </div>
   );
 }

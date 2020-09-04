@@ -2,6 +2,7 @@ import { HeroObj } from "./interfaces";
 import createEnemy from "./createEnemy";
 import makeRecordScore from "./makeRecordScore";
 import makeRandomNumber from "./makeRandomNumber";
+import enemiesDirections2ndTurn from "./enemiesDirections2ndTurn";
 
 export default function moveEnemies(
   enemies: number[],
@@ -16,7 +17,9 @@ export default function moveEnemies(
   currentTurn: number,
   setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
   recordScore: string,
-  setRecordScore: React.Dispatch<React.SetStateAction<string>>
+  setRecordScore: React.Dispatch<React.SetStateAction<string>>,
+  enemiesDirections: number[],
+  setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>
 ) {
   let nextEnemiesPositions: number[] = [];
 
@@ -92,16 +95,28 @@ export default function moveEnemies(
     // }
 
     if (possiblePositions.length >= 1) {
-      let randomNumber = makeRandomNumber(1, possiblePositions.length);
+      let directionToMove = enemiesDirections[enemies.indexOf(enemy)];
 
-      let randomNextPosition = possiblePositions[randomNumber - 1];
 
-      // if this nextPosition will be already taken by another enemy - don't move
+      let indexToMove = enemy - directionToMove;
 
-      if (nextEnemiesPositions.indexOf(randomNextPosition) > -1) {
-        nextEnemiesPositions.push(enemy);
+      console.log("indexToMove");
+      console.log(indexToMove);
+
+      if (possiblePositions.indexOf(indexToMove) > -1) {
+        nextEnemiesPositions.push(indexToMove);
       } else {
-        nextEnemiesPositions.push(randomNextPosition);
+        let randomNumber = makeRandomNumber(1, possiblePositions.length);
+
+        let randomNextPosition = possiblePositions[randomNumber - 1];
+
+        // if this nextPosition will be already taken by another enemy - don't move
+
+        if (nextEnemiesPositions.indexOf(randomNextPosition) > -1) {
+          nextEnemiesPositions.push(enemy);
+        } else {
+          nextEnemiesPositions.push(randomNextPosition);
+        }
       }
     }
   }
@@ -110,7 +125,7 @@ export default function moveEnemies(
   console.log(nextEnemiesPositions);
 
   // enemy kills if hero is adjacent
-  // !!!! nextEnemiesPostions & heroIndexToMove belong to the same(2nd) turn
+  // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
   if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
     setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
     setCurrentTurn((n) => n + 1);
@@ -133,6 +148,13 @@ export default function moveEnemies(
   }
 
   setEnemies([...nextEnemiesPositions]);
+
+  enemiesDirections2ndTurn(
+    nextEnemiesPositions,
+    boardSize,
+    adjacentTilesRelativePositions,
+    setEnemiesDirections
+  );
 
   // return nextEnemiesPositions;
 }

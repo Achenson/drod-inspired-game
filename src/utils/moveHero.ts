@@ -17,7 +17,9 @@ export default function moveHero(
   boardSize: number,
   setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>,
   recordScore: string,
-  setRecordScore: React.Dispatch<React.SetStateAction<string>>
+  setRecordScore: React.Dispatch<React.SetStateAction<string>>,
+  enemiesDirections: number[],
+  setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>
 ) {
   if (!hero.alive) {
     return;
@@ -172,7 +174,9 @@ export default function moveHero(
     currentTurn,
     setCurrentTurn,
     recordScore,
-    setRecordScore
+    setRecordScore,
+    enemiesDirections,
+    setEnemiesDirections
   );
 }
 
