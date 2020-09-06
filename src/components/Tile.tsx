@@ -187,6 +187,11 @@ function Tile({
       currentTurn !== 1 &&
       currentTurn !== 0
     ) {
+      console.log("current turn");
+      console.log(currentTurn);
+      console.log("arrIndex");
+      console.log(arrIndex);
+      console.log("should be brown")
       setEntityCSS("hidden");
       setEnemySVG(`${enemySVGvar} fill-current text-red-900`);
 
@@ -202,7 +207,7 @@ function Tile({
 
     setEnemySVG("hidden");
     setEntityCSS("hidden");
-  }, [hero, arrIndex, enemies, swordCSS]);
+  }, [hero, arrIndex, enemies, swordCSS, bloodySwordCSS, currentTurn, enemySVGvar, lastEnemyKilled]);
 
   return (
     <div

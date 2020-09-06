@@ -80,8 +80,8 @@ export default function moveEnemies(
       possiblePositions.push(nIC);
     }
 
-    console.log("possiblePositions");
-    console.log(possiblePositions);
+    // console.log("possiblePositions");
+    // console.log(possiblePositions);
 
     // won't move
     if (possiblePositions.length === 0) {
@@ -100,8 +100,8 @@ export default function moveEnemies(
 
       let indexToMove = enemy - directionToMove;
 
-      console.log("indexToMove");
-      console.log(indexToMove);
+      // console.log("indexToMove");
+      // console.log(indexToMove);
 
       if (possiblePositions.indexOf(indexToMove) > -1) {
         nextEnemiesPositions.push(indexToMove);
@@ -121,20 +121,25 @@ export default function moveEnemies(
     }
   }
 
-  console.log("nextEnemiesPositions");
-  console.log(nextEnemiesPositions);
+  // console.log("nextEnemiesPositions");
+  // console.log(nextEnemiesPositions);
 
   // enemy kills if hero is adjacent
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
   if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
     setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
-    setCurrentTurn((n) => n + 1);
-    makeRecordScore(currentTurn, recordScore, setRecordScore);
-  } else {
-    setCurrentTurn((n) => n + 1);
-    console.log(currentTurn);
-  }
 
+    // setCurrentTurn((n) => n + 1);
+    
+    makeRecordScore(currentTurn, recordScore, setRecordScore);
+  } 
+  // else {
+
+  //   // console.log(currentTurn);
+  // }
+  
+  setCurrentTurn((n) => n + 1);
+  
   if (currentTurn % 2 !== 0 && currentTurn !== 0) {
     nextEnemiesPositions = [
       ...nextEnemiesPositions,
