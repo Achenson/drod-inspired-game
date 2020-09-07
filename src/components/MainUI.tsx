@@ -46,10 +46,9 @@ function MainUI({}: Props): JSX.Element {
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([4]);
 
- 
-  
-
- const [enemiesDirections, setEnemiesDirections] = useState<Array<number>>([-9])
+  const [enemiesDirections, setEnemiesDirections] = useState<Array<number>>([
+    -9,
+  ]);
 
   const [lastEnemyKilled, setLastEnemyKilled] = useState<number | null>(null);
 
@@ -59,8 +58,37 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: 31,
   });
 
+  const [oneTurnBack, setOneTurnBack] = useState(
+    {currentTurn: currentTurn,
+    // record score is can't be restored
+    // recordScore: recordScore,
+    enemiesKilled: enemiesKilled,
+    enemies: [...enemies],
+    enemiesDirections: [...enemiesDirections],
+    lastEnemyKilled: lastEnemyKilled,
+    heroPosition: hero.heroPosition,
+    alive: hero.alive,
+    swordPosition: hero.swordPosition,
+    }
+  )
+
+  let oTB = oneTurnBack;
+
   function handleKeyDown(event: KeyboardEvent) {
     switch (event.code) {
+      case "Backspace":
+        console.log("Backspace");
+        setCurrentTurn(oTB.currentTurn);
+        setEnemiesKilled(oTB.enemiesKilled);
+        setEnemies([...oTB.enemies]);
+        setEnemiesDirections([...oTB.enemiesDirections]);
+        setLastEnemyKilled(oTB.lastEnemyKilled);
+        setHero({
+          heroPosition: oTB.heroPosition,
+          alive: oTB.alive,
+          swordPosition: oTB.swordPosition
+        })
+        break;
       case "KeyQ":
         console.log("q");
         heroMovement(Directions.anticlockwise);
@@ -109,6 +137,26 @@ function MainUI({}: Props): JSX.Element {
   }
 
   function heroMovement(directionToMove: Directions) {
+
+    if(!hero.alive) {
+      return;
+    }
+
+   if(currentTurn !== 0) {
+     setOneTurnBack({
+      currentTurn: currentTurn,
+      // recordScore: recordScore,
+      enemiesKilled: enemiesKilled,
+      enemies: [...enemies],
+      enemiesDirections: [...enemiesDirections],
+      lastEnemyKilled: lastEnemyKilled,
+      heroPosition: hero.heroPosition,
+      alive: hero.alive,
+      swordPosition: hero.swordPosition,
+     })
+     
+   }
+
     moveHero(
       directionToMove,
       setHero,
@@ -128,6 +176,7 @@ function MainUI({}: Props): JSX.Element {
     );
   }
 
+ 
   return (
     <div className="mx-64 my-64">
       <Turns

@@ -73,16 +73,12 @@ export default function moveEnemies(
         continue;
       }
 
-       
-
       // if(possiblePositions.indexOf(nIC) > -1) {
       //   possiblePositions.push(enemy)
       // }
 
-
       possiblePositions.push(nIC);
     }
-
 
     // enemies won't enter the same location
     let newPossiblePositions = [];
@@ -90,10 +86,9 @@ export default function moveEnemies(
     for (let el of possiblePositions) {
       if (nextEnemiesPositions.indexOf(el) === -1) {
         // possiblePositions.splice(possiblePositions.indexOf(el), 1)
-        newPossiblePositions.push(el)
+        newPossiblePositions.push(el);
       }
     }
-
 
     // won't move
     if (newPossiblePositions.length === 0) {
@@ -110,8 +105,6 @@ export default function moveEnemies(
       let directionToMove = enemiesDirections[enemies.indexOf(enemy)];
 
       let indexToMove = enemy - directionToMove;
-
-
 
       if (newPossiblePositions.indexOf(indexToMove) > -1) {
         nextEnemiesPositions.push(indexToMove);
@@ -140,16 +133,16 @@ export default function moveEnemies(
     setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
 
     // setCurrentTurn((n) => n + 1);
-    
+
     makeRecordScore(currentTurn, recordScore, setRecordScore);
-  } 
+  }
   // else {
 
   //   // console.log(currentTurn);
   // }
-  
+
   setCurrentTurn((n) => n + 1);
-  
+
   if (currentTurn % 2 !== 0 && currentTurn !== 0) {
     nextEnemiesPositions = [
       ...nextEnemiesPositions,
