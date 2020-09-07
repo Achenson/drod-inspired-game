@@ -68,23 +68,35 @@ export default function moveEnemies(
         break;
       }
 
-      // enemy won't collide with each other
-      if (enemies.indexOf(nextIndexCalculated) > -1) {
+      // enemy won't collide with each other (with the enemy that is already next to it)
+      if (enemies.indexOf(nIC) > -1) {
         continue;
       }
+
+       
 
       // if(possiblePositions.indexOf(nIC) > -1) {
       //   possiblePositions.push(enemy)
       // }
 
+
       possiblePositions.push(nIC);
     }
 
-    // console.log("possiblePositions");
-    // console.log(possiblePositions);
+
+    // enemies won't enter the same location
+    let newPossiblePositions = [];
+
+    for (let el of possiblePositions) {
+      if (nextEnemiesPositions.indexOf(el) === -1) {
+        // possiblePositions.splice(possiblePositions.indexOf(el), 1)
+        newPossiblePositions.push(el)
+      }
+    }
+
 
     // won't move
-    if (possiblePositions.length === 0) {
+    if (newPossiblePositions.length === 0) {
       nextEnemiesPositions.push(enemy);
     }
 
@@ -94,21 +106,19 @@ export default function moveEnemies(
     //   initialNextEnemiesPositions.push(possiblePositions[0]);
     // }
 
-    if (possiblePositions.length >= 1) {
+    if (newPossiblePositions.length >= 1) {
       let directionToMove = enemiesDirections[enemies.indexOf(enemy)];
-
 
       let indexToMove = enemy - directionToMove;
 
-      // console.log("indexToMove");
-      // console.log(indexToMove);
 
-      if (possiblePositions.indexOf(indexToMove) > -1) {
+
+      if (newPossiblePositions.indexOf(indexToMove) > -1) {
         nextEnemiesPositions.push(indexToMove);
       } else {
-        let randomNumber = makeRandomNumber(1, possiblePositions.length);
+        let randomNumber = makeRandomNumber(1, newPossiblePositions.length);
 
-        let randomNextPosition = possiblePositions[randomNumber - 1];
+        let randomNextPosition = newPossiblePositions[randomNumber - 1];
 
         // if this nextPosition will be already taken by another enemy - don't move
 

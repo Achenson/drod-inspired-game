@@ -46,6 +46,9 @@ function MainUI({}: Props): JSX.Element {
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([4]);
 
+ 
+  
+
  const [enemiesDirections, setEnemiesDirections] = useState<Array<number>>([-9])
 
   const [lastEnemyKilled, setLastEnemyKilled] = useState<number | null>(null);
@@ -131,6 +134,7 @@ function MainUI({}: Props): JSX.Element {
         currentTurn={currentTurn}
         enemiesKilled={enemiesKilled}
         recordScore={recordScore}
+        enemies={enemies}
       />
       <Board
         board={board}
