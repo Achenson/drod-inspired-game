@@ -135,6 +135,7 @@ function Tile({
   useEffect(() => {
     if (hero.heroPosition === arrIndex && !hero.alive) {
       setEntityCSS("w-5 h-5 bg-black");
+      setEnemySVG("hidden")
       return;
       // return;
     }

@@ -30,13 +30,13 @@ function MainUI({}: Props): JSX.Element {
   // const [turnsPassed, setTurnsPassed] = useState()
 
   const [currentTurn, setCurrentTurn] = useState<number>(0);
-  const [recordScore, setRecordScore] = useState<string>("0");
+  const [topScore, setTopScore] = useState<string>("0");
 
   useEffect(() => {
     let record = localStorage.getItem("record");
 
     if (record) {
-      setRecordScore(record);
+      setTopScore(record);
     } else {
       localStorage.setItem("record", "0");
     }
@@ -61,7 +61,7 @@ function MainUI({}: Props): JSX.Element {
   const [oneTurnBack, setOneTurnBack] = useState(
     {currentTurn: currentTurn,
     // record score is can't be restored
-    // recordScore: recordScore,
+    // topScore: topScore,
     enemiesKilled: enemiesKilled,
     enemies: [...enemies],
     enemiesDirections: [...enemiesDirections],
@@ -145,7 +145,7 @@ function MainUI({}: Props): JSX.Element {
    if(currentTurn !== 0) {
      setOneTurnBack({
       currentTurn: currentTurn,
-      // recordScore: recordScore,
+      // topScore: topScore,
       enemiesKilled: enemiesKilled,
       enemies: [...enemies],
       enemiesDirections: [...enemiesDirections],
@@ -169,8 +169,8 @@ function MainUI({}: Props): JSX.Element {
       adjacentTilesRelativePositions,
       boardSize,
       setLastEnemyKilled,
-      recordScore,
-      setRecordScore,
+      topScore,
+      setTopScore,
       enemiesDirections,
       setEnemiesDirections
     );
@@ -182,7 +182,7 @@ function MainUI({}: Props): JSX.Element {
       <Turns
         currentTurn={currentTurn}
         enemiesKilled={enemiesKilled}
-        recordScore={recordScore}
+        topScore={topScore}
         enemies={enemies}
       />
       <Board
