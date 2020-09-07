@@ -102,7 +102,7 @@ function Tile({
 
       break;
     case -10:
-      enemySVGvar = "h-8 transform rotate-180";
+      enemySVGvar = "h-8 transform rotate-135";
 
       break;
     case -9:
@@ -110,7 +110,7 @@ function Tile({
 
       break;
     case -8:
-      enemySVGvar = "h-8 transform rotate-180";
+      enemySVGvar = "h-8 transform rotate-225";
 
       break;
     case 1:
@@ -187,11 +187,11 @@ function Tile({
       currentTurn !== 1 &&
       currentTurn !== 0
     ) {
-      console.log("current turn");
-      console.log(currentTurn);
-      console.log("arrIndex");
-      console.log(arrIndex);
-      console.log("should be brown")
+      // console.log("current turn");
+      // console.log(currentTurn);
+      // console.log("arrIndex");
+      // console.log(arrIndex);
+      // console.log("should be brown")
       setEntityCSS("hidden");
       setEnemySVG(`${enemySVGvar} fill-current text-red-900`);
 
