@@ -14,7 +14,7 @@ interface Props {
 }
 
 function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, enemiesDirections }: Props): JSX.Element {
-  const boardWidth = boardSize * 40;
+  const boardWidth = boardSize * 32;
 
   return (
     <div

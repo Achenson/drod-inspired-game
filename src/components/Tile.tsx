@@ -47,44 +47,48 @@ function Tile({
 
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
-  let swordCSS = "w-3 h-8 bg-blue-800";
-  let bloodySwordCSS = "w-3 h-8 bg-red-800";
+  const swordSize = "w-2 h-6";
+  const swordColor = "bg-blue-800";
+  const bloodySwordColor = "bg-red-800";
 
-  //                                         nw  n ne   e   se   s  sw  w
+  let swordCSS = "";
+  let bloodySwordCSS = "";
+
+  //                                      nw  n ne   e   se   s  sw  w
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
   switch (relativePosition) {
     case 9:
-      swordCSS = "w-3 h-8 bg-blue-800 ";
-      bloodySwordCSS = "w-3 h-8 bg-red-800";
+      swordCSS = "";
+      bloodySwordCSS = "";
       break;
     case 8:
-      swordCSS = "w-3 h-8 bg-blue-800 transform rotate-45";
-      bloodySwordCSS = "w-3 h-8 bg-red-800 transform rotate-45";
+      swordCSS = "transform rotate-45";
+      bloodySwordCSS = "transform rotate-45";
       break;
     case -1:
-      swordCSS = "w-8 h-3 bg-blue-800 ";
-      bloodySwordCSS = "w-8 h-3 bg-red-800";
+      swordCSS = "transform rotate-90";
+      bloodySwordCSS = "transform rotate-90";
       break;
     case -10:
-      swordCSS = "w-3 h-8 bg-blue-800 transform -rotate-45";
-      bloodySwordCSS = "w-3 h-8 bg-red-800 transform -rotate-45";
+      swordCSS = "transform -rotate-45";
+      bloodySwordCSS = "transform -rotate-45";
       break;
     case -9:
-      swordCSS = "w-3 h-8 bg-blue-800";
-      bloodySwordCSS = "w-3 h-8 bg-red-800";
+      swordCSS = "";
+      bloodySwordCSS = "";
       break;
     case -8:
-      swordCSS = "w-3 h-8 bg-blue-800 transform rotate-45";
-      bloodySwordCSS = "w-3 h-8 bg-red-800 transform rotate-45";
+      swordCSS = "transform rotate-45";
+      bloodySwordCSS = "transform rotate-45";
       break;
     case 1:
-      swordCSS = "w-8 h-3 bg-blue-800";
-      bloodySwordCSS = "w-8 h-3 bg-red-800";
+      swordCSS = "transform rotate-90";
+      bloodySwordCSS = "transform rotate-90";
       break;
     case 10:
-      swordCSS = "w-3 h-8 bg-blue-800 transform -rotate-45 ";
-      bloodySwordCSS = "w-3 h-8 bg-red-800 transform -rotate-45";
+      swordCSS = "transform -rotate-45 ";
+      bloodySwordCSS = "transform -rotate-45";
       break;
   }
 
@@ -92,33 +96,33 @@ function Tile({
 
   switch (enemiesDirections[enemies.indexOf(arrIndex)]) {
     case 9:
-      enemySVGvar = "h-8";
+      enemySVGvar = "";
       break;
     case 8:
-      enemySVGvar = "h-8 transform rotate-45";
+      enemySVGvar = "transform rotate-45";
       break;
     case -1:
-      enemySVGvar = "h-8 transform rotate-90";
+      enemySVGvar = "transform rotate-90";
 
       break;
     case -10:
-      enemySVGvar = "h-8 transform rotate-135";
+      enemySVGvar = "transform rotate-135";
 
       break;
     case -9:
-      enemySVGvar = "h-8 transform rotate-180";
+      enemySVGvar = "transform rotate-180";
 
       break;
     case -8:
-      enemySVGvar = "h-8 transform rotate-225";
+      enemySVGvar = "transform rotate-225";
 
       break;
     case 1:
-      enemySVGvar = "h-8 transform -rotate-90";
+      enemySVGvar = "transform -rotate-90";
 
       break;
     case 10:
-      enemySVGvar = "h-8 transform -rotate-45 ";
+      enemySVGvar = "transform -rotate-45 ";
       break;
   }
 
@@ -154,7 +158,7 @@ function Tile({
     // }
 
     if (hero.heroPosition === arrIndex && hero.alive) {
-      setEntityCSS("w-5 h-5 bg-green-600 rounded-full");
+      setEntityCSS("w-4 h-4 bg-green-600 rounded-full");
       return;
     }
 
@@ -163,12 +167,12 @@ function Tile({
       hero.alive &&
       lastEnemyKilled === arrIndex
     ) {
-      setEntityCSS(`${bloodySwordCSS}`);
+      setEntityCSS(`${bloodySwordCSS} ${swordSize} ${bloodySwordColor}`);
       return;
     }
 
     if (hero.swordPosition === arrIndex && hero.alive) {
-      setEntityCSS(`${swordCSS}`);
+      setEntityCSS(`${swordCSS} ${swordSize} ${swordColor}`);
       return;
     }
 
@@ -201,7 +205,7 @@ function Tile({
       // console.log(arrIndex);
       // console.log("should be brown")
       setEntityCSS("hidden");
-      setEnemySVG(`${enemySVGvar} fill-current text-red-900`);
+      setEnemySVG(`${enemySVGvar} fill-current text-red-900 h-8`);
 
       return;
     }
@@ -209,7 +213,7 @@ function Tile({
     if (enemies.indexOf(arrIndex) > -1) {
       setEntityCSS("hidden");
       // setEnemySVG("h-8 fill-current text-red-600")
-      setEnemySVG(`${enemySVGvar} fill-current text-red-600`);
+      setEnemySVG(`${enemySVGvar}  fill-current text-red-600 h-8`);
       return;
     }
 
@@ -228,7 +232,7 @@ function Tile({
 
   return (
     <div
-      className={`flex items-center justify-center w-10 h-10 ${backgroundColor}`}
+      className={`flex items-center justify-center w-8 h-8 ${backgroundColor}`}
     >
       {/* {boardTile[0]} */}
       {/* {boardTile[1]} */}
