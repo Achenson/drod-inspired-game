@@ -39,6 +39,14 @@ module.exports = {
 
 12. after every change in config file (tailwind.js) run npm run build:css
 
+==================================
+typescript
+
+makeTopScore -> type assertion! SPR
+
+
+
+
 
 ==================================
 
@@ -70,6 +78,7 @@ back in time custom hook?
 DONE sometimes enemies disappear?? DONE (bug fixed)
 DONE backspace -> move one turn back in time DONE
 smaller(px) board?
+medal? 100 175 250
 
 
 // ((board[hero.heroPosition][0] === 0 ||

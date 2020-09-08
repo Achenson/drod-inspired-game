@@ -3,7 +3,7 @@ import React from "react";
 interface Props {
   currentTurn: number;
   enemiesKilled: number;
-  topScore: string;
+  topScore: string | React.Dispatch<React.SetStateAction<string>>;
   enemies: number[];
 }
 

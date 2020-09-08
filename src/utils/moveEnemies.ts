@@ -1,6 +1,6 @@
 import { HeroObj } from "./interfaces";
 import createEnemy from "./createEnemy";
-import makeRecordScore from "./makeRecordScore";
+import makeTopScore from "./makeTopScore";
 import makeRandomNumber from "./makeRandomNumber";
 import enemiesDirections2ndTurn from "./enemiesDirections2ndTurn";
 
@@ -16,8 +16,8 @@ export default function moveEnemies(
   setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
   currentTurn: number,
   setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
-  recordScore: string,
-  setRecordScore: React.Dispatch<React.SetStateAction<string>>,
+  topScore: string | string | React.Dispatch<React.SetStateAction<string>>,
+  setTopScore: string | React.Dispatch<React.SetStateAction<string>>,
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>
 ) {
@@ -134,7 +134,7 @@ export default function moveEnemies(
 
     // setCurrentTurn((n) => n + 1);
 
-    makeRecordScore(currentTurn, recordScore, setRecordScore);
+    makeTopScore(currentTurn, topScore,setTopScore);
   }
   // else {
 

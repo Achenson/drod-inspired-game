@@ -9,6 +9,8 @@ import { Directions } from "../utils/interfaces";
 import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
 
+import useTopScore from "../hooks/useTopScore";
+
 interface Props {}
 
 function MainUI({}: Props): JSX.Element {
@@ -30,17 +32,22 @@ function MainUI({}: Props): JSX.Element {
   // const [turnsPassed, setTurnsPassed] = useState()
 
   const [currentTurn, setCurrentTurn] = useState<number>(0);
-  const [topScore, setTopScore] = useState<string>("0");
 
-  useEffect(() => {
-    let record = localStorage.getItem("record");
+  // const [topScore, setTopScore] = useState<string>("0");
+  const [topScore, setTopScore] = useTopScore("score", "0");
 
-    if (record) {
-      setTopScore(record);
-    } else {
-      localStorage.setItem("record", "0");
-    }
-  }, []);
+
+  // useEffect(() => {
+  //   let topScoreSaved = localStorage.getItem("score");
+
+  //   if (topScoreSaved) {
+  //     setTopScore(topScoreSaved);
+  //   } else {
+  //     localStorage.setItem("score", "0");
+  //   }
+  // }, []);
+
+
 
   const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);

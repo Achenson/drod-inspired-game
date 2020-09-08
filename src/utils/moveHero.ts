@@ -2,7 +2,7 @@ import { HeroObj } from "./interfaces";
 import { Directions } from "../utils/interfaces";
 
 import moveEnemies from "./moveEnemies";
-import makeRecordScore from "./makeRecordScore";
+import makeTopScore from "./makeTopScore";
 
 export default function moveHero(
   direction: Directions,
@@ -16,8 +16,8 @@ export default function moveHero(
   adjacentTilesRelativePositions: number[],
   boardSize: number,
   setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>,
-  recordScore: string,
-  setRecordScore: React.Dispatch<React.SetStateAction<string>>,
+  topScore: string | React.Dispatch<React.SetStateAction<string>>,
+  setTopScore: string | React.Dispatch<React.SetStateAction<string>>,
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>
 ) {
@@ -140,7 +140,7 @@ export default function moveHero(
     });
 
     setCurrentTurn((n) => n + 1);
-    makeRecordScore(currentTurn, recordScore, setRecordScore);
+    makeTopScore(currentTurn, topScore, setTopScore);
 
     return;
   }
@@ -173,16 +173,16 @@ export default function moveHero(
     setEnemies,
     currentTurn,
     setCurrentTurn,
-    recordScore,
-    setRecordScore,
+    topScore,
+    setTopScore,
     enemiesDirections,
     setEnemiesDirections
   );
 }
 
-// function makeRecordScore() {
-//   if (currentTurn > parseInt(recordScore)) {
-//     setRecordScore(currentTurn.toString());
+// function makeTopScore() {
+//   if (currentTurn > parseInt(topScore)) {
+//     setTopScore(currentTurn.toString());
 //     localStorage.setItem("record", currentTurn.toString());
 //   }
 // }
