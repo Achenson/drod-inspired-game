@@ -19,9 +19,8 @@ export default function useTopScore(key: string, initialValue: string) {
   });
 
   useEffect(() => {
-      localStorage.setItem(key, value)
-  }, [key, value])
-
+    localStorage.setItem(key, value);
+  }, [key, value]);
 
   return [value, setValue];
 }
