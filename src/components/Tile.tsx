@@ -50,49 +50,38 @@ function Tile({
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
   const swordSize = "w-6 h-10";
-  const swordColor = "bg-blue-800";
-  const bloodySwordColor = "bg-red-800";
 
   const [swordVisibility, setSwordVisibility] = useState("hidden");
 
-  let swordCSS = "";
-  let bloodySwordCSS = "";
+  let swordDirection = "";
 
   //                                      nw  n ne   e   se   s  sw  w
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
   switch (relativePosition) {
     case 9:
-      swordCSS = "transform -rotate-45";
-      bloodySwordCSS = "transform -rotate-45";
+      swordDirection = "transform -rotate-45";
       break;
     case 8:
-      swordCSS = "";
-      bloodySwordCSS = "";
+      swordDirection = "";
       break;
     case -1:
-      swordCSS = "transform rotate-45";
-      bloodySwordCSS = "transform rotate-45";
+      swordDirection = "transform rotate-45";
       break;
     case -10:
-      swordCSS = "transform rotate-90";
-      bloodySwordCSS = "transform rotate-90";
+      swordDirection = "transform rotate-90";
       break;
     case -9:
-      swordCSS = "transform rotate-135";
-      bloodySwordCSS = "transform rotate-135";
+      swordDirection = "transform rotate-135";
       break;
     case -8:
-      swordCSS = "transform rotate-180";
-      bloodySwordCSS = "transform rotate-180";
+      swordDirection = "transform rotate-180";
       break;
     case 1:
-      swordCSS = "transform rotate-225";
-      bloodySwordCSS = "transform rotate-225";
+      swordDirection = "transform rotate-225";
       break;
     case 10:
-      swordCSS = "transform -rotate-90 ";
-      bloodySwordCSS = "transform -rotate-90";
+      swordDirection = "transform -rotate-90 ";
       break;
   }
 
@@ -138,15 +127,6 @@ function Tile({
     enemySpining = "animate-pulse";
   }
 
-  /* 
-        case "enemy":
-      swordCSS = "w-4 h-4 bg-red-800 transform rotate-45";
-      break;
-    case "dead":
-      swordCSS = "w-5 h-5 bg-black";
-      break;
-      */
-
   useEffect(() => {
     if (hero.heroPosition === arrIndex && !hero.alive) {
       setEntityCSS("w-5 h-5 bg-black");
@@ -155,12 +135,6 @@ function Tile({
       return;
       // return;
     }
-
-    // if (hero.heroPosition === arrIndex && ) {
-    //   setEntityCSS("w-5 h-5 bg-black");
-    //   return;
-    //   // return;
-    // }
 
     if (hero.heroPosition === arrIndex && hero.alive) {
       setEntityCSS("w-4 h-4 bg-green-600 rounded-full");
@@ -173,9 +147,9 @@ function Tile({
       hero.alive &&
       lastEnemyKilled === arrIndex
     ) {
-      // setEntityCSS(`${bloodySwordCSS} ${swordSize} ${bloodySwordColor}`);
+      // setEntityCSS(`${bloodyswordDirection} ${swordSize} ${bloodySwordColor}`);
       setSwordVisibility(
-        `visible ${bloodySwordCSS} ${swordSize} fill-current text-red-600`
+        `visible ${swordDirection} ${swordSize} fill-current text-red-600`
       );
       setEntityCSS("hidden");
       // setEntityCSS("w-6 h-6 bg-red-600 absolute");
@@ -183,28 +157,12 @@ function Tile({
     }
 
     if (hero.swordPosition === arrIndex && hero.alive) {
-      // setEntityCSS(`${swordCSS} ${swordSize} ${swordColor}`);
+      // setEntityCSS(`${swordDirection} ${swordSize} ${swordColor}`);
       setEntityCSS("hidden");
-      setSwordVisibility(`visible ${swordCSS} ${swordSize}`);
+      setSwordVisibility(`visible ${swordDirection} ${swordSize}`);
 
       return;
     }
-
-    // newly arrived enemy color for 1 turn
-    // if (
-    //   arrIndex === enemies[enemies.length - 1] &&
-    //   currentTurn % 2 === 0 &&
-    //   currentTurn !== 1 &&
-    //   currentTurn !== 0
-    // ) {
-    //   setEntityCSS("w-4 h-4 bg-red-900 transform rotate-45");
-    //   return;
-    // }
-
-    // if (enemies.indexOf(arrIndex) > -1) {
-    //   setEntityCSS("w-4 h-4 bg-red-600 transform rotate-45");
-    //   return;
-    // }
 
     // newly arrived enemy color for 1 turn
     if (
@@ -213,11 +171,6 @@ function Tile({
       currentTurn !== 1 &&
       currentTurn !== 0
     ) {
-      // console.log("current turn");
-      // console.log(currentTurn);
-      // console.log("arrIndex");
-      // console.log(arrIndex);
-      // console.log("should be brown")
       setEntityCSS("hidden");
       setSwordVisibility("hidden");
       setEnemySVG(`${enemySVGvar} fill-current text-red-900 h-8`);
@@ -240,8 +193,7 @@ function Tile({
     hero,
     arrIndex,
     enemies,
-    swordCSS,
-    bloodySwordCSS,
+    swordDirection,
     currentTurn,
     enemySVGvar,
     lastEnemyKilled,
@@ -255,7 +207,7 @@ function Tile({
       {/* {boardTile[1]} */}
       {/* {arrIndex} */}
       <div className={`${entityCSS}`}></div>
-      <SwordSVG className={`${swordVisibility} ${swordCSS}`} />
+      <SwordSVG className={`${swordVisibility} ${swordDirection}`} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
