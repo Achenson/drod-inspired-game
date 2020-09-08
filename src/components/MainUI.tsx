@@ -185,7 +185,9 @@ function MainUI({}: Props): JSX.Element {
 
  
   return (
-    <div className="mx-64 my-64">
+    <div className="flex justify-center">
+    {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
+    <div className="flex flex-col justify-center" style={{height: "100vh"}}>
       <Turns
         currentTurn={currentTurn}
         enemiesKilled={enemiesKilled}
@@ -201,6 +203,7 @@ function MainUI({}: Props): JSX.Element {
         lastEnemyKilled={lastEnemyKilled}
         enemiesDirections={enemiesDirections}
       />
+      </div>
     </div>
   );
 }
