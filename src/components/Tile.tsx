@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 
 import { HeroObj } from "../utils/interfaces";
 
+import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
+
 interface Props {
   boardTile: number[];
   arrIndex: number;
@@ -47,9 +49,11 @@ function Tile({
 
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
-  const swordSize = "w-2 h-6";
+  const swordSize = "w-6 h-10";
   const swordColor = "bg-blue-800";
   const bloodySwordColor = "bg-red-800";
+
+  const [swordVisibility, setSwordVisibility] = useState("hidden");
 
   let swordCSS = "";
   let bloodySwordCSS = "";
@@ -59,36 +63,36 @@ function Tile({
 
   switch (relativePosition) {
     case 9:
-      swordCSS = "";
-      bloodySwordCSS = "";
-      break;
-    case 8:
-      swordCSS = "transform rotate-45";
-      bloodySwordCSS = "transform rotate-45";
-      break;
-    case -1:
-      swordCSS = "transform rotate-90";
-      bloodySwordCSS = "transform rotate-90";
-      break;
-    case -10:
       swordCSS = "transform -rotate-45";
       bloodySwordCSS = "transform -rotate-45";
       break;
-    case -9:
+    case 8:
       swordCSS = "";
       bloodySwordCSS = "";
       break;
-    case -8:
+    case -1:
       swordCSS = "transform rotate-45";
       bloodySwordCSS = "transform rotate-45";
       break;
-    case 1:
+    case -10:
       swordCSS = "transform rotate-90";
       bloodySwordCSS = "transform rotate-90";
       break;
+    case -9:
+      swordCSS = "transform rotate-135";
+      bloodySwordCSS = "transform rotate-135";
+      break;
+    case -8:
+      swordCSS = "transform rotate-180";
+      bloodySwordCSS = "transform rotate-180";
+      break;
+    case 1:
+      swordCSS = "transform rotate-225";
+      bloodySwordCSS = "transform rotate-225";
+      break;
     case 10:
-      swordCSS = "transform -rotate-45 ";
-      bloodySwordCSS = "transform -rotate-45";
+      swordCSS = "transform -rotate-90 ";
+      bloodySwordCSS = "transform -rotate-90";
       break;
   }
 
@@ -131,7 +135,7 @@ function Tile({
   let heroRelativePostion = arrIndex - hero.heroPosition;
 
   if (adjacentTilesRelativePositions.indexOf(heroRelativePostion) > -1) {
-    enemySpining = " animate-pulse";
+    enemySpining = "animate-pulse";
   }
 
   /* 
@@ -147,6 +151,7 @@ function Tile({
     if (hero.heroPosition === arrIndex && !hero.alive) {
       setEntityCSS("w-5 h-5 bg-black");
       setEnemySVG("hidden");
+      setSwordVisibility("hidden");
       return;
       // return;
     }
@@ -159,6 +164,7 @@ function Tile({
 
     if (hero.heroPosition === arrIndex && hero.alive) {
       setEntityCSS("w-4 h-4 bg-green-600 rounded-full");
+      setSwordVisibility("hidden");
       return;
     }
 
@@ -167,12 +173,20 @@ function Tile({
       hero.alive &&
       lastEnemyKilled === arrIndex
     ) {
-      setEntityCSS(`${bloodySwordCSS} ${swordSize} ${bloodySwordColor}`);
+      // setEntityCSS(`${bloodySwordCSS} ${swordSize} ${bloodySwordColor}`);
+      setSwordVisibility(
+        `visible ${bloodySwordCSS} ${swordSize} fill-current text-red-600`
+      );
+      setEntityCSS("hidden");
+      // setEntityCSS("w-6 h-6 bg-red-600 absolute");
       return;
     }
 
     if (hero.swordPosition === arrIndex && hero.alive) {
-      setEntityCSS(`${swordCSS} ${swordSize} ${swordColor}`);
+      // setEntityCSS(`${swordCSS} ${swordSize} ${swordColor}`);
+      setEntityCSS("hidden");
+      setSwordVisibility(`visible ${swordCSS} ${swordSize}`);
+
       return;
     }
 
@@ -205,6 +219,7 @@ function Tile({
       // console.log(arrIndex);
       // console.log("should be brown")
       setEntityCSS("hidden");
+      setSwordVisibility("hidden");
       setEnemySVG(`${enemySVGvar} fill-current text-red-900 h-8`);
 
       return;
@@ -212,11 +227,13 @@ function Tile({
 
     if (enemies.indexOf(arrIndex) > -1) {
       setEntityCSS("hidden");
+      setSwordVisibility("hidden");
       // setEnemySVG("h-8 fill-current text-red-600")
-      setEnemySVG(`${enemySVGvar}  fill-current text-red-600 h-8`);
+      setEnemySVG(`${enemySVGvar} fill-current text-red-600 h-8`);
       return;
     }
 
+    setSwordVisibility("hidden");
     setEnemySVG("hidden");
     setEntityCSS("hidden");
   }, [
@@ -238,11 +255,12 @@ function Tile({
       {/* {boardTile[1]} */}
       {/* {arrIndex} */}
       <div className={`${entityCSS}`}></div>
+      <SwordSVG className={`${swordVisibility} ${swordCSS}`} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className={`${enemySVG}${enemySpining}`}
+        className={`${enemySVG} ${enemySpining}`}
       >
         <path
           fillRule="evenodd"
@@ -250,6 +268,7 @@ function Tile({
           clipRule="evenodd"
         />
       </svg>
+      {/* <SwordSVG/> */}
     </div>
   );
 }

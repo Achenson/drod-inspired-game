@@ -80,6 +80,7 @@ DONE backspace -> move one turn back in time DONE
 DONE smaller(px) board? DONE
 medal? 100 175 250
 DONE change enemy render when near hero DONE
+setting topScore not only on death?
 
 
 // ((board[hero.heroPosition][0] === 0 ||
