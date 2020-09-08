@@ -73,12 +73,13 @@ DONE corners not moveable to? plus styling DONE
 XXX enemy won't arrive next to hero? XXX
 XXX performance issues after many turns?XXX
 DONE last turn should be also counted DONE
-localStorage custom hook?
+DONE localStorage custom hook? DONE
 back in time custom hook?
 DONE sometimes enemies disappear?? DONE (bug fixed)
 DONE backspace -> move one turn back in time DONE
 smaller(px) board?
 medal? 100 175 250
+DONE change enemy render when near hero DONE
 
 
 // ((board[hero.heroPosition][0] === 0 ||

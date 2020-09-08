@@ -51,7 +51,7 @@ function Tile({
   let bloodySwordCSS = "w-3 h-8 bg-red-800";
 
   //                                         nw  n ne   e   se   s  sw  w
-  // const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
+  const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
   switch (relativePosition) {
     case 9:
@@ -119,8 +119,15 @@ function Tile({
       break;
     case 10:
       enemySVGvar = "h-8 transform -rotate-45 ";
-
       break;
+  }
+
+  let enemySpining = "";
+
+  let heroRelativePostion = arrIndex - hero.heroPosition;
+
+  if (adjacentTilesRelativePositions.indexOf(heroRelativePostion) > -1) {
+    enemySpining = " animate-pulse";
   }
 
   /* 
@@ -135,7 +142,7 @@ function Tile({
   useEffect(() => {
     if (hero.heroPosition === arrIndex && !hero.alive) {
       setEntityCSS("w-5 h-5 bg-black");
-      setEnemySVG("hidden")
+      setEnemySVG("hidden");
       return;
       // return;
     }
@@ -208,7 +215,16 @@ function Tile({
 
     setEnemySVG("hidden");
     setEntityCSS("hidden");
-  }, [hero, arrIndex, enemies, swordCSS, bloodySwordCSS, currentTurn, enemySVGvar, lastEnemyKilled]);
+  }, [
+    hero,
+    arrIndex,
+    enemies,
+    swordCSS,
+    bloodySwordCSS,
+    currentTurn,
+    enemySVGvar,
+    lastEnemyKilled,
+  ]);
 
   return (
     <div
@@ -222,7 +238,7 @@ function Tile({
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className={`${enemySVG}`}
+        className={`${enemySVG}${enemySpining}`}
       >
         <path
           fillRule="evenodd"
