@@ -81,6 +81,7 @@ DONE smaller(px) board? DONE
 medal? 100 175 250
 DONE change enemy render when near hero DONE
 setting topScore not only on death?
+Tile -> better code, too many "hidden" settings
 
 
 // ((board[hero.heroPosition][0] === 0 ||

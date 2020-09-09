@@ -5,6 +5,7 @@ import { HeroObj } from "../utils/interfaces";
 
 import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
 import { ReactComponent as BugSVG } from "../svgs/malware-virus.svg";
+import { ReactComponent as DeathSVG } from "../svgs/bone-dog.svg";
 
 interface Props {
   boardTile: number[];
@@ -47,6 +48,8 @@ function Tile({
 
   const [entityCSS, setEntityCSS] = useState("hidden");
   const [enemySVG, setEnemySVG] = useState("hidden");
+  const [deathSVG, setDeathSVG] = useState("hidden");
+
 
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
@@ -130,9 +133,11 @@ function Tile({
 
   useEffect(() => {
     if (hero.heroPosition === arrIndex && !hero.alive) {
-      setEntityCSS("w-5 h-5 bg-black");
+      // setEntityCSS("w-5 h-5 bg-black");
+      setEntityCSS("hidden");
       setEnemySVG("hidden");
       setSwordVisibility("hidden");
+      setDeathSVG("h-8");
       return;
       // return;
     }
@@ -140,6 +145,7 @@ function Tile({
     if (hero.heroPosition === arrIndex && hero.alive) {
       setEntityCSS("w-4 h-4 bg-green-600 rounded-full");
       setSwordVisibility("hidden");
+      setDeathSVG("hidden");
       return;
     }
 
@@ -154,6 +160,7 @@ function Tile({
       );
       setEntityCSS("hidden");
       // setEntityCSS("w-6 h-6 bg-red-600 absolute");
+      setDeathSVG("hidden");
       return;
     }
 
@@ -161,7 +168,7 @@ function Tile({
       // setEntityCSS(`${swordDirection} ${swordSize} ${swordColor}`);
       setEntityCSS("hidden");
       setSwordVisibility(`visible ${swordDirection} ${swordSize}`);
-
+      setDeathSVG("hidden");
       return;
     }
 
@@ -175,7 +182,7 @@ function Tile({
       setEntityCSS("hidden");
       setSwordVisibility("hidden");
       setEnemySVG(`${enemySVGvar} fill-current text-red-900 h-6`);
-
+      setDeathSVG("hidden");
       return;
     }
 
@@ -184,12 +191,14 @@ function Tile({
       setSwordVisibility("hidden");
       // setEnemySVG("h-8 fill-current text-red-600")
       setEnemySVG(`${enemySVGvar} fill-current text-red-600 h-6`);
+      setDeathSVG("hidden");
       return;
     }
 
     setSwordVisibility("hidden");
     setEnemySVG("hidden");
     setEntityCSS("hidden");
+    setDeathSVG("hidden");
   }, [
     hero,
     arrIndex,
@@ -211,6 +220,7 @@ function Tile({
       <SwordSVG className={`${swordVisibility} ${swordDirection}`} />
 
       <BugSVG className={`${enemySVG} ${enemyPulsing}`}/>
+      <DeathSVG className={`${deathSVG}`}/>
 
       {/* <svg
         xmlns="http://www.w3.org/2000/svg"
