@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { HeroObj } from "../utils/interfaces";
 
 import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
+import { ReactComponent as BugSVG } from "../svgs/malware-virus.svg";
 
 interface Props {
   boardTile: number[];
@@ -119,12 +120,12 @@ function Tile({
       break;
   }
 
-  let enemySpining = "";
+  let enemyPulsing = "";
 
   let heroRelativePostion = arrIndex - hero.heroPosition;
 
   if (adjacentTilesRelativePositions.indexOf(heroRelativePostion) > -1) {
-    enemySpining = "animate-pulse";
+    enemyPulsing = "animate-pulse";
   }
 
   useEffect(() => {
@@ -173,7 +174,7 @@ function Tile({
     ) {
       setEntityCSS("hidden");
       setSwordVisibility("hidden");
-      setEnemySVG(`${enemySVGvar} fill-current text-red-900 h-8`);
+      setEnemySVG(`${enemySVGvar} fill-current text-red-900 h-6`);
 
       return;
     }
@@ -182,7 +183,7 @@ function Tile({
       setEntityCSS("hidden");
       setSwordVisibility("hidden");
       // setEnemySVG("h-8 fill-current text-red-600")
-      setEnemySVG(`${enemySVGvar} fill-current text-red-600 h-8`);
+      setEnemySVG(`${enemySVGvar} fill-current text-red-600 h-6`);
       return;
     }
 
@@ -208,18 +209,22 @@ function Tile({
       {/* {arrIndex} */}
       <div className={`${entityCSS}`}></div>
       <SwordSVG className={`${swordVisibility} ${swordDirection}`} />
-      <svg
+
+      <BugSVG className={`${enemySVG} ${enemyPulsing}`}/>
+
+      {/* <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
         fill="currentColor"
-        className={`${enemySVG} ${enemySpining}`}
+        className={`${enemySVG} ${enemyPulsing}`}
       >
         <path
           fillRule="evenodd"
           d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
           clipRule="evenodd"
         />
-      </svg>
+      </svg> */}
+
       {/* <SwordSVG/> */}
     </div>
   );
