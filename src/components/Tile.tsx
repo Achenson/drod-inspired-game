@@ -5,7 +5,8 @@ import { HeroObj } from "../utils/interfaces";
 
 import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
 import { ReactComponent as BugSVG } from "../svgs/malware-virus.svg";
-import { ReactComponent as DeathSVG } from "../svgs/bone-dog.svg";
+import { ReactComponent as DeathSVG } from "../svgs/skull.svg";
+
 
 interface Props {
   boardTile: number[];
@@ -137,7 +138,7 @@ function Tile({
       setEntityCSS("hidden");
       setEnemySVG("hidden");
       setSwordVisibility("hidden");
-      setDeathSVG("h-8");
+      setDeathSVG("h-6");
       return;
       // return;
     }
@@ -220,6 +221,7 @@ function Tile({
       <SwordSVG className={`${swordVisibility} ${swordDirection}`} />
 
       <BugSVG className={`${enemySVG} ${enemyPulsing}`}/>
+      {/* <BoneSVG className={`${deathSVG} h-2 transform rotate-90 z-0`}/> */}
       <DeathSVG className={`${deathSVG}`}/>
 
       {/* <svg
