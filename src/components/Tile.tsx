@@ -63,38 +63,73 @@ function Tile({
   //                                      nw  n ne   e   se   s  sw  w
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
+ 
+
+  let triangleBody = {
+    borderBottom: "28px solid green",
+    borderLeft: "12px solid transparent",
+    borderRight: "12px solid transparent",
+    height: "0",
+    width: "30px",
+    borderRadius: "50%",
+    // marginTop: "auto"
+  };
+
+  let triangleMargins = {marginTop: "auto", marginLeft: "auto"};
+
+  // const [marginForBody, setMarginForBody] = useState({
+  //   marginTop: "auto"
+  // })
+
   switch (relativePosition) {
     case 9:
       swordDirection = "transform -rotate-45";
       heroDirection = "";
+      triangleMargins.marginTop = "-8px";
+      triangleMargins.marginLeft = "1px";
+      // setMarginForBody({...marginForBody, marginTop: "-8px"});
       break;
     case 8:
       swordDirection = "left-0 top-0";
       heroDirection = "transform rotate-45 right-0 top-0";
+      triangleMargins.marginTop = "-12px";
+      triangleMargins.marginLeft = "12px";
       break;
     case -1:
       swordDirection = "transform rotate-45";
       heroDirection = "transform rotate-90";
+      triangleMargins.marginTop = "-1px";
+      triangleMargins.marginLeft = "8px";
       break;
     case -10:
       swordDirection = "transform rotate-90 left-0 bottom-0";
       heroDirection = "transform rotate-135";
+      triangleMargins.marginTop = "12px";
+      triangleMargins.marginLeft = "12px";
       break;
     case -9:
       swordDirection = "transform rotate-135";
       heroDirection = "transform rotate-180";
+      triangleMargins.marginTop = "8px";
+      triangleMargins.marginLeft = "1px";
       break;
     case -8:
       swordDirection = "transform rotate-180 right-0 bottom-0";
       heroDirection = "transform rotate-225";
+      triangleMargins.marginTop = "12px";
+      triangleMargins.marginLeft = "-12px";
       break;
     case 1:
       swordDirection = "transform rotate-225";
       heroDirection = "transform -rotate-90";
+      triangleMargins.marginTop = "-1px";
+      triangleMargins.marginLeft = "-8px";
       break;
     case 10:
       swordDirection = "transform -rotate-90 right-0 top-0";
       heroDirection = "transform -rotate-45";
+      triangleMargins.marginTop = "-17px";
+      triangleMargins.marginLeft = "-17px";
       break;
   }
 
@@ -227,14 +262,12 @@ function Tile({
   //   borderRadius: "15px 15px 15px 15px"
   // }
 
-  let triangleBody = {
-    borderBottom: "28px solid green",
-    borderLeft: "12px solid transparent",
-    borderRight: "12px solid transparent",
-    height: "0",
-    width: "30px",
-    borderRadius: "50%",
-  };
+
+  
+
+
+
+ 
 
   return (
     <div
@@ -251,12 +284,12 @@ function Tile({
       <DeathSVG className={`${deathSVG}`} />
       {/* <HelmetSVG/> */}
       {arrIndex === hero.heroPosition ? (
-        <div>
+        <div style={triangleMargins}>
           {/* <div className={`${entityCSS}`} style={{position: "absolute"}}></div> */}
-          <div className={heroDirection} style={triangleBody}>
+          <div className={`${heroDirection} relative`} style={{...triangleBody}}>
             <div
               className={`${entityCSS}`}
-              style={{ position: "relative", top: "8px", right: "3px" }}
+              style={{ position: "absolute", top: "10px", left: "-3px" }}
             ></div>
           </div>
         </div>
