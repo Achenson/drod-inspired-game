@@ -6,7 +6,7 @@ import { HeroObj } from "../utils/interfaces";
 import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
 import { ReactComponent as BugSVG } from "../svgs/malware-virus.svg";
 import { ReactComponent as DeathSVG } from "../svgs/skull.svg";
-
+// import { ReactComponent as HelmetSVG } from "../svgs/warrior-helmet-2748.svg";
 
 interface Props {
   boardTile: number[];
@@ -51,13 +51,13 @@ function Tile({
   const [enemySVG, setEnemySVG] = useState("hidden");
   const [deathSVG, setDeathSVG] = useState("hidden");
 
-
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
   const swordSize = "w-6 h-10";
 
   const [swordVisibility, setSwordVisibility] = useState("hidden");
 
+  let heroDirection = "";
   let swordDirection = "";
 
   //                                      nw  n ne   e   se   s  sw  w
@@ -66,27 +66,35 @@ function Tile({
   switch (relativePosition) {
     case 9:
       swordDirection = "transform -rotate-45";
+      heroDirection = "";
       break;
     case 8:
       swordDirection = "";
+      heroDirection = "transform rotate-45";
       break;
     case -1:
       swordDirection = "transform rotate-45";
+      heroDirection = "transform rotate-90";
       break;
     case -10:
       swordDirection = "transform rotate-90";
+      heroDirection = "transform rotate-135";
       break;
     case -9:
       swordDirection = "transform rotate-135";
+      heroDirection = "transform rotate-180";
       break;
     case -8:
       swordDirection = "transform rotate-180";
+      heroDirection = "transform rotate-225";
       break;
     case 1:
       swordDirection = "transform rotate-225";
+      heroDirection = "transform -rotate-90";
       break;
     case 10:
-      swordDirection = "transform -rotate-90 ";
+      swordDirection = "transform -rotate-90";
+      heroDirection = "transform -rotate-45";
       break;
   }
 
@@ -144,7 +152,7 @@ function Tile({
     }
 
     if (hero.heroPosition === arrIndex && hero.alive) {
-      setEntityCSS("w-4 h-4 bg-green-600 rounded-full");
+      setEntityCSS(`w-3 h-3 bg-yellow-500 rounded-full z-40`);
       setSwordVisibility("hidden");
       setDeathSVG("hidden");
       return;
@@ -210,6 +218,24 @@ function Tile({
     lastEnemyKilled,
   ]);
 
+  // let triangleBody = {
+  //   width: "0",
+  //   height: "0",
+  //   borderLeft: "10px solid transparent",
+  //   borderRight: "10px solid transparent",
+  //   borderBottom: "20px solid red",
+  //   borderRadius: "15px 15px 15px 15px"
+  // }
+
+  let triangleBody = {
+    borderBottom: "28px solid green",
+    borderLeft: "12px solid transparent",
+    borderRight: "12px solid transparent",
+    height: "0",
+    width: "30px",
+    borderRadius: "50%",
+  };
+
   return (
     <div
       className={`flex items-center justify-center w-8 h-8 ${backgroundColor}`}
@@ -217,12 +243,24 @@ function Tile({
       {/* {boardTile[0]} */}
       {/* {boardTile[1]} */}
       {/* {arrIndex} */}
-      <div className={`${entityCSS}`}></div>
+
       <SwordSVG className={`${swordVisibility} ${swordDirection}`} />
 
-      <BugSVG className={`${enemySVG} ${enemyPulsing}`}/>
+      <BugSVG className={`${enemySVG} ${enemyPulsing}`} />
       {/* <BoneSVG className={`${deathSVG} h-2 transform rotate-90 z-0`}/> */}
-      <DeathSVG className={`${deathSVG}`}/>
+      <DeathSVG className={`${deathSVG}`} />
+      {/* <HelmetSVG/> */}
+      {arrIndex === hero.heroPosition ? (
+        <div>
+          {/* <div className={`${entityCSS}`} style={{position: "absolute"}}></div> */}
+          <div className={heroDirection} style={triangleBody}>
+            <div
+              className={`${entityCSS}`}
+              style={{ position: "relative", top: "8px", right: "3px" }}
+            ></div>
+          </div>
+        </div>
+      ) : null}
 
       {/* <svg
         xmlns="http://www.w3.org/2000/svg"
