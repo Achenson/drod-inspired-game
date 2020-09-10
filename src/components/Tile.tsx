@@ -69,15 +69,15 @@ function Tile({
       heroDirection = "";
       break;
     case 8:
-      swordDirection = "";
-      heroDirection = "transform rotate-45";
+      swordDirection = "left-0 top-0";
+      heroDirection = "transform rotate-45 right-0 top-0";
       break;
     case -1:
       swordDirection = "transform rotate-45";
       heroDirection = "transform rotate-90";
       break;
     case -10:
-      swordDirection = "transform rotate-90";
+      swordDirection = "transform rotate-90 left-0 bottom-0";
       heroDirection = "transform rotate-135";
       break;
     case -9:
@@ -85,7 +85,7 @@ function Tile({
       heroDirection = "transform rotate-180";
       break;
     case -8:
-      swordDirection = "transform rotate-180";
+      swordDirection = "transform rotate-180 right-0 bottom-0";
       heroDirection = "transform rotate-225";
       break;
     case 1:
@@ -93,7 +93,7 @@ function Tile({
       heroDirection = "transform -rotate-90";
       break;
     case 10:
-      swordDirection = "transform -rotate-90";
+      swordDirection = "transform -rotate-90 right-0 top-0";
       heroDirection = "transform -rotate-45";
       break;
   }
@@ -238,13 +238,13 @@ function Tile({
 
   return (
     <div
-      className={`flex items-center justify-center w-8 h-8 ${backgroundColor}`}
+      className={`flex items-center justify-center w-8 h-8 ${backgroundColor} relative`}
     >
       {/* {boardTile[0]} */}
       {/* {boardTile[1]} */}
       {/* {arrIndex} */}
 
-      <SwordSVG className={`${swordVisibility} ${swordDirection}`} />
+      <SwordSVG className={`${swordVisibility} ${swordDirection} absolute`} />
 
       <BugSVG className={`${enemySVG} ${enemyPulsing}`} />
       {/* <BoneSVG className={`${deathSVG} h-2 transform rotate-90 z-0`}/> */}
