@@ -77,6 +77,17 @@ function Tile({
 
   let triangleMargins = {marginTop: "auto", marginLeft: "auto"};
 
+  let halfACircle = {
+      background: "black",
+      height: "8px",
+      width: "12px",
+      borderBottomLeftRadius: "12px",
+      borderBottomRightRadius: "12px",
+      borderTopRightRadius: "6px",
+      borderTopLeftRadius: "6px",
+      marginTop: "4px"
+  }
+
   // const [marginForBody, setMarginForBody] = useState({
   //   marginTop: "auto"
   // })
@@ -290,7 +301,11 @@ function Tile({
             <div
               className={`${entityCSS}`}
               style={{ position: "absolute", top: "10px", left: "-3px" }}
-            ></div>
+            >
+              <div style={halfACircle}>
+
+              </div>
+            </div>
           </div>
         </div>
       ) : null}
