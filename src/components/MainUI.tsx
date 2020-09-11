@@ -11,6 +11,16 @@ import moveHero from "../utils/moveHero";
 
 import useTopScore from "../hooks/useTopScore";
 
+import { ReactComponent as ArrowUp} from "../svgs/arrowUp.svg";
+import { ReactComponent as Rewind} from "../svgs/backward.svg";
+import { ReactComponent as TurnAnticlockwise} from "../svgs/curved-arrow-2261.svg";
+import { ReactComponent as TurnClockwise} from "../svgs/curved-arrow-2261.svg";
+import { ReactComponent as Wait} from "../svgs/sand-watch-3546.svg";
+import { ReactComponent as Settings} from "../svgs/cog-small.svg";
+// import { ReactComponent as Help2} from "../svgs/help.svg";
+import { ReactComponent as Help} from "../svgs/question-mark-round.svg";
+import { ReactComponent as Medal} from "../svgs/medal.svg";
+
 interface Props {}
 
 function MainUI({}: Props): JSX.Element {
@@ -203,6 +213,16 @@ function MainUI({}: Props): JSX.Element {
         lastEnemyKilled={lastEnemyKilled}
         enemiesDirections={enemiesDirections}
       />
+      <ArrowUp className="h-6"/>
+      <Rewind className="h-4"/>
+      <TurnAnticlockwise className="h-6"/>
+      <TurnClockwise className="h-6" style={{transform: "scaleX(-1)"}}/>
+      <Wait className="h-8"/>
+      <Settings className="h-8"/>
+      {/* <Help2 className="h-8"/> */}
+      <Help className="h-6"/>
+      <Medal className="h-8"/>
+      
       </div>
     </div>
   );
