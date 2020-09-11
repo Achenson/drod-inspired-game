@@ -221,7 +221,9 @@ function MainUI({}: Props): JSX.Element {
       <Settings className="h-8"/>
       {/* <Help2 className="h-8"/> */}
       <Help className="h-6"/>
-      <Medal className="h-8"/>
+      <Medal className="h-8 fill-current" style={{color: "gold"}}/>
+      <Medal className="h-8 fill-current text-gray-500" />
+      <Medal className="h-8 fill-current text-yellow-800"/>
       
       </div>
     </div>
