@@ -88,6 +88,27 @@ function Tile({
       marginTop: "4px"
   }
 
+  let heroHands = {
+    borderBottom: "5px solid #ecc94b",
+    borderLeft: "2px solid transparent",
+    borderRight: "2px solid transparent",
+    height: "0",
+    width: "10px",
+    borderRadius: "30% 30% 30% 30%",
+    left: "-2px",
+    
+    // paddingRight: "4px"
+  }
+
+  let lineBetween = {
+    height: "5px",
+    width: "1px",
+    backgroundColor: "green",
+    right: "2.5px",
+    shadowBox: "1px"
+
+  }
+
   // const [marginForBody, setMarginForBody] = useState({
   //   marginTop: "auto"
   // })
@@ -294,10 +315,13 @@ function Tile({
       {/* <BoneSVG className={`${deathSVG} h-2 transform rotate-90 z-0`}/> */}
       <DeathSVG className={`${deathSVG}`} />
       {/* <HelmetSVG/> */}
-      {arrIndex === hero.heroPosition ? (
+      {arrIndex === hero.heroPosition && hero.alive ? (
         <div style={triangleMargins}>
           {/* <div className={`${entityCSS}`} style={{position: "absolute"}}></div> */}
           <div className={`${heroDirection} relative`} style={{...triangleBody}}>
+            <div className="absolute" style={heroHands}>
+              {/* <div className="absolute" style={lineBetween}></div> */}
+            </div>
             <div
               className={`${entityCSS}`}
               style={{ position: "absolute", top: "10px", left: "-3px" }}

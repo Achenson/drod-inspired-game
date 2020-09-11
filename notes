@@ -82,6 +82,7 @@ medal? 100 175 250
 DONE change enemy render when near hero DONE
 setting topScore not only on death?
 Tile -> better code, too many "hidden" settings
+round the hero div?
 
 
 // ((board[hero.heroPosition][0] === 0 ||
