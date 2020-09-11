@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactEventHandler, createElement } from "react";
 import Board from "./Board";
+
 import { useState, useEffect } from "react";
 import Turns from "./Turns";
 
@@ -20,6 +21,7 @@ import { ReactComponent as Settings} from "../svgs/cog-small.svg";
 // import { ReactComponent as Help2} from "../svgs/help.svg";
 import { ReactComponent as Help} from "../svgs/question-mark-round.svg";
 import { ReactComponent as Medal} from "../svgs/medal.svg";
+import RightBtnArea from "./RightBtnArea";
 
 interface Props {}
 
@@ -33,7 +35,9 @@ function MainUI({}: Props): JSX.Element {
     };
   });
 
+  
   const boardSize = 9;
+  const boardWidth = boardSize * 32;
   // starts with sword NW of hero         nw
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
@@ -207,12 +211,15 @@ function MainUI({}: Props): JSX.Element {
       <Board
         board={board}
         boardSize={boardSize}
+        boardWidth={boardWidth}
         hero={hero}
         enemies={enemies}
         currentTurn={currentTurn}
         lastEnemyKilled={lastEnemyKilled}
         enemiesDirections={enemiesDirections}
       />
+      <RightBtnArea boardWidth={boardWidth}/>
+
       <ArrowUp className="h-6"/>
       <Rewind className="h-4"/>
       <TurnAnticlockwise className="h-6"/>

@@ -5,6 +5,7 @@ import { HeroObj } from "../utils/interfaces";
 
 interface Props {
   board: number[][];
+  boardWidth: number;
   boardSize: number;
   hero: HeroObj;
   enemies: Array<number | null>;
@@ -13,8 +14,8 @@ interface Props {
   enemiesDirections: number[];
 }
 
-function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, enemiesDirections }: Props): JSX.Element {
-  const boardWidth = boardSize * 32;
+function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, enemiesDirections, boardWidth }: Props): JSX.Element {
+  // const boardWidth = boardSize * 32;
 
   return (
     <div

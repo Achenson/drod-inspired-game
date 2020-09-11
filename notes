@@ -83,6 +83,7 @@ DONE change enemy render when near hero DONE
 setting topScore not only on death?
 Tile -> better code, too many "hidden" settings, new file for CSS objects?
 round the hero div?
+better svg for waiting?
 
 
 // ((board[hero.heroPosition][0] === 0 ||
