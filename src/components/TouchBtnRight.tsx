@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ReactComponent as ArrowUp } from "../svgs/arrowUp.svg";
-import { ReactComponent as Wait } from "../svgs/sand-watch-3546.svg";
+import { ReactComponent as Wait } from "../svgs/sand-clock-half.svg";
 
 interface Props {
   btnType: string;
@@ -44,12 +44,13 @@ function TouchBtnRight({ btnType }: Props): JSX.Element {
 
       break;
     default:
+      arrowDirection = "";
   }
 
   return (
-    <div>
+    <div className="h-8 w-8 bg-gray-400 relative">
       {btnType === "wait" ? (
-        <Wait className="h-6" />
+        <Wait className="h-6 absolute" style={{left: "-37px", top: "4px"}} />
       ) : (
         <ArrowUp className={`${arrowDirection} h-8`}/>
       )}

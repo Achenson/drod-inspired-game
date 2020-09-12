@@ -22,6 +22,7 @@ import { ReactComponent as Settings} from "../svgs/cog-small.svg";
 import { ReactComponent as Help} from "../svgs/question-mark-round.svg";
 import { ReactComponent as Medal} from "../svgs/medal.svg";
 import RightBtnArea from "./RightBtnArea";
+import LeftBtnArea from "./LeftBtnArea";
 
 interface Props {}
 
@@ -218,19 +219,26 @@ function MainUI({}: Props): JSX.Element {
         lastEnemyKilled={lastEnemyKilled}
         enemiesDirections={enemiesDirections}
       />
-      <RightBtnArea boardWidth={boardWidth}/>
+      <div className="flex justify-between my-4" style={{width: `${boardWidth}`}}>
 
-      <ArrowUp className="h-6"/>
+      <LeftBtnArea/>
+
+      <RightBtnArea boardWidth={boardWidth}/>
+      </div>
+
+
+
+      {/* <ArrowUp className="h-6"/>
       <Rewind className="h-4"/>
       <TurnAnticlockwise className="h-6"/>
       <TurnClockwise className="h-6" style={{transform: "scaleX(-1)"}}/>
       <Wait className="h-8"/>
-      <Settings className="h-8"/>
+      <Settings className="h-8"/> */}
       {/* <Help2 className="h-8"/> */}
-      <Help className="h-6"/>
+      {/* <Help className="h-6"/>
       <Medal className="h-8 fill-current" style={{color: "gold"}}/>
       <Medal className="h-8 fill-current text-gray-500" />
-      <Medal className="h-8 fill-current text-yellow-800"/>
+      <Medal className="h-8 fill-current text-yellow-800"/> */}
       
       </div>
     </div>
