@@ -23,6 +23,7 @@ import { ReactComponent as Help} from "../svgs/question-mark-round.svg";
 import { ReactComponent as Medal} from "../svgs/medal.svg";
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
+import UpperRightUI from "./UpperRightUI";
 
 interface Props {}
 
@@ -203,12 +204,16 @@ function MainUI({}: Props): JSX.Element {
     <div className="flex justify-center">
     {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
     <div className="flex flex-col justify-center" style={{height: "100vh"}}>
+      <div className="flex justify-between">
       <Turns
         currentTurn={currentTurn}
         enemiesKilled={enemiesKilled}
         topScore={topScore}
         enemies={enemies}
       />
+      <UpperRightUI />
+      </div>
+ 
       <Board
         board={board}
         boardSize={boardSize}
