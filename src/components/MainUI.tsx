@@ -97,8 +97,18 @@ function MainUI({}: Props): JSX.Element {
 
   let oTB = oneTurnBack;
 
+
+
+
   function handleKeyDown(event: KeyboardEvent) {
-    switch (event.code) {
+    
+    handleKeysOrBtns(event.code);
+
+  }
+
+
+  function handleKeysOrBtns (command: string) {
+    switch (command) {
       case "Backspace":
         console.log("Backspace");
         setCurrentTurn(oTB.currentTurn);
@@ -157,6 +167,7 @@ function MainUI({}: Props): JSX.Element {
         heroMovement(Directions.se);
         break;
     }
+
   }
 
   function heroMovement(directionToMove: Directions) {
@@ -226,9 +237,9 @@ function MainUI({}: Props): JSX.Element {
       />
       <div className="flex justify-between my-4" style={{width: `${boardWidth}`}}>
 
-      <LeftBtnArea boardWidth={boardWidth} handleKeyDown={handleKeyDown}/>
+      <LeftBtnArea boardWidth={boardWidth} handleKeysOrBtns={handleKeysOrBtns}/>
 
-      <RightBtnArea boardWidth={boardWidth}/>
+      <RightBtnArea boardWidth={boardWidth} handleKeysOrBtns={handleKeysOrBtns}/>
       </div>
 
 

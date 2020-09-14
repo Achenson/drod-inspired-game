@@ -208,6 +208,7 @@ function Tile({
   }
 
   useEffect(() => {
+    // death
     if (hero.heroPosition === arrIndex && !hero.alive) {
       // setEntityCSS("w-5 h-5 bg-black");
       setEntityCSS("hidden");
@@ -235,6 +236,7 @@ function Tile({
         `visible ${swordDirection} ${swordSize} fill-current text-red-600`
       );
       setEntityCSS("hidden");
+      setEnemySVG("hidden");
       // setEntityCSS("w-6 h-6 bg-red-600 absolute");
       setDeathSVG("hidden");
       return;
