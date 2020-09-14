@@ -24,6 +24,7 @@ import { ReactComponent as Medal} from "../svgs/medal.svg";
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
 import UpperRightUI from "./UpperRightUI";
+import NewGameBtn from "./NewGameBtn";
 
 interface Props {}
 
@@ -235,6 +236,7 @@ function MainUI({}: Props): JSX.Element {
         lastEnemyKilled={lastEnemyKilled}
         enemiesDirections={enemiesDirections}
       />
+      <NewGameBtn/>
       <div className="flex justify-between my-4" style={{width: `${boardWidth}`}}>
 
       <LeftBtnArea boardWidth={boardWidth} handleKeysOrBtns={handleKeysOrBtns}/>
