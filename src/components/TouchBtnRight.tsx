@@ -48,13 +48,13 @@ function TouchBtnRight({ btnType }: Props): JSX.Element {
   }
 
   return (
-    <div className="h-8 w-8 bg-gray-400 relative">
+    <button className="h-8 w-8 bg-gray-400 relative">
       {btnType === "wait" ? (
         <Wait className="h-6 absolute" style={{left: "-37px", top: "4px"}} />
       ) : (
         <ArrowUp className={`${arrowDirection} h-8`}/>
       )}
-    </div>
+    </button>
   );
 }
 

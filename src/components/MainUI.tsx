@@ -226,7 +226,7 @@ function MainUI({}: Props): JSX.Element {
       />
       <div className="flex justify-between my-4" style={{width: `${boardWidth}`}}>
 
-      <LeftBtnArea boardWidth={boardWidth}/>
+      <LeftBtnArea boardWidth={boardWidth} handleKeyDown={handleKeyDown}/>
 
       <RightBtnArea boardWidth={boardWidth}/>
       </div>
