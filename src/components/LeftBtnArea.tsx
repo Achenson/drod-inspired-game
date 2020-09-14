@@ -23,8 +23,8 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
           }}
         >
           <TurnAnticlockwise
-            className="h-8 absolute"
-            style={{ left: "-200px", marginTop: "-15px" }}
+            className="h-8 w-8 absolute"
+            style={{ left: "8px", marginTop: "-15px" }}
           />
         </button>
         <button className="h-10 w-12 mx-2 bg-gray-400 relative"
@@ -36,10 +36,10 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
         
         >
           <TurnClockwise
-            className="h-8 absolute"
+            className="h-8 w-8 absolute"
             style={{
               transform: "scaleX(-1)",
-              left: "-200px",
+              left: "8px",
               marginTop: "-15px",
             }}
             

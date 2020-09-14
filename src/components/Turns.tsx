@@ -14,12 +14,12 @@ function Turns({ currentTurn, enemiesKilled, topScore, enemies }: Props): JSX.El
       <p>best score: {topScore}</p>
       <p>turns passed: {currentTurn}</p>
       {/* <p>kills: {enemiesKilled}</p> */}
-      <p>nr of enemies: {enemies.length}</p>
-  <p>enemies locations: {enemies.map( (el, i) => {
+      {/* <p>nr of enemies: {enemies.length}</p> */}
+  {/* <p>enemies locations: {enemies.map( (el, i) => {
     return el + ", "
   } ) 
 
-  }</p>
+  }</p> */}
 
     </div>
   );
