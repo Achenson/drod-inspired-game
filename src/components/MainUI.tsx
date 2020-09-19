@@ -237,7 +237,7 @@ function MainUI({}: Props): JSX.Element {
         enemiesDirections={enemiesDirections}
       />
       <NewGameBtn/>
-      <div className="flex justify-between my-4" style={{width: `${boardWidth}`}}>
+      <div className="flex justify-between" style={{width: `${boardWidth}`}}>
 
       <LeftBtnArea boardWidth={boardWidth} handleKeysOrBtns={handleKeysOrBtns}/>
 
