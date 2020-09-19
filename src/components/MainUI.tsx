@@ -154,6 +154,12 @@ function MainUI({}: Props): JSX.Element {
         console.log("numpad 3");
         heroMovement(Directions.se);
         break;
+      case "KeyN":
+          console.log("New Game");
+          newGame()
+          break;
+
+
     }
   }
 

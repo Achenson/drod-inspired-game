@@ -86,6 +86,7 @@ round the hero div?
 better svg for waiting?
 svg sizes
 delete enemies killed in MainUI
+new game confirmation?
 
 
 // ((board[hero.heroPosition][0] === 0 ||
