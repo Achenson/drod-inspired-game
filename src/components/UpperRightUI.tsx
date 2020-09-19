@@ -1,18 +1,31 @@
-import React from 'react'
-import { ReactComponent as Settings} from "../svgs/cog-small.svg";
-import { ReactComponent as Help} from "../svgs/question-mark-round.svg";
+import React from "react";
+import { useState } from "react";
+import { ReactComponent as Settings } from "../svgs/cog-small.svg";
+import { ReactComponent as Help } from "../svgs/question-mark-round.svg";
 
-interface Props {
-    
-}
+interface Props {}
 
-function UpperRightUI({}: Props): JSX.Element{
-    return (
-        <div className="flex items-end my-1">
-           <Settings className="h-6 mx-3"/>
-           <Help className="h-6"/>
-        </div>
-    )
+function UpperRightUI({}: Props): JSX.Element {
+  const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(null);
+  const [animateSpin, setAnimateSpin] = useState<"animate-spin" | null>(null);
+
+  return (
+    <div className="flex items-end my-1 ">
+      <button>
+        <Settings className={`h-6 mx-3 fill-current hover:text-teal-600 ${animateSpin}`} 
+            onMouseEnter={() => setAnimateSpin("animate-spin")}
+            onMouseLeave={() => setAnimateSpin(null)}
+        />
+      </button>
+      <button>
+        <Help
+          className={`h-6 fill-current hover:text-teal-600 ${animatePulse}`}
+          onMouseEnter={() => setAnimatePulse("animate-pulse")}
+          onMouseLeave={() => setAnimatePulse(null)}
+        />
+      </button>
+    </div>
+  );
 }
 
 export default UpperRightUI;

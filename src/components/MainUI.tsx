@@ -155,11 +155,9 @@ function MainUI({}: Props): JSX.Element {
         heroMovement(Directions.se);
         break;
       case "KeyN":
-          console.log("New Game");
-          newGame()
-          break;
-
-
+        console.log("New Game");
+        newGame();
+        break;
     }
   }
 
@@ -244,7 +242,7 @@ function MainUI({}: Props): JSX.Element {
           lastEnemyKilled={lastEnemyKilled}
           enemiesDirections={enemiesDirections}
         />
-        <NewGameBtn newGame={newGame}/>
+        <NewGameBtn newGame={newGame} />
         <div
           className="flex justify-between"
           style={{ width: `${boardWidth}` }}

@@ -87,6 +87,7 @@ better svg for waiting?
 svg sizes
 delete enemies killed in MainUI
 new game confirmation?
+controls -> light out when move not possible?
 
 
 // ((board[hero.heroPosition][0] === 0 ||
