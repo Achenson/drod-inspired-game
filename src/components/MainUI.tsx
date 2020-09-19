@@ -12,15 +12,7 @@ import moveHero from "../utils/moveHero";
 
 import useTopScore from "../hooks/useTopScore";
 
-import { ReactComponent as ArrowUp} from "../svgs/arrowUp.svg";
-import { ReactComponent as Rewind} from "../svgs/backward.svg";
-import { ReactComponent as TurnAnticlockwise} from "../svgs/curved-arrow-2261.svg";
-import { ReactComponent as TurnClockwise} from "../svgs/curved-arrow-2261.svg";
-import { ReactComponent as Wait} from "../svgs/sand-watch-3546.svg";
-import { ReactComponent as Settings} from "../svgs/cog-small.svg";
-// import { ReactComponent as Help2} from "../svgs/help.svg";
-import { ReactComponent as Help} from "../svgs/question-mark-round.svg";
-import { ReactComponent as Medal} from "../svgs/medal.svg";
+import { ReactComponent as Medal } from "../svgs/medal.svg";
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
 import UpperRightUI from "./UpperRightUI";
@@ -38,7 +30,6 @@ function MainUI({}: Props): JSX.Element {
     };
   });
 
-  
   const boardSize = 9;
   const boardWidth = boardSize * 32;
   // starts with sword NW of hero         nw
@@ -53,7 +44,6 @@ function MainUI({}: Props): JSX.Element {
   // const [topScore, setTopScore] = useState<string>("0");
   const [topScore, setTopScore] = useTopScore("score", "0");
 
-
   // useEffect(() => {
   //   let topScoreSaved = localStorage.getItem("score");
 
@@ -64,26 +54,30 @@ function MainUI({}: Props): JSX.Element {
   //   }
   // }, []);
 
-
+  const enemiesInitial = [4];
+  const directionsInitial = [-9];
+  const heroInitial: HeroObj = {
+    heroPosition: 40,
+    alive: true,
+    swordPosition: 31,
+  };
 
   const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
-  const [enemies, setEnemies] = useState<Array<number>>([4]);
+  const [enemies, setEnemies] = useState<Array<number>>([...enemiesInitial]);
 
   const [enemiesDirections, setEnemiesDirections] = useState<Array<number>>([
-    -9,
+    ...directionsInitial,
   ]);
 
   const [lastEnemyKilled, setLastEnemyKilled] = useState<number | null>(null);
 
   const [hero, setHero] = useState<HeroObj>({
-    heroPosition: 40,
-    alive: true,
-    swordPosition: 31,
+    ...heroInitial,
   });
 
-  const [oneTurnBack, setOneTurnBack] = useState(
-    {currentTurn: currentTurn,
+  const [oneTurnBack, setOneTurnBack] = useState({
+    currentTurn: currentTurn,
     // record score is can't be restored
     // topScore: topScore,
     enemiesKilled: enemiesKilled,
@@ -93,22 +87,15 @@ function MainUI({}: Props): JSX.Element {
     heroPosition: hero.heroPosition,
     alive: hero.alive,
     swordPosition: hero.swordPosition,
-    }
-  )
+  });
 
   let oTB = oneTurnBack;
 
-
-
-
   function handleKeyDown(event: KeyboardEvent) {
-    
     handleKeysOrBtns(event.code);
-
   }
 
-
-  function handleKeysOrBtns (command: string) {
+  function handleKeysOrBtns(command: string) {
     switch (command) {
       case "Backspace":
         console.log("Backspace");
@@ -120,8 +107,8 @@ function MainUI({}: Props): JSX.Element {
         setHero({
           heroPosition: oTB.heroPosition,
           alive: oTB.alive,
-          swordPosition: oTB.swordPosition
-        })
+          swordPosition: oTB.swordPosition,
+        });
         break;
       case "KeyQ":
         console.log("q");
@@ -168,29 +155,26 @@ function MainUI({}: Props): JSX.Element {
         heroMovement(Directions.se);
         break;
     }
-
   }
 
   function heroMovement(directionToMove: Directions) {
-
-    if(!hero.alive) {
+    if (!hero.alive) {
       return;
     }
 
-   if(currentTurn !== 0) {
-     setOneTurnBack({
-      currentTurn: currentTurn,
-      // topScore: topScore,
-      enemiesKilled: enemiesKilled,
-      enemies: [...enemies],
-      enemiesDirections: [...enemiesDirections],
-      lastEnemyKilled: lastEnemyKilled,
-      heroPosition: hero.heroPosition,
-      alive: hero.alive,
-      swordPosition: hero.swordPosition,
-     })
-     
-   }
+    if (currentTurn !== 0) {
+      setOneTurnBack({
+        currentTurn: currentTurn,
+        // topScore: topScore,
+        enemiesKilled: enemiesKilled,
+        enemies: [...enemies],
+        enemiesDirections: [...enemiesDirections],
+        lastEnemyKilled: lastEnemyKilled,
+        heroPosition: hero.heroPosition,
+        alive: hero.alive,
+        swordPosition: hero.swordPosition,
+      });
+    }
 
     moveHero(
       directionToMove,
@@ -211,53 +195,76 @@ function MainUI({}: Props): JSX.Element {
     );
   }
 
- 
+  function newGame() {
+    setCurrentTurn(0);
+    setEnemiesKilled(0);
+    setEnemies([...enemiesInitial]);
+    setEnemiesDirections([...directionsInitial]);
+    setLastEnemyKilled(null);
+    setHero({ ...heroInitial });
+    setOneTurnBack({
+      currentTurn: 0,
+      // record score is can't be restored
+      // topScore: topScore,
+      enemiesKilled: 0,
+      enemies: [...enemiesInitial],
+      enemiesDirections: [...directionsInitial],
+      lastEnemyKilled: null,
+      ...heroInitial,
+    });
+  }
+
   return (
     <div className="flex justify-center">
-    {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
-    <div className="flex flex-col justify-center" style={{height: "100vh"}}>
-      <div className="flex justify-between">
-      <Turns
-        currentTurn={currentTurn}
-        enemiesKilled={enemiesKilled}
-        topScore={topScore}
-        enemies={enemies}
-      />
-      <UpperRightUI />
-      </div>
- 
-      <Board
-        board={board}
-        boardSize={boardSize}
-        boardWidth={boardWidth}
-        hero={hero}
-        enemies={enemies}
-        currentTurn={currentTurn}
-        lastEnemyKilled={lastEnemyKilled}
-        enemiesDirections={enemiesDirections}
-      />
-      <NewGameBtn/>
-      <div className="flex justify-between" style={{width: `${boardWidth}`}}>
+      {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
+      <div className="flex flex-col justify-center" style={{ height: "100vh" }}>
+        <div className="flex justify-between">
+          <Turns
+            currentTurn={currentTurn}
+            enemiesKilled={enemiesKilled}
+            topScore={topScore}
+            enemies={enemies}
+          />
+          <UpperRightUI />
+        </div>
 
-      <LeftBtnArea boardWidth={boardWidth} handleKeysOrBtns={handleKeysOrBtns}/>
+        <Board
+          board={board}
+          boardSize={boardSize}
+          boardWidth={boardWidth}
+          hero={hero}
+          enemies={enemies}
+          currentTurn={currentTurn}
+          lastEnemyKilled={lastEnemyKilled}
+          enemiesDirections={enemiesDirections}
+        />
+        <NewGameBtn newGame={newGame}/>
+        <div
+          className="flex justify-between"
+          style={{ width: `${boardWidth}` }}
+        >
+          <LeftBtnArea
+            boardWidth={boardWidth}
+            handleKeysOrBtns={handleKeysOrBtns}
+          />
 
-      <RightBtnArea boardWidth={boardWidth} handleKeysOrBtns={handleKeysOrBtns}/>
-      </div>
+          <RightBtnArea
+            boardWidth={boardWidth}
+            handleKeysOrBtns={handleKeysOrBtns}
+          />
+        </div>
 
-
-
-      {/* <ArrowUp className="h-6"/>
+        {/* <ArrowUp className="h-6"/>
       <Rewind className="h-4"/>
       <TurnAnticlockwise className="h-6"/>
       <TurnClockwise className="h-6" style={{transform: "scaleX(-1)"}}/>
       <Wait className="h-8"/>
       <Settings className="h-8"/> */}
-      {/* <Help2 className="h-8"/> */}
-      {/* <Help className="h-6"/>
+        {/* <Help2 className="h-8"/> */}
+        {/* <Help className="h-6"/>
       <Medal className="h-8 fill-current" style={{color: "gold"}}/>
       <Medal className="h-8 fill-current text-gray-500" />
       <Medal className="h-8 fill-current text-yellow-800"/> */}
-      
       </div>
     </div>
   );

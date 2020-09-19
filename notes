@@ -85,6 +85,7 @@ Tile -> better code, too many "hidden" settings, new file for CSS objects?
 round the hero div?
 better svg for waiting?
 svg sizes
+delete enemies killed in MainUI
 
 
 // ((board[hero.heroPosition][0] === 0 ||
