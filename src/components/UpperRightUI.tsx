@@ -10,9 +10,9 @@ function UpperRightUI({}: Props): JSX.Element {
   const [animateSpin, setAnimateSpin] = useState<"animate-spin" | null>(null);
 
   return (
-    <div className="flex items-end my-1 ">
+    <div className="flex items-center my-1 ">
       <button>
-        <Settings className={`h-6 mx-3 fill-current hover:text-green-700 ${animateSpin}`} 
+        <Settings className={`h-6 mr-3 fill-current hover:text-green-700 ${animateSpin}`} 
             onMouseEnter={() => setAnimateSpin("animate-spin")}
             onMouseLeave={() => setAnimateSpin(null)}
         />

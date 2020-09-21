@@ -3,6 +3,7 @@ import Board from "./Board";
 
 import { useState, useEffect } from "react";
 import UpperLeftUI from "./UpperLeftUI";
+import UpperMiddleUI from "./UpperMiddleUI";
 
 import { HeroObj } from "../utils/interfaces";
 import { Directions } from "../utils/interfaces";
@@ -12,7 +13,7 @@ import moveHero from "../utils/moveHero";
 
 import useTopScore from "../hooks/useTopScore";
 
-import { ReactComponent as Medal } from "../svgs/medal.svg";
+// import { ReactComponent as Medal } from "../svgs/medal.svg";
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
 import UpperRightUI from "./UpperRightUI";
@@ -224,11 +225,12 @@ function MainUI({}: Props): JSX.Element {
       <div className="flex flex-col justify-center" style={{ height: "100vh" }}>
         <div className="flex justify-between">
           <UpperLeftUI
-            currentTurn={currentTurn}
+       
             enemiesKilled={enemiesKilled}
             topScore={topScore}
             enemies={enemies}
           />
+          <UpperMiddleUI currentTurn={currentTurn}/>
           <UpperRightUI />
         </div>
 
