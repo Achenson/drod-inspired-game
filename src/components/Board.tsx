@@ -18,8 +18,17 @@ function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, 
   // const boardWidth = boardSize * 32;
 
   return (
-    <div
-      className={`grid grid-cols-${boardSize} col-gap-0 invisible`}
+    <div>
+           <div
+      className={`grid grid-cols-${boardSize} col-gap-0`}
+      style={{ width: `${boardWidth}px`, height: `${boardWidth}px`, backgroundColor: "whitesmoke" }}
+    >
+   
+    </div>
+
+
+        {/* <div
+      className={`grid grid-cols-${boardSize} col-gap-0`}
       style={{ width: `${boardWidth}px`}}
     >
       {board.map((el, i) => {
@@ -36,7 +45,10 @@ function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, 
           />
         );
       })}
+    </div> */}
+
     </div>
+  
   );
 }
 

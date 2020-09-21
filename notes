@@ -88,7 +88,7 @@ svg sizes
 delete enemies killed in MainUI
 new game confirmation?
 controls -> light out when move not possible?
-DEV mode: board -> invisible, sworc commented out
+DEV mode: Board -> div commented out
 
 
 

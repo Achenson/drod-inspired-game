@@ -2,7 +2,7 @@ import React, { ReactElement, ReactEventHandler, createElement } from "react";
 import Board from "./Board";
 
 import { useState, useEffect } from "react";
-import Turns from "./Turns";
+import UpperLeftUI from "./UpperLeftUI";
 
 import { HeroObj } from "../utils/interfaces";
 import { Directions } from "../utils/interfaces";
@@ -223,7 +223,7 @@ function MainUI({}: Props): JSX.Element {
       {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
       <div className="flex flex-col justify-center" style={{ height: "100vh" }}>
         <div className="flex justify-between">
-          <Turns
+          <UpperLeftUI
             currentTurn={currentTurn}
             enemiesKilled={enemiesKilled}
             topScore={topScore}
