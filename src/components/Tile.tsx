@@ -311,7 +311,7 @@ function Tile({
       {/* {boardTile[1]} */}
       {/* {arrIndex} */}
 
-      <SwordSVG className={`${swordVisibility} ${swordDirection} absolute`} />
+      {/* <SwordSVG className={`${swordVisibility} ${swordDirection} absolute`} /> */}
 
       <BugSVG className={`${enemySVG} ${enemyPulsing}`} />
       {/* <BoneSVG className={`${deathSVG} h-2 transform rotate-90 z-0`}/> */}

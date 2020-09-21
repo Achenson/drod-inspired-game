@@ -19,8 +19,8 @@ function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, 
 
   return (
     <div
-      className={`grid grid-cols-${boardSize} col-gap-0`}
-      style={{ width: `${boardWidth}px` }}
+      className={`grid grid-cols-${boardSize} col-gap-0 invisible`}
+      style={{ width: `${boardWidth}px`}}
     >
       {board.map((el, i) => {
         return (

@@ -241,6 +241,7 @@ function MainUI({}: Props): JSX.Element {
           currentTurn={currentTurn}
           lastEnemyKilled={lastEnemyKilled}
           enemiesDirections={enemiesDirections}
+          
         />
         <NewGameBtn newGame={newGame} />
         <div
