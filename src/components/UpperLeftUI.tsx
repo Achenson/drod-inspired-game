@@ -10,22 +10,20 @@ interface Props {
 
 function Turns({ enemiesKilled, topScore, enemies }: Props): JSX.Element {
   return (
-    <div className="flex">
-      <div>
-        <p className="-my-1">Top score</p>
-        <p className="text-center">{topScore}</p>
+    <div>
+      <p>Top score</p>
+      <div className="flex justify-around mb-1">
+        <p className="text-center">{topScore}23</p>
+        <Medal className="h-6 fill-current text-gray-900" />
+      </div>
 
-        {/* <p>kills: {enemiesKilled}</p> */}
-        {/* <p>nr of enemies: {enemies.length}</p> */}
-        {/* <p>enemies locations: {enemies.map( (el, i) => {
+      {/* <p>kills: {enemiesKilled}</p> */}
+      {/* <p>nr of enemies: {enemies.length}</p> */}
+      {/* <p>enemies locations: {enemies.map( (el, i) => {
     return el + ", "
   } ) 
 
   }</p> */}
-      </div>
-      <div className="flex items-center ml-1">
-        <Medal className="h-8 fill-current text-gray-900" />
-      </div>
     </div>
   );
 }
