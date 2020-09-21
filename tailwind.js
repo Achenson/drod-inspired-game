@@ -6,6 +6,10 @@ module.exports = {
         '135': '135deg',
         '225': '225deg'
       },
+      fontFamily: {
+        'merriweather': ['meriweather', 'monospace'],
+        'droid-serif': ['droid-serif', 'sans-serif']
+      }
     },
   },
   variants: {},

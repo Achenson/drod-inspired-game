@@ -1,3 +1,9 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+
+@font-face {
+  font-family: 'meriweather';
+  src: local('meriweather'), url(../fonts/Merriweather-Regular.ttf) format('truetype');
+}
+
 @import "tailwindcss/utilities";

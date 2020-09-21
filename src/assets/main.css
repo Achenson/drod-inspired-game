@@ -605,6 +605,12 @@ video {
   }
 }
 
+@font-face {
+  font-family: 'meriweather';
+
+  src: local('meriweather'), url(../fonts/Merriweather-Regular.ttf) format('truetype');
+}
+
 .space-y-0 > :not(template) ~ :not(template) {
   --space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--space-y-reverse)));
@@ -6045,6 +6051,14 @@ video {
 
 .font-mono {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.font-merriweather {
+  font-family: meriweather, monospace;
+}
+
+.font-droid-serif {
+  font-family: droid-serif, sans-serif;
 }
 
 .font-hairline {
@@ -19937,6 +19951,14 @@ video {
     font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  .sm\:font-merriweather {
+    font-family: meriweather, monospace;
+  }
+
+  .sm\:font-droid-serif {
+    font-family: droid-serif, sans-serif;
+  }
+
   .sm\:font-hairline {
     font-weight: 100;
   }
@@ -33782,6 +33804,14 @@ video {
 
   .md\:font-mono {
     font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .md\:font-merriweather {
+    font-family: meriweather, monospace;
+  }
+
+  .md\:font-droid-serif {
+    font-family: droid-serif, sans-serif;
   }
 
   .md\:font-hairline {
@@ -47631,6 +47661,14 @@ video {
     font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   }
 
+  .lg\:font-merriweather {
+    font-family: meriweather, monospace;
+  }
+
+  .lg\:font-droid-serif {
+    font-family: droid-serif, sans-serif;
+  }
+
   .lg\:font-hairline {
     font-weight: 100;
   }
@@ -61476,6 +61514,14 @@ video {
 
   .xl\:font-mono {
     font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .xl\:font-merriweather {
+    font-family: meriweather, monospace;
+  }
+
+  .xl\:font-droid-serif {
+    font-family: droid-serif, sans-serif;
   }
 
   .xl\:font-hairline {

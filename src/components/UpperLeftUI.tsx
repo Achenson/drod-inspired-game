@@ -8,12 +8,12 @@ interface Props {
   enemies: number[];
 }
 
-function Turns({ enemiesKilled, topScore, enemies }: Props): JSX.Element {
+function UpperLeftUI({ enemiesKilled, topScore, enemies }: Props): JSX.Element {
   return (
     <div>
       <p>Top score</p>
       <div className="flex justify-around mb-1">
-        <p className="text-center">{topScore}23</p>
+        <p className="text-center font-droid-serif text-lg">{topScore}23</p>
         <Medal className="h-6 fill-current text-gray-900" />
       </div>
 
@@ -28,4 +28,4 @@ function Turns({ enemiesKilled, topScore, enemies }: Props): JSX.Element {
   );
 }
 
-export default Turns;
+export default UpperLeftUI;
