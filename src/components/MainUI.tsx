@@ -18,6 +18,7 @@ import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
 import UpperRightUI from "./UpperRightUI";
 import NewGameBtn from "./NewGameBtn";
+import TopDisplay from "./TopDisplay";
 
 interface Props {}
 
@@ -223,6 +224,7 @@ function MainUI({}: Props): JSX.Element {
     <div className="flex justify-center">
       {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
       <div className="flex flex-col justify-center" style={{ height: "100vh" }}>
+        <TopDisplay boardWidth={boardWidth}/>
         <div className="flex justify-between">
           <UpperLeftUI
        

@@ -12,14 +12,14 @@ function UpperRightUI({}: Props): JSX.Element {
   return (
     <div className="flex items-end my-1 ">
       <button>
-        <Settings className={`h-6 mr-3 fill-current hover:text-green-700 ${animateSpin}`} 
+        <Settings className={`h-6 mr-3 fill-current hover:text-purple-800 ${animateSpin}`} 
             onMouseEnter={() => setAnimateSpin("animate-spin")}
             onMouseLeave={() => setAnimateSpin(null)}
         />
       </button>
       <button>
         <Help
-          className={`h-6 fill-current hover:text-green-700 ${animatePulse}`}
+          className={`h-6 fill-current hover:text-purple-800 ${animatePulse}`}
           onMouseEnter={() => setAnimatePulse("animate-pulse")}
           onMouseLeave={() => setAnimatePulse(null)}
         />
