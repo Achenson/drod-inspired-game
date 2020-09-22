@@ -3,25 +3,42 @@ import { useState } from "react";
 import { ReactComponent as Settings } from "../svgs/cog-small.svg";
 import { ReactComponent as Help } from "../svgs/question-mark-round.svg";
 
-interface Props {}
+interface Props {
+  setTextOnHover: React.Dispatch<React.SetStateAction<string>>;
+}
 
-function UpperRightUI({}: Props): JSX.Element {
-  const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(null);
+function UpperRightUI({ setTextOnHover }: Props): JSX.Element {
+  const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(
+    null
+  );
   const [animateSpin, setAnimateSpin] = useState<"animate-spin" | null>(null);
 
   return (
     <div className="flex items-end my-1 ">
       <button>
-        <Settings className={`h-6 mr-3 fill-current hover:text-purple-800 ${animateSpin}`} 
-            onMouseEnter={() => setAnimateSpin("animate-spin")}
-            onMouseLeave={() => setAnimateSpin(null)}
+        <Settings
+          className={`h-6 mr-3 fill-current hover:text-purple-800 ${animateSpin}`}
+          onMouseEnter={() => {
+            setAnimateSpin("animate-spin");
+            setTextOnHover("Settings");
+          }}
+          onMouseLeave={() => {
+            setAnimateSpin(null);
+            setTextOnHover("");
+          }}
         />
       </button>
       <button>
         <Help
           className={`h-6 fill-current hover:text-purple-800 ${animatePulse}`}
-          onMouseEnter={() => setAnimatePulse("animate-pulse")}
-          onMouseLeave={() => setAnimatePulse(null)}
+          onMouseEnter={() => {
+            setAnimatePulse("animate-pulse");
+            setTextOnHover("Help");
+          }}
+          onMouseLeave={() => {
+            setAnimatePulse(null);
+            setTextOnHover("");
+          }}
         />
       </button>
     </div>

@@ -44,7 +44,7 @@ function MainUI({}: Props): JSX.Element {
   const [currentTurn, setCurrentTurn] = useState<number>(0);
 
   // const [topScore, setTopScore] = useState<string>("0");
-  const [topScore, setTopScore] = useTopScore("score", "0");
+  const [topScore, setTopScore] = useTopScore("score", "250");
 
   // useEffect(() => {
   //   let topScoreSaved = localStorage.getItem("score");
@@ -235,9 +235,10 @@ function MainUI({}: Props): JSX.Element {
             enemiesKilled={enemiesKilled}
             topScore={topScore}
             enemies={enemies}
+            setTextOnHover={setTextOnHover}
           />
-          <UpperMiddleUI currentTurn={currentTurn}/>
-          <UpperRightUI />
+          <UpperMiddleUI currentTurn={currentTurn} setTextOnHover={setTextOnHover}/>
+          <UpperRightUI setTextOnHover={setTextOnHover} />
         </div>
 
         <Board
