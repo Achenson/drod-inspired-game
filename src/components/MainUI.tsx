@@ -91,6 +91,8 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: hero.swordPosition,
   });
 
+  const [textOnHover, setTextOnHover] = useState<string>("sampleText")
+
   let oTB = oneTurnBack;
 
   function handleKeyDown(event: KeyboardEvent) {
@@ -220,11 +222,13 @@ function MainUI({}: Props): JSX.Element {
     });
   }
 
+ 
+
   return (
     <div className="flex justify-center">
       {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
       <div className="flex flex-col justify-center" style={{ height: "100vh" }}>
-        <TopDisplay boardWidth={boardWidth}/>
+        <TopDisplay boardWidth={boardWidth} textOnHover={textOnHover}/>
         <div className="flex justify-between">
           <UpperLeftUI
        
