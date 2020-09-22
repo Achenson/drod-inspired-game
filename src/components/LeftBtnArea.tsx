@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 import { ReactComponent as TurnAnticlockwise } from "../svgs/curved-arrow-2261.svg";
 import { ReactComponent as TurnClockwise } from "../svgs/curved-arrow-2261.svg";
@@ -11,15 +12,27 @@ interface Props {
 }
 
 function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
+  const [btnBackground, setBtnBackground] = useState("bg-gray-400");
+  const [btnBackground_2, setBtnBackground_2] = useState("bg-gray-400");
+  const [btnBackground_3, setBtnBackground_3] = useState("bg-gray-400");
+
+  const touchBtnColorOnHover = "bg-purple-400";
+
   return (
     <div style={{ width: `${boardWidth / 2}px` }} className="my-4">
       <div className="flex justify-start">
         <button
-          className="h-10 w-12  bg-gray-400 relative"
+          className={`h-10 w-12 relative ${btnBackground}`}
           onClick={(e) => {
             // e.preventDefault()
             handleKeysOrBtns("KeyQ");
             console.log("KeyQ");
+          }}
+          onMouseEnter={() => {
+            setBtnBackground(touchBtnColorOnHover);
+          }}
+          onMouseLeave={() => {
+            setBtnBackground("bg-gray-400");
           }}
         >
           <TurnAnticlockwise
@@ -27,13 +40,19 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
             style={{ left: "8px", marginTop: "-15px" }}
           />
         </button>
-        <button className="h-10 w-12 mx-2 bg-gray-400 relative"
+        <button
+          className={`h-10 w-12 mx-2 ${btnBackground_2} relative`}
           onClick={(e) => {
             // e.preventDefault()
             handleKeysOrBtns("KeyW");
             console.log("KeyW");
           }}
-        
+          onMouseEnter={() => {
+            setBtnBackground_2(touchBtnColorOnHover);
+          }}
+          onMouseLeave={() => {
+            setBtnBackground_2("bg-gray-400");
+          }}
         >
           <TurnClockwise
             className="h-8 w-8 absolute"
@@ -42,16 +61,22 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
               left: "8px",
               marginTop: "-15px",
             }}
-            
           />
         </button>
       </div>
-      <button className="my-4 mx-8 bg-gray-400 h-10 w-12 relative"
-          onClick={(e) => {
-            // e.preventDefault()
-            handleKeysOrBtns("Backspace");
-            console.log("Backspace");
-          }}
+      <button
+        className={`my-4 mx-8 ${btnBackground_3} h-10 w-12 relative`}
+        onClick={(e) => {
+          // e.preventDefault()
+          handleKeysOrBtns("Backspace");
+          console.log("Backspace");
+        }}
+        onMouseEnter={() => {
+          setBtnBackground_3(touchBtnColorOnHover);
+        }}
+        onMouseLeave={() => {
+          setBtnBackground_3("bg-gray-400");
+        }}
       >
         <Rewind className="h-6 mx-2 absolute" style={{ top: "8px" }} />
       </button>

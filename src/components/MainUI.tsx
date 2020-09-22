@@ -44,7 +44,7 @@ function MainUI({}: Props): JSX.Element {
   const [currentTurn, setCurrentTurn] = useState<number>(0);
 
   // const [topScore, setTopScore] = useState<string>("0");
-  const [topScore, setTopScore] = useTopScore("score", "250");
+  const [topScore, setTopScore] = useTopScore("score", "0");
 
   // useEffect(() => {
   //   let topScoreSaved = localStorage.getItem("score");
