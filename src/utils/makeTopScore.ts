@@ -2,6 +2,8 @@ export default function makeRecordScore(
   currentTurn: number,
   topScore: string | React.Dispatch<React.SetStateAction<string>>,
   setTopScore: string| React.Dispatch<React.SetStateAction<string>>
+
+  
 ) {
 
   if (currentTurn > parseInt(topScore as string)) {

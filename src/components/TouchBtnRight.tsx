@@ -6,10 +6,10 @@ import { ReactComponent as Wait } from "../svgs/sand-clock-half.svg";
 interface Props {
   btnType: string;
   handleKeysOrBtns: (command: string) => void;
-  setTextOnHover: React.Dispatch<React.SetStateAction<string>>;
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnHover }: Props): JSX.Element {
+function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnDisplay }: Props): JSX.Element {
   let arrowDirection = "";
 
   let keyToPress: string = "Numpadddd";
@@ -67,11 +67,11 @@ function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnHover }: Props): JS
 
       onMouseEnter={() => {
         
-        setTextOnHover("Keyboard: Numpad 5");
+        setTextOnDisplay("Keyboard: Numpad 5");
       }}
       onMouseLeave={() => {
        
-        setTextOnHover("");
+        setTextOnDisplay("");
       }}
 
 
@@ -91,11 +91,11 @@ function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnHover }: Props): JS
 
       onMouseEnter={() => {
         
-        setTextOnHover(`Keyboard: ${keyToPress.slice(0,6)} ${keyToPress.slice(6)}`);
+        setTextOnDisplay(`Keyboard: ${keyToPress.slice(0,6)} ${keyToPress.slice(6)}`);
       }}
       onMouseLeave={() => {
        
-        setTextOnHover("");
+        setTextOnDisplay("");
       }}
 
     >

@@ -2,10 +2,10 @@ import React from "react";
 
 interface Props {
   currentTurn: number;
-  setTextOnHover: React.Dispatch<React.SetStateAction<string>>;
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function UpperMiddleUI({ currentTurn, setTextOnHover }: Props): JSX.Element {
+function UpperMiddleUI({ currentTurn, setTextOnDisplay }: Props): JSX.Element {
   return (
     <div className="cursor-default "
     
@@ -18,10 +18,10 @@ function UpperMiddleUI({ currentTurn, setTextOnHover }: Props): JSX.Element {
       <p
         className="text-center font-droid-serif text-lg hover:bg-purple-200 rounded"
         onMouseEnter={() => {
-          setTextOnHover("Current round");
+          setTextOnDisplay("Current round");
         }}
         onMouseLeave={() => {
-          setTextOnHover("");
+          setTextOnDisplay("");
         }}
 
       >

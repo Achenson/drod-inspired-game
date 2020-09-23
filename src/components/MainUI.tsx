@@ -91,7 +91,7 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: hero.swordPosition,
   });
 
-  const [textOnHover, setTextOnHover] = useState<string>("sampleText")
+  const [textOnDisplay, setTextOnDisplay] = useState<string>("sampleText")
 
   let oTB = oneTurnBack;
 
@@ -228,17 +228,17 @@ function MainUI({}: Props): JSX.Element {
     <div className="flex justify-center">
       {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
       <div className="flex flex-col justify-center" style={{ height: "100vh" }}>
-        <TopDisplay boardWidth={boardWidth} textOnHover={textOnHover}/>
+        <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay}/>
         <div className="flex justify-between">
           <UpperLeftUI
        
             enemiesKilled={enemiesKilled}
             topScore={topScore}
             enemies={enemies}
-            setTextOnHover={setTextOnHover}
+            setTextOnDisplay={setTextOnDisplay}
           />
-          <UpperMiddleUI currentTurn={currentTurn} setTextOnHover={setTextOnHover}/>
-          <UpperRightUI setTextOnHover={setTextOnHover} />
+          <UpperMiddleUI currentTurn={currentTurn} setTextOnDisplay={setTextOnDisplay}/>
+          <UpperRightUI setTextOnDisplay={setTextOnDisplay} />
         </div>
 
         <Board
@@ -252,7 +252,7 @@ function MainUI({}: Props): JSX.Element {
           enemiesDirections={enemiesDirections}
           
         />
-        <NewGameBtn newGame={newGame} setTextOnHover={setTextOnHover}/>
+        <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay}/>
         <div
           className="flex justify-between"
           style={{ width: `${boardWidth}` }}
@@ -260,13 +260,13 @@ function MainUI({}: Props): JSX.Element {
           <LeftBtnArea
             boardWidth={boardWidth}
             handleKeysOrBtns={handleKeysOrBtns}
-            setTextOnHover={setTextOnHover}
+            setTextOnDisplay={setTextOnDisplay}
           />
 
           <RightBtnArea
             boardWidth={boardWidth}
             handleKeysOrBtns={handleKeysOrBtns}
-            setTextOnHover={setTextOnHover}
+            setTextOnDisplay={setTextOnDisplay}
           />
         </div>
 

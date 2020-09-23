@@ -6,14 +6,14 @@ interface Props {
   enemiesKilled: number;
   topScore: string | React.Dispatch<React.SetStateAction<string>>;
   enemies: number[];
-  setTextOnHover: React.Dispatch<React.SetStateAction<string>>;
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function UpperLeftUI({
   enemiesKilled,
   topScore,
   enemies,
-  setTextOnHover,
+  setTextOnDisplay,
 }: Props): JSX.Element {
   let medalColor;
   let medalOnHoverText: string;
@@ -49,12 +49,12 @@ function UpperLeftUI({
       </p>
       <div className="flex justify-around mb-px">
         <p
-          className="text-center font-droid-serif text-lg text-green-600 hover:bg-purple-200 rounded w-8"
+          className="text-center font-droid-serif text-lg text-green-600 hover:bg-purple-200 rounded hover:text-black w-8"
           onMouseEnter={() => {
-            setTextOnHover("Most Rounds Survived");
+            setTextOnDisplay("Most Rounds Survived");
           }}
           onMouseLeave={() => {
-            setTextOnHover("");
+            setTextOnDisplay("");
           }}
         >
           {topScore}
@@ -64,10 +64,10 @@ function UpperLeftUI({
           className="h-6 fill-current"
           style={{ color: `${medalColor}` }}
           onMouseEnter={() => {
-            setTextOnHover(medalOnHoverText);
+            setTextOnDisplay(medalOnHoverText);
           }}
           onMouseLeave={() => {
-            setTextOnHover("");
+            setTextOnDisplay("");
           }}
         />
 

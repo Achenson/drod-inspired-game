@@ -9,10 +9,10 @@ interface Props {
   boardWidth: number;
   // handleKeyDown: (eventString: string) => void;
   handleKeysOrBtns: (command: string) => void;
-  setTextOnHover: React.Dispatch<React.SetStateAction<string>>;
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnHover }: Props): JSX.Element {
+function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnDisplay }: Props): JSX.Element {
   const touchBtnColorOnHover = "bg-purple-400";
 
   return (
@@ -27,11 +27,11 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnHover }: Props): J
           }}
           onMouseEnter={() => {
         
-            setTextOnHover("Keyboard: Q");
+            setTextOnDisplay("Keyboard: Q");
           }}
           onMouseLeave={() => {
            
-            setTextOnHover("");
+            setTextOnDisplay("");
           }}
         >
           <TurnAnticlockwise
@@ -48,11 +48,11 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnHover }: Props): J
           }}
           onMouseEnter={() => {
         
-            setTextOnHover("Keyboard: W");
+            setTextOnDisplay("Keyboard: W");
           }}
           onMouseLeave={() => {
            
-            setTextOnHover("");
+            setTextOnDisplay("");
           }}
         >
           <TurnClockwise
@@ -74,11 +74,11 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnHover }: Props): J
         }}
         onMouseEnter={() => {
         
-          setTextOnHover("Keyboard: R");
+          setTextOnDisplay("Keyboard: R");
         }}
         onMouseLeave={() => {
          
-          setTextOnHover("");
+          setTextOnDisplay("");
         }}
       >
         <Rewind className="h-6 mx-2 absolute" style={{ top: "8px" }} />

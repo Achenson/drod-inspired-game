@@ -4,10 +4,10 @@ import { ReactComponent as Settings } from "../svgs/cog-small.svg";
 import { ReactComponent as Help } from "../svgs/question-mark-round.svg";
 
 interface Props {
-  setTextOnHover: React.Dispatch<React.SetStateAction<string>>;
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function UpperRightUI({ setTextOnHover }: Props): JSX.Element {
+function UpperRightUI({ setTextOnDisplay }: Props): JSX.Element {
   const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(
     null
   );
@@ -20,11 +20,11 @@ function UpperRightUI({ setTextOnHover }: Props): JSX.Element {
           className={`h-6 mr-3 fill-current hover:text-purple-800 ${animateSpin}`}
           onMouseEnter={() => {
             setAnimateSpin("animate-spin");
-            setTextOnHover("Settings");
+            setTextOnDisplay("Settings");
           }}
           onMouseLeave={() => {
             setAnimateSpin(null);
-            setTextOnHover("");
+            setTextOnDisplay("");
           }}
         />
       </button>
@@ -33,11 +33,11 @@ function UpperRightUI({ setTextOnHover }: Props): JSX.Element {
           className={`h-6 fill-current hover:text-purple-800 ${animatePulse}`}
           onMouseEnter={() => {
             setAnimatePulse("animate-pulse");
-            setTextOnHover("Help");
+            setTextOnDisplay("Help");
           }}
           onMouseLeave={() => {
             setAnimatePulse(null);
-            setTextOnHover("");
+            setTextOnDisplay("");
           }}
         />
       </button>
