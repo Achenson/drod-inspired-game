@@ -43,18 +43,13 @@ function UpperLeftUI({
   return (
     <div className="cursor-default">
       <p
-        onMouseEnter={() => {
-          setTextOnHover("Most Rounds Survived");
-        }}
-        onMouseLeave={() => {
-          setTextOnHover("");
-        }}
+      
       >
         Top score
       </p>
-      <div className="flex justify-around mb-1">
+      <div className="flex justify-around mb-px">
         <p
-          className="text-center font-droid-serif text-lg text-green-600"
+          className="text-center font-droid-serif text-lg text-green-600 hover:bg-purple-200 rounded w-8"
           onMouseEnter={() => {
             setTextOnHover("Most Rounds Survived");
           }}
@@ -64,6 +59,7 @@ function UpperLeftUI({
         >
           {topScore}
         </p>
+        <div className="w-8 hover:bg-purple-200 rounded-md flex justify-center items-center">
         <Medal
           className="h-6 fill-current"
           style={{ color: `${medalColor}` }}
@@ -74,6 +70,9 @@ function UpperLeftUI({
             setTextOnHover("");
           }}
         />
+
+        </div>
+      
       </div>
 
       {/* <p>kills: {enemiesKilled}</p> */}

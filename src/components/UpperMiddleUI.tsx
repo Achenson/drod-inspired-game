@@ -7,18 +7,25 @@ interface Props {
 
 function UpperMiddleUI({ currentTurn, setTextOnHover }: Props): JSX.Element {
   return (
-    <div className="cursor-default">
-      <p>Round</p>
+    <div className="cursor-default "
+    
+    
+    >
       <p
-        className="text-center font-droid-serif text-lg"
+      
+      
+      >Round</p>
+      <p
+        className="text-center font-droid-serif text-lg hover:bg-purple-200 rounded"
         onMouseEnter={() => {
           setTextOnHover("Current round");
         }}
         onMouseLeave={() => {
           setTextOnHover("");
         }}
+
       >
-        {currentTurn}12
+        {currentTurn}
       </p>
     </div>
   );
