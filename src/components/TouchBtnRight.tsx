@@ -52,7 +52,7 @@ function TouchBtnRight({ btnType, handleKeysOrBtns }: Props): JSX.Element {
 
   return btnType === "wait" ? (
     <button
-      className="h-8 w-8 bg-gray-400 relative"
+      className="h-8 w-8 bg-gray-400 relative hover:bg-purple-400"
       onClick={(e) => {
         handleKeysOrBtns("Numpad5");
       }}
@@ -61,7 +61,7 @@ function TouchBtnRight({ btnType, handleKeysOrBtns }: Props): JSX.Element {
     </button>
   ) : (
     <button
-      className="h-8 w-8 bg-gray-400 relative"
+      className="h-8 w-8 bg-gray-400 relative hover:bg-purple-400"
       onClick={(e) => {
         handleKeysOrBtns(keyToPress);
       }}
