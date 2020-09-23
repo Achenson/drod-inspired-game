@@ -28,6 +28,6 @@ export default function makeRecordScore(
       setTextOnDisplay("New Record!");
     }
   } else {
-    setTextOnDisplay("No new record. Try again!");
+    setTextOnDisplay("No new record. Rewind or try again!");
   }
 }
