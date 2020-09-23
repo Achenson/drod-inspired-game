@@ -19,7 +19,8 @@ export default function moveEnemies(
   topScore: string | string | React.Dispatch<React.SetStateAction<string>>,
   setTopScore: string | React.Dispatch<React.SetStateAction<string>>,
   enemiesDirections: number[],
-  setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>
+  setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
 ) {
   let nextEnemiesPositions: number[] = [];
 
@@ -134,7 +135,7 @@ export default function moveEnemies(
 
     // setCurrentTurn((n) => n + 1);
 
-    makeTopScore(currentTurn, topScore,setTopScore);
+    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay);
   }
   // else {
 

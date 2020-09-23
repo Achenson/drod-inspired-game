@@ -43,7 +43,7 @@ function MainUI({}: Props): JSX.Element {
 
   const [currentTurn, setCurrentTurn] = useState<number>(0);
 
-  // const [topScore, setTopScore] = useState<string>("0");
+  // const [topScore, setTopScore] = useState<string>("248");
   const [topScore, setTopScore] = useTopScore("score", "0");
 
   // useEffect(() => {
@@ -199,11 +199,13 @@ function MainUI({}: Props): JSX.Element {
       topScore,
       setTopScore,
       enemiesDirections,
-      setEnemiesDirections
+      setEnemiesDirections,
+      setTextOnDisplay
     );
   }
 
   function newGame() {
+    setTextOnDisplay("");
     setCurrentTurn(0);
     setEnemiesKilled(0);
     setEnemies([...enemiesInitial]);
