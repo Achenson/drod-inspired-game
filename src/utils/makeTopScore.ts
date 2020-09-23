@@ -27,5 +27,7 @@ export default function makeRecordScore(
     } else {
       setTextOnDisplay("New Record!");
     }
+  } else {
+    setTextOnDisplay("No new record. Try again!");
   }
 }

@@ -44,7 +44,7 @@ function MainUI({}: Props): JSX.Element {
   const [currentTurn, setCurrentTurn] = useState<number>(0);
 
   // const [topScore, setTopScore] = useState<string>("248");
-  const [topScore, setTopScore] = useTopScore("score", "0");
+  const [topScore, setTopScore] = useTopScore("score", "100");
 
   // useEffect(() => {
   //   let topScoreSaved = localStorage.getItem("score");
@@ -101,8 +101,10 @@ function MainUI({}: Props): JSX.Element {
 
   function handleKeysOrBtns(command: string) {
     switch (command) {
+      // rewind one round back
       case "KeyR":
         console.log("KeyR");
+        setTextOnDisplay("");
         setCurrentTurn(oTB.currentTurn);
         setEnemiesKilled(oTB.enemiesKilled);
         setEnemies([...oTB.enemies]);
