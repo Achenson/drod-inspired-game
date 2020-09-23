@@ -49,7 +49,7 @@ function UpperLeftUI({
       </p>
       <div className="flex justify-around mb-px">
         <p
-          className="text-center font-droid-serif text-lg text-green-600 hover:bg-purple-200 rounded hover:text-black w-8"
+          className="text-center font-droid-serif text-lg text-green-600 hover:bg-gray-200 rounded w-8"
           onMouseEnter={() => {
             setTextOnDisplay("Most Rounds Survived");
           }}
@@ -59,7 +59,7 @@ function UpperLeftUI({
         >
           {topScore}
         </p>
-        <div className="w-8 hover:bg-purple-200 rounded-md flex justify-center items-center">
+        <div className="w-8 hover:bg-gray-200 rounded-md flex justify-center items-center">
         <Medal
           className="h-6 fill-current"
           style={{ color: `${medalColor}` }}

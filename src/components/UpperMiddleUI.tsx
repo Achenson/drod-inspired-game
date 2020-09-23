@@ -16,7 +16,7 @@ function UpperMiddleUI({ currentTurn, setTextOnDisplay }: Props): JSX.Element {
       
       >Round</p>
       <p
-        className="text-center font-droid-serif text-lg hover:bg-purple-200 rounded"
+        className="text-center font-droid-serif text-lg hover:bg-gray-200 rounded"
         onMouseEnter={() => {
           setTextOnDisplay("Current round");
         }}
