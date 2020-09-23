@@ -9,9 +9,10 @@ interface Props {
   boardWidth: number;
   // handleKeyDown: (eventString: string) => void;
   handleKeysOrBtns: (command: string) => void;
+  setTextOnHover: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
+function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnHover }: Props): JSX.Element {
   const touchBtnColorOnHover = "bg-purple-400";
 
   return (
@@ -23,6 +24,14 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
             // e.preventDefault()
             handleKeysOrBtns("KeyQ");
             console.log("KeyQ");
+          }}
+          onMouseEnter={() => {
+        
+            setTextOnHover("Keyboard: Q");
+          }}
+          onMouseLeave={() => {
+           
+            setTextOnHover("");
           }}
         >
           <TurnAnticlockwise
@@ -36,6 +45,14 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
             // e.preventDefault()
             handleKeysOrBtns("KeyW");
             console.log("KeyW");
+          }}
+          onMouseEnter={() => {
+        
+            setTextOnHover("Keyboard: W");
+          }}
+          onMouseLeave={() => {
+           
+            setTextOnHover("");
           }}
         >
           <TurnClockwise
@@ -52,8 +69,16 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns }: Props): JSX.Element {
         className={`my-4 mx-8 bg-gray-400 h-10 w-12 relative hover:bg-purple-400`}
         onClick={(e) => {
           // e.preventDefault()
-          handleKeysOrBtns("Backspace");
-          console.log("Backspace");
+          handleKeysOrBtns("KeyR");
+          console.log("KeyR");
+        }}
+        onMouseEnter={() => {
+        
+          setTextOnHover("Keyboard: R");
+        }}
+        onMouseLeave={() => {
+         
+          setTextOnHover("");
         }}
       >
         <Rewind className="h-6 mx-2 absolute" style={{ top: "8px" }} />

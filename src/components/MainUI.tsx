@@ -101,8 +101,8 @@ function MainUI({}: Props): JSX.Element {
 
   function handleKeysOrBtns(command: string) {
     switch (command) {
-      case "Backspace":
-        console.log("Backspace");
+      case "KeyR":
+        console.log("KeyR");
         setCurrentTurn(oTB.currentTurn);
         setEnemiesKilled(oTB.enemiesKilled);
         setEnemies([...oTB.enemies]);
@@ -252,7 +252,7 @@ function MainUI({}: Props): JSX.Element {
           enemiesDirections={enemiesDirections}
           
         />
-        <NewGameBtn newGame={newGame} />
+        <NewGameBtn newGame={newGame} setTextOnHover={setTextOnHover}/>
         <div
           className="flex justify-between"
           style={{ width: `${boardWidth}` }}
@@ -260,11 +260,13 @@ function MainUI({}: Props): JSX.Element {
           <LeftBtnArea
             boardWidth={boardWidth}
             handleKeysOrBtns={handleKeysOrBtns}
+            setTextOnHover={setTextOnHover}
           />
 
           <RightBtnArea
             boardWidth={boardWidth}
             handleKeysOrBtns={handleKeysOrBtns}
+            setTextOnHover={setTextOnHover}
           />
         </div>
 

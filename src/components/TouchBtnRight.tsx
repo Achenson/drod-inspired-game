@@ -6,12 +6,13 @@ import { ReactComponent as Wait } from "../svgs/sand-clock-half.svg";
 interface Props {
   btnType: string;
   handleKeysOrBtns: (command: string) => void;
+  setTextOnHover: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function TouchBtnRight({ btnType, handleKeysOrBtns }: Props): JSX.Element {
+function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnHover }: Props): JSX.Element {
   let arrowDirection = "";
 
-  let keyToPress: string;
+  let keyToPress: string = "Numpadddd";
 
   switch (btnType) {
     case "nw":
@@ -50,14 +51,36 @@ function TouchBtnRight({ btnType, handleKeysOrBtns }: Props): JSX.Element {
       arrowDirection = "";
   }
 
+
+  // let keyToPressFormatted = keyToPress.split("").splice(keyToPress.length-2, 0, " ").join("");
+  // let keyToPressFormatted = keyToPress.slice(0, 6)
+  // console.log("keyToPressFormatted");
+  // console.log(keyToPressFormatted);
+  
+
   return btnType === "wait" ? (
     <button
       className="h-8 w-8 bg-gray-400 relative hover:bg-purple-400"
       onClick={(e) => {
         handleKeysOrBtns("Numpad5");
       }}
+
+      onMouseEnter={() => {
+        
+        setTextOnHover("Keyboard: Numpad 5");
+      }}
+      onMouseLeave={() => {
+       
+        setTextOnHover("");
+      }}
+
+
     >
-      <Wait className="h-6 absolute" style={{ left: "-37px", top: "4px" }} />
+      <Wait className="h-6 absolute" style={{ left: "-37px", top: "4px" }} 
+      
+      
+      
+      />
     </button>
   ) : (
     <button
@@ -65,6 +88,16 @@ function TouchBtnRight({ btnType, handleKeysOrBtns }: Props): JSX.Element {
       onClick={(e) => {
         handleKeysOrBtns(keyToPress);
       }}
+
+      onMouseEnter={() => {
+        
+        setTextOnHover(`Keyboard: ${keyToPress.slice(0,6)} ${keyToPress.slice(6)}`);
+      }}
+      onMouseLeave={() => {
+       
+        setTextOnHover("");
+      }}
+
     >
       <ArrowUp className={`${arrowDirection} h-8`} />
     </button>
