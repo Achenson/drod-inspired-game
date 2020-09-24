@@ -13,7 +13,18 @@ import moveHero from "../utils/moveHero";
 
 import useStorage from "../hooks/useStorage";
 
+
+
+
+
 // import { ReactComponent as Medal } from "../svgs/medal.svg";
+import { ReactComponent as VolumeOFF } from "../svgs/volumeOff.svg";
+import { ReactComponent as VolumeON } from "../svgs/volumeOn.svg";
+import { ReactComponent as Delete } from "../svgs/deleteDanger.svg";
+import { ReactComponent as Desktop } from "../svgs/desktop.svg";
+import { ReactComponent as Cancel } from "../svgs/cancel.svg";
+import { ReactComponent as Confirm } from "../svgs/confirm.svg";
+
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
 import UpperRightUI from "./UpperRightUI";
@@ -273,6 +284,8 @@ function MainUI({}: Props): JSX.Element {
             handleKeysOrBtns={handleKeysOrBtns}
             setTextOnDisplay={setTextOnDisplay}
           />
+
+       
         </div>
 
         {/* <ArrowUp className="h-6"/>
@@ -287,6 +300,12 @@ function MainUI({}: Props): JSX.Element {
       <Medal className="h-8 fill-current text-gray-500" />
       <Medal className="h-8 fill-current text-yellow-800"/> */}
       </div>
+      <VolumeOFF className="h-6"/>
+        <VolumeON className="h-6"/>
+        <Delete className="h-6"/>
+        <Desktop className="h-6"/>
+        <Cancel className="h-6"/>
+        <Confirm className="h-6"/>
     </div>
   );
 }
