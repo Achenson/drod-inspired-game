@@ -104,6 +104,10 @@ function MainUI({}: Props): JSX.Element {
 
   let oTB = oneTurnBack;
 
+
+
+
+
   function handleKeyDown(event: KeyboardEvent) {
     handleKeysOrBtns(event.code);
   }
@@ -252,7 +256,9 @@ function MainUI({}: Props): JSX.Element {
             currentTurn={currentTurn}
             setTextOnDisplay={setTextOnDisplay}
           />
-        <UpperRightSettings />
+        <UpperRightSettings
+          setTextOnDisplay={setTextOnDisplay}
+        />
           <UpperRightUI
             setTextOnDisplay={setTextOnDisplay}
             helpClicked={helpClicked}
