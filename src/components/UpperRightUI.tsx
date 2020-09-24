@@ -56,7 +56,7 @@ function UpperRightUI({
           }}
           onMouseLeave={() => {
             // if (helpClicked === "true") {
-              setAnimateSpin(null);
+              setAnimatePulse(null);
             // }
 
             setTextOnDisplay("");
