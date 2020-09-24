@@ -102,11 +102,9 @@ function MainUI({}: Props): JSX.Element {
 
   const [textOnDisplay, setTextOnDisplay] = useState<string>("sampleText");
 
+  const [settingsVisibility, setSettingsVisibility] = useState<boolean>(false);
+
   let oTB = oneTurnBack;
-
-
-
-
 
   function handleKeyDown(event: KeyboardEvent) {
     handleKeysOrBtns(event.code);
@@ -256,13 +254,14 @@ function MainUI({}: Props): JSX.Element {
             currentTurn={currentTurn}
             setTextOnDisplay={setTextOnDisplay}
           />
-        <UpperRightSettings
-          setTextOnDisplay={setTextOnDisplay}
-        />
+          {settingsVisibility ? (
+            <UpperRightSettings setTextOnDisplay={setTextOnDisplay} />
+          ) : null}
           <UpperRightUI
             setTextOnDisplay={setTextOnDisplay}
             helpClicked={helpClicked}
             setHelpClicked={setHelpClicked}
+            setSettingsVisibility={setSettingsVisibility}
           />
         </div>
 

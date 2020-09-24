@@ -7,12 +7,14 @@ interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   helpClicked: string | React.Dispatch<React.SetStateAction<string>>;
   setHelpClicked: string | React.Dispatch<React.SetStateAction<string>>;
+  setSettingsVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function UpperRightUI({
   setTextOnDisplay,
   helpClicked,
   setHelpClicked,
+  setSettingsVisibility,
 }: Props): JSX.Element {
   const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(
     "animate-pulse"
@@ -39,6 +41,7 @@ function UpperRightUI({
             setAnimateSpin(null);
             setTextOnDisplay("");
           }}
+          onClick={() => setSettingsVisibility((b) => !b)}
         />
       </button>
       <button>

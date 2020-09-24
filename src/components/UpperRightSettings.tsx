@@ -11,12 +11,14 @@ interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function UpperRightSettings({ setTextOnDisplay }: Props): JSX.Element {
+function UpperRightSettings({ setTextOnDisplay}: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
   const [confirmVisibility, setConfirmVisibility] = useState(false);
   const [deleteVisibility, setDeleteVisibility] = useState(true);
   const [cancelVisibility, setCancelVisibility] = useState(false);
+
+
 
   function toggleIcons() {
     setConfirmVisibility(!confirmVisibility);
