@@ -13,10 +13,6 @@ import moveHero from "../utils/moveHero";
 
 import useStorage from "../hooks/useStorage";
 
-
-
-
-
 // import { ReactComponent as Medal } from "../svgs/medal.svg";
 import { ReactComponent as VolumeOFF } from "../svgs/volumeOff.svg";
 import { ReactComponent as VolumeON } from "../svgs/volumeOn.svg";
@@ -28,6 +24,7 @@ import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
 import UpperRightUI from "./UpperRightUI";
+import UpperRightSettings from "./UpperRightSettings";
 import NewGameBtn from "./NewGameBtn";
 import TopDisplay from "./TopDisplay";
 
@@ -103,7 +100,7 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: hero.swordPosition,
   });
 
-  const [textOnDisplay, setTextOnDisplay] = useState<string>("sampleText")
+  const [textOnDisplay, setTextOnDisplay] = useState<string>("sampleText");
 
   let oTB = oneTurnBack;
 
@@ -238,23 +235,29 @@ function MainUI({}: Props): JSX.Element {
     });
   }
 
- 
-
   return (
     <div className="flex justify-center">
       {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
       <div className="flex flex-col justify-center" style={{ height: "100vh" }}>
-        <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay}/>
-        <div className="flex justify-between">
+        <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay} />
+
+        <div className="flex justify-between relative">
           <UpperLeftUI
-       
             enemiesKilled={enemiesKilled}
             topScore={topScore}
             enemies={enemies}
             setTextOnDisplay={setTextOnDisplay}
           />
-          <UpperMiddleUI currentTurn={currentTurn} setTextOnDisplay={setTextOnDisplay}/>
-          <UpperRightUI setTextOnDisplay={setTextOnDisplay} helpClicked={helpClicked} setHelpClicked={setHelpClicked} />
+          <UpperMiddleUI
+            currentTurn={currentTurn}
+            setTextOnDisplay={setTextOnDisplay}
+          />
+        <UpperRightSettings />
+          <UpperRightUI
+            setTextOnDisplay={setTextOnDisplay}
+            helpClicked={helpClicked}
+            setHelpClicked={setHelpClicked}
+          />
         </div>
 
         <Board
@@ -266,9 +269,8 @@ function MainUI({}: Props): JSX.Element {
           currentTurn={currentTurn}
           lastEnemyKilled={lastEnemyKilled}
           enemiesDirections={enemiesDirections}
-          
         />
-        <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay}/>
+        <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
         <div
           className="flex justify-between"
           style={{ width: `${boardWidth}` }}
@@ -284,8 +286,6 @@ function MainUI({}: Props): JSX.Element {
             handleKeysOrBtns={handleKeysOrBtns}
             setTextOnDisplay={setTextOnDisplay}
           />
-
-       
         </div>
 
         {/* <ArrowUp className="h-6"/>
@@ -300,12 +300,12 @@ function MainUI({}: Props): JSX.Element {
       <Medal className="h-8 fill-current text-gray-500" />
       <Medal className="h-8 fill-current text-yellow-800"/> */}
       </div>
-      <VolumeOFF className="h-6"/>
-        <VolumeON className="h-6"/>
-        <Delete className="h-6"/>
-        <Desktop className="h-6"/>
-        <Cancel className="h-6"/>
-        <Confirm className="h-6"/>
+      <VolumeOFF className="h-6" />
+      <VolumeON className="h-6" />
+      <Delete className="h-6" />
+      <Desktop className="h-6" />
+      <Cancel className="h-6" />
+      <Confirm className="h-6" />
     </div>
   );
 }

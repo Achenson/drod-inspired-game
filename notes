@@ -78,16 +78,16 @@ back in time custom hook?
 DONE sometimes enemies disappear?? DONE (bug fixed)
 DONE backspace -> move one turn back in time DONE
 DONE smaller(px) board? DONE
-medal? 100 175 250
+DONE medal? 100 175 250 DONE
 DONE change enemy render when near hero DONE
 setting topScore not only on death?
 Tile -> better code, too many "hidden" settings, new file for CSS objects?
 round the hero div?
-better svg for waiting?
+XXX better svg for waiting?XXX
 svg sizes
 delete enemies killed in MainUI
-new game confirmation?
-controls -> light out when move not possible?
+X new game confirmation? X
+X controls -> light out when move not possible? X
 DEV mode: Board -> div commented out
 check if merriweather font works -> app title?
 top score: change string to number type?
