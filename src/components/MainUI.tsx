@@ -11,7 +11,7 @@ import { Directions } from "../utils/interfaces";
 import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
 
-import useTopScore from "../hooks/useTopScore";
+import useStorage from "../hooks/useStorage";
 
 // import { ReactComponent as Medal } from "../svgs/medal.svg";
 import RightBtnArea from "./RightBtnArea";
@@ -44,7 +44,8 @@ function MainUI({}: Props): JSX.Element {
   const [currentTurn, setCurrentTurn] = useState<number>(0);
 
   // const [topScore, setTopScore] = useState<string>("248");
-  const [topScore, setTopScore] = useTopScore("score", "100");
+  const [topScore, setTopScore] = useStorage("score", "0");
+  const [helpClicked, setHelpClicked] = useStorage("helpClicked", "false");
 
   // useEffect(() => {
   //   let topScoreSaved = localStorage.getItem("score");
@@ -242,7 +243,7 @@ function MainUI({}: Props): JSX.Element {
             setTextOnDisplay={setTextOnDisplay}
           />
           <UpperMiddleUI currentTurn={currentTurn} setTextOnDisplay={setTextOnDisplay}/>
-          <UpperRightUI setTextOnDisplay={setTextOnDisplay} />
+          <UpperRightUI setTextOnDisplay={setTextOnDisplay} helpClicked={helpClicked} setHelpClicked={setHelpClicked} />
         </div>
 
         <Board

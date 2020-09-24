@@ -1,16 +1,29 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ReactComponent as Settings } from "../svgs/cog-small.svg";
 import { ReactComponent as Help } from "../svgs/question-mark-round.svg";
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
+  helpClicked: string | React.Dispatch<React.SetStateAction<string>>;
+  setHelpClicked: string | React.Dispatch<React.SetStateAction<string>>;
 }
 
-function UpperRightUI({ setTextOnDisplay }: Props): JSX.Element {
+function UpperRightUI({
+  setTextOnDisplay,
+  helpClicked,
+  setHelpClicked,
+}: Props): JSX.Element {
   const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(
-    null
+    "animate-pulse"
   );
+
+  useEffect(() => {
+    if (helpClicked === "true") {
+      setAnimatePulse(null);
+    }
+  }, [helpClicked]);
+
   const [animateSpin, setAnimateSpin] = useState<"animate-spin" | null>(null);
 
   return (
@@ -24,6 +37,7 @@ function UpperRightUI({ setTextOnDisplay }: Props): JSX.Element {
           }}
           onMouseLeave={() => {
             setAnimateSpin(null);
+
             setTextOnDisplay("");
           }}
         />
@@ -31,12 +45,20 @@ function UpperRightUI({ setTextOnDisplay }: Props): JSX.Element {
       <button>
         <Help
           className={`h-6 fill-current hover:text-purple-800 ${animatePulse}`}
+          onClick={() =>
+            (setHelpClicked as React.Dispatch<React.SetStateAction<string>>)(
+              "true"
+            )
+          }
           onMouseEnter={() => {
             setAnimatePulse("animate-pulse");
             setTextOnDisplay("Help");
           }}
           onMouseLeave={() => {
-            setAnimatePulse(null);
+            // if (helpClicked === "true") {
+              setAnimateSpin(null);
+            // }
+
             setTextOnDisplay("");
           }}
         />

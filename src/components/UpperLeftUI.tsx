@@ -1,4 +1,5 @@
 import React from "react";
+import {useState} from "react";
 
 import { ReactComponent as Medal } from "../svgs/medal.svg";
 
@@ -15,6 +16,9 @@ function UpperLeftUI({
   enemies,
   setTextOnDisplay,
 }: Props): JSX.Element {
+
+  // const [animateSpin, setAnimateSpin] = useState<string | null>("animate-pulse");
+
   let medalColor;
   let medalOnHoverText: string;
 
@@ -59,9 +63,9 @@ function UpperLeftUI({
         >
           {topScore}
         </p>
-        <div className="w-8 hover:bg-gray-200 rounded-md flex justify-center items-center">
+        <div className={`w-8 hover:bg-gray-200 rounded-md flex justify-center items-center`}>
         <Medal
-          className="h-6 fill-current"
+          className={`h-6 fill-current`}
           style={{ color: `${medalColor}` }}
           onMouseEnter={() => {
             setTextOnDisplay(medalOnHoverText);
