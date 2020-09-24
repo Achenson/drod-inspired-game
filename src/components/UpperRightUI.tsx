@@ -7,6 +7,7 @@ interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   helpClicked: string | React.Dispatch<React.SetStateAction<string>>;
   setHelpClicked: string | React.Dispatch<React.SetStateAction<string>>;
+  settingsVisibility: boolean;
   setSettingsVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -14,6 +15,7 @@ function UpperRightUI({
   setTextOnDisplay,
   helpClicked,
   setHelpClicked,
+  settingsVisibility,
   setSettingsVisibility,
 }: Props): JSX.Element {
   const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(
@@ -47,11 +49,15 @@ function UpperRightUI({
       <button>
         <Help
           className={`h-6 fill-current hover:text-purple-800 ${animatePulse}`}
-          onClick={() =>
+          onClick={() => {
             (setHelpClicked as React.Dispatch<React.SetStateAction<string>>)(
               "true"
-            )
-          }
+            );
+
+            if (settingsVisibility) {
+              setSettingsVisibility(false);
+            }
+          }}
           onMouseEnter={() => {
             setAnimatePulse("animate-pulse");
             setTextOnDisplay("Help");

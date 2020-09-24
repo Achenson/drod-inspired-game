@@ -12,13 +12,23 @@ interface Props {
   currentTurn: number;
   lastEnemyKilled: (number | null);
   enemiesDirections: number[];
+  settingsVisibility: boolean;
+  setSettingsVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, enemiesDirections, boardWidth }: Props): JSX.Element {
+function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, enemiesDirections, boardWidth, settingsVisibility, setSettingsVisibility }: Props): JSX.Element {
   // const boardWidth = boardSize * 32;
 
   return (
-    <div>
+    <div
+    onClick={()=> {
+
+      if(settingsVisibility) {
+        setSettingsVisibility(false)
+      }
+
+    }}
+    >
            <div
       className={`grid grid-cols-${boardSize} col-gap-0`}
       style={{ width: `${boardWidth}px`, height: `${boardWidth}px`, backgroundColor: "whitesmoke" }}

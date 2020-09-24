@@ -111,6 +111,13 @@ function MainUI({}: Props): JSX.Element {
   }
 
   function handleKeysOrBtns(command: string) {
+
+
+    if(settingsVisibility) {
+      setSettingsVisibility(false)
+    }
+
+
     switch (command) {
       // rewind one round back
       case "KeyR":
@@ -219,6 +226,11 @@ function MainUI({}: Props): JSX.Element {
 
   function newGame() {
     setTextOnDisplay("");
+
+    if(settingsVisibility) {
+      setSettingsVisibility(false)
+    }
+
     setCurrentTurn(0);
     setEnemiesKilled(0);
     setEnemies([...enemiesInitial]);
@@ -261,6 +273,7 @@ function MainUI({}: Props): JSX.Element {
             setTextOnDisplay={setTextOnDisplay}
             helpClicked={helpClicked}
             setHelpClicked={setHelpClicked}
+            settingsVisibility={settingsVisibility}
             setSettingsVisibility={setSettingsVisibility}
           />
         </div>
@@ -274,6 +287,8 @@ function MainUI({}: Props): JSX.Element {
           currentTurn={currentTurn}
           lastEnemyKilled={lastEnemyKilled}
           enemiesDirections={enemiesDirections}
+          settingsVisibility={settingsVisibility}
+          setSettingsVisibility={setSettingsVisibility}
         />
         <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
         <div
@@ -305,12 +320,12 @@ function MainUI({}: Props): JSX.Element {
       <Medal className="h-8 fill-current text-gray-500" />
       <Medal className="h-8 fill-current text-yellow-800"/> */}
       </div>
-      <VolumeOFF className="h-6" />
+      {/* <VolumeOFF className="h-6" />
       <VolumeON className="h-6" />
       <Delete className="h-6" />
       <Desktop className="h-6" />
       <Cancel className="h-6" />
-      <Confirm className="h-6" />
+      <Confirm className="h-6" /> */}
     </div>
   );
 }
