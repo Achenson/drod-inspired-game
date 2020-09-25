@@ -104,6 +104,32 @@ function MainUI({}: Props): JSX.Element {
 
   const [settingsVisibility, setSettingsVisibility] = useState<boolean>(false);
 
+  // let mql = window.matchMedia('(min-width: 600px)');
+
+  const mediaBreakpoint = 1024;
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+
+  const [largeScreenRender, setLargeScreenRender] = useState<boolean>(false);
+
+  useEffect(() => {
+    function handleResizeWindow() {
+      setWindowWidth(window.innerWidth);
+    }
+    // subscribe to window resize event "onComponentDidMount"
+    window.addEventListener("resize", handleResizeWindow);
+
+    if (windowWidth > mediaBreakpoint) {
+      setLargeScreenRender(true);
+    } else {
+      setLargeScreenRender(false);
+    }
+
+    return () => {
+      // unsubscribe "onComponentDestroy"
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, [windowWidth]);
+
   let oTB = oneTurnBack;
 
   function handleKeyDown(event: KeyboardEvent) {
@@ -111,12 +137,9 @@ function MainUI({}: Props): JSX.Element {
   }
 
   function handleKeysOrBtns(command: string) {
-
-
-    if(settingsVisibility) {
-      setSettingsVisibility(false)
+    if (settingsVisibility) {
+      setSettingsVisibility(false);
     }
-
 
     switch (command) {
       // rewind one round back
@@ -227,8 +250,8 @@ function MainUI({}: Props): JSX.Element {
   function newGame() {
     setTextOnDisplay("");
 
-    if(settingsVisibility) {
-      setSettingsVisibility(false)
+    if (settingsVisibility) {
+      setSettingsVisibility(false);
     }
 
     setCurrentTurn(0);
@@ -291,22 +314,27 @@ function MainUI({}: Props): JSX.Element {
           setSettingsVisibility={setSettingsVisibility}
         />
         <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
-        <div
-          className="flex justify-between"
-          style={{ width: `${boardWidth}` }}
-        >
-          <LeftBtnArea
-            boardWidth={boardWidth}
-            handleKeysOrBtns={handleKeysOrBtns}
-            setTextOnDisplay={setTextOnDisplay}
-          />
 
-          <RightBtnArea
-            boardWidth={boardWidth}
-            handleKeysOrBtns={handleKeysOrBtns}
-            setTextOnDisplay={setTextOnDisplay}
-          />
-        </div>
+        {largeScreenRender ? 
+
+          null : (
+          <div
+            className="flex justify-between"
+            style={{ width: `${boardWidth}` }}
+          >
+            <LeftBtnArea
+              boardWidth={boardWidth}
+              handleKeysOrBtns={handleKeysOrBtns}
+              setTextOnDisplay={setTextOnDisplay}
+            />
+
+            <RightBtnArea
+              boardWidth={boardWidth}
+              handleKeysOrBtns={handleKeysOrBtns}
+              setTextOnDisplay={setTextOnDisplay}
+            />
+          </div>
+        )}
 
         {/* <ArrowUp className="h-6"/>
       <Rewind className="h-4"/>
