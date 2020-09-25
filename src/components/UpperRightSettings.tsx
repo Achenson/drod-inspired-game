@@ -10,11 +10,13 @@ import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   largeScreenRender: boolean;
+  setLargeScreenRender: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function UpperRightSettings({
   setTextOnDisplay,
   largeScreenRender,
+  setLargeScreenRender
 }: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
@@ -57,7 +59,7 @@ function UpperRightSettings({
       <VolumeOFF
         className={`cursor-pointer h-6 ${soundHover}`}
         onMouseEnter={() => {
-          setTextOnDisplay("Toggle sound on/off");
+          setTextOnDisplay("Sound On/Off");
           setSoundHover("animate-pulse");
         }}
         onMouseLeave={() => {
@@ -71,12 +73,15 @@ function UpperRightSettings({
           desktopColorDefault ? "" : "bg-green-500"
         } ${desktopHover}`}
         onMouseEnter={() => {
-          setTextOnDisplay("Desktop mode (controls never visible)");
+          setTextOnDisplay(`Large screen mode On/Off`);
           setDesktopHover("animate-pulse");
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
           setDesktopHover(null);
+        }}
+        onClick={() => {
+          setLargeScreenRender(b =>!b)
         }}
       />
       <Confirm
