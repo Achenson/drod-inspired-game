@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { ReactComponent as VolumeOFF } from "../svgs/volumeOff.svg";
 // import { ReactComponent as VolumeON } from "../svgs/volumeOn.svg";
@@ -9,15 +9,25 @@ import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
+  largeScreenRender: boolean;
 }
 
-function UpperRightSettings({ setTextOnDisplay}: Props): JSX.Element {
+function UpperRightSettings({ setTextOnDisplay, largeScreenRender}: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
-  const [confirmVisibility, setConfirmVisibility] = useState(false);
-  const [deleteVisibility, setDeleteVisibility] = useState(true);
-  const [cancelVisibility, setCancelVisibility] = useState(false);
+  const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false);
+  const [deleteVisibility, setDeleteVisibility] = useState<boolean>(true);
+  const [cancelVisibility, setCancelVisibility] = useState<boolean>(false);
+  
+  const [desktopColorDefault, setDesktopColorDefault] = useState<boolean>(true);
 
+  useEffect( () => {
+    if (largeScreenRender) {
+      setDesktopColorDefault(false)
+    } else {
+      setDesktopColorDefault(true)
+    }
+  },[largeScreenRender])
 
 
   function toggleIcons() {
@@ -42,7 +52,7 @@ function UpperRightSettings({ setTextOnDisplay}: Props): JSX.Element {
       />
       {/* <VolumeON className="h-6"/> */}
       <Desktop
-        className={`cursor-pointer h-6`}
+        className={`cursor-pointer h-6 ${desktopColorDefault ? "" : "bg-green-500" }`}
         onMouseEnter={() => {
           setTextOnDisplay("Desktop mode (controls never visible)");
         }}

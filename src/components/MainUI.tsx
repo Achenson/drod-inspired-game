@@ -106,7 +106,7 @@ function MainUI({}: Props): JSX.Element {
 
   // let mql = window.matchMedia('(min-width: 600px)');
 
-  const mediaBreakpoint = 1024;
+  const mediaBreakpoint = 768;
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
   const [largeScreenRender, setLargeScreenRender] = useState<boolean>(false);
@@ -290,7 +290,9 @@ function MainUI({}: Props): JSX.Element {
             setTextOnDisplay={setTextOnDisplay}
           />
           {settingsVisibility ? (
-            <UpperRightSettings setTextOnDisplay={setTextOnDisplay} />
+            <UpperRightSettings setTextOnDisplay={setTextOnDisplay}
+            largeScreenRender={largeScreenRender}
+            />
           ) : null}
           <UpperRightUI
             setTextOnDisplay={setTextOnDisplay}
