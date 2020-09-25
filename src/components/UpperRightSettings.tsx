@@ -12,23 +12,36 @@ interface Props {
   largeScreenRender: boolean;
 }
 
-function UpperRightSettings({ setTextOnDisplay, largeScreenRender}: Props): JSX.Element {
+function UpperRightSettings({
+  setTextOnDisplay,
+  largeScreenRender,
+}: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
   const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false);
   const [deleteVisibility, setDeleteVisibility] = useState<boolean>(true);
   const [cancelVisibility, setCancelVisibility] = useState<boolean>(false);
-  
+
   const [desktopColorDefault, setDesktopColorDefault] = useState<boolean>(true);
 
-  useEffect( () => {
-    if (largeScreenRender) {
-      setDesktopColorDefault(false)
-    } else {
-      setDesktopColorDefault(true)
-    }
-  },[largeScreenRender])
+  const [desktopHover, setDesktopHover] = useState<"animate-pulse" | null>(
+    null
+  );
 
+  const [soundHover, setSoundHover] = useState<"animate-pulse" | null>(null);
+  const [deleteHover, setDeleteHover] = useState<"animate-pulse" | null>(null);
+  const [confirmHover, setConfirmHover] = useState<"animate-pulse" | null>(
+    null
+  );
+  const [cancelHover, setCancelHover] = useState<"animate-pulse" | null>(null);
+
+  useEffect(() => {
+    if (largeScreenRender) {
+      setDesktopColorDefault(false);
+    } else {
+      setDesktopColorDefault(true);
+    }
+  }, [largeScreenRender]);
 
   function toggleIcons() {
     setConfirmVisibility(!confirmVisibility);
@@ -42,58 +55,72 @@ function UpperRightSettings({ setTextOnDisplay, largeScreenRender}: Props): JSX.
       style={{ top: "3rem" }}
     >
       <VolumeOFF
-        className={`cursor-pointer h-6`}
+        className={`cursor-pointer h-6 ${soundHover}`}
         onMouseEnter={() => {
           setTextOnDisplay("Toggle sound on/off");
+          setSoundHover("animate-pulse");
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
+          setSoundHover(null);
         }}
       />
       {/* <VolumeON className="h-6"/> */}
       <Desktop
-        className={`cursor-pointer h-6 ${desktopColorDefault ? "" : "bg-green-500" }`}
+        className={`cursor-pointer h-6 ${
+          desktopColorDefault ? "" : "bg-green-500"
+        } ${desktopHover}`}
         onMouseEnter={() => {
           setTextOnDisplay("Desktop mode (controls never visible)");
+          setDesktopHover("animate-pulse");
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
+          setDesktopHover(null);
         }}
       />
       <Confirm
         className={`h-6 cursor-pointer ${
           confirmVisibility ? "visible" : "invisible"
-        }`}
+        } ${confirmHover}`}
         onClick={toggleIcons}
         onMouseEnter={() => {
           setTextOnDisplay("Confirm top score deletion");
+          setConfirmHover("animate-pulse");
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
+          setConfirmHover(null)
         }}
       />
       <DeleteTopScore
         className={`h-6 cursor-pointer ${
           deleteVisibility ? "visible" : "hidden"
-        }`}
+        } ${deleteHover}`}
         onClick={toggleIcons}
         onMouseEnter={() => {
           setTextOnDisplay("Delete top score");
+          setDeleteHover("animate-pulse")
+
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
+          setDeleteHover(null)
         }}
       />
       <Cancel
         className={`h-6 cursor-pointer ${
           cancelVisibility ? "visible" : "hidden"
-        }`}
+        } ${cancelHover}
+        `}
         onClick={toggleIcons}
         onMouseEnter={() => {
           setTextOnDisplay("Cancel");
+          setCancelHover("animate-pulse");
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
+          setCancelHover(null)
         }}
       />
       {/* <Confirm className="h-6" /> */}
