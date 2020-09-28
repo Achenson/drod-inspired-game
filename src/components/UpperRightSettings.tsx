@@ -7,16 +7,18 @@ import { ReactComponent as Desktop } from "../svgs/desktop.svg";
 import { ReactComponent as Cancel } from "../svgs/cancel.svg";
 import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 
+import { ReactComponent as Touch } from "../svgs/touch.svg";
+import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
+
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
-  largeScreenRender: boolean;
-  setLargeScreenRender: React.Dispatch<React.SetStateAction<boolean>>;
+  
+  
 }
 
 function UpperRightSettings({
   setTextOnDisplay,
-  largeScreenRender,
-  setLargeScreenRender
+  
 }: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
@@ -24,11 +26,17 @@ function UpperRightSettings({
   const [deleteVisibility, setDeleteVisibility] = useState<boolean>(true);
   const [cancelVisibility, setCancelVisibility] = useState<boolean>(false);
 
-  const [desktopColorDefault, setDesktopColorDefault] = useState<boolean>(true);
+  const [touchHover, setTouchHover] = useState<"animate-pulse" | null>(null);
 
-  const [desktopHover, setDesktopHover] = useState<"animate-pulse" | null>(
+  const [touchClicked, setTouchClicked] = useState<boolean>(false);
+
+  const [keyboardHover, setKeyboardHover] = useState<"animate-pulse" | null>(
     null
   );
+
+  const [keyboardClicked, setKeyboardClicked] = useState<boolean>(false);
+
+
 
   const [soundHover, setSoundHover] = useState<"animate-pulse" | null>(null);
   const [deleteHover, setDeleteHover] = useState<"animate-pulse" | null>(null);
@@ -37,13 +45,6 @@ function UpperRightSettings({
   );
   const [cancelHover, setCancelHover] = useState<"animate-pulse" | null>(null);
 
-  useEffect(() => {
-    if (largeScreenRender) {
-      setDesktopColorDefault(false);
-    } else {
-      setDesktopColorDefault(true);
-    }
-  }, [largeScreenRender]);
 
   function toggleIcons() {
     setConfirmVisibility(!confirmVisibility);
@@ -68,7 +69,7 @@ function UpperRightSettings({
         }}
       />
       {/* <VolumeON className="h-6"/> */}
-      <Desktop
+      {/* <Desktop
         className={`cursor-pointer h-6 ${
           desktopColorDefault ? "" : "bg-green-500"
         } ${desktopHover}`}
@@ -83,7 +84,47 @@ function UpperRightSettings({
         onClick={() => {
           setLargeScreenRender(b =>!b)
         }}
+      /> */}
+
+      <Touch
+        className={`cursor-pointer h-6 ${touchHover} ${
+          touchClicked ? "bg-green-500" : ""
+        }`}
+        onMouseEnter={() => {
+          setTextOnDisplay(`Touch mode responsive/always on`);
+          setTouchHover("animate-pulse");
+        }}
+        onMouseLeave={() => {
+          setTextOnDisplay("");
+          setTouchHover(null);
+        }}
+        onClick={() => {
+          setTouchClicked((b) => !b);
+          if(keyboardClicked) {
+            setKeyboardClicked(false)
+          }
+        }}
       />
+      <Keyboard
+        className={`cursor-pointer h-6 ${keyboardHover} ${
+          keyboardClicked ? "bg-green-500" : ""
+        }`}
+        onMouseEnter={() => {
+          setTextOnDisplay(`Keyboard mode responsive/always on`);
+          setKeyboardHover("animate-pulse");
+        }}
+        onMouseLeave={() => {
+          setTextOnDisplay("");
+          setKeyboardHover(null);
+        }}
+        onClick={() => {
+          setKeyboardClicked((b) => !b);
+          if(touchClicked) {
+            setTouchClicked(false)
+          }
+        }}
+      />
+
       <Confirm
         className={`h-6 cursor-pointer ${
           confirmVisibility ? "visible" : "invisible"
@@ -95,7 +136,7 @@ function UpperRightSettings({
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
-          setConfirmHover(null)
+          setConfirmHover(null);
         }}
       />
       <DeleteTopScore
@@ -105,12 +146,11 @@ function UpperRightSettings({
         onClick={toggleIcons}
         onMouseEnter={() => {
           setTextOnDisplay("Delete top score");
-          setDeleteHover("animate-pulse")
-
+          setDeleteHover("animate-pulse");
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
-          setDeleteHover(null)
+          setDeleteHover(null);
         }}
       />
       <Cancel
@@ -125,7 +165,7 @@ function UpperRightSettings({
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
-          setCancelHover(null)
+          setCancelHover(null);
         }}
       />
       {/* <Confirm className="h-6" /> */}

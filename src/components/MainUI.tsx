@@ -20,6 +20,10 @@ import { ReactComponent as Delete } from "../svgs/deleteDanger.svg";
 import { ReactComponent as Desktop } from "../svgs/desktop.svg";
 import { ReactComponent as Cancel } from "../svgs/cancel.svg";
 import { ReactComponent as Confirm } from "../svgs/confirm.svg";
+import { ReactComponent as Touch } from "../svgs/touch.svg";
+import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
+
+
 
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
@@ -27,6 +31,7 @@ import UpperRightUI from "./UpperRightUI";
 import UpperRightSettings from "./UpperRightSettings";
 import NewGameBtn from "./NewGameBtn";
 import TopDisplay from "./TopDisplay";
+
 
 interface Props {}
 
@@ -129,6 +134,11 @@ function MainUI({}: Props): JSX.Element {
       window.removeEventListener("resize", handleResizeWindow);
     };
   }, [windowWidth]);
+
+
+  const [controlsVisibility, setControlsVisibility] = useState<("responsive"|"alwaysOn"|"alwaysOff")>("responsive")
+
+
 
   let oTB = oneTurnBack;
 
@@ -291,8 +301,7 @@ function MainUI({}: Props): JSX.Element {
           />
           {settingsVisibility ? (
             <UpperRightSettings setTextOnDisplay={setTextOnDisplay}
-            largeScreenRender={largeScreenRender}
-            setLargeScreenRender={setLargeScreenRender}
+            
             />
           ) : null}
           <UpperRightUI
@@ -357,6 +366,9 @@ function MainUI({}: Props): JSX.Element {
       <Desktop className="h-6" />
       <Cancel className="h-6" />
       <Confirm className="h-6" /> */}
+
+      {/* <Touch className="h-6"/>
+      <Keyboard className="h-6"/> */}
     </div>
   );
 }
