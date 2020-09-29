@@ -9,11 +9,9 @@ import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 import { ReactComponent as Touch } from "../svgs/touch.svg";
 import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
 
-import {PropsChildren} from "./UpperRightSettings";
-
+import { PropsChildren } from "./UpperRightSettings";
 
 function UpperRightSettings_big({
-
   setTextOnDisplay,
   soundHover,
   setSoundHover,
@@ -34,115 +32,126 @@ function UpperRightSettings_big({
   toggleIcons,
   cancelVisibility,
   cancelHover,
-  setCancelHover
+  setCancelHover,
 }: PropsChildren): JSX.Element {
   return (
     <div
-      className="flex w-full mt-1 absolute right-0 border-2 border-black rounded-md bg-gray-200"
+      className="w-full mt-1 absolute right-0 border-2 border-black rounded-md bg-gray-200"
       style={{ top: "3rem" }}
     >
-      <VolumeOFF
-        className={`cursor-pointer h-6 ${soundHover}`}
-        onMouseEnter={() => {
-          setTextOnDisplay("Sound On/Off");
-          setSoundHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setSoundHover(null);
-        }}
-      />
+      <div className="flex">
+        <VolumeOFF
+          className={`cursor-pointer h-6 ${soundHover} mb-2`}
+          onMouseEnter={() => {
+            setTextOnDisplay("Sound On/Off");
+            setSoundHover("animate-pulse");
+          }}
+          onMouseLeave={() => {
+            setTextOnDisplay("");
+            setSoundHover(null);
+          }}
+        />
+        <p className="text-sm ml-2">Sound On/Off</p>
+      </div>
 
-      <Touch
-        className={`cursor-pointer h-6 ${touchHover} ${
-          touchClicked ? "bg-green-500" : ""
-        }`}
-        onMouseEnter={() => {
-          setTextOnDisplay(`Touch mode responsive/always on`);
-          setTouchHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setTouchHover(null);
-        }}
-        onClick={() => {
-          setTouchClicked((b) => !b);
-          if (keyboardClicked) {
-            setKeyboardClicked(false);
-          }
-        }}
-      />
-      <Keyboard
-        className={`cursor-pointer h-6 ${keyboardHover} ${
-          keyboardClicked ? "bg-green-500" : ""
-        }`}
-        onMouseEnter={() => {
-          setTextOnDisplay(`Keyboard mode responsive/always on`);
-          setKeyboardHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setKeyboardHover(null);
-        }}
-        onClick={() => {
-          setKeyboardClicked((b) => !b);
-          if (touchClicked) {
-            setTouchClicked(false);
-          }
-        }}
-      />
+      <div className="flex">
+        <Touch
+          className={`cursor-pointer h-6 ${touchHover} ${
+            touchClicked ? "bg-green-500" : ""
+          } mb-2`}
+          onMouseEnter={() => {
+            setTextOnDisplay(`Touch mode responsive/always on`);
+            setTouchHover("animate-pulse");
+          }}
+          onMouseLeave={() => {
+            setTextOnDisplay("");
+            setTouchHover(null);
+          }}
+          onClick={() => {
+            setTouchClicked((b) => !b);
+            if (keyboardClicked) {
+              setKeyboardClicked(false);
+            }
+          }}
+        />
+        <p className="text-sm ml-2">Touch mode responsive/always on</p>
+      </div>
 
-      <Confirm
-        className={`h-6 cursor-pointer ${
-          confirmVisibility ? "visible" : "invisible"
-        } ${confirmHover}`}
-        onClick={toggleIcons}
-        onMouseEnter={() => {
-          setTextOnDisplay("Confirm top score deletion");
-          setConfirmHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setConfirmHover(null);
-        }}
-      />
-      <DeleteTopScore
-        className={`h-6 cursor-pointer ${
-          deleteVisibility ? "visible" : "hidden"
-        } ${deleteHover}`}
-        onClick={toggleIcons}
-        onMouseEnter={() => {
-          setTextOnDisplay("Delete top score");
-          setDeleteHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setDeleteHover(null);
-        }}
-      />
-      <Cancel
-        className={`h-6 cursor-pointer ${
-          cancelVisibility ? "visible" : "hidden"
-        } ${cancelHover}
+      <div className="flex">
+        <Keyboard
+          className={`cursor-pointer h-6 ${keyboardHover} ${
+            keyboardClicked ? "bg-green-500" : ""
+          } mb-2`}
+          onMouseEnter={() => {
+            setTextOnDisplay(`Keyboard mode responsive/always on`);
+            setKeyboardHover("animate-pulse");
+          }}
+          onMouseLeave={() => {
+            setTextOnDisplay("");
+            setKeyboardHover(null);
+          }}
+          onClick={() => {
+            setKeyboardClicked((b) => !b);
+            if (touchClicked) {
+              setTouchClicked(false);
+            }
+          }}
+        />
+        <p className="text-sm ml-2">Keyboard mode responsive/always on</p>
+      </div>
+
+      <div className={`flex ${deleteVisibility ? "visible" : "hidden"}`}>
+        <DeleteTopScore
+          className={`h-6 cursor-pointer  ${deleteHover}`}
+          onClick={toggleIcons}
+          onMouseEnter={() => {
+            setTextOnDisplay("Delete top score");
+            setDeleteHover("animate-pulse");
+          }}
+          onMouseLeave={() => {
+            setTextOnDisplay("");
+            setDeleteHover(null);
+          }}
+        />
+
+        <p className="text-sm ml-2">Delete top score</p>
+      </div>
+
+      <div
+        className={`flex flex-row ${cancelVisibility ? "visible" : "hidden"} `}
+      >
+        <Confirm
+          className={`h-6 cursor-pointer ${confirmHover}`}
+          onClick={toggleIcons}
+          onMouseEnter={() => {
+            setTextOnDisplay("Confirm top score deletion");
+            setConfirmHover("animate-pulse");
+          }}
+          onMouseLeave={() => {
+            setTextOnDisplay("");
+            setConfirmHover(null);
+          }}
+        />
+
+        <Cancel
+          className={`h-6 cursor-pointer ${cancelHover} ml-2
         `}
-        onClick={toggleIcons}
-        onMouseEnter={() => {
-          setTextOnDisplay("Cancel");
-          setCancelHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setCancelHover(null);
-        }}
-      />
+          onClick={toggleIcons}
+          onMouseEnter={() => {
+            setTextOnDisplay("Cancel");
+            setCancelHover("animate-pulse");
+          }}
+          onMouseLeave={() => {
+            setTextOnDisplay("");
+            setCancelHover(null);
+          }}
+        />
+
+        <p className="text-sm ml-2">Confirm/cancel</p>
+      </div>
       {/* <Confirm className="h-6" /> */}
     </div>
-
-
-
-
-
-  )
+  );
 }
 
 export default UpperRightSettings_big;
