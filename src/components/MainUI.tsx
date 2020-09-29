@@ -329,6 +329,7 @@ function MainUI({}: Props): JSX.Element {
           {settingsVisibility ? (
             <UpperRightSettings setTextOnDisplay={setTextOnDisplay}
               largeScreenRender={largeScreenRender}
+              controlsVisibility={controlsVisibility}
               setControlsVisibility={setControlsVisibility}
             />
           ) : null}

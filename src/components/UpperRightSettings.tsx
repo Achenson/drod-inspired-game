@@ -6,6 +6,7 @@ import UpperRightSettings_big from "./UpperRightSettings_big";
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   largeScreenRender: boolean;
+  controlsVisibility: "responsive" | "alwaysOn" | "alwaysOff";
   setControlsVisibility: React.Dispatch<
     React.SetStateAction<"responsive" | "alwaysOn" | "alwaysOff">
   >;
@@ -56,6 +57,7 @@ export interface PropsChildren {
 function UpperRightSettings({
   setTextOnDisplay,
   largeScreenRender,
+  controlsVisibility,
   setControlsVisibility,
 }: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
@@ -66,13 +68,37 @@ function UpperRightSettings({
 
   const [touchHover, setTouchHover] = useState<"animate-pulse" | null>(null);
 
-  const [touchClicked, setTouchClicked] = useState<boolean>(false);
+  const [touchClicked, setTouchClicked] = useState<boolean>(initialTouchClicked());
 
   const [keyboardHover, setKeyboardHover] = useState<"animate-pulse" | null>(
     null
   );
 
-  const [keyboardClicked, setKeyboardClicked] = useState<boolean>(false);
+  const [keyboardClicked, setKeyboardClicked] = useState<boolean>(initialKeyboardClicked());
+
+  function initialTouchClicked() {
+    
+    switch(controlsVisibility) {
+      case "responsive":
+      return false;
+      case "alwaysOn":
+      return true;
+      case "alwaysOff":
+      return false;
+    }
+  }
+
+  function initialKeyboardClicked() {
+    switch(controlsVisibility) {
+      case "responsive":
+      return false;
+      case "alwaysOn":
+      return false;
+      case "alwaysOff":
+      return true;
+    }
+  }
+
 
   const [soundHover, setSoundHover] = useState<"animate-pulse" | null>(null);
   const [deleteHover, setDeleteHover] = useState<"animate-pulse" | null>(null);
