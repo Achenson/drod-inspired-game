@@ -6,6 +6,9 @@ import UpperRightSettings_big from "./UpperRightSettings_big";
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   largeScreenRender: boolean;
+  setControlsVisibility: React.Dispatch<
+    React.SetStateAction<"responsive" | "alwaysOn" | "alwaysOff">
+  >;
 }
 
 export interface PropsChildren {
@@ -53,6 +56,7 @@ export interface PropsChildren {
 function UpperRightSettings({
   setTextOnDisplay,
   largeScreenRender,
+  setControlsVisibility,
 }: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
@@ -76,6 +80,20 @@ function UpperRightSettings({
     null
   );
   const [cancelHover, setCancelHover] = useState<"animate-pulse" | null>(null);
+
+  useEffect(() => {
+    if (touchClicked) {
+      setControlsVisibility("alwaysOn");
+      return;
+    }
+
+    if (keyboardClicked) {
+      setControlsVisibility("alwaysOff");
+      return;
+    }
+
+    setControlsVisibility("responsive");
+  }, [touchClicked, keyboardClicked, setControlsVisibility]);
 
   function toggleIcons() {
     setConfirmVisibility(!confirmVisibility);

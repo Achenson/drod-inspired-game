@@ -116,6 +116,12 @@ function MainUI({}: Props): JSX.Element {
 
   const [largeScreenRender, setLargeScreenRender] = useState<boolean>(false);
 
+  const [controlsVisibility, setControlsVisibility] = useState<("responsive"|"alwaysOn"|"alwaysOff")>("responsive")
+
+  const [controlsRender, setControlsRender] = useState<boolean>(true);
+
+
+
   useEffect(() => {
     function handleResizeWindow() {
       setWindowWidth(window.innerWidth);
@@ -135,8 +141,29 @@ function MainUI({}: Props): JSX.Element {
     };
   }, [windowWidth]);
 
+  useEffect( () => {
 
-  const [controlsVisibility, setControlsVisibility] = useState<("responsive"|"alwaysOn"|"alwaysOff")>("responsive")
+    if(controlsVisibility === "responsive") {
+
+      largeScreenRender ? setControlsRender(false) : setControlsRender(true)
+
+    }
+
+    if(controlsVisibility === "alwaysOn") {
+      // console.log("Onnnnn");
+      
+      setControlsRender(true)
+    }
+
+    if(controlsVisibility === "alwaysOff") {
+      // console.log("OFFFF");
+      setControlsRender(false)
+    }
+
+
+  }, [controlsVisibility, largeScreenRender])
+
+
 
 
 
@@ -302,6 +329,7 @@ function MainUI({}: Props): JSX.Element {
           {settingsVisibility ? (
             <UpperRightSettings setTextOnDisplay={setTextOnDisplay}
               largeScreenRender={largeScreenRender}
+              setControlsVisibility={setControlsVisibility}
             />
           ) : null}
           <UpperRightUI
@@ -328,9 +356,9 @@ function MainUI({}: Props): JSX.Element {
         />
         <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
 
-        {largeScreenRender ? 
+        {controlsRender ? 
 
-          null : (
+          (
           <div
             className="flex justify-between"
             style={{ width: `${boardWidth}` }}
@@ -347,7 +375,9 @@ function MainUI({}: Props): JSX.Element {
               setTextOnDisplay={setTextOnDisplay}
             />
           </div>
-        )}
+        ) : null
+        
+        }
 
         {/* <ArrowUp className="h-6"/>
       <Rewind className="h-4"/>

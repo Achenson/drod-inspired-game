@@ -34,7 +34,8 @@ function UpperRightSettings_small({
   toggleIcons,
   cancelVisibility,
   cancelHover,
-  setCancelHover
+  setCancelHover,
+ 
 
 
 }: PropsChildren): JSX.Element {
@@ -68,10 +69,10 @@ function UpperRightSettings_small({
           setTouchHover(null);
         }}
         onClick={() => {
-          setTouchClicked((b) => !b);
           if (keyboardClicked) {
             setKeyboardClicked(false);
           }
+          setTouchClicked((b) => !b);
         }}
       />
       <Keyboard
@@ -87,10 +88,10 @@ function UpperRightSettings_small({
           setKeyboardHover(null);
         }}
         onClick={() => {
-          setKeyboardClicked((b) => !b);
           if (touchClicked) {
             setTouchClicked(false);
           }
+          setKeyboardClicked((b) => !b);
         }}
       />
 

@@ -33,7 +33,10 @@ function UpperRightSettings_big({
   cancelVisibility,
   cancelHover,
   setCancelHover,
+
 }: PropsChildren): JSX.Element {
+
+
   return (
     <div
       className="w-full mt-1 absolute right-0 border-2 border-black rounded-md bg-gray-200"
@@ -68,10 +71,10 @@ function UpperRightSettings_big({
             setTouchHover(null);
           }}
           onClick={() => {
-            setTouchClicked((b) => !b);
             if (keyboardClicked) {
               setKeyboardClicked(false);
             }
+            setTouchClicked((b) => !b);
           }}
         />
         <p className="text-sm ml-2">Touch mode responsive/always on</p>
@@ -91,10 +94,10 @@ function UpperRightSettings_big({
             setKeyboardHover(null);
           }}
           onClick={() => {
-            setKeyboardClicked((b) => !b);
             if (touchClicked) {
               setTouchClicked(false);
             }
+            setKeyboardClicked((b) => !b);
           }}
         />
         <p className="text-sm ml-2">Keyboard mode responsive/always on</p>
