@@ -1,24 +1,58 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 
-import { ReactComponent as VolumeOFF } from "../svgs/volumeOff.svg";
-// import { ReactComponent as VolumeON } from "../svgs/volumeOn.svg";
-import { ReactComponent as DeleteTopScore } from "../svgs/deleteDanger.svg";
-import { ReactComponent as Desktop } from "../svgs/desktop.svg";
-import { ReactComponent as Cancel } from "../svgs/cancel.svg";
-import { ReactComponent as Confirm } from "../svgs/confirm.svg";
-
-import { ReactComponent as Touch } from "../svgs/touch.svg";
-import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
+import UpperRightSettings_small from "./UpperRightSettings_small";
+import UpperRightSettings_big from "./UpperRightSettings_big";
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
-  
-  
+  largeScreenRender: boolean;
+}
+
+export interface PropsChildren {
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
+
+  soundHover: "animate-pulse" | null;
+  setSoundHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+
+  touchHover: "animate-pulse" | null;
+  setTouchHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+
+  keyboardHover: "animate-pulse" | null;
+  setKeyboardHover: React.Dispatch<
+    React.SetStateAction<"animate-pulse" | null>
+  >;
+
+  touchClicked: boolean;
+  setTouchClicked: React.Dispatch<React.SetStateAction<boolean>>;
+
+  keyboardClicked: boolean;
+  setKeyboardClicked: React.Dispatch<React.SetStateAction<boolean>>;
+
+  confirmHover: "animate-pulse" | null;
+  setConfirmHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+
+  deleteHover: "animate-pulse" | null;
+  setDeleteHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+
+  confirmVisibility: boolean;
+
+  setConfirmVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+
+  deleteVisibility: boolean;
+  setDeleteVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+
+  toggleIcons: () => void;
+
+  cancelVisibility: boolean;
+  setCancelVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+
+  cancelHover: "animate-pulse" | null;
+  setCancelHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
 }
 
 function UpperRightSettings({
   setTextOnDisplay,
-  
+  largeScreenRender,
 }: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
@@ -36,15 +70,12 @@ function UpperRightSettings({
 
   const [keyboardClicked, setKeyboardClicked] = useState<boolean>(false);
 
-
-
   const [soundHover, setSoundHover] = useState<"animate-pulse" | null>(null);
   const [deleteHover, setDeleteHover] = useState<"animate-pulse" | null>(null);
   const [confirmHover, setConfirmHover] = useState<"animate-pulse" | null>(
     null
   );
   const [cancelHover, setCancelHover] = useState<"animate-pulse" | null>(null);
-
 
   function toggleIcons() {
     setConfirmVisibility(!confirmVisibility);
@@ -53,123 +84,63 @@ function UpperRightSettings({
   }
 
   return (
-    <div
-      className="flex mt-1 absolute right-0 border-2 border-black rounded-md bg-gray-200"
-      style={{ top: "3rem" }}
-    >
-      <VolumeOFF
-        className={`cursor-pointer h-6 ${soundHover}`}
-        onMouseEnter={() => {
-          setTextOnDisplay("Sound On/Off");
-          setSoundHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setSoundHover(null);
-        }}
-      />
-      {/* <VolumeON className="h-6"/> */}
-      {/* <Desktop
-        className={`cursor-pointer h-6 ${
-          desktopColorDefault ? "" : "bg-green-500"
-        } ${desktopHover}`}
-        onMouseEnter={() => {
-          setTextOnDisplay(`Large screen mode On/Off`);
-          setDesktopHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setDesktopHover(null);
-        }}
-        onClick={() => {
-          setLargeScreenRender(b =>!b)
-        }}
-      /> */}
-
-      <Touch
-        className={`cursor-pointer h-6 ${touchHover} ${
-          touchClicked ? "bg-green-500" : ""
-        }`}
-        onMouseEnter={() => {
-          setTextOnDisplay(`Touch mode responsive/always on`);
-          setTouchHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setTouchHover(null);
-        }}
-        onClick={() => {
-          setTouchClicked((b) => !b);
-          if(keyboardClicked) {
-            setKeyboardClicked(false)
-          }
-        }}
-      />
-      <Keyboard
-        className={`cursor-pointer h-6 ${keyboardHover} ${
-          keyboardClicked ? "bg-green-500" : ""
-        }`}
-        onMouseEnter={() => {
-          setTextOnDisplay(`Keyboard mode responsive/always on`);
-          setKeyboardHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setKeyboardHover(null);
-        }}
-        onClick={() => {
-          setKeyboardClicked((b) => !b);
-          if(touchClicked) {
-            setTouchClicked(false)
-          }
-        }}
-      />
-
-      <Confirm
-        className={`h-6 cursor-pointer ${
-          confirmVisibility ? "visible" : "invisible"
-        } ${confirmHover}`}
-        onClick={toggleIcons}
-        onMouseEnter={() => {
-          setTextOnDisplay("Confirm top score deletion");
-          setConfirmHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setConfirmHover(null);
-        }}
-      />
-      <DeleteTopScore
-        className={`h-6 cursor-pointer ${
-          deleteVisibility ? "visible" : "hidden"
-        } ${deleteHover}`}
-        onClick={toggleIcons}
-        onMouseEnter={() => {
-          setTextOnDisplay("Delete top score");
-          setDeleteHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setDeleteHover(null);
-        }}
-      />
-      <Cancel
-        className={`h-6 cursor-pointer ${
-          cancelVisibility ? "visible" : "hidden"
-        } ${cancelHover}
-        `}
-        onClick={toggleIcons}
-        onMouseEnter={() => {
-          setTextOnDisplay("Cancel");
-          setCancelHover("animate-pulse");
-        }}
-        onMouseLeave={() => {
-          setTextOnDisplay("");
-          setCancelHover(null);
-        }}
-      />
-      {/* <Confirm className="h-6" /> */}
-    </div>
+    <Fragment>
+      {largeScreenRender ? (
+        <UpperRightSettings_small
+          setTextOnDisplay={setTextOnDisplay}
+          soundHover={soundHover}
+          setSoundHover={setSoundHover}
+          touchHover={touchHover}
+          setTouchHover={setTouchHover}
+          keyboardHover={keyboardHover}
+          setKeyboardHover={setKeyboardHover}
+          touchClicked={touchClicked}
+          setTouchClicked={setTouchClicked}
+          keyboardClicked={keyboardClicked}
+          setKeyboardClicked={setKeyboardClicked}
+          cancelHover={cancelHover}
+          cancelVisibility={cancelVisibility}
+          confirmHover={confirmHover}
+          confirmVisibility={confirmVisibility}
+          deleteHover={deleteHover}
+          deleteVisibility={deleteVisibility}
+          setCancelHover={setCancelHover}
+          setCancelVisibility={setCancelVisibility}
+          setConfirmHover={setConfirmHover}
+          setConfirmVisibility={setConfirmVisibility}
+          setDeleteHover={setDeleteHover}
+          setDeleteVisibility={setDeleteVisibility}
+          toggleIcons={toggleIcons}
+        />
+      ) : (
+        <UpperRightSettings_big
+          setTextOnDisplay={setTextOnDisplay}
+          soundHover={soundHover}
+          setSoundHover={setSoundHover}
+          touchHover={touchHover}
+          setTouchHover={setTouchHover}
+          keyboardHover={keyboardHover}
+          setKeyboardHover={setKeyboardHover}
+          touchClicked={touchClicked}
+          setTouchClicked={setTouchClicked}
+          keyboardClicked={keyboardClicked}
+          setKeyboardClicked={setKeyboardClicked}
+          cancelHover={cancelHover}
+          cancelVisibility={cancelVisibility}
+          confirmHover={confirmHover}
+          confirmVisibility={confirmVisibility}
+          deleteHover={deleteHover}
+          deleteVisibility={deleteVisibility}
+          setCancelHover={setCancelHover}
+          setCancelVisibility={setCancelVisibility}
+          setConfirmHover={setConfirmHover}
+          setConfirmVisibility={setConfirmVisibility}
+          setDeleteHover={setDeleteHover}
+          setDeleteVisibility={setDeleteVisibility}
+          toggleIcons={toggleIcons}
+        />
+      )}
+    </Fragment>
   );
 }
 

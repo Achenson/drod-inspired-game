@@ -301,7 +301,7 @@ function MainUI({}: Props): JSX.Element {
           />
           {settingsVisibility ? (
             <UpperRightSettings setTextOnDisplay={setTextOnDisplay}
-            
+              largeScreenRender={largeScreenRender}
             />
           ) : null}
           <UpperRightUI
@@ -310,6 +310,7 @@ function MainUI({}: Props): JSX.Element {
             setHelpClicked={setHelpClicked}
             settingsVisibility={settingsVisibility}
             setSettingsVisibility={setSettingsVisibility}
+
           />
         </div>
 
