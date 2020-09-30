@@ -9,6 +9,8 @@ interface Props {
   setHelpClicked: string | React.Dispatch<React.SetStateAction<string>>;
   settingsVisibility: boolean;
   setSettingsVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  helpVisibility: boolean;
+  setHelpVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function UpperRightUI({
@@ -17,6 +19,8 @@ function UpperRightUI({
   setHelpClicked,
   settingsVisibility,
   setSettingsVisibility,
+  helpVisibility,
+  setHelpVisibility
 }: Props): JSX.Element {
   const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(
     "animate-pulse"
@@ -43,7 +47,18 @@ function UpperRightUI({
             setAnimateSpin(null);
             setTextOnDisplay("");
           }}
-          onClick={() => setSettingsVisibility((b) => !b)}
+          onClick={() => {
+
+            if (helpVisibility) {
+              setHelpVisibility(false);
+            }
+
+
+            setSettingsVisibility((b) => !b)
+            
+
+          
+          }}
         />
       </button>
       <button>
@@ -57,6 +72,8 @@ function UpperRightUI({
             if (settingsVisibility) {
               setSettingsVisibility(false);
             }
+
+            setHelpVisibility(b => !b)
           }}
           onMouseEnter={() => {
             setAnimatePulse("animate-pulse");

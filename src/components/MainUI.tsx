@@ -4,6 +4,7 @@ import Board from "./Board";
 import { useState, useEffect } from "react";
 import UpperLeftUI from "./UpperLeftUI";
 import UpperMiddleUI from "./UpperMiddleUI";
+import Help from "./Help";
 
 import { HeroObj } from "../utils/interfaces";
 import { Directions } from "../utils/interfaces";
@@ -108,6 +109,7 @@ function MainUI({}: Props): JSX.Element {
   const [textOnDisplay, setTextOnDisplay] = useState<string>("sampleText");
 
   const [settingsVisibility, setSettingsVisibility] = useState<boolean>(false);
+  const [helpVisibility, setHelpVisibility] = useState<boolean>(false);
 
   // let mql = window.matchMedia('(min-width: 600px)');
 
@@ -312,7 +314,7 @@ function MainUI({}: Props): JSX.Element {
   return (
     <div className="flex justify-center">
       {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
-      <div className="flex flex-col justify-center" style={{ height: "100vh" }}>
+      <div className="flex flex-col justify-center relative" style={{ height: "100vh" }}>
         <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay} />
 
         <div className="flex justify-between relative">
@@ -340,9 +342,15 @@ function MainUI({}: Props): JSX.Element {
             setHelpClicked={setHelpClicked}
             settingsVisibility={settingsVisibility}
             setSettingsVisibility={setSettingsVisibility}
-
+            helpVisibility={helpVisibility}
+            setHelpVisibility={setHelpVisibility}
           />
         </div>
+
+        {
+          helpVisibility ? <Help/> : null
+        }
+        
 
         <Board
           board={board}
@@ -355,6 +363,8 @@ function MainUI({}: Props): JSX.Element {
           enemiesDirections={enemiesDirections}
           settingsVisibility={settingsVisibility}
           setSettingsVisibility={setSettingsVisibility}
+          helpVisibility={helpVisibility}
+          setHelpVisibility={setHelpVisibility}
         />
         <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
 

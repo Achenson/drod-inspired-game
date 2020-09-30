@@ -10,34 +10,52 @@ interface Props {
   hero: HeroObj;
   enemies: Array<number | null>;
   currentTurn: number;
-  lastEnemyKilled: (number | null);
+  lastEnemyKilled: number | null;
   enemiesDirections: number[];
   settingsVisibility: boolean;
   setSettingsVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  helpVisibility: boolean;
+  setHelpVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, enemiesDirections, boardWidth, settingsVisibility, setSettingsVisibility }: Props): JSX.Element {
+function Board({
+  board,
+  boardSize,
+  hero,
+  enemies,
+  currentTurn,
+  lastEnemyKilled,
+  enemiesDirections,
+  boardWidth,
+  settingsVisibility,
+  setSettingsVisibility,
+  helpVisibility,
+  setHelpVisibility,
+}: Props): JSX.Element {
   // const boardWidth = boardSize * 32;
 
   return (
     <div
-    onClick={()=> {
+      onClick={() => {
+        if (settingsVisibility) {
+          setSettingsVisibility(false);
+        }
 
-      if(settingsVisibility) {
-        setSettingsVisibility(false)
-      }
-
-    }}
+        if (helpVisibility) {
+          setHelpVisibility(false);
+        }
+      }}
     >
-           <div
-      className={`grid grid-cols-${boardSize} col-gap-0`}
-      style={{ width: `${boardWidth}px`, height: `${boardWidth}px`, backgroundColor: "whitesmoke" }}
-    >
-   
-    </div>
+      <div
+        className={`grid grid-cols-${boardSize} col-gap-0`}
+        style={{
+          width: `${boardWidth}px`,
+          height: `${boardWidth}px`,
+          backgroundColor: "whitesmoke",
+        }}
+      ></div>
 
-
-        {/* <div
+      {/* <div
       className={`grid grid-cols-${boardSize} col-gap-0`}
       style={{ width: `${boardWidth}px`}}
     >
@@ -56,9 +74,7 @@ function Board({ board, boardSize, hero, enemies, currentTurn, lastEnemyKilled, 
         );
       })}
     </div> */}
-
     </div>
-  
   );
 }
 
