@@ -33,6 +33,7 @@ function UpperRightSettings_big({
   cancelVisibility,
   cancelHover,
   setCancelHover,
+  setTopScore
 
 }: PropsChildren): JSX.Element {
 
@@ -125,7 +126,10 @@ function UpperRightSettings_big({
       >
         <Confirm
           className={`h-6 cursor-pointer ${confirmHover}`}
-          onClick={toggleIcons}
+          onClick={() => {
+            (setTopScore as React.Dispatch<React.SetStateAction<string>>)("0")
+            toggleIcons()
+          }}
           onMouseEnter={() => {
             setTextOnDisplay("Confirm top score deletion");
             setConfirmHover("animate-pulse");

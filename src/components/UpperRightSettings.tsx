@@ -10,6 +10,7 @@ interface Props {
   setControlsVisibility: React.Dispatch<
     React.SetStateAction<"responsive" | "alwaysOn" | "alwaysOff">
   >;
+  setTopScore: string | React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface PropsChildren {
@@ -52,6 +53,7 @@ export interface PropsChildren {
 
   cancelHover: "animate-pulse" | null;
   setCancelHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+  setTopScore: string | React.Dispatch<React.SetStateAction<string>>;
 }
 
 function UpperRightSettings({
@@ -59,6 +61,7 @@ function UpperRightSettings({
   largeScreenRender,
   controlsVisibility,
   setControlsVisibility,
+  setTopScore
 }: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
@@ -155,6 +158,7 @@ function UpperRightSettings({
           setDeleteHover={setDeleteHover}
           setDeleteVisibility={setDeleteVisibility}
           toggleIcons={toggleIcons}
+          setTopScore={setTopScore}
         />
       ) : (
         <UpperRightSettings_big
@@ -182,6 +186,7 @@ function UpperRightSettings({
           setDeleteHover={setDeleteHover}
           setDeleteVisibility={setDeleteVisibility}
           toggleIcons={toggleIcons}
+          setTopScore={setTopScore}
         />
       )}
     </Fragment>

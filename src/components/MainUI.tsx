@@ -331,6 +331,7 @@ function MainUI({}: Props): JSX.Element {
               largeScreenRender={largeScreenRender}
               controlsVisibility={controlsVisibility}
               setControlsVisibility={setControlsVisibility}
+              setTopScore={setTopScore}
             />
           ) : null}
           <UpperRightUI
