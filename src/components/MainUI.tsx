@@ -368,10 +368,6 @@ function MainUI({}: Props): JSX.Element {
 
 
 
-       
-       
-
-
         <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
 
         {controlsRender ? 
@@ -419,7 +415,7 @@ function MainUI({}: Props): JSX.Element {
       {/* <Touch className="h-6"/>
       <Keyboard className="h-6"/> */}
        {
-          helpVisibility ? <Help boardWidth={boardWidth}/> : null
+          helpVisibility ? <Help boardWidth={boardWidth} largeScreenRender={largeScreenRender}/> : null
         }
     </div>
   );

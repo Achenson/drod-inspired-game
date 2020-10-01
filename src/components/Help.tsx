@@ -1,16 +1,49 @@
 import React from "react";
 
+import { useState, useEffect } from "react";
+
 interface Props {
   boardWidth: number;
+  largeScreenRender: boolean;
 }
 
-function Help({ boardWidth }: Props): JSX.Element {
+function Help({ boardWidth, largeScreenRender }: Props): JSX.Element {
+  let smallScreenSettings = {
+    width: `${boardWidth}px`,
+  };
+
+  let largeScreenSettings = {
+    width: `${boardWidth + 130}px`,
+  };
+
+  const [screenSettings, setScreenSettings] = useState(
+    (function initialScreenSettings() {
+      return largeScreenRender ? largeScreenSettings : smallScreenSettings;
+    })()
+  );
+
+    useEffect( () => {
+
+      if (largeScreenRender) {
+        setScreenSettings(largeScreenSettings)
+      }
+
+      if (!largeScreenRender) {
+        setScreenSettings(smallScreenSettings)
+      }
+
+
+    }, [largeScreenRender])
+
+
+
   return (
     <div className="flex flex-col justify-center">
       <div
-        className="bg-gray-200 border-black border-2 rounded-md my-2 text-sm px-1 py-1"
+        className="bg-gray-200 border-black border-2 rounded-md text-sm ml-1 px-1 py-1"
         style={{
-          width: `${boardWidth + 130}px`,
+          width: `${screenSettings.width}`,
+          // width: `${boardWidth + 130}px`,
           // height: `${boardWidth + 100}px`,
         }}
       >
@@ -30,22 +63,23 @@ function Help({ boardWidth }: Props): JSX.Element {
           survived).{" "}
         </p>
         <p>
-          BTOS' gameplay is turn-based. First goes the Hero's action - eight
-          directional movement, rotation or waiting. Moving into corners
-          (black tiles) is forbidden. Additionally you can go back one turn - a proper strategy, even after dying!
+          BTOS' gameplay is turn-based. First goes the Player's action - eight
+          directional movement, rotation or waiting. Moving into corners (black
+          tiles) is forbidden. Additionally you can go back one turn - a proper
+          strategy, even after dying!
         </p>
         <p className="mb-2">
           The enemies movement follows immediatelly - enemies will roam randomly
-          unless the Hero is in adjacent tile <i>after</i> Hero's action.
+          unless the Hero is in adjacent tile <i>after</i> Player's action.
           Then, after every second turn, new enemy arrives randomly at the edge
           of the board.
         </p>
         <p>
-          On the desktop the game is meant to be played using a keyboard. Controls:
-          move - <b>Numpad 1-4</b> & <b>6-9</b>, rotate - <b>Q</b> & <b>W</b>,
-          wait - <b>Numpad 5</b>, go back one turn - <b>R</b>, new game -{" "}
-          <b>N</b>. You can also enable control buttons inside settings (cog
-          icon).
+          On the desktop the game is meant to be played using keyboard.
+          Controls: move - <b>Numpad 1-4</b> & <b>6-9</b>, rotate - <b>Q</b> &{" "}
+          <b>W</b>, wait - <b>Numpad 5</b>, go back one turn - <b>R</b>, new
+          game - <b>N</b>. You can also enable button controls inside settings
+          (cog icon).
         </p>
       </div>
     </div>

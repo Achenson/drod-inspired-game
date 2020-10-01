@@ -98,7 +98,7 @@ toggle large screen mode or toggle always on?
 be default: green sound on icon?
 UpperRightSettings children - too many props??
 Touch * Keyboard btns -> save to localStorage?
-
+enable clickin/touch on Medal?
 
 
 // ((board[hero.heroPosition][0] === 0 ||
