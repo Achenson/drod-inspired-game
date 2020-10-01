@@ -314,6 +314,7 @@ function MainUI({}: Props): JSX.Element {
   return (
     <div className="flex justify-center">
       {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
+     
       <div className="flex flex-col justify-center relative" style={{ height: "100vh" }}>
         <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay} />
 
@@ -347,11 +348,9 @@ function MainUI({}: Props): JSX.Element {
           />
         </div>
 
-        {
-          helpVisibility ? <Help/> : null
-        }
+       
         
-
+        
         <Board
           board={board}
           boardSize={boardSize}
@@ -366,6 +365,13 @@ function MainUI({}: Props): JSX.Element {
           helpVisibility={helpVisibility}
           setHelpVisibility={setHelpVisibility}
         />
+
+
+
+       
+       
+
+
         <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
 
         {controlsRender ? 
@@ -412,6 +418,9 @@ function MainUI({}: Props): JSX.Element {
 
       {/* <Touch className="h-6"/>
       <Keyboard className="h-6"/> */}
+       {
+          helpVisibility ? <Help boardWidth={boardWidth}/> : null
+        }
     </div>
   );
 }
