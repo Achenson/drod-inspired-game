@@ -44,14 +44,14 @@ function Help({
       } ${largeScreenRender ? "" : "absolute"}`}
     >
       <div
-        className="bg-gray-200 border-black border-2 rounded-md text-sm ml-1 px-1 py-1"
+        className={`bg-gray-200 border-black border-2 rounded-md text-sm px-1 py-1 ${largeScreenRender ? "ml-1" : ""} `}
         style={{
           width: `${screenSettings.width}`,
           // width: `${boardWidth + 130}px`,
           // height: `${boardWidth + 100}px`,
         }}
       >
-        <p>
+        <p className="mb-2">
           Buggy Tomb of Seth is a puzzle roguelike game heavily inspired by{" "}
           <a
             href="https://en.wikipedia.org/wiki/Deadly_Rooms_of_Death"
@@ -66,7 +66,7 @@ function Help({
           personal best. Win medals - bronze/silver/gold (100/175/250 rounds
           survived).{" "}
         </p>
-        <p>
+        <p className="mb-2">
           BTOS' gameplay is turn-based. First goes the Player's action - eight
           directional movement, rotation or waiting. Moving into corners (black
           tiles) is forbidden. Additionally you can go back one turn - a proper

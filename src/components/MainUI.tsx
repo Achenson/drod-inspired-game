@@ -319,15 +319,7 @@ function MainUI({}: Props): JSX.Element {
             currentTurn={currentTurn}
             setTextOnDisplay={setTextOnDisplay}
           />
-          {settingsVisibility ? (
-            <UpperRightSettings
-              setTextOnDisplay={setTextOnDisplay}
-              largeScreenRender={largeScreenRender}
-              controlsVisibility={controlsVisibility}
-              setControlsVisibility={setControlsVisibility}
-              setTopScore={setTopScore}
-            />
-          ) : null}
+       
           <UpperRightUI
             setTextOnDisplay={setTextOnDisplay}
             helpClicked={helpClicked}
@@ -340,6 +332,16 @@ function MainUI({}: Props): JSX.Element {
         </div>
 
         <div className="relative">
+        {settingsVisibility ? (
+            <UpperRightSettings
+              setTextOnDisplay={setTextOnDisplay}
+              largeScreenRender={largeScreenRender}
+              controlsVisibility={controlsVisibility}
+              setControlsVisibility={setControlsVisibility}
+              setTopScore={setTopScore}
+            />
+          ) : null}
+
           {largeScreenRender ? null : (
             <Help
               boardWidth={boardWidth}

@@ -41,8 +41,8 @@ function UpperRightSettings_small({
 }: PropsChildren): JSX.Element {
   return (
     <div
-      className="flex mt-1 absolute right-0 border-2 border-black rounded-md bg-gray-200"
-      style={{ top: "3rem" }}
+      className="flex absolute right-0 border-2 border-black rounded-md bg-gray-200"
+    
     >
       <VolumeOFF
         className={`cursor-pointer h-6 ${soundHover}`}
