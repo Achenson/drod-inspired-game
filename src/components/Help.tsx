@@ -5,9 +5,14 @@ import { useState, useEffect } from "react";
 interface Props {
   boardWidth: number;
   largeScreenRender: boolean;
+  helpVisibility: boolean;
 }
 
-function Help({ boardWidth, largeScreenRender }: Props): JSX.Element {
+function Help({
+  boardWidth,
+  largeScreenRender,
+  helpVisibility,
+}: Props): JSX.Element {
   let smallScreenSettings = {
     width: `${boardWidth}px`,
   };
@@ -22,23 +27,22 @@ function Help({ boardWidth, largeScreenRender }: Props): JSX.Element {
     })()
   );
 
-    useEffect( () => {
+  useEffect(() => {
+    if (largeScreenRender) {
+      setScreenSettings(largeScreenSettings);
+    }
 
-      if (largeScreenRender) {
-        setScreenSettings(largeScreenSettings)
-      }
-
-      if (!largeScreenRender) {
-        setScreenSettings(smallScreenSettings)
-      }
-
-
-    }, [largeScreenRender])
-
-
+    if (!largeScreenRender) {
+      setScreenSettings(smallScreenSettings);
+    }
+  }, [largeScreenRender]);
 
   return (
-    <div className="flex flex-col justify-center">
+    <div
+      className={`flex flex-col justify-center z-50 ${
+        helpVisibility ? "visible" : "hidden"
+      } ${largeScreenRender ? "" : "absolute"}`}
+    >
       <div
         className="bg-gray-200 border-black border-2 rounded-md text-sm ml-1 px-1 py-1"
         style={{

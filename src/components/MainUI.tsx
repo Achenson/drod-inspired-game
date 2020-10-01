@@ -24,15 +24,12 @@ import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 import { ReactComponent as Touch } from "../svgs/touch.svg";
 import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
 
-
-
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
 import UpperRightUI from "./UpperRightUI";
 import UpperRightSettings from "./UpperRightSettings";
 import NewGameBtn from "./NewGameBtn";
 import TopDisplay from "./TopDisplay";
-
 
 interface Props {}
 
@@ -118,11 +115,11 @@ function MainUI({}: Props): JSX.Element {
 
   const [largeScreenRender, setLargeScreenRender] = useState<boolean>(false);
 
-  const [controlsVisibility, setControlsVisibility] = useState<("responsive"|"alwaysOn"|"alwaysOff")>("responsive")
+  const [controlsVisibility, setControlsVisibility] = useState<
+    "responsive" | "alwaysOn" | "alwaysOff"
+  >("responsive");
 
   const [controlsRender, setControlsRender] = useState<boolean>(true);
-
-
 
   useEffect(() => {
     function handleResizeWindow() {
@@ -143,31 +140,22 @@ function MainUI({}: Props): JSX.Element {
     };
   }, [windowWidth]);
 
-  useEffect( () => {
-
-    if(controlsVisibility === "responsive") {
-
-      largeScreenRender ? setControlsRender(false) : setControlsRender(true)
-
+  useEffect(() => {
+    if (controlsVisibility === "responsive") {
+      largeScreenRender ? setControlsRender(false) : setControlsRender(true);
     }
 
-    if(controlsVisibility === "alwaysOn") {
+    if (controlsVisibility === "alwaysOn") {
       // console.log("Onnnnn");
-      
-      setControlsRender(true)
+
+      setControlsRender(true);
     }
 
-    if(controlsVisibility === "alwaysOff") {
+    if (controlsVisibility === "alwaysOff") {
       // console.log("OFFFF");
-      setControlsRender(false)
+      setControlsRender(false);
     }
-
-
-  }, [controlsVisibility, largeScreenRender])
-
-
-
-
+  }, [controlsVisibility, largeScreenRender]);
 
   let oTB = oneTurnBack;
 
@@ -314,8 +302,10 @@ function MainUI({}: Props): JSX.Element {
   return (
     <div className="flex justify-center">
       {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
-     
-      <div className="flex flex-col justify-center relative" style={{ height: "100vh" }}>
+      <div
+        className="flex flex-col justify-center relative"
+        style={{ height: "100vh" }}
+      >
         <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay} />
 
         <div className="flex justify-between relative">
@@ -330,7 +320,8 @@ function MainUI({}: Props): JSX.Element {
             setTextOnDisplay={setTextOnDisplay}
           />
           {settingsVisibility ? (
-            <UpperRightSettings setTextOnDisplay={setTextOnDisplay}
+            <UpperRightSettings
+              setTextOnDisplay={setTextOnDisplay}
               largeScreenRender={largeScreenRender}
               controlsVisibility={controlsVisibility}
               setControlsVisibility={setControlsVisibility}
@@ -348,31 +339,33 @@ function MainUI({}: Props): JSX.Element {
           />
         </div>
 
-       
-        
-        
-        <Board
-          board={board}
-          boardSize={boardSize}
-          boardWidth={boardWidth}
-          hero={hero}
-          enemies={enemies}
-          currentTurn={currentTurn}
-          lastEnemyKilled={lastEnemyKilled}
-          enemiesDirections={enemiesDirections}
-          settingsVisibility={settingsVisibility}
-          setSettingsVisibility={setSettingsVisibility}
-          helpVisibility={helpVisibility}
-          setHelpVisibility={setHelpVisibility}
-        />
-
-
+        <div className="relative">
+          {largeScreenRender ? null : (
+            <Help
+              boardWidth={boardWidth}
+              largeScreenRender={largeScreenRender}
+              helpVisibility={helpVisibility}
+            />
+          )}
+          <Board
+            board={board}
+            boardSize={boardSize}
+            boardWidth={boardWidth}
+            hero={hero}
+            enemies={enemies}
+            currentTurn={currentTurn}
+            lastEnemyKilled={lastEnemyKilled}
+            enemiesDirections={enemiesDirections}
+            settingsVisibility={settingsVisibility}
+            setSettingsVisibility={setSettingsVisibility}
+            helpVisibility={helpVisibility}
+            setHelpVisibility={setHelpVisibility}
+          />
+        </div>
 
         <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
 
-        {controlsRender ? 
-
-          (
+        {controlsRender ? (
           <div
             className="flex justify-between"
             style={{ width: `${boardWidth}` }}
@@ -389,9 +382,7 @@ function MainUI({}: Props): JSX.Element {
               setTextOnDisplay={setTextOnDisplay}
             />
           </div>
-        ) : null
-        
-        }
+        ) : null}
 
         {/* <ArrowUp className="h-6"/>
       <Rewind className="h-4"/>
@@ -411,12 +402,15 @@ function MainUI({}: Props): JSX.Element {
       <Desktop className="h-6" />
       <Cancel className="h-6" />
       <Confirm className="h-6" /> */}
-
       {/* <Touch className="h-6"/>
       <Keyboard className="h-6"/> */}
-       {
-          helpVisibility ? <Help boardWidth={boardWidth} largeScreenRender={largeScreenRender}/> : null
-        }
+      {largeScreenRender ? (
+        <Help
+          boardWidth={boardWidth}
+          largeScreenRender={largeScreenRender}
+          helpVisibility={helpVisibility}
+        />
+      ) : null}
     </div>
   );
 }
