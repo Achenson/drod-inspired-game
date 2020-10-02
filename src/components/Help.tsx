@@ -52,6 +52,7 @@ function Help({
       className={`flex flex-col justify-center z-50 ${
         helpVisibility ? "visible" : "hidden"
       } ${largeScreenRender ? "" : "absolute"}`}
+      style={{marginBottom: "1.7rem"}}
     >
       <div
         className={`bg-gray-200 border-black border-2 rounded-md text-sm px-1 py-1 ${largeScreenRender ? "ml-1" : ""} `}
