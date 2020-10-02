@@ -102,7 +102,7 @@ enable clickin/touch on Medal?
 change Help positioning if control buttons are visible in largeRenderMode - still not perfect
 DONE !!! toggle setting after resizing down !!! DONE
 make useMemo notes (Help)
-
+make Help less wide??
 
 // ((board[hero.heroPosition][0] === 0 ||
     //   board[hero.swordPosition][0] === 0) &&

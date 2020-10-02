@@ -25,7 +25,7 @@ function Help({
  
   let largeScreenSettings = useMemo( () => {
     return {
-      width: `${boardWidth + 130}px`,
+      width: `${boardWidth + 90}px`,
     } 
   }, [boardWidth])
 
@@ -52,7 +52,7 @@ function Help({
       className={`flex flex-col justify-center z-50 ${
         helpVisibility ? "visible" : "hidden"
       } ${largeScreenRender ? "" : "absolute"}`}
-      style={{marginBottom: "1.7rem"}}
+      style={{marginBottom: "0.75rem"}}
     >
       <div
         className={`bg-gray-200 border-black border-2 rounded-md text-sm px-1 py-1 ${largeScreenRender ? "ml-1" : ""} `}
