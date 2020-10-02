@@ -157,6 +157,9 @@ function MainUI({}: Props): JSX.Element {
     }
   }, [controlsVisibility, largeScreenRender]);
 
+
+
+
   let oTB = oneTurnBack;
 
   function handleKeyDown(event: KeyboardEvent) {
@@ -328,6 +331,7 @@ function MainUI({}: Props): JSX.Element {
             setSettingsVisibility={setSettingsVisibility}
             helpVisibility={helpVisibility}
             setHelpVisibility={setHelpVisibility}
+            largeScreenRender={largeScreenRender}
           />
         </div>
 
@@ -360,8 +364,6 @@ function MainUI({}: Props): JSX.Element {
             enemiesDirections={enemiesDirections}
             settingsVisibility={settingsVisibility}
             setSettingsVisibility={setSettingsVisibility}
-            helpVisibility={helpVisibility}
-            setHelpVisibility={setHelpVisibility}
           />
         </div>
 

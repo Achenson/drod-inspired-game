@@ -11,6 +11,7 @@ interface Props {
   setSettingsVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   helpVisibility: boolean;
   setHelpVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  largeScreenRender: boolean;
 }
 
 function UpperRightUI({
@@ -20,7 +21,8 @@ function UpperRightUI({
   settingsVisibility,
   setSettingsVisibility,
   helpVisibility,
-  setHelpVisibility
+  setHelpVisibility,
+  largeScreenRender
 }: Props): JSX.Element {
   const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(
     "animate-pulse"
@@ -49,7 +51,7 @@ function UpperRightUI({
           }}
           onClick={() => {
 
-            if (helpVisibility) {
+            if (helpVisibility && !largeScreenRender) {
               setHelpVisibility(false);
             }
 
@@ -69,7 +71,7 @@ function UpperRightUI({
               "true"
             );
 
-            if (settingsVisibility) {
+            if (settingsVisibility && !largeScreenRender) {
               setSettingsVisibility(false);
             }
 

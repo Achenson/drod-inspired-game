@@ -99,6 +99,9 @@ be default: green sound on icon?
 UpperRightSettings children - too many props??
 Touch * Keyboard btns -> save to localStorage?
 enable clickin/touch on Medal?
+change Help positioning if control buttons are visible in largeRenderMode
+!!! toggle setting after resizing down !!!
+make useMemo notes (Help)
 
 
 // ((board[hero.heroPosition][0] === 0 ||

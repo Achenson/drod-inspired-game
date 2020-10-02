@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 interface Props {
   boardWidth: number;
@@ -13,13 +13,23 @@ function Help({
   largeScreenRender,
   helpVisibility,
 }: Props): JSX.Element {
-  let smallScreenSettings = {
-    width: `${boardWidth}px`,
-  };
 
-  let largeScreenSettings = {
-    width: `${boardWidth + 130}px`,
-  };
+
+
+  let smallScreenSettings = useMemo( () => {
+    return {
+      width: `${boardWidth}px`,
+    } 
+  }, [boardWidth])
+  
+ 
+  let largeScreenSettings = useMemo( () => {
+    return {
+      width: `${boardWidth + 130}px`,
+    } 
+  }, [boardWidth])
+
+ 
 
   const [screenSettings, setScreenSettings] = useState(
     (function initialScreenSettings() {
@@ -35,7 +45,7 @@ function Help({
     if (!largeScreenRender) {
       setScreenSettings(smallScreenSettings);
     }
-  }, [largeScreenRender]);
+  }, [largeScreenRender, smallScreenSettings, largeScreenSettings]);
 
   return (
     <div
@@ -56,6 +66,7 @@ function Help({
           <a
             href="https://en.wikipedia.org/wiki/Deadly_Rooms_of_Death"
             target="_blank"
+            rel="noopener noreferrer"
             className="text-blue-500 underline hover:no-underline"
           >
             Deadly Rooms of Death.

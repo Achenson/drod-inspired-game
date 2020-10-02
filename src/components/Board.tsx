@@ -14,8 +14,6 @@ interface Props {
   enemiesDirections: number[];
   settingsVisibility: boolean;
   setSettingsVisibility: React.Dispatch<React.SetStateAction<boolean>>;
-  helpVisibility: boolean;
-  setHelpVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Board({
@@ -29,8 +27,6 @@ function Board({
   boardWidth,
   settingsVisibility,
   setSettingsVisibility,
-  helpVisibility,
-  setHelpVisibility,
 }: Props): JSX.Element {
   // const boardWidth = boardSize * 32;
 
@@ -39,10 +35,6 @@ function Board({
       onClick={() => {
         if (settingsVisibility) {
           setSettingsVisibility(false);
-        }
-
-        if (helpVisibility) {
-          setHelpVisibility(false);
         }
       }}
     >
