@@ -8,6 +8,7 @@ import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 
 import { ReactComponent as Touch } from "../svgs/touch.svg";
 import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
+import { ReactComponent as Cursor } from "../svgs/cursor.svg";
 
 import { PropsChildren } from "./UpperRightSettings";
 
@@ -59,12 +60,12 @@ function UpperRightSettings_big({
       </div>
 
       <div className="flex">
-        <Touch
+        <Cursor
           className={`cursor-pointer h-6 ${touchHover} ${
             touchClicked ? "bg-green-500" : ""
           } mb-2`}
           onMouseEnter={() => {
-            setTextOnDisplay(`Touch mode responsive/always on`);
+            setTextOnDisplay(`Pointer mode (controls always on)`);
             setTouchHover("animate-pulse");
           }}
           onMouseLeave={() => {
@@ -78,7 +79,7 @@ function UpperRightSettings_big({
             setTouchClicked((b) => !b);
           }}
         />
-        <p className="text-sm ml-2">Touch mode responsive/always on</p>
+        <p className="text-sm ml-2">Pointer mode (controls always on)</p>
       </div>
 
       <div className="flex">
@@ -87,7 +88,7 @@ function UpperRightSettings_big({
             keyboardClicked ? "bg-green-500" : ""
           } mb-2`}
           onMouseEnter={() => {
-            setTextOnDisplay(`Keyboard mode responsive/always on`);
+            setTextOnDisplay(`Keyboard mode (controls always off)`);
             setKeyboardHover("animate-pulse");
           }}
           onMouseLeave={() => {
@@ -101,7 +102,7 @@ function UpperRightSettings_big({
             setKeyboardClicked((b) => !b);
           }}
         />
-        <p className="text-sm ml-2">Keyboard mode responsive/always on</p>
+        <p className="text-sm ml-2">Keyboard mode (controls always off)</p>
       </div>
 
       <div className={`flex ${deleteVisibility ? "visible" : "hidden"}`}>

@@ -8,6 +8,7 @@ import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 
 import { ReactComponent as Touch } from "../svgs/touch.svg";
 import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
+import { ReactComponent as Cursor } from "../svgs/cursor.svg";
 
 import {PropsChildren} from "./UpperRightSettings";
 
@@ -56,12 +57,12 @@ function UpperRightSettings_small({
         }}
       />
 
-      <Touch
+      <Cursor
         className={`cursor-pointer h-6 ${touchHover} ${
           touchClicked ? "bg-green-500" : ""
         }`}
         onMouseEnter={() => {
-          setTextOnDisplay(`Touch mode responsive/always on`);
+          setTextOnDisplay(`Pointer mode (controls always on)`);
           setTouchHover("animate-pulse");
         }}
         onMouseLeave={() => {
@@ -80,7 +81,7 @@ function UpperRightSettings_small({
           keyboardClicked ? "bg-green-500" : ""
         }`}
         onMouseEnter={() => {
-          setTextOnDisplay(`Keyboard mode responsive/always on`);
+          setTextOnDisplay(`Keyboard mode (controls always off)`);
           setKeyboardHover("animate-pulse");
         }}
         onMouseLeave={() => {
