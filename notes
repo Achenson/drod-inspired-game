@@ -103,6 +103,9 @@ change Help positioning if control buttons are visible in largeRenderMode - stil
 DONE !!! toggle setting after resizing down !!! DONE
 make useMemo notes (Help)
 make Help less wide??
+UpperRightSettings big * small -> unify code somehow
+red bg on sound icon when on
+no display text on setting when on small screen
 
 // ((board[hero.heroPosition][0] === 0 ||
     //   board[hero.swordPosition][0] === 0) &&
