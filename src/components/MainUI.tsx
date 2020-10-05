@@ -31,16 +31,26 @@ import UpperRightSettings from "./UpperRightSettings";
 import NewGameBtn from "./NewGameBtn";
 import TopDisplay from "./TopDisplay";
 
+// using import for mp3 not working in typescript??!
+
 
 const topScore_audio = require("../mp3/award_nylon_plucked.mp3")
-
-
-
+const medal_audio = require("../mp3/retro_fanfare.mp3")
+const death_audio = require("../mp3/bite_munch.mp3")
+const enemyKilled_audio = require("../mp3/impact_sword_hit.mp3")
+const forbiddenMove_audio = require("../mp3/game_error.mp3")
 
 
 const topScore_mp3 = new Audio(topScore_audio)
-// importing mp3 not working in typescript
-// const topScore_sound = require("../mp3/award_nylon_plucked.mp3");
+const medal_mp3 = new Audio(medal_audio)
+const death_mp3 = new Audio(death_audio)
+const enemyKilled_mp3 = new Audio(enemyKilled_audio)
+const forbiddenMove_mp3 = new Audio(forbiddenMove_audio)
+
+
+
+
+
 
 interface Props {}
 
@@ -51,9 +61,9 @@ function MainUI({}: Props): JSX.Element {
   
 
 
-  function playAudio(audioVar: HTMLAudioElement) {
-    audioVar.play()
-  }
+  // function playAudio(audioVar: HTMLAudioElement) {
+  //   audioVar.play()
+  // }
 
 
 
@@ -225,7 +235,8 @@ function MainUI({}: Props): JSX.Element {
       case "Numpad8":
         console.log("numpad 8");
         heroMovement(Directions.n);
-        playAudio(topScore_mp3);
+        // playAudio(topScore_mp3);
+        topScore_mp3.play();
 
         break;
       case "Numpad9":
