@@ -61,9 +61,9 @@ function MainUI({}: Props): JSX.Element {
   
 
 
-  // function playAudio(audioVar: HTMLAudioElement) {
-  //   audioVar.play()
-  // }
+  function playAudio(audioVar: HTMLAudioElement) {
+    audioVar.play()
+  }
 
 
 
@@ -236,7 +236,7 @@ function MainUI({}: Props): JSX.Element {
         console.log("numpad 8");
         heroMovement(Directions.n);
         // playAudio(topScore_mp3);
-        topScore_mp3.play();
+        // topScore_mp3.play();
 
         break;
       case "Numpad9":
@@ -309,7 +309,9 @@ function MainUI({}: Props): JSX.Element {
       setTopScore,
       enemiesDirections,
       setEnemiesDirections,
-      setTextOnDisplay
+      setTextOnDisplay,
+      playAudio,
+      topScore_mp3
     );
   }
 

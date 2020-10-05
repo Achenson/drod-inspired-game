@@ -1,8 +1,12 @@
+
+
 export default function makeRecordScore(
   currentTurn: number,
   topScore: string | React.Dispatch<React.SetStateAction<string>>,
   setTopScore: string | React.Dispatch<React.SetStateAction<string>>,
-  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
+  playAudio: (audioVar: HTMLAudioElement) => void,
+  topScore_mp3: HTMLAudioElement
 ) {
   if (currentTurn > parseInt(topScore as string)) {
     (setTopScore as React.Dispatch<React.SetStateAction<string>>)(
@@ -26,6 +30,7 @@ export default function makeRecordScore(
       setTextOnDisplay("New Record. Gold medal awarded!");
     } else {
       setTextOnDisplay("New Record!");
+      playAudio(topScore_mp3)
     }
   } else {
     setTextOnDisplay("No new record. Rewind or try again!");
