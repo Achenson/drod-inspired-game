@@ -31,9 +31,32 @@ import UpperRightSettings from "./UpperRightSettings";
 import NewGameBtn from "./NewGameBtn";
 import TopDisplay from "./TopDisplay";
 
+
+const topScore_audio = require("../mp3/award_nylon_plucked.mp3")
+
+
+
+
+
+const topScore_mp3 = new Audio(topScore_audio)
+// importing mp3 not working in typescript
+// const topScore_sound = require("../mp3/award_nylon_plucked.mp3");
+
 interface Props {}
 
+
+
 function MainUI({}: Props): JSX.Element {
+
+  
+
+
+  function playAudio(audioVar: HTMLAudioElement) {
+    audioVar.play()
+  }
+
+
+
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
 
@@ -202,6 +225,8 @@ function MainUI({}: Props): JSX.Element {
       case "Numpad8":
         console.log("numpad 8");
         heroMovement(Directions.n);
+        playAudio(topScore_mp3);
+
         break;
       case "Numpad9":
         console.log("numpad 9");
@@ -364,6 +389,8 @@ function MainUI({}: Props): JSX.Element {
             enemiesDirections={enemiesDirections}
             settingsVisibility={settingsVisibility}
             setSettingsVisibility={setSettingsVisibility}
+
+  
           />
         </div>
 

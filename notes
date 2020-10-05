@@ -106,6 +106,8 @@ make Help less wide??
 UpperRightSettings big * small -> unify code somehow
 red bg on sound icon when on
 no display text on setting when on small screen
+zapSplat acknowledgement (icons too??)
+
 
 // ((board[hero.heroPosition][0] === 0 ||
     //   board[hero.swordPosition][0] === 0) &&
