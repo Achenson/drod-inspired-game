@@ -11,6 +11,8 @@ interface Props {
     React.SetStateAction<"responsive" | "alwaysOn" | "alwaysOff">
   >;
   setTopScore: string | React.Dispatch<React.SetStateAction<string>>;
+  isAudioOn: boolean;
+  setIsAudioOn:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface PropsChildren {
@@ -54,6 +56,9 @@ export interface PropsChildren {
   cancelHover: "animate-pulse" | null;
   setCancelHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
   setTopScore: string | React.Dispatch<React.SetStateAction<string>>;
+
+  isAudioOn: boolean;
+  setIsAudioOn:   React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function UpperRightSettings({
@@ -61,7 +66,9 @@ function UpperRightSettings({
   largeScreenRender,
   controlsVisibility,
   setControlsVisibility,
-  setTopScore
+  setTopScore,
+  isAudioOn,
+  setIsAudioOn
 }: Props): JSX.Element {
   // const [volumeColor, setVolumeColor] = useState("text-black")
 
@@ -109,6 +116,7 @@ function UpperRightSettings({
     null
   );
   const [cancelHover, setCancelHover] = useState<"animate-pulse" | null>(null);
+
 
   useEffect(() => {
     if (touchClicked) {
@@ -159,6 +167,8 @@ function UpperRightSettings({
           setDeleteVisibility={setDeleteVisibility}
           toggleIcons={toggleIcons}
           setTopScore={setTopScore}
+          isAudioOn={isAudioOn}
+          setIsAudioOn={setIsAudioOn}
         />
       ) : (
         <UpperRightSettings_big
@@ -187,6 +197,8 @@ function UpperRightSettings({
           setDeleteVisibility={setDeleteVisibility}
           toggleIcons={toggleIcons}
           setTopScore={setTopScore}
+          isAudioOn={isAudioOn}
+              setIsAudioOn={setIsAudioOn}
         />
       )}
     </Fragment>

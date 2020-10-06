@@ -34,7 +34,9 @@ function UpperRightSettings_big({
   cancelVisibility,
   cancelHover,
   setCancelHover,
-  setTopScore
+  setTopScore,
+  isAudioOn,
+  setIsAudioOn
 
 }: PropsChildren): JSX.Element {
 
@@ -46,7 +48,10 @@ function UpperRightSettings_big({
     >
       <div className="flex">
         <VolumeOFF
-          className={`cursor-pointer h-6 ${soundHover} mb-2`}
+          className={`cursor-pointer h-6 ${soundHover} mb-2 ${isAudioOn ? "" : "bg-red-500"}`}
+          onClick={() => {
+            setIsAudioOn(b=> !b)
+          }}
           onMouseEnter={() => {
             setTextOnDisplay("Sound On/Off");
             setSoundHover("animate-pulse");

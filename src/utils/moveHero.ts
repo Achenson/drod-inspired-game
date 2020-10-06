@@ -21,7 +21,8 @@ export default function moveHero(
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  playAudio: (audioVar: HTMLAudioElement) => void,
+  playAudio: (audioVar: HTMLAudioElement, isAudioOn: boolean) => void,
+  isAudioOn: boolean,
   topScore_mp3: HTMLAudioElement
 
 ) {
@@ -144,7 +145,7 @@ export default function moveHero(
     });
 
     setCurrentTurn((n) => n + 1);
-    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, playAudio, topScore_mp3);
+    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, playAudio, isAudioOn, topScore_mp3);
 
     return;
   }
@@ -183,6 +184,7 @@ export default function moveHero(
     setEnemiesDirections,
     setTextOnDisplay,
     playAudio,
+    isAudioOn,
     topScore_mp3
   );
 }

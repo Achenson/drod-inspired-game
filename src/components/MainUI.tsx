@@ -59,10 +59,13 @@ interface Props {}
 function MainUI({}: Props): JSX.Element {
 
   
+  const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
 
+  function playAudio(audioVar: HTMLAudioElement, isAudioOn: boolean) {
 
-  function playAudio(audioVar: HTMLAudioElement) {
-    audioVar.play()
+    if(isAudioOn) {
+      audioVar.play()
+    }
   }
 
 
@@ -235,7 +238,7 @@ function MainUI({}: Props): JSX.Element {
       case "Numpad8":
         console.log("numpad 8");
         heroMovement(Directions.n);
-        // playAudio(topScore_mp3);
+        playAudio(topScore_mp3, isAudioOn);
         // topScore_mp3.play();
 
         break;
@@ -311,7 +314,8 @@ function MainUI({}: Props): JSX.Element {
       setEnemiesDirections,
       setTextOnDisplay,
       playAudio,
-      topScore_mp3
+      isAudioOn,
+      topScore_mp3,
     );
   }
 
@@ -381,6 +385,8 @@ function MainUI({}: Props): JSX.Element {
               controlsVisibility={controlsVisibility}
               setControlsVisibility={setControlsVisibility}
               setTopScore={setTopScore}
+              isAudioOn={isAudioOn}
+              setIsAudioOn={setIsAudioOn}
             />
           ) : null}
 

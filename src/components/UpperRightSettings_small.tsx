@@ -36,7 +36,9 @@ function UpperRightSettings_small({
   cancelVisibility,
   cancelHover,
   setCancelHover,
-  setTopScore
+  setTopScore,
+  isAudioOn,
+  setIsAudioOn
 
 
 }: PropsChildren): JSX.Element {
@@ -46,7 +48,10 @@ function UpperRightSettings_small({
     
     >
       <VolumeOFF
-        className={`cursor-pointer h-6 ${soundHover}`}
+        className={`cursor-pointer h-6 ${soundHover} ${isAudioOn ? "" : "bg-red-500"}`}
+        onClick={() => {
+          setIsAudioOn(b=> !b)
+        }}
         onMouseEnter={() => {
           setTextOnDisplay("Sound On/Off");
           setSoundHover("animate-pulse");
