@@ -104,10 +104,11 @@ DONE !!! toggle setting after resizing down !!! DONE
 make useMemo notes (Help)
 make Help less wide??
 UpperRightSettings big * small -> unify code somehow
-red bg on sound icon when on
+DONE red bg on sound icon when on DONE
 no display text on setting when on small screen
 zapSplat acknowledgement (icons too??).
 too many functions nested inside functions (moveHero-> moveEnemies...)
+DONE "responsive" text size on topDisplay?? DONE
 
 
 // ((board[hero.heroPosition][0] === 0 ||
