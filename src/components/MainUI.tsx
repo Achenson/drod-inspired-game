@@ -316,7 +316,8 @@ function MainUI({}: Props): JSX.Element {
       playAudio,
       isAudioOn,
       topScore_mp3,
-      medal_mp3
+      medal_mp3,
+      death_mp3
     );
   }
 

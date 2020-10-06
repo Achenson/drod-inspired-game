@@ -9,6 +9,7 @@ export default function makeRecordScore(
   isAudioOn: boolean,
   topScore_mp3: HTMLAudioElement,
   medal_mp3: HTMLAudioElement,
+  death_mp3: HTMLAudioElement,
 ) {
   if (currentTurn > parseInt(topScore as string)) {
     (setTopScore as React.Dispatch<React.SetStateAction<string>>)(
@@ -39,5 +40,7 @@ export default function makeRecordScore(
     }
   } else {
     setTextOnDisplay("No new record. Rewind (R) or try again (N)!");
+    playAudio(death_mp3, isAudioOn)
+
   }
 }
