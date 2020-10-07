@@ -22,7 +22,7 @@ function UpperRightUI({
   setSettingsVisibility,
   helpVisibility,
   setHelpVisibility,
-  largeScreenRender
+  largeScreenRender,
 }: Props): JSX.Element {
   const [animatePulse, setAnimatePulse] = useState<"animate-pulse" | null>(
     "animate-pulse"
@@ -50,16 +50,14 @@ function UpperRightUI({
             setTextOnDisplay("");
           }}
           onClick={() => {
-
             if (helpVisibility && !largeScreenRender) {
               setHelpVisibility(false);
             }
 
-
-            setSettingsVisibility((b) => !b)
-            
-
-          
+            setSettingsVisibility((b) => !b);
+          }}
+          onTouchStart={() => {
+            setTextOnDisplay("Settings");
           }}
         />
       </button>
@@ -75,11 +73,11 @@ function UpperRightUI({
               setSettingsVisibility(false);
             }
 
-            setHelpVisibility(b => !b)
+            setHelpVisibility((b) => !b);
           }}
           onMouseEnter={() => {
             setAnimatePulse("animate-pulse");
-            setTextOnDisplay("Help");
+            setTextOnDisplay("Help & About");
           }}
           onMouseLeave={() => {
             // if (helpClicked === "true") {
@@ -87,6 +85,9 @@ function UpperRightUI({
             // }
 
             setTextOnDisplay("");
+          }}
+          onTouchStart={() => {
+            setTextOnDisplay("Help & About");
           }}
         />
       </button>

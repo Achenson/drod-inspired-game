@@ -109,7 +109,8 @@ no display text on setting when on small screen
 zapSplat acknowledgement (icons too??).
 too many functions nested inside functions (moveHero-> moveEnemies...)
 DONE "responsive" text size on topDisplay?? DONE
-test mp3: enemyKilled, swing (sword)
+test mp3: enemyKilled, swing (sword), movement & waiting
+welcome text on topDisplay
 
 
 // ((board[hero.heroPosition][0] === 0 ||

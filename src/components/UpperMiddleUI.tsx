@@ -7,14 +7,8 @@ interface Props {
 
 function UpperMiddleUI({ currentTurn, setTextOnDisplay }: Props): JSX.Element {
   return (
-    <div className="cursor-default "
-    
-    
-    >
-      <p
-      
-      
-      >Round</p>
+    <div className="cursor-default ">
+      <p>Round</p>
       <p
         className="text-center font-droid-serif text-lg hover:bg-gray-200 rounded"
         onMouseEnter={() => {
@@ -23,7 +17,9 @@ function UpperMiddleUI({ currentTurn, setTextOnDisplay }: Props): JSX.Element {
         onMouseLeave={() => {
           setTextOnDisplay("");
         }}
-
+        onTouchStart={() => {
+          setTextOnDisplay("Most Rounds Survived");
+        }}
       >
         {currentTurn}
       </p>

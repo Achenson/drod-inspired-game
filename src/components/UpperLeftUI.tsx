@@ -60,6 +60,9 @@ function UpperLeftUI({
           onMouseLeave={() => {
             setTextOnDisplay("");
           }}
+          onTouchStart={() => {
+            setTextOnDisplay("Most Rounds Survived");
+          }}
         >
           {topScore}
         </p>
@@ -72,6 +75,9 @@ function UpperLeftUI({
           }}
           onMouseLeave={() => {
             setTextOnDisplay("");
+          }}
+          onTouchStart={() => {
+            setTextOnDisplay(medalOnHoverText);
           }}
         />
 
