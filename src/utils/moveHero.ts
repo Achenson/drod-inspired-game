@@ -26,7 +26,8 @@ export default function moveHero(
   topScore_mp3: HTMLAudioElement,
   medal_mp3: HTMLAudioElement,
   death_mp3: HTMLAudioElement,
-  forbiddenMove_mp3: HTMLAudioElement
+  forbiddenMove_mp3: HTMLAudioElement,
+  enemyKilled_mp3: HTMLAudioElement
 ) {
   if (!hero.alive) {
     return;
@@ -169,10 +170,12 @@ export default function moveHero(
   let newEnemies = [...enemies];
   // killing enemies
   if (enemies.indexOf(swordIndexToMove) > -1) {
+    playAudio(enemyKilled_mp3, isAudioOn)
     newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
     setEnemies([...newEnemies]);
     setEnemiesKilled((n) => n + 1);
     setLastEnemiesKilled(swordIndexToMove);
+
   }
 
   setHero({

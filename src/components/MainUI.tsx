@@ -318,7 +318,8 @@ function MainUI({}: Props): JSX.Element {
       topScore_mp3,
       medal_mp3,
       death_mp3,
-      forbiddenMove_mp3
+      forbiddenMove_mp3,
+      enemyKilled_mp3
     );
   }
 
