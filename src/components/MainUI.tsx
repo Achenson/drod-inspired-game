@@ -33,42 +33,36 @@ import TopDisplay from "./TopDisplay";
 
 // using import for mp3 not working in typescript??!
 
-
-const topScore_audio = require("../mp3/award_nylon_plucked.mp3")
-const medal_audio = require("../mp3/retro_fanfare.mp3")
-const death_audio = require("../mp3/bite_munch.mp3")
-const enemyKilled_audio = require("../mp3/impact_sword_hit.mp3")
-const forbiddenMove_audio = require("../mp3/game_error.mp3")
-
-
-const topScore_mp3 = new Audio(topScore_audio)
-const medal_mp3 = new Audio(medal_audio)
-const death_mp3 = new Audio(death_audio)
-const enemyKilled_mp3 = new Audio(enemyKilled_audio)
-const forbiddenMove_mp3 = new Audio(forbiddenMove_audio)
+const topScore_audio = require("../mp3/award_nylon_plucked.mp3");
+const medal_audio = require("../mp3/retro_fanfare.mp3");
+const death_audio = require("../mp3/bite_munch.mp3");
+const enemyKilled_audio = require("../mp3/impact_sword_hit.mp3");
+const forbiddenMove_audio = require("../mp3/game_error.mp3");
+const swing_audio = require("../mp3/sabre_swing.mp3");
+const movement_audio = require("../mp3/single_step_heavy.mp3");
+const waiting_audio = require("../mp3/snore_single.mp3");
 
 
 
-
-
+const topScore_mp3 = new Audio(topScore_audio);
+const medal_mp3 = new Audio(medal_audio);
+const death_mp3 = new Audio(death_audio);
+const enemyKilled_mp3 = new Audio(enemyKilled_audio);
+const forbiddenMove_mp3 = new Audio(forbiddenMove_audio);
+const swing_mp3 = new Audio(swing_audio);
+const movement_mp3 = new Audio(movement_audio);
+const waiting_mp3 = new Audio(waiting_audio);
 
 interface Props {}
 
-
-
 function MainUI({}: Props): JSX.Element {
-
-  
   const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
 
   function playAudio(audioVar: HTMLAudioElement, isAudioOn: boolean) {
-
-    if(isAudioOn) {
-      audioVar.play()
+    if (isAudioOn) {
+      audioVar.play();
     }
   }
-
-
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -193,9 +187,6 @@ function MainUI({}: Props): JSX.Element {
     }
   }, [controlsVisibility, largeScreenRender]);
 
-
-
-
   let oTB = oneTurnBack;
 
   function handleKeyDown(event: KeyboardEvent) {
@@ -319,7 +310,10 @@ function MainUI({}: Props): JSX.Element {
       medal_mp3,
       death_mp3,
       forbiddenMove_mp3,
-      enemyKilled_mp3
+      enemyKilled_mp3,
+      swing_mp3,
+      movement_mp3,
+      waiting_mp3
     );
   }
 
@@ -368,7 +362,7 @@ function MainUI({}: Props): JSX.Element {
             currentTurn={currentTurn}
             setTextOnDisplay={setTextOnDisplay}
           />
-       
+
           <UpperRightUI
             setTextOnDisplay={setTextOnDisplay}
             helpClicked={helpClicked}
@@ -382,7 +376,7 @@ function MainUI({}: Props): JSX.Element {
         </div>
 
         <div className="relative">
-        {settingsVisibility ? (
+          {settingsVisibility ? (
             <UpperRightSettings
               setTextOnDisplay={setTextOnDisplay}
               largeScreenRender={largeScreenRender}
@@ -412,8 +406,6 @@ function MainUI({}: Props): JSX.Element {
             enemiesDirections={enemiesDirections}
             settingsVisibility={settingsVisibility}
             setSettingsVisibility={setSettingsVisibility}
-
-  
           />
         </div>
 

@@ -27,7 +27,10 @@ export default function moveHero(
   medal_mp3: HTMLAudioElement,
   death_mp3: HTMLAudioElement,
   forbiddenMove_mp3: HTMLAudioElement,
-  enemyKilled_mp3: HTMLAudioElement
+  enemyKilled_mp3: HTMLAudioElement,
+  swing_mp3: HTMLAudioElement,
+  movement_mp3: HTMLAudioElement,
+  waiting_mp3: HTMLAudioElement,
 ) {
   if (!hero.alive) {
     return;
@@ -64,6 +67,7 @@ export default function moveHero(
     // to change???
     let swordPositionToAdd: number = 0;
 
+    // rotation
     if (direction === 45) {
       if (
         indexOfRelativePosition ===
@@ -139,6 +143,16 @@ export default function moveHero(
     playAudio(forbiddenMove_mp3, isAudioOn);
     return;
   }
+
+  // play audio if rotating in not forbidden
+  if (direction === 45 || direction === -45) {
+    playAudio(swing_mp3, isAudioOn)
+  } else if (direction === 0) {
+    playAudio(waiting_mp3, isAudioOn)
+  } else {
+    playAudio(movement_mp3, isAudioOn)
+  }
+
 
   let aliveBoolean = true;
 
