@@ -26,6 +26,7 @@ export default function moveHero(
   topScore_mp3: HTMLAudioElement,
   medal_mp3: HTMLAudioElement,
   death_mp3: HTMLAudioElement,
+  forbiddenMove_mp3: HTMLAudioElement
 ) {
   if (!hero.alive) {
     return;
@@ -93,6 +94,7 @@ export default function moveHero(
   const corners = [0, 8, 72, 80];
 
   if (corners.indexOf(heroIndexToMove) > -1) {
+    playAudio(forbiddenMove_mp3, isAudioOn);
     return;
   }
 
@@ -103,6 +105,7 @@ export default function moveHero(
     heroIndexToMove > boardSize * boardSize - 1 ||
     swordIndexToMove > boardSize * boardSize - 1
   ) {
+    playAudio(forbiddenMove_mp3, isAudioOn);
     return;
   }
 
@@ -118,6 +121,7 @@ export default function moveHero(
       (direction === 10 || direction === 1 || direction === -8))
   ) {
     console.log("OUT");
+    playAudio(forbiddenMove_mp3, isAudioOn);
     return;
   }
 
@@ -131,6 +135,7 @@ export default function moveHero(
       direction === -45)
   ) {
     console.log("OUT");
+    playAudio(forbiddenMove_mp3, isAudioOn);
     return;
   }
 
@@ -146,7 +151,17 @@ export default function moveHero(
     });
 
     setCurrentTurn((n) => n + 1);
-    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, playAudio, isAudioOn, topScore_mp3, medal_mp3, death_mp3);
+    makeTopScore(
+      currentTurn,
+      topScore,
+      setTopScore,
+      setTextOnDisplay,
+      playAudio,
+      isAudioOn,
+      topScore_mp3,
+      medal_mp3,
+      death_mp3
+    );
 
     return;
   }
