@@ -92,26 +92,26 @@ DEV mode: Board -> div commented out
 check if merriweather font works -> app title?
 top score: change string to number type?
 silver medal not visible enough?
-different upper UI for big and small screens??
+XXX different upper UI for big and small screens?? XXX
 change UI from black to violet?
 toggle large screen mode or toggle always on?
 be default: green sound on icon?
 UpperRightSettings children - too many props??
 Touch * Keyboard btns -> save to localStorage?
-enable clickin/touch on Medal?
+DONe enable clickin/touch on Upper UI? DONE
 change Help positioning if control buttons are visible in largeRenderMode - still not perfect
 DONE !!! toggle setting after resizing down !!! DONE
 make useMemo notes (Help)
 make Help less wide??
 UpperRightSettings big * small -> unify code somehow
 DONE red bg on sound icon when on DONE
-no display text on setting when on small screen
+DONE no display text on setting when on small screen DONE
 zapSplat acknowledgement (icons too??).
 too many functions nested inside functions (moveHero-> moveEnemies...)
 DONE "responsive" text size on topDisplay?? DONE
 test mp3: enemyKilled, swing (sword), movement & waiting
 welcome text on topDisplay
-
+test BTN  -> NEW GAME
 
 // ((board[hero.heroPosition][0] === 0 ||
     //   board[hero.swordPosition][0] === 0) &&

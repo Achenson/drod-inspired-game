@@ -53,11 +53,9 @@ function UpperRightSettings_big({
             setIsAudioOn(b=> !b)
           }}
           onMouseEnter={() => {
-            setTextOnDisplay("Sound On/Off");
             setSoundHover("animate-pulse");
           }}
           onMouseLeave={() => {
-            setTextOnDisplay("");
             setSoundHover(null);
           }}
         />
@@ -70,11 +68,9 @@ function UpperRightSettings_big({
             touchClicked ? "bg-green-500" : ""
           } mb-2`}
           onMouseEnter={() => {
-            setTextOnDisplay(`Pointer mode (controls always on)`);
             setTouchHover("animate-pulse");
           }}
           onMouseLeave={() => {
-            setTextOnDisplay("");
             setTouchHover(null);
           }}
           onClick={() => {
@@ -93,11 +89,9 @@ function UpperRightSettings_big({
             keyboardClicked ? "bg-green-500" : ""
           } mb-2`}
           onMouseEnter={() => {
-            setTextOnDisplay(`Keyboard mode (controls always off)`);
             setKeyboardHover("animate-pulse");
           }}
           onMouseLeave={() => {
-            setTextOnDisplay("");
             setKeyboardHover(null);
           }}
           onClick={() => {
@@ -115,11 +109,9 @@ function UpperRightSettings_big({
           className={`h-6 cursor-pointer  ${deleteHover}`}
           onClick={toggleIcons}
           onMouseEnter={() => {
-            setTextOnDisplay("Delete top score");
             setDeleteHover("animate-pulse");
           }}
           onMouseLeave={() => {
-            setTextOnDisplay("");
             setDeleteHover(null);
           }}
         />
@@ -137,11 +129,9 @@ function UpperRightSettings_big({
             toggleIcons()
           }}
           onMouseEnter={() => {
-            setTextOnDisplay("Confirm top score deletion");
             setConfirmHover("animate-pulse");
           }}
           onMouseLeave={() => {
-            setTextOnDisplay("");
             setConfirmHover(null);
           }}
         />
@@ -151,11 +141,9 @@ function UpperRightSettings_big({
         `}
           onClick={toggleIcons}
           onMouseEnter={() => {
-            setTextOnDisplay("Cancel");
             setCancelHover("animate-pulse");
           }}
           onMouseLeave={() => {
-            setTextOnDisplay("");
             setCancelHover(null);
           }}
         />
