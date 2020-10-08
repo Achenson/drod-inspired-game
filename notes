@@ -106,12 +106,14 @@ make Help less wide??
 UpperRightSettings big * small -> unify code somehow
 DONE red bg on sound icon when on DONE
 DONE no display text on setting when on small screen DONE
-zapSplat acknowledgement (icons too??).
+DONE zapSplat acknowledgement. DONE
+ICONS used: https://www.iconpacks.net/ https://uxwing.com/  https://heroicons.com/
 too many functions nested inside functions (moveHero-> moveEnemies...)
 DONE "responsive" text size on topDisplay?? DONE
 test mp3: enemyKilled, swing (sword), movement & waiting
 welcome text on topDisplay
 test BTN  -> NEW GAME
+
 
 // ((board[hero.heroPosition][0] === 0 ||
     //   board[hero.swordPosition][0] === 0) &&

@@ -13,23 +13,17 @@ function Help({
   largeScreenRender,
   helpVisibility,
 }: Props): JSX.Element {
-
-
-
-  let smallScreenSettings = useMemo( () => {
+  let smallScreenSettings = useMemo(() => {
     return {
-      width: `${boardWidth}px`,
-    } 
-  }, [boardWidth])
-  
- 
-  let largeScreenSettings = useMemo( () => {
-    return {
-      width: `${boardWidth + 90}px`,
-    } 
-  }, [boardWidth])
+      width: `${boardWidth+20}px`,
+    };
+  }, [boardWidth]);
 
- 
+  let largeScreenSettings = useMemo(() => {
+    return {
+      width: `${boardWidth + 110}px`,
+    };
+  }, [boardWidth]);
 
   const [screenSettings, setScreenSettings] = useState(
     (function initialScreenSettings() {
@@ -52,10 +46,12 @@ function Help({
       className={`flex flex-col justify-center z-50 ${
         helpVisibility ? "visible" : "hidden"
       } ${largeScreenRender ? "" : "absolute"}`}
-      style={{marginBottom: "0.75rem"}}
+      style={{ marginBottom: "0.75rem" }}
     >
       <div
-        className={`bg-gray-200 border-black border-2 rounded-md text-sm px-1 py-1 ${largeScreenRender ? "ml-1" : ""} `}
+        className={`bg-gray-200 border-black border-2 rounded-md text-sm px-1 py-1 ${
+          largeScreenRender ? "ml-1" : "-ml-2"
+        } `}
         style={{
           width: `${screenSettings.width}`,
           // width: `${boardWidth + 130}px`,
@@ -90,12 +86,23 @@ function Help({
           Then, after every second turn, new enemy arrives randomly at the edge
           of the board.
         </p>
-        <p>
+        <p className="mb-2">
           On the desktop the game is meant to be played using keyboard.
           Controls: move - <b>Numpad 1-4</b> & <b>6-9</b>, rotate - <b>Q</b> &{" "}
           <b>W</b>, wait - <b>Numpad 5</b>, go back one turn - <b>R</b>, new
           game - <b>N</b>. You can also enable button controls inside settings
           (cog icon).
+        </p>
+        <p className="text-xs text-center">
+          SFX obtained from {" "}
+          <a
+            href="https://www.zapsplat.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 underline hover:no-underline"
+          >
+            https://www.zapsplat.com/
+          </a>
         </p>
       </div>
     </div>
