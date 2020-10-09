@@ -1,17 +1,16 @@
 import React from "react";
-import {useState} from "react";
 
 import { ReactComponent as Medal } from "../svgs/medal.svg";
 
 interface Props {
-  enemiesKilled: number;
+  // enemiesKilled: number;
   topScore: string | React.Dispatch<React.SetStateAction<string>>;
   enemies: number[];
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function UpperLeftUI({
-  enemiesKilled,
+  // enemiesKilled,
   topScore,
   enemies,
   setTextOnDisplay,

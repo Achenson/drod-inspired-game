@@ -8,7 +8,7 @@ export default function moveHero(
   direction: Directions,
   setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
   setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
-  setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>,
+  // setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>,
   currentTurn: number,
   setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
   hero: HeroObj,
@@ -187,7 +187,7 @@ export default function moveHero(
     playAudio(enemyKilled_mp3, isAudioOn)
     newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
     setEnemies([...newEnemies]);
-    setEnemiesKilled((n) => n + 1);
+    // setEnemiesKilled((n) => n + 1);
     setLastEnemiesKilled(swordIndexToMove);
 
   }

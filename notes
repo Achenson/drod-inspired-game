@@ -84,8 +84,8 @@ setting topScore not only on death?
 Tile -> better code, too many "hidden" settings, new file for CSS objects?
 round the hero div?
 XXX better svg for waiting?XXX
-svg sizes
-delete enemies killed in MainUI
+svg sizes ( ? )
+DONE delete enemies killed in MainUI DONE
 X new game confirmation? X
 X controls -> light out when move not possible? X
 DEV mode: Board -> div commented out
@@ -94,15 +94,15 @@ top score: change string to number type?
 silver medal not visible enough?
 XXX different upper UI for big and small screens?? XXX
 change UI from black to violet?
-toggle large screen mode or toggle always on?
-be default: green sound on icon?
+XXX toggle large screen mode or toggle always on? XXX
+XXX be default: green sound on icon? XXX
 UpperRightSettings children - too many props??
 Touch * Keyboard btns -> save to localStorage?
 DONe enable clickin/touch on Upper UI? DONE
 change Help positioning if control buttons are visible in largeRenderMode - still not perfect
 DONE !!! toggle setting after resizing down !!! DONE
 make useMemo notes (Help)
-make Help less wide??
+DONE make Help less wide?? DONE
 UpperRightSettings big * small -> unify code somehow
 DONE red bg on sound icon when on DONE
 DONE no display text on setting when on small screen DONE

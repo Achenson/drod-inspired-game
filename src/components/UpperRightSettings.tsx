@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 
-import UpperRightSettings_small from "./UpperRightSettings_small";
-import UpperRightSettings_big from "./UpperRightSettings_big";
+import UpperRightSettingsSmall from "./UpperRightSettings_small";
+import UpperRightSettingsBig from "./UpperRightSettings_big";
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
@@ -141,7 +141,7 @@ function UpperRightSettings({
   return (
     <Fragment>
       {largeScreenRender ? (
-        <UpperRightSettings_small
+        <UpperRightSettingsSmall
           setTextOnDisplay={setTextOnDisplay}
           soundHover={soundHover}
           setSoundHover={setSoundHover}
@@ -171,7 +171,7 @@ function UpperRightSettings({
           setIsAudioOn={setIsAudioOn}
         />
       ) : (
-        <UpperRightSettings_big
+        <UpperRightSettingsBig
           setTextOnDisplay={setTextOnDisplay}
           soundHover={soundHover}
           setSoundHover={setSoundHover}

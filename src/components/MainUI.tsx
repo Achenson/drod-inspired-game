@@ -106,7 +106,7 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: 31,
   };
 
-  const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
+  // const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([...enemiesInitial]);
 
@@ -124,7 +124,7 @@ function MainUI({}: Props): JSX.Element {
     currentTurn: currentTurn,
     // record score is can't be restored
     // topScore: topScore,
-    enemiesKilled: enemiesKilled,
+    // enemiesKilled: enemiesKilled,
     enemies: [...enemies],
     enemiesDirections: [...enemiesDirections],
     lastEnemyKilled: lastEnemyKilled,
@@ -208,7 +208,7 @@ function MainUI({}: Props): JSX.Element {
         console.log("KeyR");
         setTextOnDisplay("");
         setCurrentTurn(oTB.currentTurn);
-        setEnemiesKilled(oTB.enemiesKilled);
+        // setEnemiesKilled(oTB.enemiesKilled);
         setEnemies([...oTB.enemies]);
         setEnemiesDirections([...oTB.enemiesDirections]);
         setLastEnemyKilled(oTB.lastEnemyKilled);
@@ -283,7 +283,7 @@ function MainUI({}: Props): JSX.Element {
       setOneTurnBack({
         currentTurn: currentTurn,
         // topScore: topScore,
-        enemiesKilled: enemiesKilled,
+        // enemiesKilled: enemiesKilled,
         enemies: [...enemies],
         enemiesDirections: [...enemiesDirections],
         lastEnemyKilled: lastEnemyKilled,
@@ -297,7 +297,7 @@ function MainUI({}: Props): JSX.Element {
       directionToMove,
       setHero,
       setEnemies,
-      setEnemiesKilled,
+      // setEnemiesKilled,
       currentTurn,
       setCurrentTurn,
       hero,
@@ -331,7 +331,7 @@ function MainUI({}: Props): JSX.Element {
     }
 
     setCurrentTurn(0);
-    setEnemiesKilled(0);
+    // setEnemiesKilled(0);
     setEnemies([...enemiesInitial]);
     setEnemiesDirections([...directionsInitial]);
     setLastEnemyKilled(null);
@@ -340,7 +340,7 @@ function MainUI({}: Props): JSX.Element {
       currentTurn: 0,
       // record score is can't be restored
       // topScore: topScore,
-      enemiesKilled: 0,
+      // enemiesKilled: 0,
       enemies: [...enemiesInitial],
       enemiesDirections: [...directionsInitial],
       lastEnemyKilled: null,
@@ -359,7 +359,7 @@ function MainUI({}: Props): JSX.Element {
 
         <div className="flex justify-between relative">
           <UpperLeftUI
-            enemiesKilled={enemiesKilled}
+            // enemiesKilled={enemiesKilled}
             topScore={topScore}
             enemies={enemies}
             setTextOnDisplay={setTextOnDisplay}
