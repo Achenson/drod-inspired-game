@@ -34,7 +34,8 @@ function UpperLeftUI({
   }
 
   if (topScoreInt >= 175 && topScoreInt < 250) {
-    medalColor = " #c0c0c0";
+    // medalColor = " #c0c0c0";
+    medalColor = "gray";
     medalOnHoverText = "Silver medal awarded";
   }
 
