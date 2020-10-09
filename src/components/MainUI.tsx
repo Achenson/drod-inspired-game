@@ -198,6 +198,10 @@ function MainUI({}: Props): JSX.Element {
       setSettingsVisibility(false);
     }
 
+    if(helpVisibility && !largeScreenRender) {
+      setHelpVisibility(false);
+    }
+
     switch (command) {
       // rewind one round back
       case "KeyR":

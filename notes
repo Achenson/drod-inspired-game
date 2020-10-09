@@ -114,7 +114,9 @@ test mp3: enemyKilled, swing (sword), movement & waiting
 welcome text on topDisplay
 test BTN  -> NEW GAME
 DONE reset display when controls are being used DONE
-no shortcuts in top display, when on small screen & no keyboard mode
+no shortcuts in top display, when on small screen & no keyboard mode\
+DONE Help should dissapear when moving (small screen only) DONE
+responsiveness -> not working on tablet horizontal currently
 
 
 
