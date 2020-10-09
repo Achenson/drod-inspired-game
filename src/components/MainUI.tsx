@@ -273,6 +273,8 @@ function MainUI({}: Props): JSX.Element {
       return;
     }
 
+    setTextOnDisplay("");
+
     if (currentTurn !== 0) {
       setOneTurnBack({
         currentTurn: currentTurn,

@@ -113,6 +113,10 @@ DONE "responsive" text size on topDisplay?? DONE
 test mp3: enemyKilled, swing (sword), movement & waiting
 welcome text on topDisplay
 test BTN  -> NEW GAME
+DONE reset display when controls are being used DONE
+no shortcuts in top display, when on small screen & no keyboard mode
+
+
 
 
 // ((board[hero.heroPosition][0] === 0 ||
