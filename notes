@@ -121,7 +121,7 @@ going back one turn -> new enemy should arrive at the same tile?
 hero is not being rendered properly on the lower tiles
 DONE hero kills not audible when one after the other DONE
 X New game / initial sound? x probably not - commented out
-change footstep sound?
+XXX change footstep sound? XXX
 
 
 
