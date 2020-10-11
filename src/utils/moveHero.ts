@@ -21,7 +21,7 @@ export default function moveHero(
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  playAudio: (audioVar: HTMLAudioElement, isAudioOn: boolean) => void,
+  playAudio: (audioVar: HTMLAudioElement, isAudioOn: boolean, shouldPreviousAudioStop?: boolean) => void,
   isAudioOn: boolean,
   topScore_mp3: HTMLAudioElement,
   medal_mp3: HTMLAudioElement,
@@ -184,7 +184,7 @@ export default function moveHero(
   let newEnemies = [...enemies];
   // killing enemies
   if (enemies.indexOf(swordIndexToMove) > -1) {
-    playAudio(enemyKilled_mp3, isAudioOn)
+    playAudio(enemyKilled_mp3, isAudioOn, true)
     newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
     setEnemies([...newEnemies]);
     // setEnemiesKilled((n) => n + 1);

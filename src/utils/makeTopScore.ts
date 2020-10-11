@@ -5,7 +5,7 @@ export default function makeRecordScore(
   topScore: string | React.Dispatch<React.SetStateAction<string>>,
   setTopScore: string | React.Dispatch<React.SetStateAction<string>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  playAudio: (audioVar: HTMLAudioElement, isAudioOn: boolean) => void,
+  playAudio: (audioVar: HTMLAudioElement, isAudioOn: boolean, shouldPreviousAudioStop?: boolean) => void,
   isAudioOn: boolean,
   topScore_mp3: HTMLAudioElement,
   medal_mp3: HTMLAudioElement,

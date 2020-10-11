@@ -111,7 +111,7 @@ ICONS used: https://www.iconpacks.net/ https://uxwing.com/  https://heroicons.co
 too many functions nested inside functions (moveHero-> moveEnemies...)
 DONE "responsive" text size on topDisplay?? DONE
 test mp3: enemyKilled, swing (sword), movement & waiting
-welcome text on topDisplay
+welcome text on topDisplay / every new game?
 test BTN  -> NEW GAME
 DONE reset display when controls are being used DONE
 no shortcuts in top display, when on small screen & no keyboard mode\

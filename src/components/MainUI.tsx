@@ -58,8 +58,15 @@ interface Props {}
 function MainUI({}: Props): JSX.Element {
   const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
 
-  function playAudio(audioVar: HTMLAudioElement, isAudioOn: boolean) {
+  function playAudio(audioVar: HTMLAudioElement, isAudioOn: boolean, shouldPreviousAudioStop: boolean = false) {
     if (isAudioOn) {
+
+      if(shouldPreviousAudioStop) {
+        audioVar.pause();
+        //   the time position at which playback will begin once the play()  is called.
+        audioVar.currentTime = 0;
+      }
+  
       audioVar.play();
     }
   }
