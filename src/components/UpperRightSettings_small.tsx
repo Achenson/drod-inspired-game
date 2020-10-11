@@ -44,7 +44,7 @@ function UpperRightSettings_small({
 }: PropsChildren): JSX.Element {
   return (
     <div
-      className="flex absolute right-0 border-2 border-black rounded-md bg-gray-200"
+      className="flex absolute right-0 border-2 border-black rounded-md bg-gray-200 z-50"
     
     >
       <VolumeOFF

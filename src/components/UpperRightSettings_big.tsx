@@ -43,7 +43,7 @@ function UpperRightSettings_big({
 
   return (
     <div
-      className="w-full absolute right-0 border-2 border-black rounded-md bg-gray-200"
+      className="w-full absolute right-0 border-2 border-black rounded-md bg-gray-200 z-50"
       // style={{ top: "15rem" }}
     >
       <div className="flex">

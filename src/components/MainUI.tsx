@@ -82,7 +82,7 @@ function MainUI({}: Props): JSX.Element {
 
   // const [turnsPassed, setTurnsPassed] = useState()
 
-  const [currentTurn, setCurrentTurn] = useState<number>(173);
+  const [currentTurn, setCurrentTurn] = useState<number>(0);
 
   // const [topScore, setTopScore] = useState<string>("248");
   const [topScore, setTopScore] = useStorage("score", "0");
@@ -233,7 +233,7 @@ function MainUI({}: Props): JSX.Element {
       case "Numpad8":
         console.log("numpad 8");
         heroMovement(Directions.n);
-        playAudio(topScore_mp3, isAudioOn);
+        // playAudio(topScore_mp3, isAudioOn);
         // topScore_mp3.play();
 
         break;
