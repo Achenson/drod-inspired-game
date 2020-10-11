@@ -117,6 +117,11 @@ DONE reset display when controls are being used DONE
 no shortcuts in top display, when on small screen & no keyboard mode\
 DONE Help should dissapear when moving (small screen only) DONE
 responsiveness -> not working on tablet horizontal currently
+going back one turn -> new enemy should arrive at the same tile?
+hero is not being rendered properly on the lower tiles
+hero kills not audible when one after the other (so is movement & sword swing but it feels ok?)
+
+
 
 
 
