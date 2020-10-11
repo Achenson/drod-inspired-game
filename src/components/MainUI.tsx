@@ -41,9 +41,7 @@ const forbiddenMove_audio = require("../mp3/game_error.mp3");
 const swing_audio = require("../mp3/sabre_swing.mp3");
 const movement_audio = require("../mp3/single_step_heavy.mp3");
 const waiting_audio = require("../mp3/snore_single.mp3");
-
-
-
+const newGame_audio = require("../mp3/game_tone_retro_one_up.mp3");
 const topScore_mp3 = new Audio(topScore_audio);
 const medal_mp3 = new Audio(medal_audio);
 const death_mp3 = new Audio(death_audio);
@@ -52,6 +50,8 @@ const forbiddenMove_mp3 = new Audio(forbiddenMove_audio);
 const swing_mp3 = new Audio(swing_audio);
 const movement_mp3 = new Audio(movement_audio);
 const waiting_mp3 = new Audio(waiting_audio);
+// const newGame_mp3 = new Audio(newGame_audio);
+// newGame_mp3.volume = 0.2;
 
 interface Props {}
 
@@ -331,6 +331,7 @@ function MainUI({}: Props): JSX.Element {
   }
 
   function newGame() {
+    // playAudio(newGame_mp3, isAudioOn, true);
     setTextOnDisplay("");
 
     if (settingsVisibility) {
