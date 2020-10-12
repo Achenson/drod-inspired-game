@@ -167,7 +167,7 @@ function MainUI({}: Props): JSX.Element {
     // subscribe to window resize event "onComponentDidMount"
     window.addEventListener("resize", handleResizeWindow);
 
-    if (windowWidth > mediaBreakpoint) {
+    if (windowWidth >= mediaBreakpoint) {
       setLargeScreenRender(true);
     } else {
       setLargeScreenRender(false);

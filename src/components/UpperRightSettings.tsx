@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from "react";
 
-import UpperRightSettingsSmall from "./UpperRightSettings_small";
-import UpperRightSettingsBig from "./UpperRightSettings_big";
+
+import UpperRightSettingsChild from "./UpperRightSettings_child";
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
@@ -141,8 +141,8 @@ function UpperRightSettings({
 
   return (
     <Fragment>
-      {largeScreenRender ? (
-        <UpperRightSettingsBig
+     
+        <UpperRightSettingsChild
           setTextOnDisplay={setTextOnDisplay}
           soundHover={soundHover}
           setSoundHover={setSoundHover}
@@ -172,38 +172,7 @@ function UpperRightSettings({
           setIsAudioOn={setIsAudioOn}
           largeScreenRender={largeScreenRender}
         />
-      ) : (
-        <UpperRightSettingsBig
-          setTextOnDisplay={setTextOnDisplay}
-          soundHover={soundHover}
-          setSoundHover={setSoundHover}
-          touchHover={touchHover}
-          setTouchHover={setTouchHover}
-          keyboardHover={keyboardHover}
-          setKeyboardHover={setKeyboardHover}
-          touchClicked={touchClicked}
-          setTouchClicked={setTouchClicked}
-          keyboardClicked={keyboardClicked}
-          setKeyboardClicked={setKeyboardClicked}
-          cancelHover={cancelHover}
-          cancelVisibility={cancelVisibility}
-          confirmHover={confirmHover}
-          confirmVisibility={confirmVisibility}
-          deleteHover={deleteHover}
-          deleteVisibility={deleteVisibility}
-          setCancelHover={setCancelHover}
-          setCancelVisibility={setCancelVisibility}
-          setConfirmHover={setConfirmHover}
-          setConfirmVisibility={setConfirmVisibility}
-          setDeleteHover={setDeleteHover}
-          setDeleteVisibility={setDeleteVisibility}
-          toggleIcons={toggleIcons}
-          setTopScore={setTopScore}
-          isAudioOn={isAudioOn}
-              setIsAudioOn={setIsAudioOn}
-              largeScreenRender={largeScreenRender}
-        />
-      )}
+      
     </Fragment>
   );
 }

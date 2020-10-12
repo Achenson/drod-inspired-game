@@ -12,7 +12,7 @@ import { ReactComponent as Cursor } from "../svgs/cursor.svg";
 
 import { PropsChildren } from "./UpperRightSettings";
 
-function UpperRightSettings_big({
+function UpperRightSettings_child({
   setTextOnDisplay,
   soundHover,
   setSoundHover,
@@ -39,16 +39,19 @@ function UpperRightSettings_big({
   setIsAudioOn,
   largeScreenRender,
 }: PropsChildren): JSX.Element {
+
+
+
   return (
     <div
-      className="w-full absolute right-0 border-2 border-black rounded-md bg-gray-200 z-50"
-      // style={{ top: "15rem" }}
+      className={`w-full absolute right-0 border-2 border-black rounded-md bg-gray-200 z-50 ${largeScreenRender ? "flex justify-end" : ""} `}
+      style={{ width: `${largeScreenRender ? "124px": "100%"}` }}
     >
       <div className="flex">
         <VolumeOFF
-          className={`cursor-pointer h-6 ${soundHover} mb-2 ${
+          className={`cursor-pointer h-6 ${soundHover} ${
             isAudioOn ? "" : "bg-red-500"
-          }`}
+          } mb-2 md:mb-0`}
           onClick={() => {
             setIsAudioOn((b) => !b);
           }}
@@ -65,14 +68,16 @@ function UpperRightSettings_big({
             }
           }}
         />
-        <p className="text-sm ml-2">Sound On/Off</p>
+        {largeScreenRender ? null : (
+          <p className="text-sm ml-2">Sound On/Off</p>
+        )}
       </div>
 
       <div className="flex">
         <Cursor
           className={`cursor-pointer h-6 ${touchHover} ${
             touchClicked ? "bg-green-500" : ""
-          } mb-2`}
+          } mb-2 md:mb-0`}
           onMouseEnter={() => {
             setTouchHover("animate-pulse");
             if (largeScreenRender) {
@@ -92,14 +97,16 @@ function UpperRightSettings_big({
             setTouchClicked((b) => !b);
           }}
         />
-        <p className="text-sm ml-2">Pointer mode (controls always on)</p>
+        {largeScreenRender ? null : (
+          <p className="text-sm ml-2">Pointer mode (controls always on)</p>
+        )}
       </div>
 
       <div className="flex">
         <Keyboard
           className={`cursor-pointer h-6 ${keyboardHover} ${
             keyboardClicked ? "bg-green-500" : ""
-          } mb-2`}
+          } mb-2 md:mb-0`}
           onMouseEnter={() => {
             setKeyboardHover("animate-pulse");
             if (largeScreenRender) {
@@ -120,12 +127,14 @@ function UpperRightSettings_big({
             setKeyboardClicked((b) => !b);
           }}
         />
-        <p className="text-sm ml-2">Keyboard mode (controls always off)</p>
+        {largeScreenRender ? null : (
+          <p className="text-sm ml-2">Keyboard mode (controls always off)</p>
+        )}
       </div>
 
       <div className={`flex ${deleteVisibility ? "visible" : "hidden"}`}>
         <DeleteTopScore
-          className={`h-6 cursor-pointer  ${deleteHover}`}
+          className={`h-6 cursor-pointer  ${deleteHover} md:ml-6`}
           onClick={toggleIcons}
           onMouseEnter={() => {
             setDeleteHover("animate-pulse");
@@ -143,7 +152,9 @@ function UpperRightSettings_big({
           }}
         />
 
-        <p className="text-sm ml-2">Delete top score</p>
+        {largeScreenRender ? null : (
+          <p className="text-sm ml-2">Delete top score</p>
+        )}
       </div>
 
       <div
@@ -170,7 +181,7 @@ function UpperRightSettings_big({
         />
 
         <Cancel
-          className={`h-6 cursor-pointer ${cancelHover} ml-2
+          className={`h-6 cursor-pointer ${cancelHover} ml-2 md:ml-0
         `}
           onClick={toggleIcons}
           onMouseEnter={() => {
@@ -189,11 +200,13 @@ function UpperRightSettings_big({
           }}
         />
 
-        <p className="text-sm ml-2">Confirm/cancel</p>
+        {largeScreenRender ? null : (
+          <p className="text-sm ml-2">Confirm/cancel</p>
+        )}
       </div>
       {/* <Confirm className="h-6" /> */}
     </div>
   );
 }
 
-export default UpperRightSettings_big;
+export default UpperRightSettings_child;
