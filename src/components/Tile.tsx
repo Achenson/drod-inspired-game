@@ -28,9 +28,10 @@ function Tile({
   enemiesDirections,
 }: Props): JSX.Element {
   //  let backgroundColor = "w-10 h-10 bg-gray-300";
-  let backgroundColor;
-
+  
   const corners = [0, 8, 72, 80];
+  
+  let backgroundColor;
 
   if (corners.indexOf(arrIndex) > -1) {
     backgroundColor = "bg-gray-600";
@@ -43,27 +44,15 @@ function Tile({
     backgroundColor = "bg-gray-400";
   }
 
-  // let boardElement = boardRendering[arrIndex];
-  // console.log("boardRendering");
-  // console.log(boardRendering);
-
-  const [entityCSS, setEntityCSS] = useState("hidden");
-  const [enemySVG, setEnemySVG] = useState("hidden");
-  const [deathSVG, setDeathSVG] = useState("hidden");
-
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
   const swordSize = "w-6 h-10";
-
-  const [swordVisibility, setSwordVisibility] = useState("hidden");
 
   let heroDirection = "";
   let swordDirection = "";
 
   //                                      nw  n ne   e   se   s  sw  w
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
-
- 
 
   let triangleBody = {
     borderBottom: "28px solid green",
@@ -96,22 +85,8 @@ function Tile({
     width: "10px",
     borderRadius: "30% 30% 30% 30%",
     left: "-2px",
-    
-    // paddingRight: "4px"
-  }
-
-  let lineBetween = {
-    height: "5px",
-    width: "1px",
-    backgroundColor: "green",
-    right: "2.5px",
-    shadowBox: "1px"
 
   }
-
-  // const [marginForBody, setMarginForBody] = useState({
-  //   marginTop: "auto"
-  // })
 
   switch (relativePosition) {
     case 9:
@@ -176,23 +151,18 @@ function Tile({
       break;
     case -1:
       enemySVGvar = "transform rotate-90";
-
       break;
     case -10:
       enemySVGvar = "transform rotate-135";
-
       break;
     case -9:
       enemySVGvar = "transform rotate-180";
-
       break;
     case -8:
       enemySVGvar = "transform rotate-225";
-
       break;
     case 1:
       enemySVGvar = "transform -rotate-90";
-
       break;
     case 10:
       enemySVGvar = "transform -rotate-45 ";
@@ -206,6 +176,11 @@ function Tile({
   if (adjacentTilesRelativePositions.indexOf(heroRelativePostion) > -1) {
     enemyPulsing = "animate-pulse";
   }
+
+  const [entityCSS, setEntityCSS] = useState("hidden");
+  const [enemySVG, setEnemySVG] = useState("hidden");
+  const [deathSVG, setDeathSVG] = useState("hidden");
+  const [swordVisibility, setSwordVisibility] = useState("hidden");
 
   useEffect(() => {
     // death
@@ -287,22 +262,6 @@ function Tile({
     lastEnemyKilled,
   ]);
 
-  // let triangleBody = {
-  //   width: "0",
-  //   height: "0",
-  //   borderLeft: "10px solid transparent",
-  //   borderRight: "10px solid transparent",
-  //   borderBottom: "20px solid red",
-  //   borderRadius: "15px 15px 15px 15px"
-  // }
-
-
-  
-
-
-
- 
-
   return (
     <div
       className={`flex items-center justify-center w-8 h-8 ${backgroundColor} relative`}
@@ -314,9 +273,7 @@ function Tile({
       <SwordSVG className={`${swordVisibility} ${swordDirection} absolute`} />
 
       <BugSVG className={`${enemySVG} ${enemyPulsing}`} />
-      {/* <BoneSVG className={`${deathSVG} h-2 transform rotate-90 z-0`}/> */}
       <DeathSVG className={`${deathSVG}`} />
-      {/* <HelmetSVG/> */}
       {arrIndex === hero.heroPosition && hero.alive ? (
         <div style={triangleMargins}>
           {/* <div className={`${entityCSS}`} style={{position: "absolute"}}></div> */}
@@ -336,20 +293,6 @@ function Tile({
         </div>
       ) : null}
 
-      {/* <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className={`${enemySVG} ${enemyPulsing}`}
-      >
-        <path
-          fillRule="evenodd"
-          d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-          clipRule="evenodd"
-        />
-      </svg> */}
-
-      {/* <SwordSVG/> */}
     </div>
   );
 }

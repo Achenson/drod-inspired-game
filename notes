@@ -103,7 +103,7 @@ change Help positioning if control buttons are visible in largeRenderMode - stil
 DONE !!! toggle setting after resizing down !!! DONE
 make useMemo notes (Help)
 DONE make Help less wide?? DONE
-UpperRightSettings big * small -> unify code somehow
+DONE UpperRightSettings big * small -> unify code somehow DONE
 DONE red bg on sound icon when on DONE
 DONE no display text on setting when on small screen DONE
 DONE zapSplat acknowledgement. DONE
