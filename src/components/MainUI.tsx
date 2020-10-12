@@ -91,7 +91,7 @@ function MainUI({}: Props): JSX.Element {
 
   // const [turnsPassed, setTurnsPassed] = useState()
 
-  const [currentTurn, setCurrentTurn] = useState<number>(98);
+  const [currentTurn, setCurrentTurn] = useState<number>(0);
 
   // const [topScore, setTopScore] = useState<string>("248");
   const [topScore, setTopScore] = useStorage("score", "0");

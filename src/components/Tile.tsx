@@ -6,7 +6,6 @@ import { HeroObj } from "../utils/interfaces";
 import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
 import { ReactComponent as BugSVG } from "../svgs/malware-virus.svg";
 import { ReactComponent as DeathSVG } from "../svgs/skull.svg";
-// import { ReactComponent as HelmetSVG } from "../svgs/warrior-helmet-2748.svg";
 
 interface Props {
   boardTile: number[];
@@ -27,10 +26,8 @@ function Tile({
   lastEnemyKilled,
   enemiesDirections,
 }: Props): JSX.Element {
-  //  let backgroundColor = "w-10 h-10 bg-gray-300";
-  
   const corners = [0, 8, 72, 80];
-  
+
   let backgroundColor;
 
   if (corners.indexOf(arrIndex) > -1) {
@@ -64,18 +61,18 @@ function Tile({
     // marginTop: "auto"
   };
 
-  let triangleMargins = {marginTop: "auto", marginLeft: "auto"};
+  let triangleMargins = { marginTop: "auto", marginLeft: "auto" };
 
   let halfACircle = {
-      background: "black",
-      height: "8px",
-      width: "12px",
-      borderBottomLeftRadius: "12px",
-      borderBottomRightRadius: "12px",
-      borderTopRightRadius: "6px",
-      borderTopLeftRadius: "6px",
-      marginTop: "4px"
-  }
+    background: "black",
+    height: "8px",
+    width: "12px",
+    borderBottomLeftRadius: "12px",
+    borderBottomRightRadius: "12px",
+    borderTopRightRadius: "6px",
+    borderTopLeftRadius: "6px",
+    marginTop: "4px",
+  };
 
   let heroHands = {
     borderBottom: "5px solid #ecc94b",
@@ -85,8 +82,7 @@ function Tile({
     width: "10px",
     borderRadius: "30% 30% 30% 30%",
     left: "-2px",
-
-  }
+  };
 
   switch (relativePosition) {
     case 9:
@@ -177,7 +173,7 @@ function Tile({
     enemyPulsing = "animate-pulse";
   }
 
-  const [entityCSS, setEntityCSS] = useState("hidden");
+  const [entityCSS, setHeroCSS] = useState("hidden");
   const [enemySVG, setEnemySVG] = useState("hidden");
   const [deathSVG, setDeathSVG] = useState("hidden");
   const [swordVisibility, setSwordVisibility] = useState("hidden");
@@ -185,73 +181,60 @@ function Tile({
   useEffect(() => {
     // death
     if (hero.heroPosition === arrIndex && !hero.alive) {
-      // setEntityCSS("w-5 h-5 bg-black");
-      setEntityCSS("hidden");
-      setEnemySVG("hidden");
-      setSwordVisibility("hidden");
       setDeathSVG("h-6");
+      settingStateToHidden([setSwordVisibility, setEnemySVG, setHeroCSS]);
       return;
-      // return;
     }
-
+    // hero
     if (hero.heroPosition === arrIndex && hero.alive) {
-      setEntityCSS(`w-3 h-3 bg-yellow-500 rounded-full z-40`);
-      setSwordVisibility("hidden");
-      setDeathSVG("hidden");
+      setHeroCSS(`w-3 h-3 bg-yellow-500 rounded-full z-40`);
+      settingStateToHidden([setSwordVisibility, setEnemySVG, setDeathSVG]);
       return;
     }
 
-    if (
-      hero.swordPosition === arrIndex &&
-      hero.alive &&
-      lastEnemyKilled === arrIndex
-    ) {
-      // setEntityCSS(`${bloodyswordDirection} ${swordSize} ${bloodySwordColor}`);
-      setSwordVisibility(
-        `visible ${swordDirection} ${swordSize} fill-current text-red-600`
-      );
-      setEntityCSS("hidden");
-      setEnemySVG("hidden");
-      // setEntityCSS("w-6 h-6 bg-red-600 absolute");
-      setDeathSVG("hidden");
-      return;
-    }
-
+    // sword (no color or red (after kill))
     if (hero.swordPosition === arrIndex && hero.alive) {
-      // setEntityCSS(`${swordDirection} ${swordSize} ${swordColor}`);
-      setEntityCSS("hidden");
-      setSwordVisibility(`visible ${swordDirection} ${swordSize}`);
-      setDeathSVG("hidden");
+      // sword is red if enemy was just killed
+      setSwordVisibility(
+        `visible ${swordDirection} ${swordSize} ${
+          lastEnemyKilled === arrIndex ? "fill-current text-red-600" : ""
+        }`
+      );
+      settingStateToHidden([setEnemySVG, setHeroCSS, setDeathSVG]);
       return;
     }
 
-    // newly arrived enemy color for 1 turn
-    if (
-      arrIndex === enemies[enemies.length - 1] &&
-      currentTurn % 2 === 0 &&
-      currentTurn !== 1 &&
-      currentTurn !== 0
-    ) {
-      setEntityCSS("hidden");
-      setSwordVisibility("hidden");
-      setEnemySVG(`${enemySVGvar} fill-current text-red-900 h-6`);
-      setDeathSVG("hidden");
-      return;
-    }
-
+    // enemies coloring - newly arrived enemy color for 1 turn(brownish)) or default (red)
     if (enemies.indexOf(arrIndex) > -1) {
-      setEntityCSS("hidden");
-      setSwordVisibility("hidden");
-      // setEnemySVG("h-8 fill-current text-red-600")
-      setEnemySVG(`${enemySVGvar} fill-current text-red-600 h-6`);
-      setDeathSVG("hidden");
+      if (
+        arrIndex === enemies[enemies.length - 1] &&
+        currentTurn % 2 === 0 &&
+        currentTurn !== 1 &&
+        currentTurn !== 0
+      ) {
+        setEnemySVG(`${enemySVGvar} fill-current text-red-900 h-6`);
+      } else {
+        setEnemySVG(`${enemySVGvar} fill-current text-red-600 h-6`);
+      }
+
+      settingStateToHidden([setSwordVisibility, setDeathSVG, setHeroCSS]);
       return;
     }
+    // clearing if nothing should be rendered on the Tile
+    settingStateToHidden([
+      setSwordVisibility,
+      setEnemySVG,
+      setHeroCSS,
+      setDeathSVG,
+    ]);
 
-    setSwordVisibility("hidden");
-    setEnemySVG("hidden");
-    setEntityCSS("hidden");
-    setDeathSVG("hidden");
+    function settingStateToHidden(
+      arr: React.Dispatch<React.SetStateAction<string>>[]
+    ) {
+      for (let el of arr) {
+        el("hidden");
+      }
+    }
   }, [
     hero,
     arrIndex,
@@ -274,10 +257,15 @@ function Tile({
 
       <BugSVG className={`${enemySVG} ${enemyPulsing}`} />
       <DeathSVG className={`${deathSVG}`} />
+      {/* rendering hero */}
+
       {arrIndex === hero.heroPosition && hero.alive ? (
         <div style={triangleMargins}>
           {/* <div className={`${entityCSS}`} style={{position: "absolute"}}></div> */}
-          <div className={`${heroDirection} relative`} style={{...triangleBody}}>
+          <div
+            className={`${heroDirection} relative`}
+            style={{ ...triangleBody }}
+          >
             <div className="absolute" style={heroHands}>
               {/* <div className="absolute" style={lineBetween}></div> */}
             </div>
@@ -285,14 +273,13 @@ function Tile({
               className={`${entityCSS}`}
               style={{ position: "absolute", top: "10px", left: "-3px" }}
             >
-              <div style={halfACircle}>
-
-              </div>
+              <div style={halfACircle}></div>
             </div>
           </div>
         </div>
       ) : null}
 
+      
     </div>
   );
 }
