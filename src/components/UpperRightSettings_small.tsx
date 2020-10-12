@@ -38,7 +38,8 @@ function UpperRightSettings_small({
   setCancelHover,
   setTopScore,
   isAudioOn,
-  setIsAudioOn
+  setIsAudioOn,
+  
 
 
 }: PropsChildren): JSX.Element {

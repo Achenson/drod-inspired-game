@@ -36,11 +36,9 @@ function UpperRightSettings_big({
   setCancelHover,
   setTopScore,
   isAudioOn,
-  setIsAudioOn
-
+  setIsAudioOn,
+  largeScreenRender,
 }: PropsChildren): JSX.Element {
-
-
   return (
     <div
       className="w-full absolute right-0 border-2 border-black rounded-md bg-gray-200 z-50"
@@ -48,15 +46,23 @@ function UpperRightSettings_big({
     >
       <div className="flex">
         <VolumeOFF
-          className={`cursor-pointer h-6 ${soundHover} mb-2 ${isAudioOn ? "" : "bg-red-500"}`}
+          className={`cursor-pointer h-6 ${soundHover} mb-2 ${
+            isAudioOn ? "" : "bg-red-500"
+          }`}
           onClick={() => {
-            setIsAudioOn(b=> !b)
+            setIsAudioOn((b) => !b);
           }}
           onMouseEnter={() => {
             setSoundHover("animate-pulse");
+            if (largeScreenRender) {
+              setTextOnDisplay("Sound On/Off");
+            }
           }}
           onMouseLeave={() => {
             setSoundHover(null);
+            if (largeScreenRender) {
+              setTextOnDisplay("");
+            }
           }}
         />
         <p className="text-sm ml-2">Sound On/Off</p>
@@ -69,9 +75,15 @@ function UpperRightSettings_big({
           } mb-2`}
           onMouseEnter={() => {
             setTouchHover("animate-pulse");
+            if (largeScreenRender) {
+              setTextOnDisplay("Pointer mode (controls always on)");
+            }
           }}
           onMouseLeave={() => {
             setTouchHover(null);
+            if (largeScreenRender) {
+              setTextOnDisplay("");
+            }
           }}
           onClick={() => {
             if (keyboardClicked) {
@@ -90,9 +102,16 @@ function UpperRightSettings_big({
           } mb-2`}
           onMouseEnter={() => {
             setKeyboardHover("animate-pulse");
+            if (largeScreenRender) {
+              setTextOnDisplay("Keyboard mode (controls always off)");
+            }
           }}
           onMouseLeave={() => {
             setKeyboardHover(null);
+
+            if (largeScreenRender) {
+              setTextOnDisplay("");
+            }
           }}
           onClick={() => {
             if (touchClicked) {
@@ -110,9 +129,17 @@ function UpperRightSettings_big({
           onClick={toggleIcons}
           onMouseEnter={() => {
             setDeleteHover("animate-pulse");
+
+            if (largeScreenRender) {
+              setTextOnDisplay("Delete top score");
+            }
           }}
           onMouseLeave={() => {
             setDeleteHover(null);
+
+            if (largeScreenRender) {
+              setTextOnDisplay("");
+            }
           }}
         />
 
@@ -125,14 +152,20 @@ function UpperRightSettings_big({
         <Confirm
           className={`h-6 cursor-pointer ${confirmHover}`}
           onClick={() => {
-            (setTopScore as React.Dispatch<React.SetStateAction<string>>)("0")
-            toggleIcons()
+            (setTopScore as React.Dispatch<React.SetStateAction<string>>)("0");
+            toggleIcons();
           }}
           onMouseEnter={() => {
             setConfirmHover("animate-pulse");
+            if (largeScreenRender) {
+              setTextOnDisplay("Confirm top score deletion");
+            }
           }}
           onMouseLeave={() => {
             setConfirmHover(null);
+            if (largeScreenRender) {
+              setTextOnDisplay("");
+            }
           }}
         />
 
@@ -142,9 +175,17 @@ function UpperRightSettings_big({
           onClick={toggleIcons}
           onMouseEnter={() => {
             setCancelHover("animate-pulse");
+
+            if (largeScreenRender) {
+              setTextOnDisplay("Cancel");
+            }
           }}
           onMouseLeave={() => {
             setCancelHover(null);
+
+            if (largeScreenRender) {
+              setTextOnDisplay("");
+            }
           }}
         />
 

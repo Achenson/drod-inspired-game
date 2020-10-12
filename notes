@@ -122,7 +122,10 @@ hero is not being rendered properly on the lower tiles
 DONE hero kills not audible when one after the other DONE
 X New game / initial sound? x probably not - commented out
 XXX change footstep sound? XXX
-
+name? make it always visible or topDisplay only?
+use useContext somewhere?
+change topScore mp3?
+normalize volume - topScore mp3, medal too loud?
 
 
 

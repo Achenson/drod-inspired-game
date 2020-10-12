@@ -59,6 +59,7 @@ export interface PropsChildren {
 
   isAudioOn: boolean;
   setIsAudioOn:   React.Dispatch<React.SetStateAction<boolean>>
+  largeScreenRender: boolean
 }
 
 function UpperRightSettings({
@@ -141,7 +142,7 @@ function UpperRightSettings({
   return (
     <Fragment>
       {largeScreenRender ? (
-        <UpperRightSettingsSmall
+        <UpperRightSettingsBig
           setTextOnDisplay={setTextOnDisplay}
           soundHover={soundHover}
           setSoundHover={setSoundHover}
@@ -169,6 +170,7 @@ function UpperRightSettings({
           setTopScore={setTopScore}
           isAudioOn={isAudioOn}
           setIsAudioOn={setIsAudioOn}
+          largeScreenRender={largeScreenRender}
         />
       ) : (
         <UpperRightSettingsBig
@@ -199,6 +201,7 @@ function UpperRightSettings({
           setTopScore={setTopScore}
           isAudioOn={isAudioOn}
               setIsAudioOn={setIsAudioOn}
+              largeScreenRender={largeScreenRender}
         />
       )}
     </Fragment>

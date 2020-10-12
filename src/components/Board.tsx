@@ -38,16 +38,16 @@ function Board({
         }
       }}
     >
-      {/* <div
+      <div
         className={`grid grid-cols-${boardSize} col-gap-0`}
         style={{
           width: `${boardWidth}px`,
           height: `${boardWidth}px`,
           backgroundColor: "whitesmoke",
         }}
-      ></div> */}
+      ></div>
 
-      <div
+      {/* <div
       className={`grid grid-cols-${boardSize} col-gap-0`}
       style={{ width: `${boardWidth}px`}}
     >
@@ -65,7 +65,7 @@ function Board({
           />
         );
       })}
-    </div>
+    </div> */}
     </div>
   );
 }
