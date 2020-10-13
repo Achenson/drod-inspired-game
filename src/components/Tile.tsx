@@ -6,6 +6,7 @@ import { HeroObj } from "../utils/interfaces";
 import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
 import { ReactComponent as BugSVG } from "../svgs/malware-virus.svg";
 import { ReactComponent as DeathSVG } from "../svgs/skull.svg";
+import Hero from "./Hero";
 
 interface Props {
   boardTile: number[];
@@ -51,38 +52,7 @@ function Tile({
   //                                      nw  n ne   e   se   s  sw  w
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
-  let triangleBody = {
-    borderBottom: "28px solid green",
-    borderLeft: "12px solid transparent",
-    borderRight: "12px solid transparent",
-    height: "0",
-    width: "30px",
-    borderRadius: "50%",
-    // marginTop: "auto"
-  };
-
   let triangleMargins = { marginTop: "auto", marginLeft: "auto" };
-
-  let halfACircle = {
-    background: "black",
-    height: "8px",
-    width: "12px",
-    borderBottomLeftRadius: "12px",
-    borderBottomRightRadius: "12px",
-    borderTopRightRadius: "6px",
-    borderTopLeftRadius: "6px",
-    marginTop: "4px",
-  };
-
-  let heroHands = {
-    borderBottom: "5px solid #ecc94b",
-    borderLeft: "2px solid transparent",
-    borderRight: "2px solid transparent",
-    height: "0",
-    width: "10px",
-    borderRadius: "30% 30% 30% 30%",
-    left: "-2px",
-  };
 
   switch (relativePosition) {
     case 9:
@@ -179,17 +149,39 @@ function Tile({
   const [deathVisibility, setDeathVisibility] = useState<boolean>(false);
   const [swordVisibility, setSwordVisibility] = useState<boolean>(false);
 
+  function enemyColor() {
+    if (
+      arrIndex === enemies[enemies.length - 1] &&
+      currentTurn % 2 === 0 &&
+      currentTurn !== 1 &&
+      currentTurn !== 0
+    ) {
+      return "text-red-900"
+    }
+
+    return "text-red-600"
+    
+  }
+
   useEffect(() => {
     // death
     if (hero.heroPosition === arrIndex && !hero.alive) {
       setDeathVisibility(true);
-      settingStateToHidden([setSwordVisibility, setEnemyVisibility, setHeroVisibility]);
+      settingStateToHidden([
+        setSwordVisibility,
+        setEnemyVisibility,
+        setHeroVisibility,
+      ]);
       return;
     }
     // hero
     if (hero.heroPosition === arrIndex && hero.alive) {
       setHeroVisibility(true);
-      settingStateToHidden([setSwordVisibility, setEnemyVisibility, setDeathVisibility]);
+      settingStateToHidden([
+        setSwordVisibility,
+        setEnemyVisibility,
+        setDeathVisibility,
+      ]);
       return;
     }
 
@@ -197,26 +189,24 @@ function Tile({
     if (hero.swordPosition === arrIndex && hero.alive) {
       // sword is red if enemy was just killed
       setSwordVisibility(true);
-      settingStateToHidden([setEnemyVisibility, setHeroVisibility, setDeathVisibility]);
+      settingStateToHidden([
+        setEnemyVisibility,
+        setHeroVisibility,
+        setDeathVisibility,
+      ]);
       return;
     }
 
     // enemies coloring - newly arrived enemy color for 1 turn(brownish)) or default (red)
     if (enemies.indexOf(arrIndex) > -1) {
-      if (
-        arrIndex === enemies[enemies.length - 1] &&
-        currentTurn % 2 === 0 &&
-        currentTurn !== 1 &&
-        currentTurn !== 0
-      ) {
-        setEnemyVisibility(true)
-        setEnemyCSS(`text-red-900`);
-      } else {
-        setEnemyVisibility(true)
-        setEnemyCSS(`text-red-600`);
-      }
-
-      settingStateToHidden([setSwordVisibility, setDeathVisibility, setHeroVisibility]);
+   
+      setEnemyVisibility(true);
+     
+      settingStateToHidden([
+        setSwordVisibility,
+        setDeathVisibility,
+        setHeroVisibility,
+      ]);
       return;
     }
     // clearing if nothing should be rendered on the Tile
@@ -259,33 +249,17 @@ function Tile({
           }`}
         />
       ) : null}
+
       {enemyVisibility ? (
         <BugSVG
-          className={` ${enemyPulsing} ${enemySVGvar} fill-current ${enemyCSS} h-6`}
+          className={` ${enemyPulsing} ${enemySVGvar} fill-current ${enemyColor()} h-6`}
         />
       ) : null}
+
       {deathVisibility ? <DeathSVG className={`h-6`} /> : null}
 
-
-
       {heroVisibility ? (
-        <div style={triangleMargins}>
-          {/* <div className={`${heroVisibility}`} style={{position: "absolute"}}></div> */}
-          <div
-            className={`${heroDirection} relative`}
-            style={{ ...triangleBody }}
-          >
-            <div className="absolute" style={heroHands}>
-              {/* <div className="absolute" style={lineBetween}></div> */}
-            </div>
-            <div
-              className={`w-3 h-3 bg-yellow-500 rounded-full z-40`}
-              style={{ position: "absolute", top: "10px", left: "-3px" }}
-            >
-              <div style={halfACircle}></div>
-            </div>
-          </div>
-        </div>
+        <Hero heroDirection={heroDirection} triangleMargins={triangleMargins} />
       ) : null}
     </div>
   );
