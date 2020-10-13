@@ -29,7 +29,8 @@ function UpperRightUI({
   );
 
   useEffect(() => {
-    if (helpClicked === "true") {
+    // truthy value - "" is set for false
+    if (helpClicked) {
       setAnimatePulse(null);
     }
   }, [helpClicked]);
