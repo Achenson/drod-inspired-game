@@ -39,7 +39,7 @@ export default function makeRecordScore(
       playAudio(topScore_mp3, isAudioOn)
     }
   } else {
-    setTextOnDisplay("No new record. Rewind (R) or try again (N)!");
+    setTextOnDisplay("No new record");
     playAudio(death_mp3, isAudioOn)
 
   }

@@ -365,7 +365,7 @@ function MainUI({}: Props): JSX.Element {
         className="flex flex-col justify-center relative"
         style={{ height: "100vh" }}
       >
-        <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay} />
+        <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay} largeScreenRender={largeScreenRender} controlsVisibility={controlsVisibility}/>
 
         <div className="flex justify-between relative">
           <UpperLeftUI
