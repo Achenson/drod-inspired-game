@@ -65,8 +65,8 @@ function Tile({
     case 8:
       swordDirection = "left-0 top-0";
       heroDirection = "transform rotate-45 right-0 top-0";
-      triangleMargins.marginTop = "-12px";
-      triangleMargins.marginLeft = "12px";
+      triangleMargins.marginTop = "-17px";
+      triangleMargins.marginLeft = "17px";
       break;
     case -1:
       swordDirection = "transform rotate-45";
@@ -77,8 +77,8 @@ function Tile({
     case -10:
       swordDirection = "transform rotate-90 left-0 bottom-0";
       heroDirection = "transform rotate-135";
-      triangleMargins.marginTop = "12px";
-      triangleMargins.marginLeft = "12px";
+      triangleMargins.marginTop = "17px";
+      triangleMargins.marginLeft = "17px";
       break;
     case -9:
       swordDirection = "transform rotate-135";
@@ -89,8 +89,8 @@ function Tile({
     case -8:
       swordDirection = "transform rotate-180 right-0 bottom-0";
       heroDirection = "transform rotate-225";
-      triangleMargins.marginTop = "12px";
-      triangleMargins.marginLeft = "-12px";
+      triangleMargins.marginTop = "17px";
+      triangleMargins.marginLeft = "-17px";
       break;
     case 1:
       swordDirection = "transform rotate-225";
@@ -156,11 +156,10 @@ function Tile({
       currentTurn !== 1 &&
       currentTurn !== 0
     ) {
-      return "text-red-900"
+      return "text-red-900";
     }
 
-    return "text-red-600"
-    
+    return "text-red-600";
   }
 
   useEffect(() => {
@@ -199,9 +198,8 @@ function Tile({
 
     // enemies coloring - newly arrived enemy color for 1 turn(brownish)) or default (red)
     if (enemies.indexOf(arrIndex) > -1) {
-   
       setEnemyVisibility(true);
-     
+
       settingStateToHidden([
         setSwordVisibility,
         setDeathVisibility,
@@ -236,7 +234,9 @@ function Tile({
 
   return (
     <div
-      className={`flex items-center justify-center w-8 h-8 ${backgroundColor} relative`}
+      className={`flex items-center justify-center w-8 h-8 ${backgroundColor} ${
+        heroVisibility ? "z-50" : "z-0"
+      } relative`}
     >
       {/* {boardTile[0]} */}
       {/* {boardTile[1]} */}

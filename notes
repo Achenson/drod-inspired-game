@@ -81,7 +81,7 @@ DONE smaller(px) board? DONE
 DONE medal? 100 175 250 DONE
 DONE change enemy render when near hero DONE
 setting topScore not only on death?
-Tile -> better code, too many "hidden" settings, new file for CSS objects?
+DONE Tile -> better code, too many "hidden" settings, new file for CSS objects? DONE
 round the hero div?
 XXX better svg for waiting?XXX
 svg sizes ( ? )
@@ -118,7 +118,7 @@ no shortcuts in top display, when on small screen & no keyboard mode\
 DONE Help should dissapear when moving (small screen only) DONE
 responsiveness -> not working on tablet horizontal currently
 going back one turn -> new enemy should arrive at the same tile?
-hero is not being rendered properly on the lower tiles
+DONE hero is not being rendered properly on the lower tiles DONE (z-index on Tile div)
 DONE hero kills not audible when one after the other DONE
 X New game / initial sound? x probably not - commented out
 XXX change footstep sound? XXX
@@ -127,6 +127,7 @@ use useContext somewhere?
 change topScore mp3?
 normalize volume - topScore mp3, medal too loud?
 help & about - mention brown enemies & pulsing enemies?
+line on Hero when in diagonal position?
 
 
 
