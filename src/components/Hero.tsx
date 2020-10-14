@@ -12,9 +12,23 @@ function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
     borderRight: "12px solid transparent",
     height: "0",
     width: "30px",
-    borderRadius: "50%",
+    // more than 40% - hero is not rendered properly on chrome
+    // borderRadius: "40%",
+    borderRadius: "40%"
     // marginTop: "auto"
   };
+
+  /* 
+    borderBottom: "28px solid green",
+    borderLeft: "12px solid transparent",
+    borderRight: "12px solid transparent",
+    height: "0",
+    width: "30px",
+    // more than 40% - hero is not rendered properly on chrome
+    // borderRadius: "40%",
+    borderRadius: "40%"
+    // marginTop: "auto"
+  */
 
   let halfACircle = {
     background: "black",
@@ -46,10 +60,17 @@ function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
         </div>
         <div
           className={`w-3 h-3 bg-yellow-500 rounded-full z-40`}
-          style={{ position: "absolute", top: "10px", left: "-3px" }}
+          style={{ position: "absolute", top: "11px", left: "-3px" }}
         >
           <div style={halfACircle}></div>
         </div>
+        <div
+        className="w-6 h-4 absolute rounded-lg z-30"
+        style={{ backgroundColor: "green", top: "9px", left: "-10px", width: "26px", height: "18px"  }}
+        >
+
+        </div>
+
       </div>
     </div>
   );
