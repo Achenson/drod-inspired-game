@@ -59,6 +59,8 @@ const waiting_mp3 = new Audio(waiting_audio);
 interface Props {}
 
 function MainUI({}: Props): JSX.Element {
+
+
   const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
 
   function playAudio(audioVar: HTMLAudioElement, isAudioOn: boolean, shouldPreviousAudioStop: boolean = false) {
