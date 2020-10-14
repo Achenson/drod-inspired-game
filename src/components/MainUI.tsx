@@ -12,7 +12,8 @@ import { Directions } from "../utils/interfaces";
 import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
 
-import useStorage from "../hooks/useStorage";
+import useNumberStorage from "../hooks/useNumberStorage";
+import useStringStorage from "../hooks/useStringStorage";
 
 // import { ReactComponent as Medal } from "../svgs/medal.svg";
 import { ReactComponent as VolumeOFF } from "../svgs/volumeOff.svg";
@@ -94,8 +95,10 @@ function MainUI({}: Props): JSX.Element {
   const [currentTurn, setCurrentTurn] = useState<number>(0);
 
   // const [topScore, setTopScore] = useState<string>("248");
-  const [topScore, setTopScore] = useStorage("score", 0);
-  const [helpClicked, setHelpClicked] = useStorage("helpClicked", 0);
+  const [topScore, setTopScore] = useNumberStorage("score", 0);
+  const [helpClicked, setHelpClicked] = useNumberStorage("helpClicked", 0);
+
+
 
   // useEffect(() => {
   //   let topScoreSaved = localStorage.getItem("score");
@@ -154,9 +157,11 @@ function MainUI({}: Props): JSX.Element {
 
   const [largeScreenRender, setLargeScreenRender] = useState<boolean>(false);
 
-  const [controlsVisibility, setControlsVisibility] = useState<
-    "responsive" | "alwaysOn" | "alwaysOff"
-  >("responsive");
+  // const [controlsVisibility, setControlsVisibility] = useState<
+  //   "responsive" | "alwaysOn" | "alwaysOff"
+  // >("responsive");
+
+  const [controlsVisibility, setControlsVisibility] = useStringStorage("controls", "responsive");
 
   const [controlsRender, setControlsRender] = useState<boolean>(true);
 

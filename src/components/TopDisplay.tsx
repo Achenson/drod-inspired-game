@@ -4,7 +4,8 @@ interface Props {
   boardWidth: number;
   textOnDisplay: string;
   largeScreenRender: boolean;
-  controlsVisibility: "responsive" | "alwaysOn" | "alwaysOff";
+  // controlsVisibility: "responsive" | "alwaysOn" | "alwaysOff";
+  controlsVisibility:  string | React.Dispatch<React.SetStateAction<string>>
 }
 
 function TopDisplay({

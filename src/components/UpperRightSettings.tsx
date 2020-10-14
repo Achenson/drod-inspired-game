@@ -6,10 +6,8 @@ import UpperRightSettingsChild from "./UpperRightSettings_child";
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   largeScreenRender: boolean;
-  controlsVisibility: "responsive" | "alwaysOn" | "alwaysOff";
-  setControlsVisibility: React.Dispatch<
-    React.SetStateAction<"responsive" | "alwaysOn" | "alwaysOff">
-  >;
+  controlsVisibility:  string | React.Dispatch<React.SetStateAction<string>>;
+  setControlsVisibility:  string | React.Dispatch<React.SetStateAction<string>>;
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>;
   isAudioOn: boolean;
   setIsAudioOn:  React.Dispatch<React.SetStateAction<boolean>>
@@ -96,6 +94,8 @@ function UpperRightSettings({
       return true;
       case "alwaysOff":
       return false;
+      default:
+      return false;
     }
   }
 
@@ -107,6 +107,8 @@ function UpperRightSettings({
       return false;
       case "alwaysOff":
       return true;
+      default:
+      return false;
     }
   }
 
@@ -121,16 +123,16 @@ function UpperRightSettings({
 
   useEffect(() => {
     if (touchClicked) {
-      setControlsVisibility("alwaysOn");
+      (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("alwaysOn");
       return;
     }
 
     if (keyboardClicked) {
-      setControlsVisibility("alwaysOff");
+      (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("alwaysOff");
       return;
     }
 
-    setControlsVisibility("responsive");
+    (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("responsive");
   }, [touchClicked, keyboardClicked, setControlsVisibility]);
 
   function toggleIcons() {
