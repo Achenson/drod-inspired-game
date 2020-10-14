@@ -21,8 +21,12 @@ export default function moveEnemies(
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  playAudio: (audioVar: HTMLAudioElement, isAudioOn: boolean, shouldPreviousAudioStop?: boolean) => void,
-  isAudioOn: boolean,
+  playAudio: (
+    audioVar: HTMLAudioElement,
+    isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
+    shouldPreviousAudioStop?: boolean
+  ) => void,
+  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
   topScore_mp3: HTMLAudioElement,
   medal_mp3: HTMLAudioElement,
   death_mp3: HTMLAudioElement,

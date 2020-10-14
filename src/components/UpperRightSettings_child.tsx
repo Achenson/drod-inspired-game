@@ -53,7 +53,12 @@ function UpperRightSettings_child({
             isAudioOn ? "" : "bg-red-500"
           } mb-2 md:mb-0`}
           onClick={() => {
-            setIsAudioOn((b) => !b);
+           
+            if(isAudioOn) {
+              (setIsAudioOn as React.Dispatch<React.SetStateAction<number>>)(0)
+            } else {
+              (setIsAudioOn as React.Dispatch<React.SetStateAction<number>>)(1)
+            }
           }}
           onMouseEnter={() => {
             setSoundHover("animate-pulse");

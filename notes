@@ -84,13 +84,12 @@ setting topScore not only on death?
 DONE Tile -> better code, too many "hidden" settings, new file for CSS objects? DONE
 round the hero div?
 XXX better svg for waiting?XXX
-svg sizes ( ? )
 DONE delete enemies killed in MainUI DONE
 X new game confirmation? X
 X controls -> light out when move not possible? X
 DEV mode: Board -> div commented out
 check if merriweather font works -> app title?
-top score: change string to number type?
+DONE top score: change string to number type? DONE
 DONE silver medal not visible enough? DONE
 XXX different upper UI for big and small screens?? XXX
 change UI from black to violet?
@@ -127,7 +126,7 @@ use useContext somewhere?
 change topScore mp3?
 normalize volume - topScore mp3, medal too loud?
 XXX help & about - mention brown enemies & pulsing enemies? XXX
-line on Hero when in diagonal position?
+line on Hero when in diagonal position? check other browsers
 
 
 

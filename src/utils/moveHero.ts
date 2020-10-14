@@ -21,8 +21,12 @@ export default function moveHero(
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  playAudio: (audioVar: HTMLAudioElement, isAudioOn: boolean, shouldPreviousAudioStop?: boolean) => void,
-  isAudioOn: boolean,
+  playAudio: (
+    audioVar: HTMLAudioElement,
+    isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
+    shouldPreviousAudioStop?: boolean
+  ) => void,
+  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
   topScore_mp3: HTMLAudioElement,
   medal_mp3: HTMLAudioElement,
   death_mp3: HTMLAudioElement,
@@ -30,7 +34,7 @@ export default function moveHero(
   enemyKilled_mp3: HTMLAudioElement,
   swing_mp3: HTMLAudioElement,
   movement_mp3: HTMLAudioElement,
-  waiting_mp3: HTMLAudioElement,
+  waiting_mp3: HTMLAudioElement
 ) {
   if (!hero.alive) {
     return;
@@ -146,13 +150,12 @@ export default function moveHero(
 
   // play audio if rotating in not forbidden
   if (direction === 45 || direction === -45) {
-    playAudio(swing_mp3, isAudioOn)
+    playAudio(swing_mp3, isAudioOn);
   } else if (direction === 0) {
-    playAudio(waiting_mp3, isAudioOn)
+    playAudio(waiting_mp3, isAudioOn);
   } else {
-    playAudio(movement_mp3, isAudioOn)
+    playAudio(movement_mp3, isAudioOn);
   }
-
 
   let aliveBoolean = true;
 
@@ -184,12 +187,11 @@ export default function moveHero(
   let newEnemies = [...enemies];
   // killing enemies
   if (enemies.indexOf(swordIndexToMove) > -1) {
-    playAudio(enemyKilled_mp3, isAudioOn, true)
+    playAudio(enemyKilled_mp3, isAudioOn, true);
     newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
     setEnemies([...newEnemies]);
     // setEnemiesKilled((n) => n + 1);
     setLastEnemiesKilled(swordIndexToMove);
-
   }
 
   setHero({

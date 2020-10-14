@@ -61,9 +61,10 @@ interface Props {}
 function MainUI({}: Props): JSX.Element {
 
 
-  const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
+  // const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
+  const [isAudioOn, setIsAudioOn] = useNumberStorage("isAudioOn", 1);
 
-  function playAudio(audioVar: HTMLAudioElement, isAudioOn: boolean, shouldPreviousAudioStop: boolean = false) {
+  function playAudio(audioVar: HTMLAudioElement, isAudioOn: number | React.Dispatch<React.SetStateAction<number>>, shouldPreviousAudioStop: boolean = false) {
     if (isAudioOn) {
 
       if(shouldPreviousAudioStop) {

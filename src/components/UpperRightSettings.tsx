@@ -9,8 +9,8 @@ interface Props {
   controlsVisibility:  string | React.Dispatch<React.SetStateAction<string>>;
   setControlsVisibility:  string | React.Dispatch<React.SetStateAction<string>>;
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>;
-  isAudioOn: boolean;
-  setIsAudioOn:  React.Dispatch<React.SetStateAction<boolean>>
+  isAudioOn:  number | React.Dispatch<React.SetStateAction<number>>;
+  setIsAudioOn:   number | React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface PropsChildren {
@@ -55,8 +55,8 @@ export interface PropsChildren {
   setCancelHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>;
 
-  isAudioOn: boolean;
-  setIsAudioOn:   React.Dispatch<React.SetStateAction<boolean>>
+  isAudioOn:  number | React.Dispatch<React.SetStateAction<number>>;
+  setIsAudioOn:    number | React.Dispatch<React.SetStateAction<number>>;
   largeScreenRender: boolean
 }
 
