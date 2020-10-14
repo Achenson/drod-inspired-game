@@ -5,8 +5,8 @@ import { ReactComponent as Help } from "../svgs/question-mark-round.svg";
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
-  helpClicked: string | React.Dispatch<React.SetStateAction<string>>;
-  setHelpClicked: string | React.Dispatch<React.SetStateAction<string>>;
+  helpClicked: number | React.Dispatch<React.SetStateAction<number>>;
+  setHelpClicked: number | React.Dispatch<React.SetStateAction<number>>;
   settingsVisibility: boolean;
   setSettingsVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   helpVisibility: boolean;
@@ -29,7 +29,7 @@ function UpperRightUI({
   );
 
   useEffect(() => {
-    if (helpClicked === "true") {
+    if (helpClicked) {
       setAnimatePulse(null);
     }
   }, [helpClicked]);
@@ -65,8 +65,8 @@ function UpperRightUI({
         <Help
           className={`h-6 fill-current hover:text-purple-800 ${animatePulse}`}
           onClick={() => {
-            (setHelpClicked as React.Dispatch<React.SetStateAction<string>>)(
-              "true"
+            (setHelpClicked as React.Dispatch<React.SetStateAction<number>>)(
+              1
             );
 
             if (settingsVisibility && !largeScreenRender) {

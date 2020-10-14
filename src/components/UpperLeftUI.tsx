@@ -4,7 +4,7 @@ import { ReactComponent as Medal } from "../svgs/medal.svg";
 
 interface Props {
   // enemiesKilled: number;
-  topScore: string | React.Dispatch<React.SetStateAction<string>>;
+  topScore: number | React.Dispatch<React.SetStateAction<number>>;
   enemies: number[];
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
@@ -21,25 +21,25 @@ function UpperLeftUI({
   let medalColor;
   let medalOnHoverText: string;
 
-  let topScoreInt = parseInt(topScore as string);
+  // let topScoreInt = parseInt(topScore as string);
 
-  if (topScoreInt < 100) {
+  if (topScore < 100) {
     medalColor = "black";
     medalOnHoverText = "No medal awarded";
   }
 
-  if (topScoreInt >= 100 && topScoreInt < 175) {
+  if (topScore >= 100 && topScore < 175) {
     medalColor = "#cd7f32";
     medalOnHoverText = "Bronze medal awarded";
   }
 
-  if (topScoreInt >= 175 && topScoreInt < 250) {
+  if (topScore >= 175 && topScore < 250) {
     // medalColor = " #c0c0c0";
     medalColor = "gray";
     medalOnHoverText = "Silver medal awarded";
   }
 
-  if (topScoreInt >= 250) {
+  if (topScore >= 250) {
     medalColor = "gold";
     medalOnHoverText = "Gold medal awarded!";
   }
@@ -64,7 +64,7 @@ function UpperLeftUI({
             setTextOnDisplay("Most Rounds Survived");
           }}
         >
-          {topScore}
+          {topScore.toString()}
         </p>
         <div className={`w-8 hover:bg-gray-200 rounded-md flex justify-center items-center`}>
         <Medal

@@ -94,8 +94,8 @@ function MainUI({}: Props): JSX.Element {
   const [currentTurn, setCurrentTurn] = useState<number>(0);
 
   // const [topScore, setTopScore] = useState<string>("248");
-  const [topScore, setTopScore] = useStorage("score", "0");
-  const [helpClicked, setHelpClicked] = useStorage("helpClicked", "false");
+  const [topScore, setTopScore] = useStorage("score", 0);
+  const [helpClicked, setHelpClicked] = useStorage("helpClicked", 0);
 
   // useEffect(() => {
   //   let topScoreSaved = localStorage.getItem("score");

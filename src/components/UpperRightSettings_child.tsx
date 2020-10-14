@@ -163,7 +163,7 @@ function UpperRightSettings_child({
         <Confirm
           className={`h-6 cursor-pointer ${confirmHover}`}
           onClick={() => {
-            (setTopScore as React.Dispatch<React.SetStateAction<string>>)("0");
+            (setTopScore as React.Dispatch<React.SetStateAction<number>>)(0);
             toggleIcons();
           }}
           onMouseEnter={() => {
