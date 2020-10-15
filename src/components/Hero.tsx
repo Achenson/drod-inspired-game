@@ -7,7 +7,7 @@ interface Props {
 
 function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
   let triangleBody = {
-    borderBottom: "24px solid green",
+    borderBottom: "20px solid green",
     borderLeft: "12px solid transparent",
     borderRight: "12px solid transparent",
     height: "0",
@@ -61,7 +61,7 @@ function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
         </div>
         <div
           className={`w-3 h-3 bg-yellow-500 rounded-full z-40`}
-          style={{ position: "absolute", top: "11px", left: "-3px" }}
+          style={{ position: "absolute", top: "10px", left: "-3px" }}
         >
           <div style={halfACircle}></div>
         </div>

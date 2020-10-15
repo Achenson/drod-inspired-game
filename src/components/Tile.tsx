@@ -58,27 +58,27 @@ function Tile({
     case 9:
       swordDirection = "transform -rotate-45";
       heroDirection = "";
-      triangleMargins.marginTop = "-12px";
+      triangleMargins.marginTop = "-16px";
       triangleMargins.marginLeft = "0px";
       // setMarginForBody({...marginForBody, marginTop: "-8px"});
       break;
     case 8:
       swordDirection = "left-0 top-0";
       heroDirection = "transform rotate-45 right-0 top-0";
-      triangleMargins.marginTop = "-21px";
-      triangleMargins.marginLeft = "21px";
+      triangleMargins.marginTop = "-25px";
+      triangleMargins.marginLeft = "25px";
       break;
     case -1:
       swordDirection = "transform rotate-45";
       heroDirection = "transform rotate-90";
-      triangleMargins.marginTop = "1px";
+      triangleMargins.marginTop = "0px";
       triangleMargins.marginLeft = "16px";
       break;
     case -10:
       swordDirection = "transform rotate-90 left-0 bottom-0";
       heroDirection = "transform rotate-135";
-      triangleMargins.marginTop = "21px";
-      triangleMargins.marginLeft = "21px";
+      triangleMargins.marginTop = "25px";
+      triangleMargins.marginLeft = "25px";
       break;
     case -9:
       swordDirection = "transform rotate-135";
@@ -89,20 +89,20 @@ function Tile({
     case -8:
       swordDirection = "transform rotate-180 right-0 bottom-0";
       heroDirection = "transform rotate-225";
-      triangleMargins.marginTop = "21px";
-      triangleMargins.marginLeft = "-21px";
+      triangleMargins.marginTop = "25px";
+      triangleMargins.marginLeft = "-25px";
       break;
     case 1:
       swordDirection = "transform rotate-225";
       heroDirection = "transform -rotate-90";
-      triangleMargins.marginTop = "-1px";
+      triangleMargins.marginTop = "-0px";
       triangleMargins.marginLeft = "-16px";
       break;
     case 10:
       swordDirection = "transform -rotate-90 right-0 top-0";
       heroDirection = "transform -rotate-45";
-      triangleMargins.marginTop = "-21px";
-      triangleMargins.marginLeft = "-21px";
+      triangleMargins.marginTop = "-25px";
+      triangleMargins.marginLeft = "-25px";
       break;
   }
 
