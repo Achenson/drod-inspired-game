@@ -15,16 +15,6 @@ import moveHero from "../utils/moveHero";
 import useNumberStorage from "../hooks/useNumberStorage";
 import useStringStorage from "../hooks/useStringStorage";
 
-// import { ReactComponent as Medal } from "../svgs/medal.svg";
-import { ReactComponent as VolumeOFF } from "../svgs/volumeOff.svg";
-import { ReactComponent as VolumeON } from "../svgs/volumeOn.svg";
-import { ReactComponent as Delete } from "../svgs/deleteDanger.svg";
-import { ReactComponent as Desktop } from "../svgs/desktop.svg";
-import { ReactComponent as Cancel } from "../svgs/cancel.svg";
-import { ReactComponent as Confirm } from "../svgs/confirm.svg";
-import { ReactComponent as Touch } from "../svgs/touch.svg";
-import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
-
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
 import UpperRightUI from "./UpperRightUI";
@@ -34,45 +24,35 @@ import TopDisplay from "./TopDisplay";
 
 // using import for mp3 not working in typescript??!
 
-const topScore_audio = require("../mp3/award_nylon_plucked.mp3");
-const medal_audio = require("../mp3/retro_fanfare.mp3");
-const death_audio = require("../mp3/bite_munch.mp3");
-const enemyKilled_audio = require("../mp3/impact_sword_hit.mp3");
-const forbiddenMove_audio = require("../mp3/game_error.mp3");
-const swing_audio = require("../mp3/sabre_swing.mp3");
-// const movement_audio = require("../mp3/single_step_heavy.mp3");
-const movement_audio = require("../mp3/single_step_heavy.mp3");
-const waiting_audio = require("../mp3/snore_single.mp3");
-const newGame_audio = require("../mp3/game_tone_retro_one_up.mp3");
-const topScore_mp3 = new Audio(topScore_audio);
-topScore_mp3.volume = 0.5;
-const medal_mp3 = new Audio(medal_audio);
-const death_mp3 = new Audio(death_audio);
-const enemyKilled_mp3 = new Audio(enemyKilled_audio);
-const forbiddenMove_mp3 = new Audio(forbiddenMove_audio);
-const swing_mp3 = new Audio(swing_audio);
-const movement_mp3 = new Audio(movement_audio);
-const waiting_mp3 = new Audio(waiting_audio);
-// const newGame_mp3 = new Audio(newGame_audio);
-// newGame_mp3.volume = 0.2;
+import {
+  death_mp3,
+  enemyKilled_mp3,
+  forbiddenMove_mp3,
+  medal_mp3,
+  movement_mp3,
+  swing_mp3,
+  topScore_mp3,
+  waiting_mp3,
+} from "../utils/audio";
 
 interface Props {}
 
 function MainUI({}: Props): JSX.Element {
-
-
   // const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
   const [isAudioOn, setIsAudioOn] = useNumberStorage("isAudioOn", 1);
 
-  function playAudio(audioVar: HTMLAudioElement, isAudioOn: number | React.Dispatch<React.SetStateAction<number>>, shouldPreviousAudioStop: boolean = false) {
+  function playAudio(
+    audioVar: HTMLAudioElement,
+    isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
+    shouldPreviousAudioStop: boolean = false
+  ) {
     if (isAudioOn) {
-
-      if(shouldPreviousAudioStop) {
+      if (shouldPreviousAudioStop) {
         audioVar.pause();
         //   the time position at which playback will begin once the play()  is called.
         audioVar.currentTime = 0;
       }
-  
+
       audioVar.play();
     }
   }
@@ -100,8 +80,6 @@ function MainUI({}: Props): JSX.Element {
   // const [topScore, setTopScore] = useState<string>("248");
   const [topScore, setTopScore] = useNumberStorage("score", 0);
   const [helpClicked, setHelpClicked] = useNumberStorage("helpClicked", 0);
-
-
 
   // useEffect(() => {
   //   let topScoreSaved = localStorage.getItem("score");
@@ -164,7 +142,10 @@ function MainUI({}: Props): JSX.Element {
   //   "responsive" | "alwaysOn" | "alwaysOff"
   // >("responsive");
 
-  const [controlsVisibility, setControlsVisibility] = useStringStorage("controls", "responsive");
+  const [controlsVisibility, setControlsVisibility] = useStringStorage(
+    "controls",
+    "responsive"
+  );
 
   const [controlsRender, setControlsRender] = useState<boolean>(true);
 
@@ -215,7 +196,7 @@ function MainUI({}: Props): JSX.Element {
       setSettingsVisibility(false);
     }
 
-    if(helpVisibility && !largeScreenRender) {
+    if (helpVisibility && !largeScreenRender) {
       setHelpVisibility(false);
     }
 
@@ -328,15 +309,7 @@ function MainUI({}: Props): JSX.Element {
       setEnemiesDirections,
       setTextOnDisplay,
       playAudio,
-      isAudioOn,
-      topScore_mp3,
-      medal_mp3,
-      death_mp3,
-      forbiddenMove_mp3,
-      enemyKilled_mp3,
-      swing_mp3,
-      movement_mp3,
-      waiting_mp3
+      isAudioOn
     );
   }
 
@@ -373,7 +346,12 @@ function MainUI({}: Props): JSX.Element {
         className="flex flex-col justify-center relative"
         style={{ height: "100vh" }}
       >
-        <TopDisplay boardWidth={boardWidth} textOnDisplay={textOnDisplay} largeScreenRender={largeScreenRender} controlsVisibility={controlsVisibility}/>
+        <TopDisplay
+          boardWidth={boardWidth}
+          textOnDisplay={textOnDisplay}
+          largeScreenRender={largeScreenRender}
+          controlsVisibility={controlsVisibility}
+        />
 
         <div className="flex justify-between relative">
           <UpperLeftUI

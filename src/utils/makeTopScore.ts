@@ -1,5 +1,12 @@
 
 
+import {
+  death_mp3,  
+  medal_mp3,
+  topScore_mp3,
+} from "./audio";
+
+
 export default function makeRecordScore(
   currentTurn: number,
   topScore: number | React.Dispatch<React.SetStateAction<number>>,
@@ -11,9 +18,9 @@ export default function makeRecordScore(
     shouldPreviousAudioStop?: boolean
   ) => void,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-  topScore_mp3: HTMLAudioElement,
-  medal_mp3: HTMLAudioElement,
-  death_mp3: HTMLAudioElement,
+  // topScore_mp3: HTMLAudioElement,
+  // medal_mp3: HTMLAudioElement,
+  // death_mp3: HTMLAudioElement,
 ) {
   if (currentTurn > topScore) {
     (setTopScore as React.Dispatch<React.SetStateAction<number>>)(

@@ -4,6 +4,14 @@ import { Directions } from "../utils/interfaces";
 import moveEnemies from "./moveEnemies";
 import makeTopScore from "./makeTopScore";
 
+import {
+  enemyKilled_mp3,
+  forbiddenMove_mp3,
+  movement_mp3,
+  swing_mp3,
+  waiting_mp3,
+} from "./audio";
+
 export default function moveHero(
   direction: Directions,
   setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
@@ -27,14 +35,6 @@ export default function moveHero(
     shouldPreviousAudioStop?: boolean
   ) => void,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-  topScore_mp3: HTMLAudioElement,
-  medal_mp3: HTMLAudioElement,
-  death_mp3: HTMLAudioElement,
-  forbiddenMove_mp3: HTMLAudioElement,
-  enemyKilled_mp3: HTMLAudioElement,
-  swing_mp3: HTMLAudioElement,
-  movement_mp3: HTMLAudioElement,
-  waiting_mp3: HTMLAudioElement
 ) {
   if (!hero.alive) {
     return;
@@ -176,9 +176,6 @@ export default function moveHero(
       setTextOnDisplay,
       playAudio,
       isAudioOn,
-      topScore_mp3,
-      medal_mp3,
-      death_mp3
     );
 
     return;
@@ -220,9 +217,6 @@ export default function moveHero(
     setTextOnDisplay,
     playAudio,
     isAudioOn,
-    topScore_mp3,
-    medal_mp3,
-    death_mp3
   );
 }
 

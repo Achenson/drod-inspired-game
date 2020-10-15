@@ -27,9 +27,6 @@ export default function moveEnemies(
     shouldPreviousAudioStop?: boolean
   ) => void,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-  topScore_mp3: HTMLAudioElement,
-  medal_mp3: HTMLAudioElement,
-  death_mp3: HTMLAudioElement,
 ) {
   let nextEnemiesPositions: number[] = [];
 
@@ -144,7 +141,7 @@ export default function moveEnemies(
 
     // setCurrentTurn((n) => n + 1);
 
-    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, playAudio, isAudioOn, topScore_mp3, medal_mp3, death_mp3);
+    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, playAudio, isAudioOn);
   }
   // else {
 
