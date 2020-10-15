@@ -12,6 +12,8 @@ import {
   waiting_mp3,
 } from "./audio";
 
+import playAudio from "./playAudio"
+
 export default function moveHero(
   direction: Directions,
   setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
@@ -29,12 +31,7 @@ export default function moveHero(
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  playAudio: (
-    audioVar: HTMLAudioElement,
-    isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-    shouldPreviousAudioStop?: boolean
-  ) => void,
-  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
+  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>
 ) {
   if (!hero.alive) {
     return;
@@ -174,7 +171,6 @@ export default function moveHero(
       topScore,
       setTopScore,
       setTextOnDisplay,
-      playAudio,
       isAudioOn,
     );
 
@@ -215,7 +211,6 @@ export default function moveHero(
     enemiesDirections,
     setEnemiesDirections,
     setTextOnDisplay,
-    playAudio,
     isAudioOn,
   );
 }

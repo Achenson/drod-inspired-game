@@ -22,40 +22,12 @@ import UpperRightSettings from "./UpperRightSettings";
 import NewGameBtn from "./NewGameBtn";
 import TopDisplay from "./TopDisplay";
 
-// using import for mp3 not working in typescript??!
-
-import {
-  death_mp3,
-  enemyKilled_mp3,
-  forbiddenMove_mp3,
-  medal_mp3,
-  movement_mp3,
-  swing_mp3,
-  topScore_mp3,
-  waiting_mp3,
-} from "../utils/audio";
-
 interface Props {}
 
 function MainUI({}: Props): JSX.Element {
   // const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
   const [isAudioOn, setIsAudioOn] = useNumberStorage("isAudioOn", 1);
 
-  function playAudio(
-    audioVar: HTMLAudioElement,
-    isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-    shouldPreviousAudioStop: boolean = false
-  ) {
-    if (isAudioOn) {
-      if (shouldPreviousAudioStop) {
-        audioVar.pause();
-        //   the time position at which playback will begin once the play()  is called.
-        audioVar.currentTime = 0;
-      }
-
-      audioVar.play();
-    }
-  }
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
@@ -308,7 +280,6 @@ function MainUI({}: Props): JSX.Element {
       enemiesDirections,
       setEnemiesDirections,
       setTextOnDisplay,
-      playAudio,
       isAudioOn
     );
   }

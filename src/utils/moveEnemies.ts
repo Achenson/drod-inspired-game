@@ -21,11 +21,6 @@ export default function moveEnemies(
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  playAudio: (
-    audioVar: HTMLAudioElement,
-    isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-    shouldPreviousAudioStop?: boolean
-  ) => void,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
 ) {
   let nextEnemiesPositions: number[] = [];
@@ -141,7 +136,7 @@ export default function moveEnemies(
 
     // setCurrentTurn((n) => n + 1);
 
-    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, playAudio, isAudioOn);
+    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, isAudioOn);
   }
   // else {
 

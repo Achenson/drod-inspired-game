@@ -1,5 +1,5 @@
 
-
+// using import for mp3 not working in typescript??!
 const topScore_audio = require("../mp3/award_nylon_plucked.mp3");
 const medal_audio = require("../mp3/retro_fanfare.mp3");
 const death_audio = require("../mp3/bite_munch.mp3");
