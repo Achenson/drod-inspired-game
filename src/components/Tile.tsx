@@ -84,7 +84,7 @@ function Tile({
       swordDirection = "transform rotate-135";
       heroDirection = "transform rotate-180";
       triangleMargins.marginTop = "16px";
-      triangleMargins.marginLeft = "1px";
+      triangleMargins.marginLeft = "0px";
       break;
     case -8:
       swordDirection = "transform rotate-180 right-0 bottom-0";
@@ -102,7 +102,7 @@ function Tile({
       swordDirection = "transform -rotate-90 right-0 top-0";
       heroDirection = "transform -rotate-45";
       triangleMargins.marginTop = "-21px";
-      triangleMargins.marginLeft = "-25px";
+      triangleMargins.marginLeft = "-21px";
       break;
   }
 
