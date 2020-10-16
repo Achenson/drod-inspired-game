@@ -82,7 +82,7 @@ DONE medal? 100 175 250 DONE
 DONE change enemy render when near hero DONE
 setting topScore not only on death?
 DONE Tile -> better code, too many "hidden" settings, new file for CSS objects? DONE
-round the hero div?
+DONE round the hero div? DONE
 XXX better svg for waiting?XXX
 DONE delete enemies killed in MainUI DONE
 X new game confirmation? X
@@ -96,9 +96,9 @@ change UI from black to violet?
 XXX toggle large screen mode or toggle always on? XXX
 XXX be default: green sound on icon? XXX
 UpperRightSettings children - too many props??
-Touch * Keyboard btns -> save to localStorage?
+DONE Touch * Keyboard btns -> save to localStorage? DONE
 DONe enable clickin/touch on Upper UI? DONE
-change Help positioning if control buttons are visible in largeRenderMode - still not perfect
+DONE change Help positioning if control buttons are visible in largeRenderMode DONE
 DONE !!! toggle setting after resizing down !!! DONE
 make useMemo notes (Help)
 DONE make Help less wide?? DONE
@@ -107,9 +107,9 @@ DONE red bg on sound icon when on DONE
 DONE no display text on setting when on small screen DONE
 DONE zapSplat acknowledgement. DONE
 ICONS used: https://www.iconpacks.net/ https://uxwing.com/  https://heroicons.com/
-too many functions nested inside functions (moveHero-> moveEnemies...)
+X too many functions nested inside functions (moveHero-> moveEnemies...) X
 DONE "responsive" text size on topDisplay?? DONE
-test mp3: enemyKilled, swing (sword), movement & waiting
+DONE test mp3: enemyKilled, swing (sword), movement & waiting DONE
 welcome text on topDisplay / every new game?
 test BTN  -> NEW GAME
 DONE reset display when controls are being used DONE
@@ -122,12 +122,14 @@ DONE hero kills not audible when one after the other DONE
 X New game / initial sound? x probably not - commented out
 XXX change footstep sound? XXX
 name? make it always visible or topDisplay only?
-use useContext somewhere?
+XXX use useContext somewhere? XXX
 change topScore mp3?
 normalize volume - topScore mp3, medal too loud?
 XXX help & about - mention brown enemies & pulsing enemies? XXX
 X line on Hero when in diagonal position? check other browsers - not on chrome X
 DONE Hero looks totally different on chrome DONE
+Hero's hand larger or no green "borders" in firefox
+React-ridge-state - state management, can be used outside React components
 
 
 
