@@ -7,14 +7,14 @@ interface Props {
 
 function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
   let triangleBody = {
-    borderBottom: "10px solid green",
-    borderLeft: "4px solid transparent",
-    borderRight: "4px solid transparent",
+    borderBottom: "6px solid green",
+    borderLeft: "3px solid transparent",
+    borderRight: "3px solid transparent",
     height: "0",
-    width: "12px",
+    width: "14px",
     // more than 40% - hero is not rendered properly on chrome
     // borderRadius: "40%",
-    // borderRadius: "40%",
+    borderRadius: "20%",
   };
 
   /* 
@@ -41,7 +41,8 @@ function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
   };
 
   let heroHands = {
-    borderBottom: "5px solid #ecc94b",
+    // borderBottom: "5px solid #ecc94b",
+    borderBottom: "5px solid transparen",
     borderLeft: "2px solid transparent",
     borderRight: "2px solid transparent",
     height: "0",
@@ -60,7 +61,7 @@ function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
         </div>
         <div
           className={`w-3 h-3 bg-yellow-500 rounded-full z-40`}
-          style={{ position: "absolute", top: "11px", left: "-4px" }}
+          style={{ position: "absolute", top: "7px", left: "-2px" }}
         >
           <div style={halfACircle}></div>
         </div>
@@ -68,8 +69,8 @@ function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
           className="absolute z-30"
           style={{
             backgroundColor: "green",
-            top: "7px",
-            left: "-11px",
+            top: "3px",
+            left: "-9px",
             width: "26px",
             height: "20px",
             borderRadius: "9px"
