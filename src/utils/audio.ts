@@ -16,6 +16,7 @@ topScore_mp3.volume = 0.5;
 export const medal_mp3 = new Audio(medal_audio);
 export const death_mp3 = new Audio(death_audio);
 export const enemyKilled_mp3 = new Audio(enemyKilled_audio);
+enemyKilled_mp3.volume = 0.6;
 export const forbiddenMove_mp3 = new Audio(forbiddenMove_audio);
 export const swing_mp3 = new Audio(swing_audio);
 export const movement_mp3 = new Audio(movement_audio);
