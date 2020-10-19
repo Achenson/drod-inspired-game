@@ -130,6 +130,7 @@ X line on Hero when in diagonal position? check other browsers - not on chrome X
 DONE Hero looks totally different on chrome DONE
 DONE Hero's hand larger or no green "borders" in firefox DONE
 React-ridge-state - state management, can be used outside React components
+improve displaying smaller text
 
 
 
