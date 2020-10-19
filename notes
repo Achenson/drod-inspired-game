@@ -80,7 +80,7 @@ DONE backspace -> move one turn back in time DONE
 DONE smaller(px) board? DONE
 DONE medal? 100 175 250 DONE
 DONE change enemy render when near hero DONE
-setting topScore not only on death?
+setting topScore not only on death? now also on new game
 DONE Tile -> better code, too many "hidden" settings, new file for CSS objects? DONE
 DONE round the hero div? DONE
 XXX better svg for waiting?XXX
@@ -131,6 +131,8 @@ DONE Hero looks totally different on chrome DONE
 DONE Hero's hand larger or no green "borders" in firefox DONE
 React-ridge-state - state management, can be used outside React components
 improve displaying smaller text
+DONE makeTopScore on new game DONE
+"black tile"
 
 
 

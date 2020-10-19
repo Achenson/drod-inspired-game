@@ -136,7 +136,7 @@ export default function moveEnemies(
 
     // setCurrentTurn((n) => n + 1);
 
-    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, isAudioOn);
+    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, isAudioOn, hero);
   }
   // else {
 

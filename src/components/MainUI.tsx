@@ -11,6 +11,7 @@ import { Directions } from "../utils/interfaces";
 
 import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
+import makeTopScore from "../utils/makeTopScore";
 
 import useNumberStorage from "../hooks/useNumberStorage";
 import useStringStorage from "../hooks/useStringStorage";
@@ -286,7 +287,9 @@ function MainUI({}: Props): JSX.Element {
 
   function newGame() {
     // playAudio(newGame_mp3, isAudioOn, true);
-    setTextOnDisplay("");
+    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, isAudioOn, hero);
+   
+    
 
     if (settingsVisibility) {
       setSettingsVisibility(false);

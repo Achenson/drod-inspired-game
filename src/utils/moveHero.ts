@@ -172,6 +172,7 @@ export default function moveHero(
       setTopScore,
       setTextOnDisplay,
       isAudioOn,
+      hero
     );
 
     return;

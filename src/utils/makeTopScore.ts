@@ -6,12 +6,15 @@ import {
 
 import playAudio from "./playAudio"
 
+import { HeroObj } from "./interfaces";
+
 export default function makeRecordScore(
   currentTurn: number,
   topScore: number | React.Dispatch<React.SetStateAction<number>>,
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
+  hero: HeroObj
 ) {
   if (currentTurn > topScore) {
     (setTopScore as React.Dispatch<React.SetStateAction<number>>)(
@@ -41,8 +44,15 @@ export default function makeRecordScore(
       playAudio(topScore_mp3, isAudioOn)
     }
   } else {
-    setTextOnDisplay("No new record");
-    playAudio(death_mp3, isAudioOn)
+    // makeTopScore on death
+    if(!hero.alive) {
+      setTextOnDisplay("No new record");
+      playAudio(death_mp3, isAudioOn)
+      // makeTopScore on pressing new game
+    } else {
+      setTextOnDisplay("Starting text");
+    }
+
 
   }
 }
