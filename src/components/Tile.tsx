@@ -52,57 +52,57 @@ function Tile({
   //                                      nw  n ne   e   se   s  sw  w
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
-  let triangleMargins = { marginTop: "auto", marginLeft: "auto" };
+  let bodyMargins = { marginTop: "auto", marginLeft: "auto" };
 
   switch (relativePosition) {
     case 9:
       swordDirection = "transform -rotate-45";
       heroDirection = "";
-      triangleMargins.marginTop = "-26px";
-      triangleMargins.marginLeft = "0px";
+      bodyMargins.marginTop = "-26px";
+      bodyMargins.marginLeft = "0px";
       // setMarginForBody({...marginForBody, marginTop: "-8px"});
       break;
     case 8:
       swordDirection = "left-0 top-0";
       heroDirection = "transform rotate-45 right-0 top-0";
-      triangleMargins.marginTop = "-30px";
-      triangleMargins.marginLeft = "30px";
+      bodyMargins.marginTop = "-30px";
+      bodyMargins.marginLeft = "30px";
       break;
     case -1:
       swordDirection = "transform rotate-45";
       heroDirection = "transform rotate-90";
-      triangleMargins.marginTop = "0px";
-      triangleMargins.marginLeft = "26px";
+      bodyMargins.marginTop = "0px";
+      bodyMargins.marginLeft = "26px";
       break;
     case -10:
       swordDirection = "transform rotate-90 left-0 bottom-0";
       heroDirection = "transform rotate-135";
-      triangleMargins.marginTop = "30px";
-      triangleMargins.marginLeft = "30px";
+      bodyMargins.marginTop = "30px";
+      bodyMargins.marginLeft = "30px";
       break;
     case -9:
       swordDirection = "transform rotate-135";
       heroDirection = "transform rotate-180";
-      triangleMargins.marginTop = "26px";
-      triangleMargins.marginLeft = "0px";
+      bodyMargins.marginTop = "26px";
+      bodyMargins.marginLeft = "0px";
       break;
     case -8:
       swordDirection = "transform rotate-180 right-0 bottom-0";
       heroDirection = "transform rotate-225";
-      triangleMargins.marginTop = "30px";
-      triangleMargins.marginLeft = "-30px";
+      bodyMargins.marginTop = "30px";
+      bodyMargins.marginLeft = "-30px";
       break;
     case 1:
       swordDirection = "transform rotate-225";
       heroDirection = "transform -rotate-90";
-      triangleMargins.marginTop = "-0px";
-      triangleMargins.marginLeft = "-26px";
+      bodyMargins.marginTop = "-0px";
+      bodyMargins.marginLeft = "-26px";
       break;
     case 10:
       swordDirection = "transform -rotate-90 right-0 top-0";
       heroDirection = "transform -rotate-45";
-      triangleMargins.marginTop = "-30px";
-      triangleMargins.marginLeft = "-30px";
+      bodyMargins.marginTop = "-30px";
+      bodyMargins.marginLeft = "-30px";
       break;
   }
 
@@ -259,7 +259,7 @@ function Tile({
       {deathVisibility ? <DeathSVG className={`h-6`} /> : null}
 
       {heroVisibility ? (
-        <Hero heroDirection={heroDirection} triangleMargins={triangleMargins} />
+        <Hero heroDirection={heroDirection} bodyMargins={bodyMargins} />
       ) : null}
     </div>
   );

@@ -2,33 +2,18 @@ import React from "react";
 
 interface Props {
   heroDirection: string;
-  triangleMargins: { marginTop: string; marginLeft: string };
+  bodyMargins: { marginTop: string; marginLeft: string };
 }
 
-function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
-  let triangleBody = {
-    // borderBottom: "6px solid green",
-    // borderLeft: "3px solid transparent",
-    // borderRight: "3px solid transparent",
+function Hero({ heroDirection, bodyMargins }: Props): JSX.Element {
+  let heroBody = {
     backgroundColor: "green",
     height: "10px",
     width: "10px",
-    // more than 40% - hero is not rendered properly on chrome
+    // more than certain value  - hero is not rendered properly on chrome
    borderRadius: "25%",
-    // borderRadius: "40%",
   };
 
-  /* 
-    borderBottom: "28px solid green",
-    borderLeft: "12px solid transparent",
-    borderRight: "12px solid transparent",
-    height: "0",
-    width: "30px",
-    // more than 40% - hero is not rendered properly on chrome
-    // borderRadius: "40%",
-    borderRadius: "40%"
-    // marginTop: "auto"
-  */
 
   let halfACircle = {
     background: "black",
@@ -41,25 +26,9 @@ function Hero({ heroDirection, triangleMargins }: Props): JSX.Element {
     marginTop: "4px",
   };
 
-  let heroHands = {
-    // borderBottom: "5px solid #ecc94b",
-    borderBottom: "5px solid transparen",
-    borderLeft: "2px solid transparent",
-    borderRight: "2px solid transparent",
-    height: "0",
-    width: "10px",
-    borderRadius: "20%",
-    left: "-3px",
-    top: "0px",
-  };
-
   return (
-    <div style={triangleMargins}>
-      {/* <div className={`${heroVisibility}`} style={{position: "absolute"}}></div> */}
-      <div className={`${heroDirection} relative`} style={{ ...triangleBody }}>
-        <div className="absolute" style={heroHands}>
-          {/* <div className="absolute" style={lineBetween}></div> */}
-        </div>
+    <div style={bodyMargins}>
+      <div className={`${heroDirection} relative`} style={{ ...heroBody }}>
         <div
           className={`w-3 h-3 bg-yellow-500 rounded-full z-40`}
           style={{ position: "absolute", top: "7px", left: "-1px" }}

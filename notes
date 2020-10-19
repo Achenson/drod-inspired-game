@@ -124,11 +124,11 @@ XXX change footstep sound? XXX
 name? make it always visible or topDisplay only?
 XXX use useContext somewhere? XXX
 change topScore mp3?
-normalize volume - topScore mp3, medal too loud?
+DONE normalize volume - topScore mp3, medal too loud? DONE
 XXX help & about - mention brown enemies & pulsing enemies? XXX
 X line on Hero when in diagonal position? check other browsers - not on chrome X
 DONE Hero looks totally different on chrome DONE
-Hero's hand larger or no green "borders" in firefox
+DONE Hero's hand larger or no green "borders" in firefox DONE
 React-ridge-state - state management, can be used outside React components
 
 
