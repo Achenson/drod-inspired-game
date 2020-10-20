@@ -115,6 +115,13 @@ function Tile({
     marginLeft: "auto",
   });
 
+  const [swordMargins, setSwordMargins] = useState({
+    marginTop: "auto",
+    marginLeft: "auto",
+  });
+
+
+
   function enemyColor() {
     if (
       arrIndex === enemies[enemies.length - 1] &&
@@ -250,20 +257,43 @@ function Tile({
         });
         break;
       case 10:
-        setSwordDirection("transform -rotate-90 right-0 top-0");
+        // setSwordDirection("transform -rotate-90 right-0 top-0");
+        setSwordDirection("transform -rotate-90");
         setHeroDirection("transform -rotate-45");
         setBodyMargins({
+          /* 
           marginTop: "-30px",
           marginLeft: "-30px",
+          */
+          marginTop: "-24px",
+          marginLeft: "-24px",
         });
+        setSwordMargins({
+          marginTop: "15px",
+          marginLeft: "15px",
+        })
         break;
     }
   }, [relativePosition]);
 
+  function setZetIndex() {
+
+    if (swordVisibility) {
+      return "z-50"
+    }
+
+    if (heroVisibility) {
+      return "z-40"
+    }
+
+    return "z-0"
+  }
+
   return (
     <div
       className={`flex items-center justify-center w-8 h-8 ${backgroundColor} ${
-        heroVisibility ? "z-50" : "z-0"
+        // heroVisibility ? "z-50" : "z-0"
+        setZetIndex()
       } relative`}
     >
       {/* {boardTile[0]} */}
@@ -274,7 +304,7 @@ function Tile({
         <SwordSVG
           className={`${swordDirection} ${swordSize} absolute  ${
             lastEnemyKilled === arrIndex ? "fill-current text-red-600" : ""
-          }`}
+          }`} style={{marginLeft: `${swordMargins.marginLeft}`, marginTop: `${swordMargins.marginTop}`}}
         />
       ) : null}
 
