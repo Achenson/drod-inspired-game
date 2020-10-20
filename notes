@@ -133,59 +133,8 @@ React-ridge-state - state management, can be used outside React components
 improve displaying smaller text
 DONE makeTopScore on new game DONE
 "black tile"
-bug - bad sword rendering when using pointer controls - useState used, still should be better
+DONE bug - bad sword rendering when using pointer controls - useState used,DONE 
 Hero in diagonal positions - unclear where he is?
 Help: useMemo not needed?
 useState types all
 
-
-
-
- const [swordDirection, setSwordDirection] = useState("transform -rotate-45");
-
-  useEffect( () => {
-    switch (relativePosition) {
-      case 9:
-        setSwordDirection("transform -rotate-45");
-      
-        break;
-      case 8:
-        setSwordDirection("left-0 top-0");
-        // swordDirection = "left-0 top-0";
-
-        
-        break;
-      case -1:
-        setSwordDirection("transform rotate-45");
-        // swordDirection = "transform rotate-45";
-       
-        break;
-      case -10:
-        setSwordDirection("transform rotate-90 left-0 bottom-0");
-        // swordDirection = "transform rotate-90 left-0 bottom-0";
-        
-        break;
-      case -9:
-        setSwordDirection("transform rotate-135");
-        // swordDirection = "transform rotate-135";
-        
-        break;
-      case -8:
-        setSwordDirection("transform rotate-180 right-0 bottom-0");
-        // swordDirection = "transform rotate-180 right-0 bottom-0";
-        
-        break;
-      case 1:
-        setSwordDirection("transform rotate-225");
-        // swordDirection = "transform rotate-225";
-        
-        break;
-      case 10:
-        setSwordDirection("transform -rotate-90 right-0 top-0");
-        // swordDirection = "transform -rotate-90 right-0 top-0";
-        
-        break;
-    }
-
-    
-  }, [relativePosition])
