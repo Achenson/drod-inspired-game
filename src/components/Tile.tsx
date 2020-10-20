@@ -16,6 +16,7 @@ interface Props {
   currentTurn: number;
   lastEnemyKilled: number | null;
   enemiesDirections: number[];
+  boardSize: number;
 }
 
 function Tile({
@@ -26,6 +27,7 @@ function Tile({
   currentTurn,
   lastEnemyKilled,
   enemiesDirections,
+  boardSize,
 }: Props): JSX.Element {
   const corners = [0, 8, 72, 80];
 
@@ -81,9 +83,22 @@ function Tile({
   let enemyPulsing = "";
 
   let heroRelativePostion = arrIndex - hero.heroPosition;
+  let hRP = heroRelativePostion;
 
-  if (adjacentTilesRelativePositions.indexOf(heroRelativePostion) > -1) {
-    enemyPulsing = "animate-pulse";
+  if (adjacentTilesRelativePositions.indexOf(heroRelativePostion) > -1 && hero.alive) {
+    if (
+      !(
+        (arrIndex % boardSize === 0 &&
+          // nw                     w            sw
+          (hRP === 10 || hRP === 1 || hRP === -8)) ||
+        // (enemy % (boardSize - 1) === 0 &&
+        ((arrIndex + 1) % boardSize === 0 &&
+          // ne                     e            se
+          (hRP === 8 || hRP === -1 || hRP === -10))
+      )
+    ) {
+      enemyPulsing = "animate-pulse";
+    }
   }
 
   const [heroVisibility, setHeroVisibility] = useState<boolean>(false);

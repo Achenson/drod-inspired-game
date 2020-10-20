@@ -137,4 +137,7 @@ DONE bug - bad sword rendering when using pointer controls - useState used,DONE
 Hero in diagonal positions - unclear where he is?
 Help: useMemo not needed?
 useState types all
-
+DONE Bug: enemy pulsing on the other side of the board DONE
+trouble with cursor arriving on left arrow
+sometimes after going back new enemy will always arrive at the same tile
+mention enemies' direction of movement in help & about?

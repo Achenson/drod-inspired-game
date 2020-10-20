@@ -62,6 +62,7 @@ function Board({
             currentTurn={currentTurn}
             lastEnemyKilled={lastEnemyKilled}
             enemiesDirections={enemiesDirections}
+            boardSize={boardSize}
           />
         );
       })}
