@@ -12,7 +12,7 @@ interface Props {
 function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnDisplay }: Props): JSX.Element {
   let arrowDirection = "";
 
-  let keyToPress: string = "Numpadddd";
+  let keyToPress: string = "Numpad";
 
   switch (btnType) {
     case "nw":
@@ -51,13 +51,6 @@ function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnDisplay }: Props): 
       arrowDirection = "";
   }
 
-
-  // let keyToPressFormatted = keyToPress.split("").splice(keyToPress.length-2, 0, " ").join("");
-  // let keyToPressFormatted = keyToPress.slice(0, 6)
-  // console.log("keyToPressFormatted");
-  // console.log(keyToPressFormatted);
-  
-
   return btnType === "wait" ? (
     <button
       className="h-8 w-8 bg-gray-400 relative hover:bg-purple-400"
@@ -76,7 +69,7 @@ function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnDisplay }: Props): 
 
 
     >
-      <Wait className="h-6 absolute" style={{ left: "-37px", top: "4px" }} 
+      <Wait className="h-6 absolute" style={{ left: "6px", top: "4px" }} 
       
       
       
