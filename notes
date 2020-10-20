@@ -133,6 +133,8 @@ React-ridge-state - state management, can be used outside React components
 improve displaying smaller text
 DONE makeTopScore on new game DONE
 "black tile"
+bug - bad sword rendering when using pointer controls
+Hero in diagonal positions - unclear where he is?
 
 
 

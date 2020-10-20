@@ -226,10 +226,6 @@ function Tile({
     hero,
     arrIndex,
     enemies,
-    swordDirection,
-    currentTurn,
-    enemySVGvar,
-    lastEnemyKilled,
   ]);
 
   return (
