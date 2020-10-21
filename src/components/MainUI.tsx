@@ -117,7 +117,7 @@ function MainUI({}: Props): JSX.Element {
 
   const [controlsVisibility, setControlsVisibility] = useStringStorage(
     "controls",
-    "responsive"
+    "alwaysOn"
   );
 
   const [controlsRender, setControlsRender] = useState<boolean>(true);

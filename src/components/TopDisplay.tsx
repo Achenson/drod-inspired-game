@@ -5,7 +5,7 @@ interface Props {
   textOnDisplay: string;
   largeScreenRender: boolean;
   // controlsVisibility: "responsive" | "alwaysOn" | "alwaysOff";
-  controlsVisibility:  string | React.Dispatch<React.SetStateAction<string>>
+  controlsVisibility: string | React.Dispatch<React.SetStateAction<string>>;
 }
 
 function TopDisplay({

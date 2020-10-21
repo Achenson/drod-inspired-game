@@ -46,6 +46,7 @@ export default function makeRecordScore(
   } else {
     // makeTopScore on death
     if(!hero.alive) {
+      // in TopDisplay logic to make display different text conditionally with smaller font
       setTextOnDisplay("No new record");
       playAudio(death_mp3, isAudioOn)
       // makeTopScore on pressing new game

@@ -164,6 +164,8 @@ function Tile({
 
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
+
+// performance issues when tried to move this into Hero component
   useEffect(() => {
     switch (relativePosition) {
       case 9:

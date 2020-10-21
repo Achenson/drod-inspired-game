@@ -18,7 +18,7 @@ function NewGameBtn({newGame, setTextOnDisplay}: Props): JSX.Element{
             setTextOnDisplay("");
           }}
            >
-               TEST BTN
+               NEW GAME
            </button>
         </div>
     )
