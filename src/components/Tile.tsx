@@ -85,7 +85,10 @@ function Tile({
   let heroRelativePostion = arrIndex - hero.heroPosition;
   let hRP = heroRelativePostion;
 
-  if (adjacentTilesRelativePositions.indexOf(heroRelativePostion) > -1 && hero.alive) {
+  if (
+    adjacentTilesRelativePositions.indexOf(heroRelativePostion) > -1 &&
+    hero.alive
+  ) {
     if (
       !(
         (arrIndex % boardSize === 0 &&
@@ -119,8 +122,6 @@ function Tile({
     marginTop: "auto",
     marginLeft: "auto",
   });
-
-
 
   function enemyColor() {
     if (
@@ -258,7 +259,7 @@ function Tile({
         break;
       case 10:
         // setSwordDirection("transform -rotate-90 right-0 top-0");
-        setSwordDirection("transform -rotate-90");
+        setSwordDirection("transform -rotate-90 right-0 top-0");
         setHeroDirection("transform -rotate-45");
         setBodyMargins({
           /* 
@@ -268,45 +269,31 @@ function Tile({
           marginTop: "-24px",
           marginLeft: "-24px",
         });
-        setSwordMargins({
-          marginTop: "15px",
-          marginLeft: "15px",
-        })
+        // setSwordMargins({
+        //   marginTop: "15px",
+        //   marginLeft: "15px",
+        // })
         break;
     }
   }, [relativePosition]);
 
-  function setZetIndex() {
-
-    if (swordVisibility) {
-      return "z-50"
-    }
-
-    if (heroVisibility) {
-      return "z-40"
-    }
-
-    return "z-0"
-  }
-
   return (
     <div
       className={`flex items-center justify-center w-8 h-8 ${backgroundColor} ${
-        // heroVisibility ? "z-50" : "z-0"
-        setZetIndex()
+        heroVisibility ? "z-50" : "z-0"
       } relative`}
     >
       {/* {boardTile[0]} */}
       {/* {boardTile[1]} */}
       {/* {arrIndex} */}
 
-      {swordVisibility ? (
+      {/* {swordVisibility ? (
         <SwordSVG
           className={`${swordDirection} ${swordSize} absolute  ${
             lastEnemyKilled === arrIndex ? "fill-current text-red-600" : ""
           }`} style={{marginLeft: `${swordMargins.marginLeft}`, marginTop: `${swordMargins.marginTop}`}}
         />
-      ) : null}
+      ) : null} */}
 
       {enemyVisibility ? (
         <BugSVG
@@ -317,7 +304,16 @@ function Tile({
       {deathVisibility ? <DeathSVG className={`h-6`} /> : null}
 
       {heroVisibility ? (
-        <Hero heroDirection={heroDirection} bodyMargins={bodyMargins} />
+        <Hero
+          heroDirection={heroDirection}
+          bodyMargins={bodyMargins}
+          lastEnemyKilled={lastEnemyKilled}
+          swordDirection={swordDirection}
+          arrIndex={arrIndex}
+          swordSize={swordSize}
+          swordMargins={swordMargins}
+          hero={hero}
+        />
       ) : null}
     </div>
   );
