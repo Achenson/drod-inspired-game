@@ -43,7 +43,7 @@ function Tile({
     backgroundColor = "bg-gray-400";
   }
 
-  const swordSize = "w-6 h-10";
+  
 
   //                                      nw  n ne   e   se   s  sw  w
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
@@ -176,8 +176,8 @@ function Tile({
       case 8:
         setHeroDirection("transform rotate-45");
         setBodyMargins({
-          marginTop: "-30px",
-          marginLeft: "30px",
+          marginTop: "-24px",
+          marginLeft: "24px",
         });
         break;
       case -1:
@@ -190,8 +190,8 @@ function Tile({
       case -10:
         setHeroDirection("transform rotate-135");
         setBodyMargins({
-          marginTop: "30px",
-          marginLeft: "30px",
+          marginTop: "24px",
+          marginLeft: "24px",
         });
         break;
       case -9:
@@ -204,8 +204,8 @@ function Tile({
       case -8:
         setHeroDirection("transform rotate-225");
         setBodyMargins({
-          marginTop: "30px",
-          marginLeft: "-30px",
+          marginTop: "24px",
+          marginLeft: "-24px",
         });
         break;
       case 1:
@@ -251,7 +251,6 @@ function Tile({
         <Hero
           lastEnemyKilled={lastEnemyKilled}
           arrIndex={arrIndex}
-          swordSize={swordSize}
           hero={hero}
           bodyMargins={bodyMargins}
           heroDirection={heroDirection}

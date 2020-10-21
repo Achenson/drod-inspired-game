@@ -8,7 +8,6 @@ import { HeroObj } from "../utils/interfaces";
 interface Props {
   lastEnemyKilled: number | null;
   arrIndex: number;
-  swordSize: string;
   hero: HeroObj;
   bodyMargins: {
     marginTop: string;
@@ -20,7 +19,6 @@ interface Props {
 function Hero({
   lastEnemyKilled,
   arrIndex,
-  swordSize,
   hero,
   bodyMargins,
   heroDirection,
@@ -43,6 +41,9 @@ function Hero({
     borderTopLeftRadius: "6px",
     marginTop: "4px",
   };
+
+  // const swordSize = "w-6 h-10";
+  const swordSize = "w-6 h-10";
 
   const [swordColor, setSwordColor] = useState<string>("");
 
