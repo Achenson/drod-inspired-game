@@ -43,8 +43,6 @@ function Tile({
     backgroundColor = "bg-gray-400";
   }
 
-  let relativePosition = hero.heroPosition - hero.swordPosition;
-
   const swordSize = "w-6 h-10";
 
   //                                      nw  n ne   e   se   s  sw  w
@@ -131,19 +129,13 @@ function Tile({
     // death
     if (hero.heroPosition === arrIndex && !hero.alive) {
       setDeathVisibility(true);
-      settingStateToHidden([
-        setEnemyVisibility,
-        setHeroVisibility,
-      ]);
+      settingStateToHidden([setEnemyVisibility, setHeroVisibility]);
       return;
     }
     // hero
     if (hero.heroPosition === arrIndex && hero.alive) {
       setHeroVisibility(true);
-      settingStateToHidden([
-        setEnemyVisibility,
-        setDeathVisibility,
-      ]);
+      settingStateToHidden([setEnemyVisibility, setDeathVisibility]);
       return;
     }
 
@@ -151,10 +143,7 @@ function Tile({
     if (enemies.indexOf(arrIndex) > -1) {
       setEnemyVisibility(true);
 
-      settingStateToHidden([
-        setDeathVisibility,
-        setHeroVisibility,
-      ]);
+      settingStateToHidden([setDeathVisibility, setHeroVisibility]);
       return;
     }
     // clearing if nothing should be rendered on the Tile
@@ -173,6 +162,8 @@ function Tile({
     }
   }, [hero, arrIndex, enemies]);
 
+  let relativePosition = hero.heroPosition - hero.swordPosition;
+
   useEffect(() => {
     switch (relativePosition) {
       case 9:
@@ -183,7 +174,7 @@ function Tile({
         });
         break;
       case 8:
-        setHeroDirection("transform rotate-45 right-0 top-0");
+        setHeroDirection("transform rotate-45");
         setBodyMargins({
           marginTop: "-30px",
           marginLeft: "30px",
@@ -258,12 +249,12 @@ function Tile({
 
       {heroVisibility ? (
         <Hero
-          heroDirection={heroDirection}
-          bodyMargins={bodyMargins}
           lastEnemyKilled={lastEnemyKilled}
           arrIndex={arrIndex}
           swordSize={swordSize}
           hero={hero}
+          bodyMargins={bodyMargins}
+          heroDirection={heroDirection}
         />
       ) : null}
     </div>

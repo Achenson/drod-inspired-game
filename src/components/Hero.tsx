@@ -6,21 +6,24 @@ import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
 import { HeroObj } from "../utils/interfaces";
 
 interface Props {
-  heroDirection: string;
-  bodyMargins: { marginTop: string; marginLeft: string };
   lastEnemyKilled: number | null;
   arrIndex: number;
   swordSize: string;
   hero: HeroObj;
+  bodyMargins: {
+    marginTop: string;
+    marginLeft: string;
+  };
+  heroDirection: string;
 }
 
 function Hero({
-  heroDirection,
-  bodyMargins,
   lastEnemyKilled,
   arrIndex,
   swordSize,
   hero,
+  bodyMargins,
+  heroDirection,
 }: Props): JSX.Element {
   let heroBody = {
     backgroundColor: "green",
@@ -49,7 +52,7 @@ function Hero({
     } else {
       setSwordColor("");
     }
-  }, [lastEnemyKilled, arrIndex]);
+  }, [lastEnemyKilled, arrIndex, hero.swordPosition]);
 
   return (
     <div style={bodyMargins}>
@@ -59,8 +62,6 @@ function Hero({
           ${swordColor}
         }`}
           style={{
-            // marginLeft: `${swordMargins.marginLeft}`,
-            // marginTop: `${swordMargins.marginTop}`,
             bottom: "4px",
             left: "-7px",
           }}
