@@ -10,11 +10,6 @@ interface Props {
   bodyMargins: { marginTop: string; marginLeft: string };
   lastEnemyKilled: number | null;
   arrIndex: number;
-  swordDirection: string;
-  swordMargins: {
-    marginTop: string;
-    marginLeft: string;
-  };
   swordSize: string;
   hero: HeroObj;
 }
@@ -24,10 +19,8 @@ function Hero({
   bodyMargins,
   lastEnemyKilled,
   arrIndex,
-  swordDirection,
-  swordMargins,
   swordSize,
-  hero
+  hero,
 }: Props): JSX.Element {
   let heroBody = {
     backgroundColor: "green",
@@ -57,9 +50,6 @@ function Hero({
       setSwordColor("");
     }
   }, [lastEnemyKilled, arrIndex]);
-
-
-
 
   return (
     <div style={bodyMargins}>
