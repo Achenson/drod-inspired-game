@@ -6,28 +6,17 @@ import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
 import { HeroObj } from "../utils/interfaces";
 
 interface Props {
-  heroDirection: string;
-  bodyMargins: { marginTop: string; marginLeft: string };
   lastEnemyKilled: number | null;
   arrIndex: number;
-  swordDirection: string;
-  swordMargins: {
-    marginTop: string;
-    marginLeft: string;
-  };
   swordSize: string;
   hero: HeroObj;
 }
 
 function Hero({
-  heroDirection,
-  bodyMargins,
   lastEnemyKilled,
   arrIndex,
-  swordDirection,
-  swordMargins,
   swordSize,
-  hero
+  hero,
 }: Props): JSX.Element {
   let heroBody = {
     backgroundColor: "green",
@@ -48,6 +37,13 @@ function Hero({
     marginTop: "4px",
   };
 
+  const [bodyMargins, setBodyMargins] = useState({
+    marginTop: "auto",
+    marginLeft: "auto",
+  });
+
+  const [heroDirection, setHeroDirection] = useState("");
+
   const [swordColor, setSwordColor] = useState<string>("");
 
   useEffect(() => {
@@ -56,10 +52,84 @@ function Hero({
     } else {
       setSwordColor("");
     }
-  }, [lastEnemyKilled, arrIndex]);
+  }, [lastEnemyKilled, arrIndex, hero.swordPosition]);
 
+  // let relativePosition = hero.heroPosition - hero.swordPosition;
 
+  const [relativePosition, setRelativePosition] = useState<number>(9);
 
+  useEffect(() => {
+    setRelativePosition(hero.heroPosition - hero.swordPosition);
+  }, [hero.heroPosition, hero.swordPosition]);
+
+  useEffect(() => {
+
+  
+
+    switch (relativePosition) {
+      case 9:
+        setHeroDirection("transform");
+        setBodyMargins({
+          marginTop: "-26px",
+          marginLeft: "0px",
+        });
+
+        break;
+      case 8:
+        setHeroDirection("transform rotate-45");
+        setBodyMargins({
+          marginTop: "-30px",
+          marginLeft: "30px",
+        });
+        break;
+      case -1:
+        setHeroDirection("transform rotate-90");
+        setBodyMargins({
+          marginTop: "0px",
+          marginLeft: "26px",
+        });
+        break;
+      case -10:
+        setHeroDirection("transform rotate-135");
+        setBodyMargins({
+          marginTop: "30px",
+          marginLeft: "30px",
+        });
+        break;
+      case -9:
+        setHeroDirection("transform rotate-180");
+        setBodyMargins({
+          marginTop: "26px",
+          marginLeft: "0px",
+        });
+        break;
+      case -8:
+        setHeroDirection("transform rotate-225");
+        setBodyMargins({
+          marginTop: "30px",
+          marginLeft: "-30px",
+        });
+        break;
+      case 1:
+        setHeroDirection("transform -rotate-90");
+        setBodyMargins({
+          marginTop: "-0px",
+          marginLeft: "-26px",
+        });
+        break;
+      case 10:
+        setHeroDirection("transform -rotate-45");
+        setBodyMargins({
+          /* 
+          marginTop: "-30px",
+          marginLeft: "-30px",
+          */
+          marginTop: "-24px",
+          marginLeft: "-24px",
+        });
+        break;
+    }
+  }, [relativePosition, hero.swordPosition]);
 
   return (
     <div style={bodyMargins}>
@@ -69,8 +139,6 @@ function Hero({
           ${swordColor}
         }`}
           style={{
-            // marginLeft: `${swordMargins.marginLeft}`,
-            // marginTop: `${swordMargins.marginTop}`,
             bottom: "4px",
             left: "-7px",
           }}

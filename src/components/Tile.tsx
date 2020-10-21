@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 import { HeroObj } from "../utils/interfaces";
 
-import { ReactComponent as SwordSVG } from "../svgs/sword.svg";
 import { ReactComponent as BugSVG } from "../svgs/malware-virus.svg";
 import { ReactComponent as DeathSVG } from "../svgs/skull.svg";
 import Hero from "./Hero";
@@ -43,8 +42,6 @@ function Tile({
   } else {
     backgroundColor = "bg-gray-400";
   }
-
-  let relativePosition = hero.heroPosition - hero.swordPosition;
 
   const swordSize = "w-6 h-10";
 
@@ -106,22 +103,9 @@ function Tile({
 
   const [heroVisibility, setHeroVisibility] = useState<boolean>(false);
   const [enemyVisibility, setEnemyVisibility] = useState<boolean>(false);
-  const [enemyCSS, setEnemyCSS] = useState<string>("");
   const [deathVisibility, setDeathVisibility] = useState<boolean>(false);
-  const [swordVisibility, setSwordVisibility] = useState<boolean>(false);
 
-  const [swordDirection, setSwordDirection] = useState("transform -rotate-45");
-  const [heroDirection, setHeroDirection] = useState("");
-
-  const [bodyMargins, setBodyMargins] = useState({
-    marginTop: "auto",
-    marginLeft: "auto",
-  });
-
-  const [swordMargins, setSwordMargins] = useState({
-    marginTop: "auto",
-    marginLeft: "auto",
-  });
+  
 
   function enemyColor() {
     if (
@@ -140,33 +124,13 @@ function Tile({
     // death
     if (hero.heroPosition === arrIndex && !hero.alive) {
       setDeathVisibility(true);
-      settingStateToHidden([
-        setSwordVisibility,
-        setEnemyVisibility,
-        setHeroVisibility,
-      ]);
+      settingStateToHidden([setEnemyVisibility, setHeroVisibility]);
       return;
     }
     // hero
     if (hero.heroPosition === arrIndex && hero.alive) {
       setHeroVisibility(true);
-      settingStateToHidden([
-        setSwordVisibility,
-        setEnemyVisibility,
-        setDeathVisibility,
-      ]);
-      return;
-    }
-
-    // sword (no color or red (after kill))
-    if (hero.swordPosition === arrIndex && hero.alive) {
-      // sword is red if enemy was just killed
-      setSwordVisibility(true);
-      settingStateToHidden([
-        setEnemyVisibility,
-        setHeroVisibility,
-        setDeathVisibility,
-      ]);
+      settingStateToHidden([setEnemyVisibility, setDeathVisibility]);
       return;
     }
 
@@ -174,16 +138,11 @@ function Tile({
     if (enemies.indexOf(arrIndex) > -1) {
       setEnemyVisibility(true);
 
-      settingStateToHidden([
-        setSwordVisibility,
-        setDeathVisibility,
-        setHeroVisibility,
-      ]);
+      settingStateToHidden([setDeathVisibility, setHeroVisibility]);
       return;
     }
     // clearing if nothing should be rendered on the Tile
     settingStateToHidden([
-      setSwordVisibility,
       setEnemyVisibility,
       setHeroVisibility,
       setDeathVisibility,
@@ -198,85 +157,6 @@ function Tile({
     }
   }, [hero, arrIndex, enemies]);
 
-  useEffect(() => {
-    switch (relativePosition) {
-      case 9:
-        setSwordDirection("transform -rotate-45");
-        setHeroDirection("");
-        setBodyMargins({
-          marginTop: "-26px",
-          marginLeft: "0px",
-        });
-
-        break;
-      case 8:
-        setSwordDirection("left-0 top-0");
-        setHeroDirection("transform rotate-45 right-0 top-0");
-        setBodyMargins({
-          marginTop: "-30px",
-          marginLeft: "30px",
-        });
-        break;
-      case -1:
-        setSwordDirection("transform rotate-45");
-        setHeroDirection("transform rotate-90");
-        setBodyMargins({
-          marginTop: "0px",
-          marginLeft: "26px",
-        });
-        break;
-      case -10:
-        setSwordDirection("transform rotate-90 left-0 bottom-0");
-        setHeroDirection("transform rotate-135");
-        setBodyMargins({
-          marginTop: "30px",
-          marginLeft: "30px",
-        });
-        break;
-      case -9:
-        setSwordDirection("transform rotate-135");
-        setHeroDirection("transform rotate-180");
-        setBodyMargins({
-          marginTop: "26px",
-          marginLeft: "0px",
-        });
-        break;
-      case -8:
-        setSwordDirection("transform rotate-180 right-0 bottom-0");
-        setHeroDirection("transform rotate-225");
-        setBodyMargins({
-          marginTop: "30px",
-          marginLeft: "-30px",
-        });
-        break;
-      case 1:
-        setSwordDirection("transform rotate-225");
-        setHeroDirection("transform -rotate-90");
-        setBodyMargins({
-          marginTop: "-0px",
-          marginLeft: "-26px",
-        });
-        break;
-      case 10:
-        // setSwordDirection("transform -rotate-90 right-0 top-0");
-        setSwordDirection("transform -rotate-90 right-0 top-0");
-        setHeroDirection("transform -rotate-45");
-        setBodyMargins({
-          /* 
-          marginTop: "-30px",
-          marginLeft: "-30px",
-          */
-          marginTop: "-24px",
-          marginLeft: "-24px",
-        });
-        // setSwordMargins({
-        //   marginTop: "15px",
-        //   marginLeft: "15px",
-        // })
-        break;
-    }
-  }, [relativePosition]);
-
   return (
     <div
       className={`flex items-center justify-center w-8 h-8 ${backgroundColor} ${
@@ -286,14 +166,6 @@ function Tile({
       {/* {boardTile[0]} */}
       {/* {boardTile[1]} */}
       {/* {arrIndex} */}
-
-      {/* {swordVisibility ? (
-        <SwordSVG
-          className={`${swordDirection} ${swordSize} absolute  ${
-            lastEnemyKilled === arrIndex ? "fill-current text-red-600" : ""
-          }`} style={{marginLeft: `${swordMargins.marginLeft}`, marginTop: `${swordMargins.marginTop}`}}
-        />
-      ) : null} */}
 
       {enemyVisibility ? (
         <BugSVG
@@ -305,13 +177,9 @@ function Tile({
 
       {heroVisibility ? (
         <Hero
-          heroDirection={heroDirection}
-          bodyMargins={bodyMargins}
           lastEnemyKilled={lastEnemyKilled}
-          swordDirection={swordDirection}
           arrIndex={arrIndex}
           swordSize={swordSize}
-          swordMargins={swordMargins}
           hero={hero}
         />
       ) : null}
