@@ -139,11 +139,11 @@ function Tile({
       return;
     }
 
-    // enemies coloring - newly arrived enemy color for 1 turn(brownish)) or default (red)
+   
     if (enemies.indexOf(arrIndex) > -1) {
       setEnemyVisibility(true);
 
-      settingStateToHidden([setDeathVisibility, setHeroVisibility]);
+      settingStateToHidden([setHeroVisibility]);
       return;
     }
     // clearing if nothing should be rendered on the Tile

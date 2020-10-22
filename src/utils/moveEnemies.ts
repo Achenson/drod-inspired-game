@@ -16,14 +16,16 @@ export default function moveEnemies(
   setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
   currentTurn: number,
   setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
-  topScore:  number | React.Dispatch<React.SetStateAction<number>>,
+  topScore: number | React.Dispatch<React.SetStateAction<number>>,
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>,
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
   randomNewEnemyPosition: [boolean, number],
-  setRandomNewEnemyPosition: React.Dispatch<React.SetStateAction<[boolean, number]>>
+  setRandomNewEnemyPosition: React.Dispatch<
+    React.SetStateAction<[boolean, number]>
+  >
 ) {
   let nextEnemiesPositions: number[] = [];
 
@@ -86,7 +88,7 @@ export default function moveEnemies(
     }
     // positions for single enemy
     let newPossiblePositions = [];
-    
+
     // enemies won't enter the same location
     for (let el of possiblePositions) {
       if (nextEnemiesPositions.indexOf(el) === -1) {
@@ -100,24 +102,23 @@ export default function moveEnemies(
       nextEnemiesPositions.push(enemy);
     }
 
-    if (newPossiblePositions.length === 1 && newPossiblePositions[0] === heroIndexToMove) {
+    if (
+      newPossiblePositions.length === 1 &&
+      newPossiblePositions[0] === heroIndexToMove
+    ) {
       // possiblePositions.splice(0, possiblePositions.length, heroIndexToMove);
 
-      nextEnemiesPositions.push(heroIndexToMove)
-      break;
+      nextEnemiesPositions.push(heroIndexToMove);
+      continue;
     }
 
-
-// if enemy is set to kill hero: there will be max 1 possible position at this point
     if (newPossiblePositions.length >= 1) {
       let directionToMove = enemiesDirections[enemies.indexOf(enemy)];
 
       let indexToMove = enemy - directionToMove;
       if (newPossiblePositions.indexOf(indexToMove) > -1) {
         nextEnemiesPositions.push(indexToMove);
-
       } else {
-
         // let randomNumber = makeRandomNumber(1, newPossiblePositions.length);
 
         // let randomNextPosition = newPossiblePositions[randomNumber - 1];
@@ -130,13 +131,10 @@ export default function moveEnemies(
         //   nextEnemiesPositions.push(randomNextPosition);
         // }
 
-         nextEnemiesPositions.push(enemy);
-
+        nextEnemiesPositions.push(enemy);
       }
     }
   }
-
-
 
   // enemy kills if hero is adjacent
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
@@ -145,7 +143,14 @@ export default function moveEnemies(
 
     // setCurrentTurn((n) => n + 1);
 
-    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, isAudioOn, hero);
+    makeTopScore(
+      currentTurn,
+      topScore,
+      setTopScore,
+      setTextOnDisplay,
+      isAudioOn,
+      hero
+    );
   }
   // else {
 
@@ -174,7 +179,7 @@ export default function moveEnemies(
     nextEnemiesPositions,
     boardSize,
     adjacentTilesRelativePositions,
-    setEnemiesDirections,
+    setEnemiesDirections
   );
 
   // return nextEnemiesPositions;

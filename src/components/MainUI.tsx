@@ -326,10 +326,14 @@ function MainUI({}: Props): JSX.Element {
   }
 
   useEffect( () => {
-    console.log(randomNewEnemyPosition[0]);
-    console.log(randomNewEnemyPosition[1]);
+    // console.log(randomNewEnemyPosition[0]);
+    // console.log(randomNewEnemyPosition[1]);
+
+    console.log(enemies);
     
-  }, [randomNewEnemyPosition])
+
+    
+  }, [enemies])
 
   return (
     <div className="flex justify-center">
