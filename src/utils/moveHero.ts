@@ -31,7 +31,11 @@ export default function moveHero(
   enemiesDirections: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>
+  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
+  randomNewEnemyPosition: [boolean, number],
+  setRandomNewEnemyPosition: React.Dispatch<React.SetStateAction<[boolean, number]>>
+
+
 ) {
   if (!hero.alive) {
     return;
@@ -213,6 +217,8 @@ export default function moveHero(
     setEnemiesDirections,
     setTextOnDisplay,
     isAudioOn,
+    randomNewEnemyPosition,
+    setRandomNewEnemyPosition
   );
 }
 

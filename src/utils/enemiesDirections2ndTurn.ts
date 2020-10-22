@@ -12,6 +12,7 @@ export default function enemiesDirections2ndTurn(
   boardSize: number,
   adjacentTilesRelativePositions: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
+
   // heroPosition: number,
 
 

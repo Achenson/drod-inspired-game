@@ -22,6 +22,8 @@ export default function moveEnemies(
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
+  randomNewEnemyPosition: [boolean, number],
+  setRandomNewEnemyPosition: React.Dispatch<React.SetStateAction<[boolean, number]>>
 ) {
   let nextEnemiesPositions: number[] = [];
 
@@ -107,7 +109,6 @@ export default function moveEnemies(
       let directionToMove = enemiesDirections[enemies.indexOf(enemy)];
 
       let indexToMove = enemy - directionToMove;
-
       if (newPossiblePositions.indexOf(indexToMove) > -1) {
         nextEnemiesPositions.push(indexToMove);
       } else {
@@ -152,7 +153,9 @@ export default function moveEnemies(
         nextEnemiesPositions,
         heroIndexToMove,
         nextSwordPosition,
-        boardSize
+        boardSize,
+        randomNewEnemyPosition,
+        setRandomNewEnemyPosition
       ),
     ];
   }
@@ -163,7 +166,7 @@ export default function moveEnemies(
     nextEnemiesPositions,
     boardSize,
     adjacentTilesRelativePositions,
-    setEnemiesDirections
+    setEnemiesDirections,
   );
 
   // return nextEnemiesPositions;

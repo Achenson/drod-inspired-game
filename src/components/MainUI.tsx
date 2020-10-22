@@ -75,6 +75,10 @@ function MainUI({}: Props): JSX.Element {
   // const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([...enemiesInitial]);
+  // for remembering new enemy arrival when going back one turn
+  const [randomNewEnemyPosition, setRandomNewEnemyPosition] = useState<[boolean, number]>([false, -1]);
+
+
 
   const [enemiesDirections, setEnemiesDirections] = useState<Array<number>>([
     ...directionsInitial,
@@ -97,7 +101,9 @@ function MainUI({}: Props): JSX.Element {
     heroPosition: hero.heroPosition,
     alive: hero.alive,
     swordPosition: hero.swordPosition,
+
   });
+
 
   const [textOnDisplay, setTextOnDisplay] = useState<string>("sampleText");
 
@@ -173,6 +179,8 @@ function MainUI({}: Props): JSX.Element {
       setHelpVisibility(false);
     }
 
+    
+
     switch (command) {
       // rewind one round back
       case "KeyR":
@@ -188,6 +196,8 @@ function MainUI({}: Props): JSX.Element {
           alive: oTB.alive,
           swordPosition: oTB.swordPosition,
         });
+        setRandomNewEnemyPosition([true, randomNewEnemyPosition[1]])
+  
         break;
       case "KeyQ":
         console.log("q");
@@ -281,7 +291,9 @@ function MainUI({}: Props): JSX.Element {
       enemiesDirections,
       setEnemiesDirections,
       setTextOnDisplay,
-      isAudioOn
+      isAudioOn,
+      randomNewEnemyPosition,
+      setRandomNewEnemyPosition
     );
   }
 
@@ -312,6 +324,12 @@ function MainUI({}: Props): JSX.Element {
       ...heroInitial,
     });
   }
+
+  useEffect( () => {
+    console.log(randomNewEnemyPosition[0]);
+    console.log(randomNewEnemyPosition[1]);
+    
+  }, [randomNewEnemyPosition])
 
   return (
     <div className="flex justify-center">

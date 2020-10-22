@@ -2,15 +2,28 @@ import makeRandomNumber from "./makeRandomNumber";
 
 export default function createEnemy(
   nextEnemiesPositions: number[],
-  heroIndexToMOve: number,
+  heroIndexToMove: number,
   nextSwordPosition: number,
-  boardSize: number
+  boardSize: number,
+  randomNewEnemyPosition: [boolean, number],
+  setRandomNewEnemyPosition: React.Dispatch<
+    React.SetStateAction<[boolean, number]>
+  >
 ): number {
+  if (
+    randomNewEnemyPosition[0] &&
+    randomNewEnemyPosition[1] !== heroIndexToMove &&
+    randomNewEnemyPosition[1] !== nextSwordPosition
+  ) {
+    setRandomNewEnemyPosition([false, randomNewEnemyPosition[1]]);
+    return randomNewEnemyPosition[1];
+  }
+
   let possiblePositions = [];
 
   let takenPositions = [
     ...nextEnemiesPositions,
-    heroIndexToMOve,
+    heroIndexToMove,
     nextSwordPosition,
   ];
 
@@ -47,5 +60,6 @@ export default function createEnemy(
 
   // console.log("newEnemyPosition");
   // console.log(newEnemyPosition);
+  setRandomNewEnemyPosition([false, newEnemyPosition]);
   return newEnemyPosition;
 }
