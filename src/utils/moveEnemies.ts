@@ -29,6 +29,7 @@ export default function moveEnemies(
 
   // enemy === enemy's position on board
   for (let enemy of enemies) {
+    // positions for single enemy
     let possiblePositions: number[] = [];
 
     for (let el of adjacentTilesRelativePositions) {
@@ -83,10 +84,10 @@ export default function moveEnemies(
 
       possiblePositions.push(nIC);
     }
-
-    // enemies won't enter the same location
+    // positions for single enemy
     let newPossiblePositions = [];
-
+    
+    // enemies won't enter the same location
     for (let el of possiblePositions) {
       if (nextEnemiesPositions.indexOf(el) === -1) {
         // possiblePositions.splice(possiblePositions.indexOf(el), 1)
@@ -94,41 +95,48 @@ export default function moveEnemies(
       }
     }
 
-    // won't move
+    // won't move if there no possible positions
     if (newPossiblePositions.length === 0) {
       nextEnemiesPositions.push(enemy);
     }
 
-    // only 1 possible move
-    // if (possiblePositions.length === 1) {
+    if (newPossiblePositions.length === 1 && newPossiblePositions[0] === heroIndexToMove) {
+      // possiblePositions.splice(0, possiblePositions.length, heroIndexToMove);
 
-    //   initialNextEnemiesPositions.push(possiblePositions[0]);
-    // }
+      nextEnemiesPositions.push(heroIndexToMove)
+      break;
+    }
 
+
+// if enemy is set to kill hero: there will be max 1 possible position at this point
     if (newPossiblePositions.length >= 1) {
       let directionToMove = enemiesDirections[enemies.indexOf(enemy)];
 
       let indexToMove = enemy - directionToMove;
       if (newPossiblePositions.indexOf(indexToMove) > -1) {
         nextEnemiesPositions.push(indexToMove);
+
       } else {
-        let randomNumber = makeRandomNumber(1, newPossiblePositions.length);
 
-        let randomNextPosition = newPossiblePositions[randomNumber - 1];
+        // let randomNumber = makeRandomNumber(1, newPossiblePositions.length);
 
-        // if this nextPosition will be already taken by another enemy - don't move
+        // let randomNextPosition = newPossiblePositions[randomNumber - 1];
 
-        if (nextEnemiesPositions.indexOf(randomNextPosition) > -1) {
-          nextEnemiesPositions.push(enemy);
-        } else {
-          nextEnemiesPositions.push(randomNextPosition);
-        }
+        // // if this nextPosition will be already taken by another enemy - don't move
+
+        // if (nextEnemiesPositions.indexOf(randomNextPosition) > -1) {
+        //   nextEnemiesPositions.push(enemy);
+        // } else {
+        //   nextEnemiesPositions.push(randomNextPosition);
+        // }
+
+         nextEnemiesPositions.push(enemy);
+
       }
     }
   }
 
-  // console.log("nextEnemiesPositions");
-  // console.log(nextEnemiesPositions);
+
 
   // enemy kills if hero is adjacent
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
