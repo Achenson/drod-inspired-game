@@ -3,8 +3,6 @@
 // import makeRecordScore from "./makeRecordScore";
 import makeRandomNumber from "./makeRandomNumber";
 
-
-
 export default function enemiesDirections2ndTurn(
   // enemies: number[],
   // from moveEnemies: positions of enemies after 1 turn
@@ -12,14 +10,16 @@ export default function enemiesDirections2ndTurn(
   boardSize: number,
   adjacentTilesRelativePositions: number[],
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
+  savedEnemiesDirections: [boolean, number[]],
+  setSavedEnemiesDirections: React.Dispatch<
+    React.SetStateAction<[boolean, number[]]>
+  >
 
   // heroPosition: number,
-
 
   // not needed -> belong to 1st turn, enemiesOrientation is their tendency to move in 2nd turn
   // nextSwordPosition: number,
   // heroIndexToMove: number,
-
 
   // hero: HeroObj,
   // setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
@@ -29,11 +29,17 @@ export default function enemiesDirections2ndTurn(
   // recordScore: string,
   // setRecordScore: React.Dispatch<React.SetStateAction<string>>
 ) {
+  // if the directions were already saved by going one turn back
+  if (savedEnemiesDirections[0]) {
+    setSavedEnemiesDirections([false, [...savedEnemiesDirections[1]]]);
+    setEnemiesDirections([...savedEnemiesDirections[1]]);
+    return;
+  }
+
   let secondTurnEnemiesDirections: number[] = [];
 
   // enemy === enemy's position on board
   for (let enemy of nextEnemiesPositions) {
-    
     let possibleDirections: number[] = [];
 
     for (let el of adjacentTilesRelativePositions) {
@@ -66,86 +72,26 @@ export default function enemiesDirections2ndTurn(
         continue;
       }
 
-      // enemy won't kill itself on purpose
-      // if (nIC === nextSwordPosition) {
-      //   continue;
-      // }
-
-      // if it is possible to kill hero(or chase him), this will be only possible option to move
-      // if (nIC === heroIndexToMove) {
-      //   possiblePositions.splice(0, possiblePositions.length, heroIndexToMove);
-      //   break;
-      // }
-
-      // enemy won't collide with each other
-
-      //  !! enemies can point to the same tile, one of them won't move
-      // if (nextEnemiesPositions.indexOf(nextIndexCalculated) > -1) {
-      //   continue;
-      // }
-
-
       // el from adjacentTilesRelativePositions is being pushed here
 
       possibleDirections.push(el);
     }
-
-  
 
     // there will always be a possible DIRECTION
     // if (possibleDirections.length === 0) {
     //   secondTurnEnemiesDirections.push(enemy);
     // }
 
+    let randomNumber = makeRandomNumber(1, possibleDirections.length);
 
-      let randomNumber = makeRandomNumber(1, possibleDirections.length);
+    let randomNextDirection = possibleDirections[randomNumber - 1];
 
-      let randomNextDirection = possibleDirections[randomNumber - 1];
-
-      
-      secondTurnEnemiesDirections.push(randomNextDirection);
-      
-
-
-      // if this nextPosition will be already taken by another enemy - don't move
-      // if (nextEnemiesPositions.indexOf(randomNextPosition) > -1) {
-      //   nextEnemiesPositions.push(enemy);
-      // } else {
-      //   nextEnemiesPositions.push(randomNextPosition);
-      // }
-
-
-    
+    secondTurnEnemiesDirections.push(randomNextDirection);
   }
-
 
   // enemy kills if hero is adjacent
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same(2nd) turn
 
-  // if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
-  //   setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
-  //   setCurrentTurn((n) => n + 1);
-  //   makeRecordScore(currentTurn, recordScore, setRecordScore);
-  // } else {
-  //   setCurrentTurn((n) => n + 1);
-  //   console.log(currentTurn);
-  // }
-
-  // if (currentTurn % 2 !== 0 && currentTurn !== 0) {
-  //   nextEnemiesPositions = [
-  //     ...nextEnemiesPositions,
-  //     createEnemy(
-  //       nextEnemiesPositions,
-  //       heroIndexToMove,
-  //       nextSwordPosition,
-  //       boardSize
-  //     ),
-  //   ];
-  // }
-  // setEnemies([...nextEnemiesPositions]);
-
-  // return nextEnemiesPositions;
-
-
   setEnemiesDirections([...secondTurnEnemiesDirections]);
+  setSavedEnemiesDirections([false, [...secondTurnEnemiesDirections]]);
 }

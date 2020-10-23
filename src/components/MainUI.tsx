@@ -83,6 +83,11 @@ function MainUI({}: Props): JSX.Element {
     ...directionsInitial,
   ]);
 
+  // for remembering enemiesDirections when going back one turn
+  const [savedEnemiesDirections, setSavedEnemiesDirections] = useState<[boolean, number[]]>([
+    false, [-1]
+  ])
+
   const [lastEnemyKilled, setLastEnemyKilled] = useState<number | null>(null);
 
   const [hero, setHero] = useState<HeroObj>({
@@ -192,6 +197,7 @@ function MainUI({}: Props): JSX.Element {
           swordPosition: oTB.swordPosition,
         });
         setRandomNewEnemyPosition([true, randomNewEnemyPosition[1]]);
+        setSavedEnemiesDirections([true, [...savedEnemiesDirections[1]]])
 
         break;
       case "KeyQ":
@@ -290,7 +296,9 @@ function MainUI({}: Props): JSX.Element {
       isAudioOn,
       randomNewEnemyPosition,
       setRandomNewEnemyPosition,
-      setOneTurnBack
+      setOneTurnBack,
+      savedEnemiesDirections,
+      setSavedEnemiesDirections
     );
   }
 

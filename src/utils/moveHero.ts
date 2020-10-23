@@ -47,7 +47,9 @@ export default function moveHero(
       alive: boolean;
       swordPosition: number;
     }>
-  >
+  >,
+  savedEnemiesDirections: [boolean, number[]],
+  setSavedEnemiesDirections: React.Dispatch<React.SetStateAction<[boolean, number[]]>>
 
 ) {
   if (!hero.alive) {
@@ -245,7 +247,9 @@ export default function moveHero(
     setTextOnDisplay,
     isAudioOn,
     randomNewEnemyPosition,
-    setRandomNewEnemyPosition
+    setRandomNewEnemyPosition,
+    savedEnemiesDirections,
+    setSavedEnemiesDirections
   );
 }
 
