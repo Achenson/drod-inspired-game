@@ -12,7 +12,7 @@ import {
   waiting_mp3,
 } from "./audio";
 
-import playAudio from "./playAudio"
+import playAudio from "./playAudio";
 
 export default function moveHero(
   direction: Directions,
@@ -33,9 +33,9 @@ export default function moveHero(
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
   randomNewEnemyPosition: [boolean, number],
-  setRandomNewEnemyPosition: React.Dispatch<React.SetStateAction<[boolean, number]>>
-
-
+  setRandomNewEnemyPosition: React.Dispatch<
+    React.SetStateAction<[boolean, number]>
+  >
 ) {
   if (!hero.alive) {
     return;
