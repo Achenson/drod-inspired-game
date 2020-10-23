@@ -25,6 +25,7 @@ export default function moveHero(
   enemies: number[],
   adjacentTilesRelativePositions: number[],
   boardSize: number,
+  lastEnemyKilled: number | null,
   setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>,
   topScore: number | React.Dispatch<React.SetStateAction<number>>,
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>,
@@ -35,7 +36,19 @@ export default function moveHero(
   randomNewEnemyPosition: [boolean, number],
   setRandomNewEnemyPosition: React.Dispatch<
     React.SetStateAction<[boolean, number]>
+  >,
+  setOneTurnBack: React.Dispatch<
+    React.SetStateAction<{
+      currentTurn: number;
+      enemies: number[];
+      enemiesDirections: number[];
+      lastEnemyKilled: number | null;
+      heroPosition: number;
+      alive: boolean;
+      swordPosition: number;
+    }>
   >
+
 ) {
   if (!hero.alive) {
     return;
@@ -147,6 +160,20 @@ export default function moveHero(
     console.log("OUT");
     playAudio(forbiddenMove_mp3, isAudioOn);
     return;
+  }
+
+  if (currentTurn !== 0) {
+    setOneTurnBack({
+      currentTurn: currentTurn,
+      // topScore: topScore,
+      // enemiesKilled: enemiesKilled,
+      enemies: [...enemies],
+      enemiesDirections: [...enemiesDirections],
+      lastEnemyKilled: lastEnemyKilled,
+      heroPosition: hero.heroPosition,
+      alive: hero.alive,
+      swordPosition: hero.swordPosition,
+    });
   }
 
   // play audio if rotating in not forbidden

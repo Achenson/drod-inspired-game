@@ -29,7 +29,6 @@ function MainUI({}: Props): JSX.Element {
   // const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
   const [isAudioOn, setIsAudioOn] = useNumberStorage("isAudioOn", 1);
 
-
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
 
@@ -76,9 +75,9 @@ function MainUI({}: Props): JSX.Element {
   // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([...enemiesInitial]);
   // for remembering new enemy arrival when going back one turn
-  const [randomNewEnemyPosition, setRandomNewEnemyPosition] = useState<[boolean, number]>([false, -1]);
-
-
+  const [randomNewEnemyPosition, setRandomNewEnemyPosition] = useState<
+    [boolean, number]
+  >([false, -1]);
 
   const [enemiesDirections, setEnemiesDirections] = useState<Array<number>>([
     ...directionsInitial,
@@ -101,9 +100,7 @@ function MainUI({}: Props): JSX.Element {
     heroPosition: hero.heroPosition,
     alive: hero.alive,
     swordPosition: hero.swordPosition,
-
   });
-
 
   const [textOnDisplay, setTextOnDisplay] = useState<string>("sampleText");
 
@@ -179,8 +176,6 @@ function MainUI({}: Props): JSX.Element {
       setHelpVisibility(false);
     }
 
-    
-
     switch (command) {
       // rewind one round back
       case "KeyR":
@@ -196,8 +191,8 @@ function MainUI({}: Props): JSX.Element {
           alive: oTB.alive,
           swordPosition: oTB.swordPosition,
         });
-        setRandomNewEnemyPosition([true, randomNewEnemyPosition[1]])
-  
+        setRandomNewEnemyPosition([true, randomNewEnemyPosition[1]]);
+
         break;
       case "KeyQ":
         console.log("q");
@@ -260,19 +255,19 @@ function MainUI({}: Props): JSX.Element {
 
     setTextOnDisplay("");
 
-    if (currentTurn !== 0) {
-      setOneTurnBack({
-        currentTurn: currentTurn,
-        // topScore: topScore,
-        // enemiesKilled: enemiesKilled,
-        enemies: [...enemies],
-        enemiesDirections: [...enemiesDirections],
-        lastEnemyKilled: lastEnemyKilled,
-        heroPosition: hero.heroPosition,
-        alive: hero.alive,
-        swordPosition: hero.swordPosition,
-      });
-    }
+    // if (currentTurn !== 0) {
+    //   setOneTurnBack({
+    //     currentTurn: currentTurn,
+    //     // topScore: topScore,
+    //     // enemiesKilled: enemiesKilled,
+    //     enemies: [...enemies],
+    //     enemiesDirections: [...enemiesDirections],
+    //     lastEnemyKilled: lastEnemyKilled,
+    //     heroPosition: hero.heroPosition,
+    //     alive: hero.alive,
+    //     swordPosition: hero.swordPosition,
+    //   });
+    // }
 
     moveHero(
       directionToMove,
@@ -285,6 +280,7 @@ function MainUI({}: Props): JSX.Element {
       enemies,
       adjacentTilesRelativePositions,
       boardSize,
+      lastEnemyKilled,
       setLastEnemyKilled,
       topScore,
       setTopScore,
@@ -293,15 +289,21 @@ function MainUI({}: Props): JSX.Element {
       setTextOnDisplay,
       isAudioOn,
       randomNewEnemyPosition,
-      setRandomNewEnemyPosition
+      setRandomNewEnemyPosition,
+      setOneTurnBack
     );
   }
 
   function newGame() {
     // playAudio(newGame_mp3, isAudioOn, true);
-    makeTopScore(currentTurn, topScore, setTopScore, setTextOnDisplay, isAudioOn, hero);
-   
-    
+    makeTopScore(
+      currentTurn,
+      topScore,
+      setTopScore,
+      setTextOnDisplay,
+      isAudioOn,
+      hero
+    );
 
     if (settingsVisibility) {
       setSettingsVisibility(false);
@@ -325,15 +327,12 @@ function MainUI({}: Props): JSX.Element {
     });
   }
 
-  useEffect( () => {
+  useEffect(() => {
     // console.log(randomNewEnemyPosition[0]);
     // console.log(randomNewEnemyPosition[1]);
 
     console.log(enemies);
-    
-
-    
-  }, [enemies])
+  }, [enemies]);
 
   return (
     <div className="flex justify-center">
