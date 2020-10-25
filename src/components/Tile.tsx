@@ -43,8 +43,6 @@ function Tile({
     backgroundColor = "bg-gray-400";
   }
 
-  
-
   //                                      nw  n ne   e   se   s  sw  w
   const adjacentTilesRelativePositions = [10, 9, 8, -1, -10, -9, -8, 1];
 
@@ -139,11 +137,10 @@ function Tile({
       return;
     }
 
-   
     if (enemies.indexOf(arrIndex) > -1) {
       setEnemyVisibility(true);
 
-      settingStateToHidden([setHeroVisibility]);
+      settingStateToHidden([setHeroVisibility, setDeathVisibility]);
       return;
     }
     // clearing if nothing should be rendered on the Tile
@@ -164,8 +161,7 @@ function Tile({
 
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
-
-// performance issues when tried to move this into Hero component
+  // performance issues when tried to move this into Hero component
   useEffect(() => {
     switch (relativePosition) {
       case 9:
