@@ -234,7 +234,7 @@ function Tile({
   return (
     <div
       className={`flex items-center justify-center w-8 h-8 ${backgroundColor} ${
-        heroVisibility ? "z-50" : "z-0"
+        heroVisibility ? "z-40" : "z-0"
       } relative`}
     >
       {/* {boardTile[0]} */}
