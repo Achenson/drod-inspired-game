@@ -205,7 +205,8 @@ export default function moveHero(
       setTopScore,
       setTextOnDisplay,
       isAudioOn,
-      hero
+      hero,
+      "death"
     );
 
     return;

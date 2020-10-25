@@ -151,7 +151,8 @@ export default function moveEnemies(
       setTopScore,
       setTextOnDisplay,
       isAudioOn,
-      hero
+      hero,
+      "death"
     );
   }
   // else {

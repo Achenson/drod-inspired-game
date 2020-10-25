@@ -310,7 +310,8 @@ function MainUI({}: Props): JSX.Element {
       setTopScore,
       setTextOnDisplay,
       isAudioOn,
-      hero
+      hero,
+      "new game"
     );
 
     if (settingsVisibility) {

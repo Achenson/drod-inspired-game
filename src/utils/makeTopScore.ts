@@ -14,7 +14,8 @@ export default function makeRecordScore(
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-  hero: HeroObj
+  hero: HeroObj,
+  newGameOrDeath: "new game" | "death"
 ) {
   if (currentTurn > topScore) {
     (setTopScore as React.Dispatch<React.SetStateAction<number>>)(
@@ -45,7 +46,7 @@ export default function makeRecordScore(
     }
   } else {
     // makeTopScore on death
-    if(!hero.alive) {
+    if(newGameOrDeath === "death") {
       // in TopDisplay logic to make display different text conditionally with smaller font
       setTextOnDisplay("No new record");
       playAudio(death_mp3, isAudioOn)
