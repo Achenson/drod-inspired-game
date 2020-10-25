@@ -29,27 +29,27 @@ export default function makeRecordScore(
       topScore < 100
     ) {
       setTextOnDisplay("New Record. Bronze medal awarded!");
-      playAudio(medal_mp3, isAudioOn)
+      playAudio(medal_mp3, isAudioOn, undefined, 250)
     } else if (
       currentTurn >= 175 &&
       currentTurn < 250 &&
       topScore < 175
     ) {
       setTextOnDisplay("New Record. Silver medal awarded!");
-      playAudio(medal_mp3, isAudioOn)
+      playAudio(medal_mp3, isAudioOn, undefined, 250)
     } else if (currentTurn >= 250 && topScore < 250) {
       setTextOnDisplay("New Record. Gold medal awarded!");
-      playAudio(medal_mp3, isAudioOn)
+      playAudio(medal_mp3, isAudioOn, undefined, 250)
     } else {
       setTextOnDisplay("New Record!");
-      playAudio(topScore_mp3, isAudioOn)
+      playAudio(topScore_mp3, isAudioOn, undefined, 250)
     }
   } else {
     // makeTopScore on death
     if(newGameOrDeath === "death") {
       // in TopDisplay logic to make display different text conditionally with smaller font
       setTextOnDisplay("No new record");
-      playAudio(death_mp3, isAudioOn)
+      playAudio(death_mp3, isAudioOn, undefined, 250)
       // makeTopScore on pressing new game
     } else {
       setTextOnDisplay("Starting text");

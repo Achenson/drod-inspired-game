@@ -1,7 +1,8 @@
 export default function playAudio(
   audioVar: HTMLAudioElement,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-  shouldPreviousAudioStop: boolean = false
+  shouldPreviousAudioStop: boolean = false,
+  delay: number = 0
 ) {
   if (isAudioOn) {
     if (shouldPreviousAudioStop) {
@@ -10,6 +11,14 @@ export default function playAudio(
       audioVar.currentTime = 0;
     }
 
-    audioVar.play();
+    if(!delay) {
+      audioVar.play();
+    } else {
+      setTimeout( () => {
+        audioVar.play()
+      }, delay)
+    }
+
+
   }
 }
