@@ -80,9 +80,9 @@ function UpperRightUI({
             setTextOnDisplay("Help & About");
           }}
           onMouseLeave={() => {
-            // if (helpClicked === "true") {
+             if (helpClicked) {
             setAnimatePulse(null);
-            // }
+             }
 
             setTextOnDisplay("");
           }}
