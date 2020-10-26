@@ -13,52 +13,6 @@ interface Props {
   setIsAudioOn:   number | React.Dispatch<React.SetStateAction<number>>;
 }
 
-export interface PropsChildren {
-  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
-
-  soundHover: "animate-pulse" | null;
-  setSoundHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
-
-  touchHover: "animate-pulse" | null;
-  setTouchHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
-
-  keyboardHover: "animate-pulse" | null;
-  setKeyboardHover: React.Dispatch<
-    React.SetStateAction<"animate-pulse" | null>
-  >;
-
-  touchClicked: boolean;
-  setTouchClicked: React.Dispatch<React.SetStateAction<boolean>>;
-
-  keyboardClicked: boolean;
-  setKeyboardClicked: React.Dispatch<React.SetStateAction<boolean>>;
-
-  confirmHover: "animate-pulse" | null;
-  setConfirmHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
-
-  deleteHover: "animate-pulse" | null;
-  setDeleteHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
-
-  confirmVisibility: boolean;
-
-  setConfirmVisibility: React.Dispatch<React.SetStateAction<boolean>>;
-
-  deleteVisibility: boolean;
-  setDeleteVisibility: React.Dispatch<React.SetStateAction<boolean>>;
-
-  toggleIcons: () => void;
-
-  cancelVisibility: boolean;
-  setCancelVisibility: React.Dispatch<React.SetStateAction<boolean>>;
-
-  cancelHover: "animate-pulse" | null;
-  setCancelHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
-  setTopScore: number | React.Dispatch<React.SetStateAction<number>>;
-
-  isAudioOn:  number | React.Dispatch<React.SetStateAction<number>>;
-  setIsAudioOn:    number | React.Dispatch<React.SetStateAction<number>>;
-  largeScreenRender: boolean
-}
 
 function UpperRightSettings({
   setTextOnDisplay,

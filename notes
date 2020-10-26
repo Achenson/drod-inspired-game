@@ -147,7 +147,7 @@ DONE bug: enemies dissapear after hero's death DONE
 DONE impossible move should not set new oneTurnBack state DONE
 DONE make the moveEnemies logic cleaner
 more freq enemy arrival after 250 rounds
-move UpperRightSettings_child props
+DONE move UpperRightSettings_child props DONE
 DONE no death sound bug DONE
 DONE bug: rendering both bug and death on going back one turn when going to enemies tile (should be bug only) DONE
 DONE wrong sequence of sounds - esp. when waiting -> delay it 250ms? DONE

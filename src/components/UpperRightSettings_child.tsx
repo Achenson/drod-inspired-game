@@ -10,7 +10,38 @@ import { ReactComponent as Touch } from "../svgs/touch.svg";
 import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
 import { ReactComponent as Cursor } from "../svgs/cursor.svg";
 
-import { PropsChildren } from "./UpperRightSettings";
+interface Props {
+  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
+  soundHover: "animate-pulse" | null;
+  setSoundHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+  touchHover: "animate-pulse" | null;
+  setTouchHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+  keyboardHover: "animate-pulse" | null;
+  setKeyboardHover: React.Dispatch<
+    React.SetStateAction<"animate-pulse" | null>
+  >;
+  touchClicked: boolean;
+  setTouchClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  keyboardClicked: boolean;
+  setKeyboardClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  confirmHover: "animate-pulse" | null;
+  setConfirmHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+  deleteHover: "animate-pulse" | null;
+  setDeleteHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+  confirmVisibility: boolean;
+  setConfirmVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteVisibility: boolean;
+  setDeleteVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleIcons: () => void;
+  cancelVisibility: boolean;
+  setCancelVisibility: React.Dispatch<React.SetStateAction<boolean>>;
+  cancelHover: "animate-pulse" | null;
+  setCancelHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+  setTopScore: number | React.Dispatch<React.SetStateAction<number>>;
+  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>;
+  setIsAudioOn: number | React.Dispatch<React.SetStateAction<number>>;
+  largeScreenRender: boolean;
+}
 
 function UpperRightSettings_child({
   setTextOnDisplay,
@@ -38,14 +69,13 @@ function UpperRightSettings_child({
   isAudioOn,
   setIsAudioOn,
   largeScreenRender,
-}: PropsChildren): JSX.Element {
-
-
-
+}: Props): JSX.Element {
   return (
     <div
-      className={`w-full absolute right-0 border-2 border-black rounded-md bg-gray-200 z-50 ${largeScreenRender ? "flex justify-end" : ""} `}
-      style={{ width: `${largeScreenRender ? "124px": "100%"}` }}
+      className={`w-full absolute right-0 border-2 border-black rounded-md bg-gray-200 z-50 ${
+        largeScreenRender ? "flex justify-end" : ""
+      } `}
+      style={{ width: `${largeScreenRender ? "124px" : "100%"}` }}
     >
       <div className="flex">
         <VolumeOFF
@@ -53,11 +83,10 @@ function UpperRightSettings_child({
             isAudioOn ? "" : "bg-red-500"
           } mb-2 md:mb-0`}
           onClick={() => {
-           
-            if(isAudioOn) {
-              (setIsAudioOn as React.Dispatch<React.SetStateAction<number>>)(0)
+            if (isAudioOn) {
+              (setIsAudioOn as React.Dispatch<React.SetStateAction<number>>)(0);
             } else {
-              (setIsAudioOn as React.Dispatch<React.SetStateAction<number>>)(1)
+              (setIsAudioOn as React.Dispatch<React.SetStateAction<number>>)(1);
             }
           }}
           onMouseEnter={() => {
