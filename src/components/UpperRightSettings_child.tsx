@@ -22,8 +22,6 @@ interface Props {
   setConfirmHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
   deleteHover: "animate-pulse" | null;
   setDeleteHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
-  confirmVisibility: boolean;
-  setConfirmVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   deleteVisibility: boolean;
   setDeleteVisibility: React.Dispatch<React.SetStateAction<boolean>>;
   toggleIcons: () => void;
@@ -45,7 +43,6 @@ function UpperRightSettings_child({
   setKeyboardHover,
   keyboardClicked,
   setKeyboardClicked,
-  confirmVisibility,
   confirmHover,
   setConfirmHover,
   deleteVisibility,

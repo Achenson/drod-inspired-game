@@ -105,7 +105,7 @@ function MainUI({}: Props): JSX.Element {
   // let mql = window.matchMedia('(min-width: 600px)');
 
   const mediaBreakpoint = 768;
-  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = React.useState<number>(window.innerWidth);
 
   const [largeScreenRender, setLargeScreenRender] = useState<boolean>(false);
 

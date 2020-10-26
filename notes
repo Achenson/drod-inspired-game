@@ -44,10 +44,6 @@ typescript
 
 makeTopScore -> type assertion! SPR
 
-
-
-
-
 ==================================
 
 
@@ -92,12 +88,19 @@ XXX different upper UI for big and small screens?? XXX
 X change UI from black to violet? X
 XXX toggle large screen mode or toggle always on? XXX
 XXX be default: green sound on icon? XXX
-UpperRightSettings children - too many props??
+X UpperRightSettings children - too many props?? X
 DONE Touch * Keyboard btns -> save to localStorage? DONE
 DONe enable clickin/touch on Upper UI? DONE
 DONE change Help positioning if control buttons are visible in largeRenderMode DONE
 DONE !!! toggle setting after resizing down !!! DONE
-make useMemo notes (Help)
+DONE make useMemo notes (Help):DONE
+
+useMemo: 2 use cases: DONE
+1. for objects that are being used in useEffect dependency array:
+that way the useEffect won't run on every render (object are normally created on every render),
+but only if some variable inside an object would change
+2. for heavy function for which we want to memoize returned value
+
 DONE make Help less wide?? DONE
 DONE UpperRightSettings big * small -> unify code somehow DONE
 DONE red bg on sound icon when on DONE
@@ -112,15 +115,15 @@ DONE test BTN  -> NEW GAME DONE
 DONE reset display when controls are being used DONE
 DONE no shortcuts in top display, when on small screen & no keyboard mode\ DONE
 DONE Help should dissapear when moving (small screen only) DONE
-responsiveness -> not working on tablet horizontal currently
+XXX responsiveness -> not working on tablet horizontal currently X not needed anymore, no responsive controls nowXX
 DONE going back one turn -> new enemy should arrive at the same tile? DONE
 DONE hero is not being rendered properly on the lower tiles DONE (z-index on Tile div)
 DONE hero kills not audible when one after the other DONE
-X New game / initial sound? x probably not - commented out
+XXX  New game / initial sound? x probably not - commented outXXX
 XXX change footstep sound? XXX
 name? make it always visible or topDisplay only?
 XXX use useContext somewhere? XXX
-change topScore mp3?
+XXX change topScore mp3? XXX
 DONE normalize volume - topScore mp3, medal too loud? DONE
 XXX help & about - mention brown enemies & pulsing enemies? XXX
 X line on Hero when in diagonal position? check other browsers - not on chrome X
@@ -129,14 +132,14 @@ DONE Hero's hand larger or no green "borders" in firefox DONE
 React-ridge-state - state management, can be used outside React components
 improve displaying smaller text
 DONE makeTopScore on new game DONE
-"black tile"
+DONE "black tile" DONE
 DONE bug - bad sword rendering when using pointer controls - useState used,DONE 
 DONE Hero in diagonal positions - unclear where he is? DONE
 XXX Help: useMemo not needed? it is needed XXX
-useState types all
+DONE useState types all DONE (mostly)
 DONE Bug: enemy pulsing on the other side of the board DONE
 DONE trouble with cursor arriving on left arrow DONE svg changed
-mention enemies' direction of movement in help & about?
+XXX mention enemies' direction of movement in help & about?XXX 
 on first run: keycontrol always visible? modify help & about text 
 DONE make controls simpler? always on by default, no "responsive" option? DONE
 DONE check z-indexes (help & settings) on Hero & Sword DONE
@@ -234,4 +237,3 @@ MainUI:
      }
    }
 
-   

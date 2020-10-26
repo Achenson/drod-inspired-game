@@ -94,13 +94,11 @@ function UpperRightSettings({
           cancelHover={cancelHover}
           cancelVisibility={cancelVisibility}
           confirmHover={confirmHover}
-          confirmVisibility={confirmVisibility}
           deleteHover={deleteHover}
           deleteVisibility={deleteVisibility}
           setCancelHover={setCancelHover}
           setCancelVisibility={setCancelVisibility}
           setConfirmHover={setConfirmHover}
-          setConfirmVisibility={setConfirmVisibility}
           setDeleteHover={setDeleteHover}
           setDeleteVisibility={setDeleteVisibility}
           toggleIcons={toggleIcons}
