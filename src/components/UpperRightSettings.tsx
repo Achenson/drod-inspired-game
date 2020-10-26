@@ -6,8 +6,8 @@ import UpperRightSettingsChild from "./UpperRightSettings_child";
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   largeScreenRender: boolean;
-  controlsVisibility:  string | React.Dispatch<React.SetStateAction<string>>;
-  setControlsVisibility:  string | React.Dispatch<React.SetStateAction<string>>;
+  controlsVisibility:  number | React.Dispatch<React.SetStateAction<number>>;
+  setControlsVisibility:  number | React.Dispatch<React.SetStateAction<number>>;
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>;
   isAudioOn:  number | React.Dispatch<React.SetStateAction<number>>;
   setIsAudioOn:   number | React.Dispatch<React.SetStateAction<number>>;
@@ -29,9 +29,9 @@ function UpperRightSettings({
   const [deleteVisibility, setDeleteVisibility] = useState<boolean>(true);
   const [cancelVisibility, setCancelVisibility] = useState<boolean>(false);
 
-  const [touchHover, setTouchHover] = useState<"animate-pulse" | null>(null);
+  // const [touchHover, setTouchHover] = useState<"animate-pulse" | null>(null);
 
-  const [touchClicked, setTouchClicked] = useState<boolean>(initialTouchClicked());
+  // const [touchClicked, setTouchClicked] = useState<boolean>(initialTouchClicked());
 
   const [keyboardHover, setKeyboardHover] = useState<"animate-pulse" | null>(
     null
@@ -39,27 +39,27 @@ function UpperRightSettings({
 
   const [keyboardClicked, setKeyboardClicked] = useState<boolean>(initialKeyboardClicked());
 
-  function initialTouchClicked() {
+  // function initialTouchClicked() {
     
-    switch(controlsVisibility) {
-      case "responsive":
-      return false;
-      case "alwaysOn":
-      return true;
-      case "alwaysOff":
-      return false;
-      default:
-      return false;
-    }
-  }
+  //   switch(controlsVisibility) {
+  //     case "responsive":
+  //     return false;
+  //     case "alwaysOn":
+  //     return true;
+  //     case "alwaysOff":
+  //     return false;
+  //     default:
+  //     return false;
+  //   }
+  // }
 
   function initialKeyboardClicked() {
     switch(controlsVisibility) {
-      case "responsive":
+      // case "responsive":
+      // return false;
+      case 1:
       return false;
-      case "alwaysOn":
-      return false;
-      case "alwaysOff":
+      case 0:
       return true;
       default:
       return false;
@@ -76,18 +76,24 @@ function UpperRightSettings({
 
 
   useEffect(() => {
-    if (touchClicked) {
-      (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("alwaysOn");
-      return;
-    }
+    // if (touchClicked) {
+    //   (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("alwaysOn");
+    //   return;
+    // }
 
     if (keyboardClicked) {
-      (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("alwaysOff");
+      (setControlsVisibility as React.Dispatch<React.SetStateAction<number>>)(0);
       return;
     }
 
-    (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("responsive");
-  }, [touchClicked, keyboardClicked, setControlsVisibility]);
+    if (!keyboardClicked) {
+      (setControlsVisibility as React.Dispatch<React.SetStateAction<number>>)(1);
+      return;
+    }
+
+
+    // (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("responsive");
+  }, [keyboardClicked, setControlsVisibility]);
 
   function toggleIcons() {
     setConfirmVisibility(!confirmVisibility);
@@ -102,12 +108,12 @@ function UpperRightSettings({
           setTextOnDisplay={setTextOnDisplay}
           soundHover={soundHover}
           setSoundHover={setSoundHover}
-          touchHover={touchHover}
-          setTouchHover={setTouchHover}
+          // touchHover={touchHover}
+          // setTouchHover={setTouchHover}
           keyboardHover={keyboardHover}
           setKeyboardHover={setKeyboardHover}
-          touchClicked={touchClicked}
-          setTouchClicked={setTouchClicked}
+          // touchClicked={touchClicked}
+          // setTouchClicked={setTouchClicked}
           keyboardClicked={keyboardClicked}
           setKeyboardClicked={setKeyboardClicked}
           cancelHover={cancelHover}

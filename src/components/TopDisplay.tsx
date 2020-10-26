@@ -5,7 +5,7 @@ interface Props {
   textOnDisplay: string;
   largeScreenRender: boolean;
   // controlsVisibility: "responsive" | "alwaysOn" | "alwaysOff";
-  controlsVisibility: string | React.Dispatch<React.SetStateAction<string>>;
+  controlsVisibility: number | React.Dispatch<React.SetStateAction<number>>;
 }
 
 function TopDisplay({
@@ -30,7 +30,7 @@ function TopDisplay({
     }
 
     // if rendering is for small screen & keyboard mode is not set
-    if (!largeScreenRender && controlsVisibility !== "alwaysOff") {
+    if (!largeScreenRender && controlsVisibility !== 0) {
       return "No new record. Rewind or try again!";
     }
 

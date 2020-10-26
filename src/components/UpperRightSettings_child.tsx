@@ -14,14 +14,14 @@ interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   soundHover: "animate-pulse" | null;
   setSoundHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
-  touchHover: "animate-pulse" | null;
-  setTouchHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
+  // touchHover: "animate-pulse" | null;
+  // setTouchHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
   keyboardHover: "animate-pulse" | null;
   setKeyboardHover: React.Dispatch<
     React.SetStateAction<"animate-pulse" | null>
   >;
-  touchClicked: boolean;
-  setTouchClicked: React.Dispatch<React.SetStateAction<boolean>>;
+  // touchClicked: boolean;
+  // setTouchClicked: React.Dispatch<React.SetStateAction<boolean>>;
   keyboardClicked: boolean;
   setKeyboardClicked: React.Dispatch<React.SetStateAction<boolean>>;
   confirmHover: "animate-pulse" | null;
@@ -47,12 +47,12 @@ function UpperRightSettings_child({
   setTextOnDisplay,
   soundHover,
   setSoundHover,
-  touchHover,
-  setTouchHover,
+  // touchHover,
+  // setTouchHover,
   keyboardHover,
   setKeyboardHover,
-  touchClicked,
-  setTouchClicked,
+  // touchClicked,
+  // setTouchClicked,
   keyboardClicked,
   setKeyboardClicked,
   confirmVisibility,
@@ -75,7 +75,7 @@ function UpperRightSettings_child({
       className={`w-full absolute right-0 border-2 border-black rounded-md bg-gray-200 z-50 ${
         largeScreenRender ? "flex justify-end" : ""
       } `}
-      style={{ width: `${largeScreenRender ? "124px" : "100%"}` }}
+      style={{ width: `${largeScreenRender ? "100px" : "100%"}` }}
     >
       <div className="flex">
         <VolumeOFF
@@ -107,7 +107,7 @@ function UpperRightSettings_child({
         )}
       </div>
 
-      <div className="flex">
+      {/* <div className="flex">
         <Cursor
           className={`cursor-pointer h-6 ${touchHover} ${
             touchClicked ? "bg-green-500" : ""
@@ -134,7 +134,7 @@ function UpperRightSettings_child({
         {largeScreenRender ? null : (
           <p className="text-sm ml-2">Pointer mode (controls always on)</p>
         )}
-      </div>
+      </div> */}
 
       <div className="flex">
         <Keyboard
@@ -155,9 +155,9 @@ function UpperRightSettings_child({
             }
           }}
           onClick={() => {
-            if (touchClicked) {
-              setTouchClicked(false);
-            }
+            // if (touchClicked) {
+            //   setTouchClicked(false);
+            // }
             setKeyboardClicked((b) => !b);
           }}
         />

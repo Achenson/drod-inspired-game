@@ -53,15 +53,6 @@ function MainUI({}: Props): JSX.Element {
   const [topScore, setTopScore] = useNumberStorage("score", 0);
   const [helpClicked, setHelpClicked] = useNumberStorage("helpClicked", 0);
 
-  // useEffect(() => {
-  //   let topScoreSaved = localStorage.getItem("score");
-
-  //   if (topScoreSaved) {
-  //     setTopScore(topScoreSaved);
-  //   } else {
-  //     localStorage.setItem("score", "0");
-  //   }
-  // }, []);
 
   const enemiesInitial = [4];
   const directionsInitial = [-9];
@@ -123,12 +114,17 @@ function MainUI({}: Props): JSX.Element {
   //   "responsive" | "alwaysOn" | "alwaysOff"
   // >("responsive");
 
-  const [controlsVisibility, setControlsVisibility] = useStringStorage(
+
+
+
+  const [controlsVisibility, setControlsVisibility] = useNumberStorage(
     "controls",
-    "alwaysOn"
+    1
   );
 
-  const [controlsRender, setControlsRender] = useState<boolean>(true);
+  // const [controlsRender, setControlsRender] = useState<boolean>(true);
+
+
 
   useEffect(() => {
     function handleResizeWindow() {
@@ -149,22 +145,22 @@ function MainUI({}: Props): JSX.Element {
     };
   }, [windowWidth]);
 
-  useEffect(() => {
-    if (controlsVisibility === "responsive") {
-      largeScreenRender ? setControlsRender(false) : setControlsRender(true);
-    }
+  // useEffect(() => {
+  //   // if (controlsVisibility === "responsive") {
+  //   //   largeScreenRender ? setControlsRender(false) : setControlsRender(true);
+  //   // }
 
-    if (controlsVisibility === "alwaysOn") {
-      // console.log("Onnnnn");
+  //   if (controlsVisibility) {
+  //     // console.log("Onnnnn");
 
-      setControlsRender(true);
-    }
+  //     setControlsRender(true);
+  //   }
 
-    if (controlsVisibility === "alwaysOff") {
-      // console.log("OFFFF");
-      setControlsRender(false);
-    }
-  }, [controlsVisibility, largeScreenRender]);
+  //   if (!controlsVisibility) {
+  //     // console.log("OFFFF");
+  //     setControlsRender(false);
+  //   }
+  // }, [controlsVisibility]);
 
   let oTB = oneTurnBack;
 
@@ -417,7 +413,7 @@ function MainUI({}: Props): JSX.Element {
 
         <NewGameBtn newGame={newGame} setTextOnDisplay={setTextOnDisplay} />
 
-        {controlsRender ? (
+        {controlsVisibility ? (
           <div
             className="flex justify-between"
             style={{ width: `${boardWidth}` }}
