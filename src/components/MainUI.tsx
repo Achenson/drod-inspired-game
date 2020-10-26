@@ -14,7 +14,6 @@ import moveHero from "../utils/moveHero";
 import makeTopScore from "../utils/makeTopScore";
 
 import useNumberStorage from "../hooks/useNumberStorage";
-import useStringStorage from "../hooks/useStringStorage";
 
 import RightBtnArea from "./RightBtnArea";
 import LeftBtnArea from "./LeftBtnArea";
@@ -110,20 +109,10 @@ function MainUI({}: Props): JSX.Element {
 
   const [largeScreenRender, setLargeScreenRender] = useState<boolean>(false);
 
-  // const [controlsVisibility, setControlsVisibility] = useState<
-  //   "responsive" | "alwaysOn" | "alwaysOff"
-  // >("responsive");
-
-
-
-
   const [controlsVisibility, setControlsVisibility] = useNumberStorage(
     "controls",
     1
   );
-
-  // const [controlsRender, setControlsRender] = useState<boolean>(true);
-
 
 
   useEffect(() => {
@@ -145,22 +134,7 @@ function MainUI({}: Props): JSX.Element {
     };
   }, [windowWidth]);
 
-  // useEffect(() => {
-  //   // if (controlsVisibility === "responsive") {
-  //   //   largeScreenRender ? setControlsRender(false) : setControlsRender(true);
-  //   // }
-
-  //   if (controlsVisibility) {
-  //     // console.log("Onnnnn");
-
-  //     setControlsRender(true);
-  //   }
-
-  //   if (!controlsVisibility) {
-  //     // console.log("OFFFF");
-  //     setControlsRender(false);
-  //   }
-  // }, [controlsVisibility]);
+ 
 
   let oTB = oneTurnBack;
 
@@ -257,19 +231,7 @@ function MainUI({}: Props): JSX.Element {
 
     setTextOnDisplay("");
 
-    // if (currentTurn !== 0) {
-    //   setOneTurnBack({
-    //     currentTurn: currentTurn,
-    //     // topScore: topScore,
-    //     // enemiesKilled: enemiesKilled,
-    //     enemies: [...enemies],
-    //     enemiesDirections: [...enemiesDirections],
-    //     lastEnemyKilled: lastEnemyKilled,
-    //     heroPosition: hero.heroPosition,
-    //     alive: hero.alive,
-    //     swordPosition: hero.swordPosition,
-    //   });
-    // }
+
 
     moveHero(
       directionToMove,

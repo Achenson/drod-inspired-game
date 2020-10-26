@@ -29,34 +29,16 @@ function UpperRightSettings({
   const [deleteVisibility, setDeleteVisibility] = useState<boolean>(true);
   const [cancelVisibility, setCancelVisibility] = useState<boolean>(false);
 
-  // const [touchHover, setTouchHover] = useState<"animate-pulse" | null>(null);
-
-  // const [touchClicked, setTouchClicked] = useState<boolean>(initialTouchClicked());
-
   const [keyboardHover, setKeyboardHover] = useState<"animate-pulse" | null>(
     null
   );
 
   const [keyboardClicked, setKeyboardClicked] = useState<boolean>(initialKeyboardClicked());
 
-  // function initialTouchClicked() {
-    
-  //   switch(controlsVisibility) {
-  //     case "responsive":
-  //     return false;
-  //     case "alwaysOn":
-  //     return true;
-  //     case "alwaysOff":
-  //     return false;
-  //     default:
-  //     return false;
-  //   }
-  // }
+ 
 
   function initialKeyboardClicked() {
     switch(controlsVisibility) {
-      // case "responsive":
-      // return false;
       case 1:
       return false;
       case 0:
@@ -76,10 +58,7 @@ function UpperRightSettings({
 
 
   useEffect(() => {
-    // if (touchClicked) {
-    //   (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("alwaysOn");
-    //   return;
-    // }
+  
 
     if (keyboardClicked) {
       (setControlsVisibility as React.Dispatch<React.SetStateAction<number>>)(0);
@@ -108,12 +87,8 @@ function UpperRightSettings({
           setTextOnDisplay={setTextOnDisplay}
           soundHover={soundHover}
           setSoundHover={setSoundHover}
-          // touchHover={touchHover}
-          // setTouchHover={setTouchHover}
           keyboardHover={keyboardHover}
           setKeyboardHover={setKeyboardHover}
-          // touchClicked={touchClicked}
-          // setTouchClicked={setTouchClicked}
           keyboardClicked={keyboardClicked}
           setKeyboardClicked={setKeyboardClicked}
           cancelHover={cancelHover}

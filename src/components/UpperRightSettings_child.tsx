@@ -5,23 +5,17 @@ import { ReactComponent as VolumeOFF } from "../svgs/volumeOff.svg";
 import { ReactComponent as DeleteTopScore } from "../svgs/deleteDanger.svg";
 import { ReactComponent as Cancel } from "../svgs/cancel.svg";
 import { ReactComponent as Confirm } from "../svgs/confirm.svg";
-
-import { ReactComponent as Touch } from "../svgs/touch.svg";
 import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
-import { ReactComponent as Cursor } from "../svgs/cursor.svg";
+
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   soundHover: "animate-pulse" | null;
   setSoundHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
-  // touchHover: "animate-pulse" | null;
-  // setTouchHover: React.Dispatch<React.SetStateAction<"animate-pulse" | null>>;
   keyboardHover: "animate-pulse" | null;
   setKeyboardHover: React.Dispatch<
     React.SetStateAction<"animate-pulse" | null>
   >;
-  // touchClicked: boolean;
-  // setTouchClicked: React.Dispatch<React.SetStateAction<boolean>>;
   keyboardClicked: boolean;
   setKeyboardClicked: React.Dispatch<React.SetStateAction<boolean>>;
   confirmHover: "animate-pulse" | null;
@@ -47,12 +41,8 @@ function UpperRightSettings_child({
   setTextOnDisplay,
   soundHover,
   setSoundHover,
-  // touchHover,
-  // setTouchHover,
   keyboardHover,
   setKeyboardHover,
-  // touchClicked,
-  // setTouchClicked,
   keyboardClicked,
   setKeyboardClicked,
   confirmVisibility,
@@ -107,34 +97,6 @@ function UpperRightSettings_child({
         )}
       </div>
 
-      {/* <div className="flex">
-        <Cursor
-          className={`cursor-pointer h-6 ${touchHover} ${
-            touchClicked ? "bg-green-500" : ""
-          } mb-2 md:mb-0`}
-          onMouseEnter={() => {
-            setTouchHover("animate-pulse");
-            if (largeScreenRender) {
-              setTextOnDisplay("Pointer mode (controls always on)");
-            }
-          }}
-          onMouseLeave={() => {
-            setTouchHover(null);
-            if (largeScreenRender) {
-              setTextOnDisplay("");
-            }
-          }}
-          onClick={() => {
-            if (keyboardClicked) {
-              setKeyboardClicked(false);
-            }
-            setTouchClicked((b) => !b);
-          }}
-        />
-        {largeScreenRender ? null : (
-          <p className="text-sm ml-2">Pointer mode (controls always on)</p>
-        )}
-      </div> */}
 
       <div className="flex">
         <Keyboard
