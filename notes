@@ -139,8 +139,7 @@ XXX Help: useMemo not needed? it is needed XXX
 DONE useState types all DONE (mostly)
 DONE Bug: enemy pulsing on the other side of the board DONE
 DONE trouble with cursor arriving on left arrow DONE svg changed
-XXX mention enemies' direction of movement in help & about?XXX 
-on first run: keycontrol always visible? modify help & about text 
+XXX mention enemies' direction of movement in help & about?XXX  
 DONE make controls simpler? always on by default, no "responsive" option? DONE
 DONE check z-indexes (help & settings) on Hero & Sword DONE
 DONE help should pulse until clicked not hover DONE

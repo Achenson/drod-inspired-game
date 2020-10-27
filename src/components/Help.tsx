@@ -16,7 +16,7 @@ function Help({
 }: Props): JSX.Element {
   let smallScreenSettings = useMemo(() => {
     return {
-      width: `${boardWidth+20}px`,
+      width: `${boardWidth + 20}px`,
     };
   }, [boardWidth]);
 
@@ -77,7 +77,8 @@ function Help({
         </p>
         <p className="mb-2">
           BTOS' gameplay is turn-based. First goes the Player's action - eight
-          directional movement, rotation or waiting. Moving into corners is forbidden. Additionally, you can go back one turn - even after dying!
+          directional movement, rotation or waiting. Moving into corners is
+          forbidden. Additionally, you can go back one turn - even after dying!
         </p>
         <p className="mb-2">
           The enemies movement follows immediatelly - enemies will roam randomly
@@ -89,17 +90,17 @@ function Help({
           On the desktop the game is meant to be played using keyboard.
           Controls: move - <b>Numpad 1-4</b> & <b>6-9</b>, rotate - <b>Q</b> &{" "}
           <b>W</b>, wait - <b>Numpad 5</b>, go back one turn - <b>R</b>, new
-          game - <b>N</b>. 
+          game - <b>N</b>.
         </p>
-        <p className="mb-2">
-            To check the settings, click on the cog icon.
-            <span><Settings
-          className={`h-4`}
-          
-        /></span>
-        </p>
+
+        <div className="flex">
+          <p className="mb-2">To check the settings, press the cog (</p>
+          <Settings className={`h-4 mt-1`} />
+          <p>) icon.</p>
+        </div>
+
         <p className="text-xs text-center">
-          SFX obtained from {" "}
+          SFX obtained from{" "}
           <a
             href="https://www.zapsplat.com"
             target="_blank"
@@ -109,7 +110,6 @@ function Help({
             https://www.zapsplat.com/
           </a>
         </p>
-       
       </div>
     </div>
   );
