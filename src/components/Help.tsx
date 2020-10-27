@@ -60,7 +60,7 @@ function Help({
         }}
       >
         <p className="mb-2">
-          Buggy Tomb of Seth is a puzzle roguelike game heavily inspired by{" "}
+          Deadly Tomb of Death is a puzzle roguelike game heavily inspired by{" "}
           <a
             href="https://en.wikipedia.org/wiki/Deadly_Rooms_of_Death"
             target="_blank"

@@ -97,7 +97,7 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: hero.swordPosition,
   });
 
-  const [textOnDisplay, setTextOnDisplay] = useState<string>("sampleText");
+  const [textOnDisplay, setTextOnDisplay] = useState<string>("Deadly Tomb of Death - v1.0");
 
   const [settingsVisibility, setSettingsVisibility] = useState<boolean>(false);
   const [helpVisibility, setHelpVisibility] = useState<boolean>(false);

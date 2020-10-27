@@ -110,7 +110,7 @@ ICONS used: https://www.iconpacks.net/ https://uxwing.com/  https://heroicons.co
 X too many functions nested inside functions (moveHero-> moveEnemies...) X
 DONE "responsive" text size on topDisplay?? DONE
 DONE test mp3: enemyKilled, swing (sword), movement & waiting DONE
-welcome text on topDisplay / every new game?
+DONE welcome text on topDisplay / every new game? DONE
 DONE test BTN  -> NEW GAME DONE
 DONE reset display when controls are being used DONE
 DONE no shortcuts in top display, when on small screen & no keyboard mode\ DONE
@@ -121,7 +121,7 @@ DONE hero is not being rendered properly on the lower tiles DONE (z-index on Til
 DONE hero kills not audible when one after the other DONE
 XXX  New game / initial sound? x probably not - commented outXXX
 XXX change footstep sound? XXX
-name? make it always visible or topDisplay only?
+DONE rname? make it always visible or topDisplay only? DONE
 XXX use useContext somewhere? XXX
 XXX change topScore mp3? XXX
 DONE normalize volume - topScore mp3, medal too loud? DONE

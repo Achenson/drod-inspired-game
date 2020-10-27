@@ -52,7 +52,7 @@ export default function makeRecordScore(
       playAudio(death_mp3, isAudioOn, undefined, 250)
       // makeTopScore on pressing new game
     } else {
-      setTextOnDisplay("Starting text");
+      setTextOnDisplay("Deadly Tomb of Death - v1.0");
     }
 
 
