@@ -121,22 +121,15 @@ export default function moveEnemies(
       if (newPossiblePositions.indexOf(indexToMove) > -1) {
         nextEnemiesPositions.push(indexToMove);
       } else {
-        // let randomNumber = makeRandomNumber(1, newPossiblePositions.length);
-
-        // let randomNextPosition = newPossiblePositions[randomNumber - 1];
-
-        // // if this nextPosition will be already taken by another enemy - don't move
-
-        // if (nextEnemiesPositions.indexOf(randomNextPosition) > -1) {
-        //   nextEnemiesPositions.push(enemy);
-        // } else {
-        //   nextEnemiesPositions.push(randomNextPosition);
-        // }
+    
 
         nextEnemiesPositions.push(enemy);
       }
     }
   }
+
+  return nextEnemiesPositions;
+
 
   // enemy kills if hero is adjacent
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
@@ -154,11 +147,10 @@ export default function moveEnemies(
       hero,
       "death"
     );
-  }
-  // else {
 
-  //   // console.log(currentTurn);
-  // }
+
+  }
+  
 
   setCurrentTurn((n) => n + 1);
 

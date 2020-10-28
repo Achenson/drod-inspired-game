@@ -13,6 +13,11 @@ import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
 import moveEnemies from "../utils/moveEnemies";
 
+import createEnemy from "../utils/createEnemy";
+import enemiesDirections2ndTurn from "../utils/enemiesDirections2ndTurn";
+
+
+
 import makeTopScore from "../utils/makeTopScore";
 
 import useNumberStorage from "../hooks/useNumberStorage";
@@ -283,7 +288,7 @@ function MainUI({}: Props): JSX.Element {
     }
 
 
-    moveEnemies(
+  let nextEnemiesPositions =  moveEnemies(
       newEnemies,
       boardSize,
       adjacentTilesRelativePositions,
@@ -306,7 +311,58 @@ function MainUI({}: Props): JSX.Element {
       savedEnemiesDirections,
       setSavedEnemiesDirections
     );
+
+
+     // enemy kills if hero is adjacent
+  // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
+  if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
+    setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
+
+    // setCurrentTurn((n) => n + 1);
+
+    makeTopScore(
+      currentTurn,
+      topScore,
+      setTopScore,
+      setTextOnDisplay,
+      isAudioOn,
+      hero,
+      "death"
+    );
+
+
+  }
+
+  setCurrentTurn((n) => n + 1);
+
+  if (currentTurn % 2 !== 0 && currentTurn !== 0) {
+    nextEnemiesPositions = [
+      ...nextEnemiesPositions,
+      createEnemy(
+        nextEnemiesPositions,
+        heroIndexToMove,
+        swordIndexToMove,
+        boardSize,
+        randomNewEnemyPosition,
+        setRandomNewEnemyPosition
+      ),
+    ];
+  }
+
+  setEnemies([...nextEnemiesPositions]);
+
+  enemiesDirections2ndTurn(
+    nextEnemiesPositions,
+    boardSize,
+    adjacentTilesRelativePositions,
+    setEnemiesDirections,
+    savedEnemiesDirections,
+    setSavedEnemiesDirections
+
+  );
   
+
+
 
 
 
