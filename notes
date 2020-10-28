@@ -42,15 +42,12 @@ module.exports = {
 ==================================
 typescript
 
-makeTopScore -> type assertion! SPR
-
 ==================================
 
 
 notes:
 
-1. enums: are they needed here?
-2. useState with arrays -> wrapper funcions??
+DONE 1. enums: are they needed here? DONE better for types than pure object
 to do:
 DONE 3. better leaving to the side -> make it the same in moveHero & moveEnemies DONe
 DONE no movement after kill DONE
@@ -67,7 +64,6 @@ XXX enemy won't arrive next to hero? XXX
 XXX performance issues after many turns?XXX
 DONE last turn should be also counted DONE
 DONE localStorage custom hook? DONE
-back in time custom hook?
 DONE sometimes enemies disappear?? DONE (bug fixed)
 DONE backspace -> move one turn back in time DONE
 DONE smaller(px) board? DONE
@@ -153,7 +149,9 @@ DONE move UpperRightSettings_child props DONE
 DONE no death sound bug DONE
 DONE bug: rendering both bug and death on going back one turn when going to enemies tile (should be bug only) DONE
 DONE wrong sequence of sounds - esp. when waiting -> delay it 250ms? DONE
-
+lower help div in the end
+DONE top score not being set when current turn is +1 top score DONE
+new game automatically when resetting top score
 
 
 

@@ -17,7 +17,8 @@ export default function makeRecordScore(
   hero: HeroObj,
   newGameOrDeath: "new game" | "death"
 ) {
-  if (currentTurn > topScore) {
+  // >= sign, because the next turn in which hero dies still counts
+  if (currentTurn >= topScore) {
     (setTopScore as React.Dispatch<React.SetStateAction<number>>)(
       (currentTurn + 1)
     );
