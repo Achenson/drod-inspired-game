@@ -134,6 +134,7 @@ DONE Hero in diagonal positions - unclear where he is? DONE
 XXX Help: useMemo not needed? it is needed XXX
 DONE useState types all DONE (mostly)
 DONE Bug: enemy pulsing on the other side of the board DONE
+
 DONE trouble with cursor arriving on left arrow DONE svg changed
 XXX mention enemies' direction of movement in help & about?XXX  
 DONE make controls simpler? always on by default, no "responsive" option? DONE
@@ -152,6 +153,7 @@ DONE wrong sequence of sounds - esp. when waiting -> delay it 250ms? DONE
 lower help div in the end
 DONE top score not being set when current turn is +1 top score DONE
 new game automatically when resetting top score
+DONE Round survived instead of current turn, renamed to Score DONE
 
 
 

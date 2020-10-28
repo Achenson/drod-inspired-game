@@ -8,11 +8,11 @@ interface Props {
 function UpperMiddleUI({ currentTurn, setTextOnDisplay }: Props): JSX.Element {
   return (
     <div className="cursor-default ">
-      <p>Round</p>
+      <p>Score</p>
       <p
         className="text-center font-droid-serif text-lg hover:bg-gray-200 rounded"
         onMouseEnter={() => {
-          setTextOnDisplay("Current round");
+          setTextOnDisplay("Rounds survived");
         }}
         onMouseLeave={() => {
           setTextOnDisplay("");
