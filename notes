@@ -150,9 +150,9 @@ DONE move UpperRightSettings_child props DONE
 DONE no death sound bug DONE
 DONE bug: rendering both bug and death on going back one turn when going to enemies tile (should be bug only) DONE
 DONE wrong sequence of sounds - esp. when waiting -> delay it 250ms? DONE
-lower help div in the end
+DONE lower help div in the end DONE
 DONE top score not being set when current turn is +1 top score DONE
-new game automatically when resetting top score
+XXX new game automatically when resetting top score XXX
 DONE Round survived instead of current turn, renamed to Score DONE
 
 
