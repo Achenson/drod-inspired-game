@@ -24,7 +24,7 @@ export default function moveHero(
   adjacentTilesRelativePositions: number[],
   boardSize: number,
   lastEnemyKilled: number | null,
-  setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>,
+  setLastEnemyKilled: React.Dispatch<React.SetStateAction<number | null>>,
   enemiesDirections: number[],
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
   setOneTurnBack: React.Dispatch<
@@ -44,7 +44,7 @@ export default function moveHero(
 
 
   // reseting different look of sword if enemy was just killed
-  setLastEnemiesKilled(null);
+  setLastEnemyKilled(null);
 
   let relativePosition = hero.heroPosition - hero.swordPosition;
 
@@ -236,7 +236,7 @@ export default function moveHero(
               newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
               setEnemies([...newEnemies]);
               // setEnemiesKilled((n) => n + 1);
-              setLastEnemiesKilled(swordIndexToMove);
+              setLastEnemyKilled(swordIndexToMove);
             }
             
             setHero({

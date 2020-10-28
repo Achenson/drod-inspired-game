@@ -10,6 +10,8 @@ import { HeroObj } from "../utils/interfaces";
 import { Directions } from "../utils/interfaces";
 
 import makeBoard from "../utils/makeBoard";
+import turnCourse from "../utils/turnCourse";
+
 import moveHero from "../utils/moveHero";
 import moveEnemies from "../utils/moveEnemies";
 
@@ -230,20 +232,11 @@ function MainUI({}: Props): JSX.Element {
   }
 
   function heroMovement(directionToMove: Directions) {
-    if (!hero.alive) {
-      return;
-    }
 
-    setTextOnDisplay("");
-
-    let {
-      wasMovementLegal,
-      isHeroAlive,
-      heroIndexToMove,
-      swordIndexToMove,
-      newEnemies,
-    } = moveHero(
+    turnCourse(
+      // from argument
       directionToMove,
+      // from component
       setHero,
       setEnemies,
       currentTurn,
@@ -257,77 +250,18 @@ function MainUI({}: Props): JSX.Element {
       enemiesDirections,
       isAudioOn,
       setOneTurnBack,
-    );
-
-    if (!wasMovementLegal) {
-      return;
-    }
-
-    if (!isHeroAlive) {
-      makeTopScore(
-        currentTurn,
-        topScore,
-        setTopScore,
-        setTextOnDisplay,
-        isAudioOn,
-        "death"
-      );
-      return;
-    }
-
-    let nextEnemiesPositions = moveEnemies(
-      newEnemies,
-      boardSize,
-      adjacentTilesRelativePositions,
-      // hero.swordPosition,
-      swordIndexToMove,
-      heroIndexToMove,
-      enemiesDirections
-    );
-
-    // enemy kills if hero is adjacent
-    // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
-    if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
-      setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
-
-      // setCurrentTurn((n) => n + 1);
-
-      makeTopScore(
-        currentTurn,
-        topScore,
-        setTopScore,
-        setTextOnDisplay,
-        isAudioOn,
-        "death"
-      );
-    }
-
-    setCurrentTurn((n) => n + 1);
-
-    if (currentTurn % 2 !== 0 && currentTurn !== 0) {
-      nextEnemiesPositions = [
-        ...nextEnemiesPositions,
-        createEnemy(
-          nextEnemiesPositions,
-          heroIndexToMove,
-          swordIndexToMove,
-          boardSize,
-          randomNewEnemyPosition,
-          setRandomNewEnemyPosition
-        ),
-      ];
-    }
-
-    setEnemies([...nextEnemiesPositions]);
-
-    enemiesDirections2ndTurn(
-      nextEnemiesPositions,
-      boardSize,
-      adjacentTilesRelativePositions,
+      setTextOnDisplay,
+      topScore,
+      setTopScore,
+      randomNewEnemyPosition,
+      setRandomNewEnemyPosition,
       setEnemiesDirections,
       savedEnemiesDirections,
       setSavedEnemiesDirections
-    );
+
+    )
+
+    
   }
 
   function newGame() {
