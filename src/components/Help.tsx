@@ -24,7 +24,7 @@ function Help({
   let largeScreenSettings = useMemo(() => {
     return {
       width: `${boardWidth + 144}px`,
-      marginBottom: "2px"
+      marginBottom: "4px"
     };
   }, [boardWidth]);
 
