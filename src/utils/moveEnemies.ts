@@ -32,7 +32,7 @@ export default function moveEnemies(
   let nextEnemiesPositions: number[] = [];
 
   // enemy === enemy's position on board
-  for (let enemy of enemies) {
+  for (let enemy of enemies as number[]) {
     // positions for single enemy
     let possiblePositions: number[] = [];
 

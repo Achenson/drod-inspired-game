@@ -11,6 +11,8 @@ import { Directions } from "../utils/interfaces";
 
 import makeBoard from "../utils/makeBoard";
 import moveHero from "../utils/moveHero";
+import moveEnemies from "../utils/moveEnemies";
+
 import makeTopScore from "../utils/makeTopScore";
 
 import useNumberStorage from "../hooks/useNumberStorage";
@@ -52,7 +54,6 @@ function MainUI({}: Props): JSX.Element {
   const [topScore, setTopScore] = useNumberStorage("score", 0);
   const [helpClicked, setHelpClicked] = useNumberStorage("helpClicked", 0);
 
-
   const enemiesInitial = [4];
   const directionsInitial = [-9];
   const heroInitial: HeroObj = {
@@ -74,9 +75,9 @@ function MainUI({}: Props): JSX.Element {
   ]);
 
   // for remembering enemiesDirections when going back one turn
-  const [savedEnemiesDirections, setSavedEnemiesDirections] = useState<[boolean, number[]]>([
-    false, [-1]
-  ])
+  const [savedEnemiesDirections, setSavedEnemiesDirections] = useState<
+    [boolean, number[]]
+  >([false, [-1]]);
 
   const [lastEnemyKilled, setLastEnemyKilled] = useState<number | null>(null);
 
@@ -97,7 +98,9 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: hero.swordPosition,
   });
 
-  const [textOnDisplay, setTextOnDisplay] = useState<string>("Deadly Tomb of Death - v1.0");
+  const [textOnDisplay, setTextOnDisplay] = useState<string>(
+    "Deadly Tomb of Death - v1.0"
+  );
 
   const [settingsVisibility, setSettingsVisibility] = useState<boolean>(false);
   const [helpVisibility, setHelpVisibility] = useState<boolean>(false);
@@ -105,7 +108,9 @@ function MainUI({}: Props): JSX.Element {
   // let mql = window.matchMedia('(min-width: 600px)');
 
   const mediaBreakpoint = 768;
-  const [windowWidth, setWindowWidth] = React.useState<number>(window.innerWidth);
+  const [windowWidth, setWindowWidth] = React.useState<number>(
+    window.innerWidth
+  );
 
   const [largeScreenRender, setLargeScreenRender] = useState<boolean>(false);
 
@@ -113,7 +118,6 @@ function MainUI({}: Props): JSX.Element {
     "controls",
     1
   );
-
 
   useEffect(() => {
     function handleResizeWindow() {
@@ -133,8 +137,6 @@ function MainUI({}: Props): JSX.Element {
       window.removeEventListener("resize", handleResizeWindow);
     };
   }, [windowWidth]);
-
- 
 
   let oTB = oneTurnBack;
 
@@ -167,7 +169,7 @@ function MainUI({}: Props): JSX.Element {
           swordPosition: oTB.swordPosition,
         });
         setRandomNewEnemyPosition([true, randomNewEnemyPosition[1]]);
-        setSavedEnemiesDirections([true, [...savedEnemiesDirections[1]]])
+        setSavedEnemiesDirections([true, [...savedEnemiesDirections[1]]]);
 
         break;
       case "KeyQ":
@@ -231,9 +233,13 @@ function MainUI({}: Props): JSX.Element {
 
     setTextOnDisplay("");
 
-
-
-    moveHero(
+    let {
+      wasMovementLegal,
+      isHeroAlive,
+      heroIndexToMove,
+      swordIndexToMove,
+      newEnemies,
+    } = moveHero(
       directionToMove,
       setHero,
       setEnemies,
@@ -258,6 +264,54 @@ function MainUI({}: Props): JSX.Element {
       savedEnemiesDirections,
       setSavedEnemiesDirections
     );
+
+    if (!wasMovementLegal) {
+      return;
+    }
+
+    if (!isHeroAlive) {
+      makeTopScore(
+        currentTurn,
+        topScore,
+        setTopScore,
+        setTextOnDisplay,
+        isAudioOn,
+        hero,
+        "death"
+      );
+      return;
+    }
+
+
+    moveEnemies(
+      newEnemies,
+      boardSize,
+      adjacentTilesRelativePositions,
+      // hero.swordPosition,
+      swordIndexToMove,
+      heroIndexToMove,
+      hero,
+      setHero,
+      setEnemies,
+      currentTurn,
+      setCurrentTurn,
+      topScore,
+      setTopScore,
+      enemiesDirections,
+      setEnemiesDirections,
+      setTextOnDisplay,
+      isAudioOn,
+      randomNewEnemyPosition,
+      setRandomNewEnemyPosition,
+      savedEnemiesDirections,
+      setSavedEnemiesDirections
+    );
+  
+
+
+
+
+
   }
 
   function newGame() {

@@ -134,7 +134,6 @@ DONE Hero in diagonal positions - unclear where he is? DONE
 XXX Help: useMemo not needed? it is needed XXX
 DONE useState types all DONE (mostly)
 DONE Bug: enemy pulsing on the other side of the board DONE
-
 DONE trouble with cursor arriving on left arrow DONE svg changed
 XXX mention enemies' direction of movement in help & about?XXX  
 DONE make controls simpler? always on by default, no "responsive" option? DONE
@@ -156,83 +155,4 @@ XXX new game automatically when resetting top score XXX
 DONE Round survived instead of current turn, renamed to Score DONE
 
 
-
-
-Old code for responisive controls visibility:
-
-MainUI:
-
- const [controlsVisibility, setControlsVisibility] = useStringStorage<
-     "responsive" | "alwaysOn" | "alwaysOff"
-   >("controls", "responsive");
-
-
-   const [controlsRender, setControlsRender] = useState<boolean>(true);
-
-    useEffect(() => {
-      if (controlsVisibility === "responsive") {
-        largeScreenRender ? setControlsRender(false) : setControlsRender(true);
-      }
-
-     if (controlsVisibility) {
-        console.log("Onnnnn");
-
-       setControlsRender(true);
-     }
-
-     if (!controlsVisibility) {
-      // console.log("OFFFF");
-       setControlsRender(false);
-    }
-   }, [controlsVisibility]);
-
-
-
-   UpperRightSettings_child
-
-     {/* <div className="flex">
-        <Cursor
-          className={`cursor-pointer h-6 ${touchHover} ${
-            touchClicked ? "bg-green-500" : ""
-          } mb-2 md:mb-0`}
-          onMouseEnter={() => {
-            setTouchHover("animate-pulse");
-            if (largeScreenRender) {
-              setTextOnDisplay("Pointer mode (controls always on)");
-            }
-          }}
-          onMouseLeave={() => {
-            setTouchHover(null);
-            if (largeScreenRender) {
-              setTextOnDisplay("");
-            }
-          }}
-          onClick={() => {
-            if (keyboardClicked) {
-              setKeyboardClicked(false);
-            }
-            setTouchClicked((b) => !b);
-          }}
-        />
-        {largeScreenRender ? null : (
-          <p className="text-sm ml-2">Pointer mode (controls always on)</p>
-        )}
-      </div> */}
-
-
-      UpperRightSettings
-
-        function initialTouchClicked() {
-    
-  switch(controlsVisibility) {
-       case "responsive":
-     return false;
-      case "alwaysOn":
-       return true;
-       case "alwaysOff":
-       return false;
-       default:
-       return false;
-     }
-   }
 

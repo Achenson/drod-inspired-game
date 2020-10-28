@@ -1,8 +1,12 @@
 import { HeroObj } from "./interfaces";
 import { Directions } from "../utils/interfaces";
+import { MoveHero } from "../utils/interfaces";
+
 
 import moveEnemies from "./moveEnemies";
 import makeTopScore from "./makeTopScore";
+
+
 
 import {
   enemyKilled_mp3,
@@ -13,6 +17,9 @@ import {
 } from "./audio";
 
 import playAudio from "./playAudio";
+
+
+
 
 export default function moveHero(
   direction: Directions,
@@ -51,10 +58,10 @@ export default function moveHero(
   savedEnemiesDirections: [boolean, number[]],
   setSavedEnemiesDirections: React.Dispatch<React.SetStateAction<[boolean, number[]]>>
 
-) {
-  if (!hero.alive) {
-    return;
-  }
+): MoveHero {
+  // if (!hero.alive) {
+  //   return;
+  // }
 
   // reseting different look of sword if enemy was just killed
   setLastEnemiesKilled(null);
@@ -117,141 +124,201 @@ export default function moveHero(
 
   // no moving to corners
   const corners = [0, 8, 72, 80];
-
+ 
+  
   if (corners.indexOf(heroIndexToMove) > -1) {
     playAudio(forbiddenMove_mp3, isAudioOn);
-    return;
+    return {
+      wasMovementLegal: false,
+      isHeroAlive: true,
+      heroIndexToMove: heroIndexToMove,
+      swordIndexToMove: swordIndexToMove,
+      newEnemies: enemies,
+    };
+    
+    
   }
-
+  
   //return if here would move out of the board (hero or sword) up or down
   if (
     heroIndexToMove < 0 ||
     swordIndexToMove < 0 ||
     heroIndexToMove > boardSize * boardSize - 1 ||
     swordIndexToMove > boardSize * boardSize - 1
-  ) {
-    playAudio(forbiddenMove_mp3, isAudioOn);
-    return;
-  }
+    ) {
+      playAudio(forbiddenMove_mp3, isAudioOn);
+      return {
+        wasMovementLegal: false,
+        isHeroAlive: true,
+        heroIndexToMove: heroIndexToMove,
+        swordIndexToMove: swordIndexToMove,
+        newEnemies: enemies,
+      };
+    }
+    
+    //return if here would move out of the board (hero or sword) left or right
+    if (
+      ((hero.heroPosition % boardSize === 0 ||
+        hero.swordPosition % boardSize === 0) &&
+        // nw                     w            sw
+        (direction === 8 || direction === -1 || direction === -10)) ||
+        (((hero.heroPosition + 1) % boardSize === 0 ||
+        (hero.swordPosition + 1) % boardSize === 0) &&
+        // ne                     e            se
+        (direction === 10 || direction === 1 || direction === -8))
+        ) {
+          console.log("OUT");
+          playAudio(forbiddenMove_mp3, isAudioOn);
+          return {
+            wasMovementLegal: false,
+            isHeroAlive: true,
+            heroIndexToMove: heroIndexToMove,
+            swordIndexToMove: swordIndexToMove,
+            newEnemies: enemies,
+          };
+        }
+        
+        //return if here would move out of the board (sword only when rotating) left or right
+        if (
+          (((relativePosition === -9 && hero.swordPosition % boardSize === 0) ||
+          (relativePosition === 9 && (hero.swordPosition + 1) % boardSize === 0)) &&
+          direction === 45) ||
+          (((relativePosition === -9 && (hero.swordPosition + 1) % boardSize === 0) ||
+          (relativePosition === 9 && hero.swordPosition % boardSize === 0)) &&
+          direction === -45)
+          ) {
+            console.log("OUT");
+            playAudio(forbiddenMove_mp3, isAudioOn);
+            return {
+              wasMovementLegal: false,
+              isHeroAlive: true,
+              heroIndexToMove: heroIndexToMove,
+              swordIndexToMove: swordIndexToMove,
+              newEnemies: enemies,
+            };
+          }
+          
+          if (currentTurn !== 0) {
+            setOneTurnBack({
+              currentTurn: currentTurn,
+              // topScore: topScore,
+              // enemiesKilled: enemiesKilled,
+              enemies: [...enemies],
+              enemiesDirections: [...enemiesDirections],
+              lastEnemyKilled: lastEnemyKilled,
+              heroPosition: hero.heroPosition,
+              alive: hero.alive,
+              swordPosition: hero.swordPosition,
+            });
+          }
+          
+          // play audio if rotating in not forbidden
+          if (direction === 45 || direction === -45) {
+            playAudio(swing_mp3, isAudioOn);
+          } else if (direction === 0) {
+            playAudio(waiting_mp3, isAudioOn);
+          } else {
+            playAudio(movement_mp3, isAudioOn);
+          }
 
-  //return if here would move out of the board (hero or sword) left or right
-  if (
-    ((hero.heroPosition % boardSize === 0 ||
-      hero.swordPosition % boardSize === 0) &&
-      // nw                     w            sw
-      (direction === 8 || direction === -1 || direction === -10)) ||
-    (((hero.heroPosition + 1) % boardSize === 0 ||
-      (hero.swordPosition + 1) % boardSize === 0) &&
-      // ne                     e            se
-      (direction === 10 || direction === 1 || direction === -8))
-  ) {
-    console.log("OUT");
-    playAudio(forbiddenMove_mp3, isAudioOn);
-    return;
-  }
+          
+          
+          let aliveBoolean = true;
+          
+          // hero dies - steps on enemy on purpose
+          if (enemies.indexOf(heroIndexToMove) > -1) {
+            aliveBoolean = false;
+            setHero({
+              ...hero,
+              swordPosition: swordIndexToMove,
+              heroPosition: heroIndexToMove,
+              alive: aliveBoolean,
+            });
+            
+            setCurrentTurn((n) => n + 1);
+            
+            
+            // makeTopScore(
+              //   currentTurn,
+              //   topScore,
+              //   setTopScore,
+              //   setTextOnDisplay,
+              //   isAudioOn,
+              //   hero,
+              //   "death"
+              // );
+              
+              
+              
+              return {
+                wasMovementLegal: true,
+                isHeroAlive: false,
+                heroIndexToMove: heroIndexToMove,
+                swordIndexToMove: swordIndexToMove,
+                newEnemies: enemies,
+              };
+              
+              
+              
+            }
+            //if hero survived after movings
+            let newEnemies = [...enemies];
+            // killing enemies
 
-  //return if here would move out of the board (sword only when rotating) left or right
-  if (
-    (((relativePosition === -9 && hero.swordPosition % boardSize === 0) ||
-      (relativePosition === 9 && (hero.swordPosition + 1) % boardSize === 0)) &&
-      direction === 45) ||
-    (((relativePosition === -9 && (hero.swordPosition + 1) % boardSize === 0) ||
-      (relativePosition === 9 && hero.swordPosition % boardSize === 0)) &&
-      direction === -45)
-  ) {
-    console.log("OUT");
-    playAudio(forbiddenMove_mp3, isAudioOn);
-    return;
-  }
+            if (enemies.indexOf(swordIndexToMove) > -1) {
+              playAudio(enemyKilled_mp3, isAudioOn, true);
+              newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
+              setEnemies([...newEnemies]);
+              // setEnemiesKilled((n) => n + 1);
+              setLastEnemiesKilled(swordIndexToMove);
+            }
+            
+            setHero({
+              ...hero,
+              swordPosition: swordIndexToMove,
+              heroPosition: heroIndexToMove,
+              alive: aliveBoolean,
+            });
+            
+    //         moveEnemies(
+    //           newEnemies,
+              
+              
+    //           boardSize,
+    //           adjacentTilesRelativePositions,
+    //           // hero.swordPosition,
+              
+    //           swordIndexToMove,
+    //           heroIndexToMove,
+              
+              
+    //           hero,
+    //           setHero,
+    //           setEnemies,
+    // currentTurn,
+    // setCurrentTurn,
+    // topScore,
+    // setTopScore,
+    // enemiesDirections,
+    // setEnemiesDirections,
+    // setTextOnDisplay,
+    // isAudioOn,
+    // randomNewEnemyPosition,
+    // setRandomNewEnemyPosition,
+    // savedEnemiesDirections,
+    // setSavedEnemiesDirections
+    // );
+    
 
-  if (currentTurn !== 0) {
-    setOneTurnBack({
-      currentTurn: currentTurn,
-      // topScore: topScore,
-      // enemiesKilled: enemiesKilled,
-      enemies: [...enemies],
-      enemiesDirections: [...enemiesDirections],
-      lastEnemyKilled: lastEnemyKilled,
-      heroPosition: hero.heroPosition,
-      alive: hero.alive,
-      swordPosition: hero.swordPosition,
-    });
-  }
+  return {
+    wasMovementLegal: true,
+    isHeroAlive: true,
+    heroIndexToMove: heroIndexToMove,
+    swordIndexToMove: swordIndexToMove,
+    newEnemies: [...newEnemies],
+  };
 
-  // play audio if rotating in not forbidden
-  if (direction === 45 || direction === -45) {
-    playAudio(swing_mp3, isAudioOn);
-  } else if (direction === 0) {
-    playAudio(waiting_mp3, isAudioOn);
-  } else {
-    playAudio(movement_mp3, isAudioOn);
-  }
 
-  let aliveBoolean = true;
-
-  if (enemies.indexOf(heroIndexToMove) > -1) {
-    aliveBoolean = false;
-    setHero({
-      ...hero,
-      swordPosition: swordIndexToMove,
-      heroPosition: heroIndexToMove,
-      alive: aliveBoolean,
-    });
-
-    setCurrentTurn((n) => n + 1);
-    makeTopScore(
-      currentTurn,
-      topScore,
-      setTopScore,
-      setTextOnDisplay,
-      isAudioOn,
-      hero,
-      "death"
-    );
-
-    return;
-  }
-
-  let newEnemies = [...enemies];
-  // killing enemies
-  if (enemies.indexOf(swordIndexToMove) > -1) {
-    playAudio(enemyKilled_mp3, isAudioOn, true);
-    newEnemies.splice(newEnemies.indexOf(swordIndexToMove), 1);
-    setEnemies([...newEnemies]);
-    // setEnemiesKilled((n) => n + 1);
-    setLastEnemiesKilled(swordIndexToMove);
-  }
-
-  setHero({
-    ...hero,
-    swordPosition: swordIndexToMove,
-    heroPosition: heroIndexToMove,
-    alive: aliveBoolean,
-  });
-
-  moveEnemies(
-    newEnemies,
-    boardSize,
-    adjacentTilesRelativePositions,
-    // hero.swordPosition,
-    swordIndexToMove,
-    heroIndexToMove,
-    hero,
-    setHero,
-    setEnemies,
-    currentTurn,
-    setCurrentTurn,
-    topScore,
-    setTopScore,
-    enemiesDirections,
-    setEnemiesDirections,
-    setTextOnDisplay,
-    isAudioOn,
-    randomNewEnemyPosition,
-    setRandomNewEnemyPosition,
-    savedEnemiesDirections,
-    setSavedEnemiesDirections
-  );
 }
 
 // function makeTopScore() {

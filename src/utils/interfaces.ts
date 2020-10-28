@@ -8,6 +8,14 @@ export interface BoardObj {
   [key: string]: string;
 }
 
+export interface MoveHero {
+    wasMovementLegal: boolean;
+    isHeroAlive: boolean;
+    heroIndexToMove: number;
+    swordIndexToMove: number;
+    newEnemies: number[];
+}
+
 export enum Directions {
     nw = -10,
     n = -9,
