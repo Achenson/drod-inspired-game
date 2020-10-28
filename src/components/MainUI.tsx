@@ -16,8 +16,6 @@ import moveEnemies from "../utils/moveEnemies";
 import createEnemy from "../utils/createEnemy";
 import enemiesDirections2ndTurn from "../utils/enemiesDirections2ndTurn";
 
-
-
 import makeTopScore from "../utils/makeTopScore";
 
 import useNumberStorage from "../hooks/useNumberStorage";
@@ -248,7 +246,6 @@ function MainUI({}: Props): JSX.Element {
       directionToMove,
       setHero,
       setEnemies,
-      // setEnemiesKilled,
       currentTurn,
       setCurrentTurn,
       hero,
@@ -257,17 +254,9 @@ function MainUI({}: Props): JSX.Element {
       boardSize,
       lastEnemyKilled,
       setLastEnemyKilled,
-      topScore,
-      setTopScore,
       enemiesDirections,
-      setEnemiesDirections,
-      setTextOnDisplay,
       isAudioOn,
-      randomNewEnemyPosition,
-      setRandomNewEnemyPosition,
       setOneTurnBack,
-      savedEnemiesDirections,
-      setSavedEnemiesDirections
     );
 
     if (!wasMovementLegal) {
@@ -281,93 +270,64 @@ function MainUI({}: Props): JSX.Element {
         setTopScore,
         setTextOnDisplay,
         isAudioOn,
-        hero,
         "death"
       );
       return;
     }
 
-
-  let nextEnemiesPositions =  moveEnemies(
+    let nextEnemiesPositions = moveEnemies(
       newEnemies,
       boardSize,
       adjacentTilesRelativePositions,
       // hero.swordPosition,
       swordIndexToMove,
       heroIndexToMove,
-      hero,
-      setHero,
-      setEnemies,
-      currentTurn,
-      setCurrentTurn,
-      topScore,
-      setTopScore,
-      enemiesDirections,
+      enemiesDirections
+    );
+
+    // enemy kills if hero is adjacent
+    // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
+    if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
+      setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
+
+      // setCurrentTurn((n) => n + 1);
+
+      makeTopScore(
+        currentTurn,
+        topScore,
+        setTopScore,
+        setTextOnDisplay,
+        isAudioOn,
+        "death"
+      );
+    }
+
+    setCurrentTurn((n) => n + 1);
+
+    if (currentTurn % 2 !== 0 && currentTurn !== 0) {
+      nextEnemiesPositions = [
+        ...nextEnemiesPositions,
+        createEnemy(
+          nextEnemiesPositions,
+          heroIndexToMove,
+          swordIndexToMove,
+          boardSize,
+          randomNewEnemyPosition,
+          setRandomNewEnemyPosition
+        ),
+      ];
+    }
+
+    setEnemies([...nextEnemiesPositions]);
+
+    enemiesDirections2ndTurn(
+      nextEnemiesPositions,
+      boardSize,
+      adjacentTilesRelativePositions,
       setEnemiesDirections,
-      setTextOnDisplay,
-      isAudioOn,
-      randomNewEnemyPosition,
-      setRandomNewEnemyPosition,
       savedEnemiesDirections,
       setSavedEnemiesDirections
     );
-
-
-     // enemy kills if hero is adjacent
-  // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
-  if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
-    setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
-
-    // setCurrentTurn((n) => n + 1);
-
-    makeTopScore(
-      currentTurn,
-      topScore,
-      setTopScore,
-      setTextOnDisplay,
-      isAudioOn,
-      hero,
-      "death"
-    );
-
-
-  }
-
-  setCurrentTurn((n) => n + 1);
-
-  if (currentTurn % 2 !== 0 && currentTurn !== 0) {
-    nextEnemiesPositions = [
-      ...nextEnemiesPositions,
-      createEnemy(
-        nextEnemiesPositions,
-        heroIndexToMove,
-        swordIndexToMove,
-        boardSize,
-        randomNewEnemyPosition,
-        setRandomNewEnemyPosition
-      ),
-    ];
-  }
-
-  setEnemies([...nextEnemiesPositions]);
-
-  enemiesDirections2ndTurn(
-    nextEnemiesPositions,
-    boardSize,
-    adjacentTilesRelativePositions,
-    setEnemiesDirections,
-    savedEnemiesDirections,
-    setSavedEnemiesDirections
-
-  );
-  
-
-
-
-
-
-
-
   }
 
   function newGame() {
@@ -378,7 +338,6 @@ function MainUI({}: Props): JSX.Element {
       setTopScore,
       setTextOnDisplay,
       isAudioOn,
-      hero,
       "new game"
     );
 
@@ -503,27 +462,8 @@ function MainUI({}: Props): JSX.Element {
             />
           </div>
         ) : null}
-
-        {/* <ArrowUp className="h-6"/>
-      <Rewind className="h-4"/>
-      <TurnAnticlockwise className="h-6"/>
-      <TurnClockwise className="h-6" style={{transform: "scaleX(-1)"}}/>
-      <Wait className="h-8"/>
-      <Settings className="h-8"/> */}
-        {/* <Help2 className="h-8"/> */}
-        {/* <Help className="h-6"/>
-      <Medal className="h-8 fill-current" style={{color: "gold"}}/>
-      <Medal className="h-8 fill-current text-gray-500" />
-      <Medal className="h-8 fill-current text-yellow-800"/> */}
       </div>
-      {/* <VolumeOFF className="h-6" />
-      <VolumeON className="h-6" />
-      <Delete className="h-6" />
-      <Desktop className="h-6" />
-      <Cancel className="h-6" />
-      <Confirm className="h-6" /> */}
-      {/* <Touch className="h-6"/>
-      <Keyboard className="h-6"/> */}
+     
       {largeScreenRender ? (
         <Help
           boardWidth={boardWidth}

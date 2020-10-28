@@ -1,8 +1,4 @@
-import { HeroObj } from "./interfaces";
-import createEnemy from "./createEnemy";
-import makeTopScore from "./makeTopScore";
-import makeRandomNumber from "./makeRandomNumber";
-import enemiesDirections2ndTurn from "./enemiesDirections2ndTurn";
+
 
 export default function moveEnemies(
   enemies: number[],
@@ -11,23 +7,8 @@ export default function moveEnemies(
   // heroPosition: number,
   nextSwordPosition: number,
   heroIndexToMove: number,
-  hero: HeroObj,
-  setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
-  setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
-  currentTurn: number,
-  setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
-  topScore: number | React.Dispatch<React.SetStateAction<number>>,
-  setTopScore: number | React.Dispatch<React.SetStateAction<number>>,
   enemiesDirections: number[],
-  setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
-  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-  randomNewEnemyPosition: [boolean, number],
-  setRandomNewEnemyPosition: React.Dispatch<
-    React.SetStateAction<[boolean, number]>
-  >,
-  savedEnemiesDirections: [boolean, number[]],
-  setSavedEnemiesDirections: React.Dispatch<React.SetStateAction<[boolean, number[]]>>
+
 ) {
   let nextEnemiesPositions: number[] = [];
 
@@ -130,55 +111,4 @@ export default function moveEnemies(
 
   return nextEnemiesPositions;
 
-
-  // enemy kills if hero is adjacent
-  // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
-  if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
-    setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
-
-    // setCurrentTurn((n) => n + 1);
-
-    makeTopScore(
-      currentTurn,
-      topScore,
-      setTopScore,
-      setTextOnDisplay,
-      isAudioOn,
-      hero,
-      "death"
-    );
-
-
-  }
-  
-
-  setCurrentTurn((n) => n + 1);
-
-  if (currentTurn % 2 !== 0 && currentTurn !== 0) {
-    nextEnemiesPositions = [
-      ...nextEnemiesPositions,
-      createEnemy(
-        nextEnemiesPositions,
-        heroIndexToMove,
-        nextSwordPosition,
-        boardSize,
-        randomNewEnemyPosition,
-        setRandomNewEnemyPosition
-      ),
-    ];
-  }
-
-  setEnemies([...nextEnemiesPositions]);
-
-  enemiesDirections2ndTurn(
-    nextEnemiesPositions,
-    boardSize,
-    adjacentTilesRelativePositions,
-    setEnemiesDirections,
-    savedEnemiesDirections,
-    setSavedEnemiesDirections
-
-  );
-
-  // return nextEnemiesPositions;
 }

@@ -1,6 +1,4 @@
-// import { HeroObj } from "./interfaces";
-// import createEnemy from "./createEnemy";
-// import makeRecordScore from "./makeRecordScore";
+
 import makeRandomNumber from "./makeRandomNumber";
 
 export default function enemiesDirections2ndTurn(
@@ -14,20 +12,6 @@ export default function enemiesDirections2ndTurn(
   setSavedEnemiesDirections: React.Dispatch<
     React.SetStateAction<[boolean, number[]]>
   >
-
-  // heroPosition: number,
-
-  // not needed -> belong to 1st turn, enemiesOrientation is their tendency to move in 2nd turn
-  // nextSwordPosition: number,
-  // heroIndexToMove: number,
-
-  // hero: HeroObj,
-  // setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
-  // setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
-  // currentTurn: number,
-  // setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
-  // recordScore: string,
-  // setRecordScore: React.Dispatch<React.SetStateAction<string>>
 ) {
   // if the directions were already saved by going one turn back
   if (savedEnemiesDirections[0]) {

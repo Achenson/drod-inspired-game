@@ -14,7 +14,6 @@ export default function makeRecordScore(
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-  hero: HeroObj,
   newGameOrDeath: "new game" | "death"
 ) {
   // >= sign, because the next turn in which hero dies still counts

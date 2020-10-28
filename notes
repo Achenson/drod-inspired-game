@@ -153,6 +153,7 @@ DONE lower help div in the end DONE
 DONE top score not being set when current turn is +1 top score DONE
 XXX new game automatically when resetting top score XXX
 DONE Round survived instead of current turn, renamed to Score DONE
-
+X newGame -> setting wrond top score X it is OK actually - pressing newGame would be the same as dying,
+when the score count would go up by one (surving one round more) X
 
 

@@ -2,12 +2,6 @@ import { HeroObj } from "./interfaces";
 import { Directions } from "../utils/interfaces";
 import { MoveHero } from "../utils/interfaces";
 
-
-import moveEnemies from "./moveEnemies";
-import makeTopScore from "./makeTopScore";
-
-
-
 import {
   enemyKilled_mp3,
   forbiddenMove_mp3,
@@ -19,13 +13,10 @@ import {
 import playAudio from "./playAudio";
 
 
-
-
 export default function moveHero(
   direction: Directions,
   setHero: React.Dispatch<React.SetStateAction<HeroObj>>,
   setEnemies: React.Dispatch<React.SetStateAction<number[]>>,
-  // setEnemiesKilled: React.Dispatch<React.SetStateAction<number>>,
   currentTurn: number,
   setCurrentTurn: React.Dispatch<React.SetStateAction<number>>,
   hero: HeroObj,
@@ -34,16 +25,8 @@ export default function moveHero(
   boardSize: number,
   lastEnemyKilled: number | null,
   setLastEnemiesKilled: React.Dispatch<React.SetStateAction<number | null>>,
-  topScore: number | React.Dispatch<React.SetStateAction<number>>,
-  setTopScore: number | React.Dispatch<React.SetStateAction<number>>,
   enemiesDirections: number[],
-  setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
-  setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
   isAudioOn: number | React.Dispatch<React.SetStateAction<number>>,
-  randomNewEnemyPosition: [boolean, number],
-  setRandomNewEnemyPosition: React.Dispatch<
-    React.SetStateAction<[boolean, number]>
-  >,
   setOneTurnBack: React.Dispatch<
     React.SetStateAction<{
       currentTurn: number;
@@ -55,13 +38,10 @@ export default function moveHero(
       swordPosition: number;
     }>
   >,
-  savedEnemiesDirections: [boolean, number[]],
-  setSavedEnemiesDirections: React.Dispatch<React.SetStateAction<[boolean, number[]]>>
+
 
 ): MoveHero {
-  // if (!hero.alive) {
-  //   return;
-  // }
+
 
   // reseting different look of sword if enemy was just killed
   setLastEnemiesKilled(null);
@@ -222,7 +202,6 @@ export default function moveHero(
           }
 
           
-          
           let aliveBoolean = true;
           
           // hero dies - steps on enemy on purpose
@@ -236,20 +215,7 @@ export default function moveHero(
             });
             
             setCurrentTurn((n) => n + 1);
-            
-            
-            // makeTopScore(
-              //   currentTurn,
-              //   topScore,
-              //   setTopScore,
-              //   setTextOnDisplay,
-              //   isAudioOn,
-              //   hero,
-              //   "death"
-              // );
-              
-              
-              
+                     
               return {
                 wasMovementLegal: true,
                 isHeroAlive: false,
@@ -280,35 +246,6 @@ export default function moveHero(
               alive: aliveBoolean,
             });
             
-    //         moveEnemies(
-    //           newEnemies,
-              
-              
-    //           boardSize,
-    //           adjacentTilesRelativePositions,
-    //           // hero.swordPosition,
-              
-    //           swordIndexToMove,
-    //           heroIndexToMove,
-              
-              
-    //           hero,
-    //           setHero,
-    //           setEnemies,
-    // currentTurn,
-    // setCurrentTurn,
-    // topScore,
-    // setTopScore,
-    // enemiesDirections,
-    // setEnemiesDirections,
-    // setTextOnDisplay,
-    // isAudioOn,
-    // randomNewEnemyPosition,
-    // setRandomNewEnemyPosition,
-    // savedEnemiesDirections,
-    // setSavedEnemiesDirections
-    // );
-    
 
   return {
     wasMovementLegal: true,
@@ -321,9 +258,3 @@ export default function moveHero(
 
 }
 
-// function makeTopScore() {
-//   if (currentTurn > parseInt(topScore)) {
-//     setTopScore(currentTurn.toString());
-//     localStorage.setItem("record", currentTurn.toString());
-//   }
-// }
