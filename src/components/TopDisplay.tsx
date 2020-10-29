@@ -14,8 +14,7 @@ function TopDisplay({
   largeScreenRender,
   controlsVisibility,
 }: Props): JSX.Element {
-  let smallText = "No new record. Rewind (R) or try again (N)!";
-
+  // small text size in case of longer message (1 case)
   function smallTextRender() {
     if (textOnDisplay === "No new record") {
       return true;

@@ -42,7 +42,6 @@ function Hero({
     marginTop: "4px",
   };
 
-  // const swordSize = "w-6 h-10";
   const swordSize = "w-6 h-10";
 
   const [swordColor, setSwordColor] = useState<string>("");
@@ -67,13 +66,14 @@ function Hero({
             left: "-7px",
           }}
         />
-
+        {/* head */}
         <div
           className={`w-3 h-3 bg-yellow-500 rounded-full z-30`}
           style={{ position: "absolute", top: "7px", left: "-1px" }}
         >
           <div style={halfACircle}></div>
         </div>
+        {/* "sleeve" */}
         <div
           className="absolute z-20"
           style={{

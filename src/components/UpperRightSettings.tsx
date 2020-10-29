@@ -1,18 +1,16 @@
 import React, { useEffect, useState, Fragment } from "react";
 
-
 import UpperRightSettingsChild from "./UpperRightSettings_child";
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
   largeScreenRender: boolean;
-  controlsVisibility:  number | React.Dispatch<React.SetStateAction<number>>;
-  setControlsVisibility:  number | React.Dispatch<React.SetStateAction<number>>;
+  controlsVisibility: number | React.Dispatch<React.SetStateAction<number>>;
+  setControlsVisibility: number | React.Dispatch<React.SetStateAction<number>>;
   setTopScore: number | React.Dispatch<React.SetStateAction<number>>;
-  isAudioOn:  number | React.Dispatch<React.SetStateAction<number>>;
-  setIsAudioOn:   number | React.Dispatch<React.SetStateAction<number>>;
+  isAudioOn: number | React.Dispatch<React.SetStateAction<number>>;
+  setIsAudioOn: number | React.Dispatch<React.SetStateAction<number>>;
 }
-
 
 function UpperRightSettings({
   setTextOnDisplay,
@@ -21,10 +19,9 @@ function UpperRightSettings({
   setControlsVisibility,
   setTopScore,
   isAudioOn,
-  setIsAudioOn
+  setIsAudioOn,
 }: Props): JSX.Element {
-  // const [volumeColor, setVolumeColor] = useState("text-black")
-
+  
   const [confirmVisibility, setConfirmVisibility] = useState<boolean>(false);
   const [deleteVisibility, setDeleteVisibility] = useState<boolean>(true);
   const [cancelVisibility, setCancelVisibility] = useState<boolean>(false);
@@ -33,21 +30,20 @@ function UpperRightSettings({
     null
   );
 
-  const [keyboardClicked, setKeyboardClicked] = useState<boolean>(initialKeyboardClicked());
-
- 
+  const [keyboardClicked, setKeyboardClicked] = useState<boolean>(
+    initialKeyboardClicked()
+  );
 
   function initialKeyboardClicked() {
-    switch(controlsVisibility) {
+    switch (controlsVisibility) {
       case 1:
-      return false;
+        return false;
       case 0:
-      return true;
+        return true;
       default:
-      return false;
+        return false;
     }
   }
-
 
   const [soundHover, setSoundHover] = useState<"animate-pulse" | null>(null);
   const [deleteHover, setDeleteHover] = useState<"animate-pulse" | null>(null);
@@ -56,22 +52,21 @@ function UpperRightSettings({
   );
   const [cancelHover, setCancelHover] = useState<"animate-pulse" | null>(null);
 
-
   useEffect(() => {
-  
-
     if (keyboardClicked) {
-      (setControlsVisibility as React.Dispatch<React.SetStateAction<number>>)(0);
+      (setControlsVisibility as React.Dispatch<React.SetStateAction<number>>)(
+        0
+      );
       return;
     }
 
     if (!keyboardClicked) {
-      (setControlsVisibility as React.Dispatch<React.SetStateAction<number>>)(1);
+      (setControlsVisibility as React.Dispatch<React.SetStateAction<number>>)(
+        1
+      );
       return;
     }
 
-
-    // (setControlsVisibility as React.Dispatch<React.SetStateAction<string>>)("responsive");
   }, [keyboardClicked, setControlsVisibility]);
 
   function toggleIcons() {
@@ -82,32 +77,30 @@ function UpperRightSettings({
 
   return (
     <Fragment>
-     
-        <UpperRightSettingsChild
-          setTextOnDisplay={setTextOnDisplay}
-          soundHover={soundHover}
-          setSoundHover={setSoundHover}
-          keyboardHover={keyboardHover}
-          setKeyboardHover={setKeyboardHover}
-          keyboardClicked={keyboardClicked}
-          setKeyboardClicked={setKeyboardClicked}
-          cancelHover={cancelHover}
-          cancelVisibility={cancelVisibility}
-          confirmHover={confirmHover}
-          deleteHover={deleteHover}
-          deleteVisibility={deleteVisibility}
-          setCancelHover={setCancelHover}
-          setCancelVisibility={setCancelVisibility}
-          setConfirmHover={setConfirmHover}
-          setDeleteHover={setDeleteHover}
-          setDeleteVisibility={setDeleteVisibility}
-          toggleIcons={toggleIcons}
-          setTopScore={setTopScore}
-          isAudioOn={isAudioOn}
-          setIsAudioOn={setIsAudioOn}
-          largeScreenRender={largeScreenRender}
-        />
-      
+      <UpperRightSettingsChild
+        setTextOnDisplay={setTextOnDisplay}
+        soundHover={soundHover}
+        setSoundHover={setSoundHover}
+        keyboardHover={keyboardHover}
+        setKeyboardHover={setKeyboardHover}
+        keyboardClicked={keyboardClicked}
+        setKeyboardClicked={setKeyboardClicked}
+        cancelHover={cancelHover}
+        cancelVisibility={cancelVisibility}
+        confirmHover={confirmHover}
+        deleteHover={deleteHover}
+        deleteVisibility={deleteVisibility}
+        setCancelHover={setCancelHover}
+        setCancelVisibility={setCancelVisibility}
+        setConfirmHover={setConfirmHover}
+        setDeleteHover={setDeleteHover}
+        setDeleteVisibility={setDeleteVisibility}
+        toggleIcons={toggleIcons}
+        setTopScore={setTopScore}
+        isAudioOn={isAudioOn}
+        setIsAudioOn={setIsAudioOn}
+        largeScreenRender={largeScreenRender}
+      />
     </Fragment>
   );
 }

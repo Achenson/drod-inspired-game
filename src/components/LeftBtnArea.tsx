@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 
 import { ReactComponent as TurnAnticlockwise } from "../svgs/curved-arrow-2261.svg";
 import { ReactComponent as TurnClockwise } from "../svgs/curved-arrow-2261.svg";
@@ -7,30 +6,27 @@ import { ReactComponent as Rewind } from "../svgs/backward.svg";
 
 interface Props {
   boardWidth: number;
-  // handleKeyDown: (eventString: string) => void;
   handleKeysOrBtnsWrapper: (command: string) => void;
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function LeftBtnArea({ boardWidth, handleKeysOrBtnsWrapper, setTextOnDisplay }: Props): JSX.Element {
-  const touchBtnColorOnHover = "bg-purple-400";
-
+function LeftBtnArea({
+  boardWidth,
+  handleKeysOrBtnsWrapper,
+  setTextOnDisplay,
+}: Props): JSX.Element {
   return (
     <div style={{ width: `${boardWidth / 2}px` }} className="my-4">
       <div className="flex justify-start">
         <button
           className="h-10 w-12 relative bg-gray-400 hover:bg-purple-400"
-          onClick={(e) => {
-            // e.preventDefault()
+          onClick={() => {
             handleKeysOrBtnsWrapper("KeyQ");
-            console.log("KeyQ");
           }}
           onMouseEnter={() => {
-        
             setTextOnDisplay("Keyboard: Q");
           }}
           onMouseLeave={() => {
-           
             setTextOnDisplay("");
           }}
         >
@@ -41,17 +37,13 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtnsWrapper, setTextOnDisplay }: 
         </button>
         <button
           className={`h-10 w-12 mx-2 bg-gray-400 relative hover:bg-purple-400`}
-          onClick={(e) => {
-            // e.preventDefault()
+          onClick={() => {
             handleKeysOrBtnsWrapper("KeyW");
-            console.log("KeyW");
           }}
           onMouseEnter={() => {
-        
             setTextOnDisplay("Keyboard: W");
           }}
           onMouseLeave={() => {
-           
             setTextOnDisplay("");
           }}
         >
@@ -67,17 +59,13 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtnsWrapper, setTextOnDisplay }: 
       </div>
       <button
         className={`my-4 mx-8 bg-gray-400 h-10 w-12 relative hover:bg-purple-400`}
-        onClick={(e) => {
-          // e.preventDefault()
+        onClick={() => {
           handleKeysOrBtnsWrapper("KeyR");
-          console.log("KeyR");
         }}
         onMouseEnter={() => {
-        
           setTextOnDisplay("Keyboard: R");
         }}
         onMouseLeave={() => {
-         
           setTextOnDisplay("");
         }}
       >

@@ -1,12 +1,10 @@
 import React from "react";
 
 import { ReactComponent as VolumeOFF } from "../svgs/volumeOff.svg";
-// import { ReactComponent as VolumeON } from "../svgs/volumeOn.svg";
 import { ReactComponent as DeleteTopScore } from "../svgs/deleteDanger.svg";
 import { ReactComponent as Cancel } from "../svgs/cancel.svg";
 import { ReactComponent as Confirm } from "../svgs/confirm.svg";
 import { ReactComponent as Keyboard } from "../svgs/keyboard.svg";
-
 
 interface Props {
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
@@ -94,7 +92,6 @@ function UpperRightSettings_child({
         )}
       </div>
 
-
       <div className="flex">
         <Keyboard
           className={`cursor-pointer h-6 ${keyboardHover} ${
@@ -108,15 +105,11 @@ function UpperRightSettings_child({
           }}
           onMouseLeave={() => {
             setKeyboardHover(null);
-
             if (largeScreenRender) {
               setTextOnDisplay("");
             }
           }}
           onClick={() => {
-            // if (touchClicked) {
-            //   setTouchClicked(false);
-            // }
             setKeyboardClicked((b) => !b);
           }}
         />
@@ -131,14 +124,12 @@ function UpperRightSettings_child({
           onClick={toggleIcons}
           onMouseEnter={() => {
             setDeleteHover("animate-pulse");
-
             if (largeScreenRender) {
               setTextOnDisplay("Delete top score");
             }
           }}
           onMouseLeave={() => {
             setDeleteHover(null);
-
             if (largeScreenRender) {
               setTextOnDisplay("");
             }
@@ -179,14 +170,12 @@ function UpperRightSettings_child({
           onClick={toggleIcons}
           onMouseEnter={() => {
             setCancelHover("animate-pulse");
-
             if (largeScreenRender) {
               setTextOnDisplay("Cancel");
             }
           }}
           onMouseLeave={() => {
             setCancelHover(null);
-
             if (largeScreenRender) {
               setTextOnDisplay("");
             }
@@ -197,7 +186,6 @@ function UpperRightSettings_child({
           <p className="text-sm ml-2">Confirm/cancel</p>
         )}
       </div>
-      {/* <Confirm className="h-6" /> */}
     </div>
   );
 }

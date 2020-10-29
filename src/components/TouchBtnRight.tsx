@@ -5,11 +5,15 @@ import { ReactComponent as Wait } from "../svgs/sand-clock-half.svg";
 
 interface Props {
   btnType: string;
-  handleKeysOrBtns: (command: string) => void;
+  handleKeysOrBtnsWrapper: (command: string) => void;
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnDisplay }: Props): JSX.Element {
+function TouchBtnRight({
+  btnType,
+  handleKeysOrBtnsWrapper,
+  setTextOnDisplay,
+}: Props): JSX.Element {
   let arrowDirection = "";
 
   let keyToPress: string = "Numpad";
@@ -55,42 +59,31 @@ function TouchBtnRight({ btnType, handleKeysOrBtns, setTextOnDisplay }: Props): 
     <button
       className="h-8 w-8 bg-gray-400 relative hover:bg-purple-400"
       onClick={(e) => {
-        handleKeysOrBtns("Numpad5");
+        handleKeysOrBtnsWrapper("Numpad5");
       }}
-
       onMouseEnter={() => {
-        
         setTextOnDisplay("Keyboard: Numpad 5");
       }}
       onMouseLeave={() => {
-       
         setTextOnDisplay("");
       }}
-
-
     >
-      <Wait className="h-6 absolute" style={{ left: "6px", top: "4px" }} 
-      
-      
-      
-      />
+      <Wait className="h-6 absolute" style={{ left: "6px", top: "4px" }} />
     </button>
   ) : (
     <button
       className="h-8 w-8 bg-gray-400 relative hover:bg-purple-400"
       onClick={(e) => {
-        handleKeysOrBtns(keyToPress);
+        handleKeysOrBtnsWrapper(keyToPress);
       }}
-
       onMouseEnter={() => {
-        
-        setTextOnDisplay(`Keyboard: ${keyToPress.slice(0,6)} ${keyToPress.slice(6)}`);
+        setTextOnDisplay(
+          `Keyboard: ${keyToPress.slice(0, 6)} ${keyToPress.slice(6)}`
+        );
       }}
       onMouseLeave={() => {
-       
         setTextOnDisplay("");
       }}
-
     >
       <ArrowUp className={`${arrowDirection} h-8`} />
     </button>

@@ -65,9 +65,7 @@ function UpperRightUI({
         <Help
           className={`h-6 fill-current hover:text-purple-800 ${animatePulse}`}
           onClick={() => {
-            (setHelpClicked as React.Dispatch<React.SetStateAction<number>>)(
-              1
-            );
+            (setHelpClicked as React.Dispatch<React.SetStateAction<number>>)(1);
 
             if (settingsVisibility && !largeScreenRender) {
               setSettingsVisibility(false);
@@ -80,9 +78,9 @@ function UpperRightUI({
             setTextOnDisplay("Help & About");
           }}
           onMouseLeave={() => {
-             if (helpClicked) {
-            setAnimatePulse(null);
-             }
+            if (helpClicked) {
+              setAnimatePulse(null);
+            }
 
             setTextOnDisplay("");
           }}

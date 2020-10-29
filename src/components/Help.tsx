@@ -17,14 +17,14 @@ function Help({
   let smallScreenSettings = useMemo(() => {
     return {
       width: `${boardWidth + 20}px`,
-      marginBottom: ""
+      marginBottom: "",
     };
   }, [boardWidth]);
 
   let largeScreenSettings = useMemo(() => {
     return {
       width: `${boardWidth + 144}px`,
-      marginBottom: "4px"
+      marginBottom: "4px",
     };
   }, [boardWidth]);
 
@@ -57,9 +57,7 @@ function Help({
         } `}
         style={{
           width: `${screenSettings.width}`,
-          marginBottom: `${screenSettings.marginBottom}`
-          // width: `${boardWidth + 130}px`,
-          // height: `${boardWidth + 100}px`,
+          marginBottom: `${screenSettings.marginBottom}`,
         }}
       >
         <p className="mb-2">

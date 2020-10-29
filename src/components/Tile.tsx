@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 
 import { HeroObj } from "../utils/interfaces";
@@ -74,7 +74,7 @@ function Tile({
       enemySVGvar = "transform -rotate-45 ";
       break;
   }
-
+  // enemy is pulsing when in adjacent tile
   let enemyPulsing = "";
 
   let heroRelativePostion = arrIndex - hero.heroPosition;
@@ -89,7 +89,6 @@ function Tile({
         (arrIndex % boardSize === 0 &&
           // nw                     w            sw
           (hRP === 10 || hRP === 1 || hRP === -8)) ||
-        // (enemy % (boardSize - 1) === 0 &&
         ((arrIndex + 1) % boardSize === 0 &&
           // ne                     e            se
           (hRP === 8 || hRP === -1 || hRP === -10))
@@ -216,10 +215,6 @@ function Tile({
       case 10:
         setHeroDirection("transform -rotate-45");
         setBodyMargins({
-          /* 
-          marginTop: "-30px",
-          marginLeft: "-30px",
-          */
           marginTop: "-24px",
           marginLeft: "-24px",
         });

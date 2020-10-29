@@ -28,8 +28,6 @@ function Board({
   settingsVisibility,
   setSettingsVisibility,
 }: Props): JSX.Element {
-  // const boardWidth = boardSize * 32;
-
   return (
     <div
       onClick={() => {
@@ -38,35 +36,26 @@ function Board({
         }
       }}
     >
-      {/* <div
-        className={`grid grid-cols-${boardSize} col-gap-0`}
-        style={{
-          width: `${boardWidth}px`,
-          height: `${boardWidth}px`,
-          backgroundColor: "whitesmoke",
-        }}
-      ></div> */}
-
       <div
-      className={`grid grid-cols-${boardSize} col-gap-0`}
-      style={{ width: `${boardWidth}px`}}
-    >
-      {board.map((el, i) => {
-        return (
-          <Tile
-            boardTile={el}
-            hero={hero}
-            key={i}
-            arrIndex={i}
-            enemies={enemies}
-            currentTurn={currentTurn}
-            lastEnemyKilled={lastEnemyKilled}
-            enemiesDirections={enemiesDirections}
-            boardSize={boardSize}
-          />
-        );
-      })}
-    </div>
+        className={`grid grid-cols-${boardSize} col-gap-0`}
+        style={{ width: `${boardWidth}px` }}
+      >
+        {board.map((el, i) => {
+          return (
+            <Tile
+              boardTile={el}
+              hero={hero}
+              key={i}
+              arrIndex={i}
+              enemies={enemies}
+              currentTurn={currentTurn}
+              lastEnemyKilled={lastEnemyKilled}
+              enemiesDirections={enemiesDirections}
+              boardSize={boardSize}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

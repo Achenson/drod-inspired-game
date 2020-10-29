@@ -3,25 +3,14 @@ import React from "react";
 import { ReactComponent as Medal } from "../svgs/medal.svg";
 
 interface Props {
-  // enemiesKilled: number;
   topScore: number | React.Dispatch<React.SetStateAction<number>>;
   enemies: number[];
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function UpperLeftUI({
-  // enemiesKilled,
-  topScore,
-  enemies,
-  setTextOnDisplay,
-}: Props): JSX.Element {
-
-  // const [animateSpin, setAnimateSpin] = useState<string | null>("animate-pulse");
-
+function UpperLeftUI({ topScore, setTextOnDisplay }: Props): JSX.Element {
   let medalColor;
   let medalOnHoverText: string;
-
-  // let topScoreInt = parseInt(topScore as string);
 
   if (topScore < 100) {
     medalColor = "black";
@@ -34,7 +23,6 @@ function UpperLeftUI({
   }
 
   if (topScore >= 175 && topScore < 250) {
-    // medalColor = " #c0c0c0";
     medalColor = "gray";
     medalOnHoverText = "Silver medal awarded";
   }
@@ -46,11 +34,7 @@ function UpperLeftUI({
 
   return (
     <div className="cursor-default">
-      <p
-      
-      >
-        Top score
-      </p>
+      <p>Top score</p>
       <div className="flex justify-around mb-px">
         <p
           className="text-center font-droid-serif text-lg text-green-600 hover:bg-gray-200 rounded w-8"
@@ -66,32 +50,24 @@ function UpperLeftUI({
         >
           {topScore.toString()}
         </p>
-        <div className={`w-8 hover:bg-gray-200 rounded-md flex justify-center items-center`}>
-        <Medal
-          className={`h-6 fill-current`}
-          style={{ color: `${medalColor}` }}
-          onMouseEnter={() => {
-            setTextOnDisplay(medalOnHoverText);
-          }}
-          onMouseLeave={() => {
-            setTextOnDisplay("");
-          }}
-          onTouchStart={() => {
-            setTextOnDisplay(medalOnHoverText);
-          }}
-        />
-
+        <div
+          className={`w-8 hover:bg-gray-200 rounded-md flex justify-center items-center`}
+        >
+          <Medal
+            className={`h-6 fill-current`}
+            style={{ color: `${medalColor}` }}
+            onMouseEnter={() => {
+              setTextOnDisplay(medalOnHoverText);
+            }}
+            onMouseLeave={() => {
+              setTextOnDisplay("");
+            }}
+            onTouchStart={() => {
+              setTextOnDisplay(medalOnHoverText);
+            }}
+          />
         </div>
-      
       </div>
-
-      {/* <p>kills: {enemiesKilled}</p> */}
-      {/* <p>nr of enemies: {enemies.length}</p> */}
-      {/* <p>enemies locations: {enemies.map( (el, i) => {
-    return el + ", "
-  } ) 
-
-  }</p> */}
     </div>
   );
 }
