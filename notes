@@ -90,6 +90,7 @@ DONe enable clickin/touch on Upper UI? DONE
 DONE change Help positioning if control buttons are visible in largeRenderMode DONE
 DONE !!! toggle setting after resizing down !!! DONE
 DONE make useMemo notes (Help):DONE
+DONE bug: top score plus +1 when clicking new game after death DONE
 
 useMemo: 2 use cases: DONE
 1. for objects that are being used in useEffect dependency array:

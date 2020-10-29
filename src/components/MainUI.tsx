@@ -188,15 +188,18 @@ function MainUI({}: Props): JSX.Element {
   }
 
   function newGame() {
-    makeTopScore(
-      currentTurn,
-      topScore,
-      setTopScore,
-      setTextOnDisplay,
-      isAudioOn,
-      "new game"
-    );
-
+    // top score already counted on heros death
+    if (hero.alive) {
+      makeTopScore(
+        currentTurn,
+        topScore,
+        setTopScore,
+        setTextOnDisplay,
+        isAudioOn,
+        "new game"
+      );
+    }
+  
     if (settingsVisibility) {
       setSettingsVisibility(false);
     }
