@@ -8,11 +8,11 @@ import { ReactComponent as Rewind } from "../svgs/backward.svg";
 interface Props {
   boardWidth: number;
   // handleKeyDown: (eventString: string) => void;
-  handleKeysOrBtns: (command: string) => void;
+  handleKeysOrBtnsWrapper: (command: string) => void;
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnDisplay }: Props): JSX.Element {
+function LeftBtnArea({ boardWidth, handleKeysOrBtnsWrapper, setTextOnDisplay }: Props): JSX.Element {
   const touchBtnColorOnHover = "bg-purple-400";
 
   return (
@@ -22,7 +22,7 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnDisplay }: Props):
           className="h-10 w-12 relative bg-gray-400 hover:bg-purple-400"
           onClick={(e) => {
             // e.preventDefault()
-            handleKeysOrBtns("KeyQ");
+            handleKeysOrBtnsWrapper("KeyQ");
             console.log("KeyQ");
           }}
           onMouseEnter={() => {
@@ -43,7 +43,7 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnDisplay }: Props):
           className={`h-10 w-12 mx-2 bg-gray-400 relative hover:bg-purple-400`}
           onClick={(e) => {
             // e.preventDefault()
-            handleKeysOrBtns("KeyW");
+            handleKeysOrBtnsWrapper("KeyW");
             console.log("KeyW");
           }}
           onMouseEnter={() => {
@@ -69,7 +69,7 @@ function LeftBtnArea({ boardWidth, handleKeysOrBtns, setTextOnDisplay }: Props):
         className={`my-4 mx-8 bg-gray-400 h-10 w-12 relative hover:bg-purple-400`}
         onClick={(e) => {
           // e.preventDefault()
-          handleKeysOrBtns("KeyR");
+          handleKeysOrBtnsWrapper("KeyR");
           console.log("KeyR");
         }}
         onMouseEnter={() => {

@@ -11,13 +11,7 @@ import { Directions } from "../utils/interfaces";
 
 import makeBoard from "../utils/makeBoard";
 import turnCourse from "../utils/turnCourse";
-
-import moveHero from "../utils/moveHero";
-import moveEnemies from "../utils/moveEnemies";
-
-import createEnemy from "../utils/createEnemy";
-import enemiesDirections2ndTurn from "../utils/enemiesDirections2ndTurn";
-
+import handleKeysOrBtns from "../utils/handleKeysOrBtns";
 import makeTopScore from "../utils/makeTopScore";
 
 import useNumberStorage from "../hooks/useNumberStorage";
@@ -146,93 +140,35 @@ function MainUI({}: Props): JSX.Element {
   let oTB = oneTurnBack;
 
   function handleKeyDown(event: KeyboardEvent) {
-    handleKeysOrBtns(event.code);
+    handleKeysOrBtnsWrapper(event.code);
   }
 
-  function handleKeysOrBtns(command: string) {
-    if (settingsVisibility) {
-      setSettingsVisibility(false);
-    }
-
-    if (helpVisibility && !largeScreenRender) {
-      setHelpVisibility(false);
-    }
-
-    switch (command) {
-      // rewind one round back
-      case "KeyR":
-        console.log("KeyR");
-        setTextOnDisplay("");
-        setCurrentTurn(oTB.currentTurn);
-        // setEnemiesKilled(oTB.enemiesKilled);
-        setEnemies([...oTB.enemies]);
-        setEnemiesDirections([...oTB.enemiesDirections]);
-        setLastEnemyKilled(oTB.lastEnemyKilled);
-        setHero({
-          heroPosition: oTB.heroPosition,
-          alive: oTB.alive,
-          swordPosition: oTB.swordPosition,
-        });
-        setRandomNewEnemyPosition([true, randomNewEnemyPosition[1]]);
-        setSavedEnemiesDirections([true, [...savedEnemiesDirections[1]]]);
-
-        break;
-      case "KeyQ":
-        console.log("q");
-        heroMovement(Directions.anticlockwise);
-        break;
-      case "KeyW":
-        console.log("w");
-        heroMovement(Directions.clockwise);
-        break;
-      case "Numpad7":
-        console.log("numpad 7");
-        heroMovement(Directions.nw);
-        break;
-      case "Numpad8":
-        console.log("numpad 8");
-        heroMovement(Directions.n);
-        // playAudio(topScore_mp3, isAudioOn);
-        // topScore_mp3.play();
-
-        break;
-      case "Numpad9":
-        console.log("numpad 9");
-        heroMovement(Directions.ne);
-        break;
-      case "Numpad4":
-        console.log("numpad 4");
-        heroMovement(Directions.w);
-        break;
-      case "Numpad5":
-        console.log("numpad 5");
-        heroMovement(Directions.wait);
-        break;
-      case "Numpad6":
-        console.log("numpad 6");
-        heroMovement(Directions.e);
-        break;
-      case "Numpad1":
-        console.log("numpad 1");
-        heroMovement(Directions.sw);
-        break;
-      case "Numpad2":
-        console.log("numpad 2");
-        heroMovement(Directions.s);
-        break;
-      case "Numpad3":
-        console.log("numpad 3");
-        heroMovement(Directions.se);
-        break;
-      case "KeyN":
-        console.log("New Game");
-        newGame();
-        break;
-    }
+  function handleKeysOrBtnsWrapper(command: string) {
+    handleKeysOrBtns(
+      command,
+      settingsVisibility,
+      setSettingsVisibility,
+      helpVisibility,
+      setHelpVisibility,
+      largeScreenRender,
+      setTextOnDisplay,
+      setCurrentTurn,
+      setEnemies,
+      setEnemiesDirections,
+      setLastEnemyKilled,
+      // one turn back
+      oTB,
+      setHero,
+      randomNewEnemyPosition,
+      setRandomNewEnemyPosition,
+      savedEnemiesDirections,
+      setSavedEnemiesDirections,
+      turnCourseWrapper,
+      newGame
+    );
   }
 
-  function heroMovement(directionToMove: Directions) {
-
+  function turnCourseWrapper(directionToMove: Directions) {
     turnCourse(
       // from argument
       directionToMove,
@@ -258,10 +194,7 @@ function MainUI({}: Props): JSX.Element {
       setEnemiesDirections,
       savedEnemiesDirections,
       setSavedEnemiesDirections
-
-    )
-
-    
+    );
   }
 
   function newGame() {
@@ -385,19 +318,19 @@ function MainUI({}: Props): JSX.Element {
           >
             <LeftBtnArea
               boardWidth={boardWidth}
-              handleKeysOrBtns={handleKeysOrBtns}
+              handleKeysOrBtnsWrapper={handleKeysOrBtnsWrapper}
               setTextOnDisplay={setTextOnDisplay}
             />
 
             <RightBtnArea
               boardWidth={boardWidth}
-              handleKeysOrBtns={handleKeysOrBtns}
+              handleKeysOrBtnsWrapper={handleKeysOrBtnsWrapper}
               setTextOnDisplay={setTextOnDisplay}
             />
           </div>
         ) : null}
       </div>
-     
+
       {largeScreenRender ? (
         <Help
           boardWidth={boardWidth}

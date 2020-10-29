@@ -103,7 +103,7 @@ DONE red bg on sound icon when on DONE
 DONE no display text on setting when on small screen DONE
 DONE zapSplat acknowledgement. DONE
 ICONS used: https://www.iconpacks.net/ https://uxwing.com/  https://heroicons.com/
-X too many functions nested inside functions (moveHero-> moveEnemies...) X
+DONE  too many functions nested inside functions (moveHero-> moveEnemies...) DONE
 DONE "responsive" text size on topDisplay?? DONE
 DONE test mp3: enemyKilled, swing (sword), movement & waiting DONE
 DONE welcome text on topDisplay / every new game? DONE
