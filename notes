@@ -144,7 +144,7 @@ DONE movement of enemies differs when moving back & forward in time when they wa
 DONE bug: enemies dissapear after hero's death DONE
 DONE impossible move should not set new oneTurnBack state DONE
 DONE make the moveEnemies logic cleaner
-more freq enemy arrival after 250 rounds
+XX more freq enemy arrival after 250 rounds XX
 DONE move UpperRightSettings_child props DONE
 DONE no death sound bug DONE
 DONE bug: rendering both bug and death on going back one turn when going to enemies tile (should be bug only) DONE

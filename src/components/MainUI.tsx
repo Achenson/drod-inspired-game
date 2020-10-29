@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactEventHandler, createElement } from "react";
+import React from "react";
 import Board from "./Board";
 
 import { useState, useEffect } from "react";
@@ -26,7 +26,6 @@ import TopDisplay from "./TopDisplay";
 interface Props {}
 
 function MainUI({}: Props): JSX.Element {
-  // const [isAudioOn, setIsAudioOn] = useState<boolean>(true);
   const [isAudioOn, setIsAudioOn] = useNumberStorage("isAudioOn", 1);
 
   useEffect(() => {
@@ -45,15 +44,13 @@ function MainUI({}: Props): JSX.Element {
 
   let board = makeBoard(boardSize);
 
-  // const [turnsPassed, setTurnsPassed] = useState()
-
   const [currentTurn, setCurrentTurn] = useState<number>(0);
 
-  // const [topScore, setTopScore] = useState<string>("248");
   const [topScore, setTopScore] = useNumberStorage("score", 0);
   const [helpClicked, setHelpClicked] = useNumberStorage("helpClicked", 0);
 
   const enemiesInitial = [4];
+  // enemies directions
   const directionsInitial = [-9];
   const heroInitial: HeroObj = {
     heroPosition: 40,
@@ -61,8 +58,6 @@ function MainUI({}: Props): JSX.Element {
     swordPosition: 31,
   };
 
-  // const [enemiesKilled, setEnemiesKilled] = useState<number>(0);
-  // const [enemies, setEnemies] = useState<Array<number | null>>([4]);
   const [enemies, setEnemies] = useState<Array<number>>([...enemiesInitial]);
   // for remembering new enemy arrival when going back one turn
   const [randomNewEnemyPosition, setRandomNewEnemyPosition] = useState<
@@ -86,9 +81,6 @@ function MainUI({}: Props): JSX.Element {
 
   const [oneTurnBack, setOneTurnBack] = useState({
     currentTurn: currentTurn,
-    // record score is can't be restored
-    // topScore: topScore,
-    // enemiesKilled: enemiesKilled,
     enemies: [...enemies],
     enemiesDirections: [...enemiesDirections],
     lastEnemyKilled: lastEnemyKilled,
@@ -103,8 +95,6 @@ function MainUI({}: Props): JSX.Element {
 
   const [settingsVisibility, setSettingsVisibility] = useState<boolean>(false);
   const [helpVisibility, setHelpVisibility] = useState<boolean>(false);
-
-  // let mql = window.matchMedia('(min-width: 600px)');
 
   const mediaBreakpoint = 768;
   const [windowWidth, setWindowWidth] = React.useState<number>(
@@ -198,7 +188,6 @@ function MainUI({}: Props): JSX.Element {
   }
 
   function newGame() {
-    // playAudio(newGame_mp3, isAudioOn, true);
     makeTopScore(
       currentTurn,
       topScore,
@@ -213,16 +202,12 @@ function MainUI({}: Props): JSX.Element {
     }
 
     setCurrentTurn(0);
-    // setEnemiesKilled(0);
     setEnemies([...enemiesInitial]);
     setEnemiesDirections([...directionsInitial]);
     setLastEnemyKilled(null);
     setHero({ ...heroInitial });
     setOneTurnBack({
       currentTurn: 0,
-      // record score is can't be restored
-      // topScore: topScore,
-      // enemiesKilled: 0,
       enemies: [...enemiesInitial],
       enemiesDirections: [...directionsInitial],
       lastEnemyKilled: null,
@@ -230,16 +215,14 @@ function MainUI({}: Props): JSX.Element {
     });
   }
 
-  useEffect(() => {
-    // console.log(randomNewEnemyPosition[0]);
-    // console.log(randomNewEnemyPosition[1]);
+  // useEffect(() => {
+  //   // console.log(randomNewEnemyPosition[0]);
 
-    console.log(enemies);
-  }, [enemies]);
+  //   console.log(enemies);
+  // }, [enemies]);
 
   return (
     <div className="flex justify-center">
-      {/* <div className="flex items-center bg-indigo-200" style={{height: "100vh"}}> */}
       <div
         className="flex flex-col justify-center relative"
         style={{ height: "100vh" }}
@@ -253,7 +236,6 @@ function MainUI({}: Props): JSX.Element {
 
         <div className="flex justify-between relative">
           <UpperLeftUI
-            // enemiesKilled={enemiesKilled}
             topScore={topScore}
             enemies={enemies}
             setTextOnDisplay={setTextOnDisplay}
@@ -321,7 +303,6 @@ function MainUI({}: Props): JSX.Element {
               handleKeysOrBtnsWrapper={handleKeysOrBtnsWrapper}
               setTextOnDisplay={setTextOnDisplay}
             />
-
             <RightBtnArea
               boardWidth={boardWidth}
               handleKeysOrBtnsWrapper={handleKeysOrBtnsWrapper}
