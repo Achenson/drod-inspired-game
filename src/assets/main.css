@@ -6057,10 +6057,6 @@ video {
   font-family: meriweather, monospace;
 }
 
-.font-droid-serif {
-  font-family: droid-serif, sans-serif;
-}
-
 .font-hairline {
   font-weight: 100;
 }
@@ -19955,10 +19951,6 @@ video {
     font-family: meriweather, monospace;
   }
 
-  .sm\:font-droid-serif {
-    font-family: droid-serif, sans-serif;
-  }
-
   .sm\:font-hairline {
     font-weight: 100;
   }
@@ -33808,10 +33800,6 @@ video {
 
   .md\:font-merriweather {
     font-family: meriweather, monospace;
-  }
-
-  .md\:font-droid-serif {
-    font-family: droid-serif, sans-serif;
   }
 
   .md\:font-hairline {
@@ -47665,10 +47653,6 @@ video {
     font-family: meriweather, monospace;
   }
 
-  .lg\:font-droid-serif {
-    font-family: droid-serif, sans-serif;
-  }
-
   .lg\:font-hairline {
     font-weight: 100;
   }
@@ -61518,10 +61502,6 @@ video {
 
   .xl\:font-merriweather {
     font-family: meriweather, monospace;
-  }
-
-  .xl\:font-droid-serif {
-    font-family: droid-serif, sans-serif;
   }
 
   .xl\:font-hairline {

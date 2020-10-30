@@ -37,7 +37,8 @@ function UpperLeftUI({ topScore, setTextOnDisplay }: Props): JSX.Element {
       <p>Top score</p>
       <div className="flex justify-around mb-px">
         <p
-          className="text-center font-droid-serif text-lg text-green-600 hover:bg-gray-200 rounded w-8"
+          className="text-center text-lg text-green-600 hover:bg-gray-200 rounded w-8"
+          style={{fontFamily: "sans-serif"}}
           onMouseEnter={() => {
             setTextOnDisplay("Most Rounds Survived");
           }}

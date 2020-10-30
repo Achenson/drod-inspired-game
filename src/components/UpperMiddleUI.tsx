@@ -10,7 +10,8 @@ function UpperMiddleUI({ currentTurn, setTextOnDisplay }: Props): JSX.Element {
     <div className="cursor-default ">
       <p>Score</p>
       <p
-        className="text-center font-droid-serif text-lg hover:bg-gray-200 rounded"
+        className="text-center text-lg hover:bg-gray-200 rounded"
+        style={{fontFamily: "sans-serif"}}
         onMouseEnter={() => {
           setTextOnDisplay("Rounds survived");
         }}

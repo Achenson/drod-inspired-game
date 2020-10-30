@@ -8,7 +8,6 @@ module.exports = {
       },
       fontFamily: {
         'merriweather': ['meriweather', 'monospace'],
-        'droid-serif': ['droid-serif', 'sans-serif']
       }
     },
   },
