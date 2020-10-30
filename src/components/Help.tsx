@@ -72,12 +72,12 @@ function Help({
           </a>
         </p>
         <p className="mb-2">
-          In BTOS death is inevitable - survive as long as you can and beat your
+          In DTOD death is inevitable - survive as long as you can and beat your
           personal best. Win medals - bronze/silver/gold (100/175/250 rounds
           survived).{" "}
         </p>
         <p className="mb-2">
-          BTOS' gameplay is turn-based. First goes the Player's action - eight
+          DTOD' gameplay is turn-based. First goes the Player's action - eight
           directional movement, rotation or waiting. Moving into corners is
           forbidden. Additionally, you can go back one turn - even after dying!
         </p>

@@ -58,8 +58,6 @@ export default function createEnemy(
 
   let newEnemyPosition = possiblePositions[randomIndex - 1];
 
-  // console.log("newEnemyPosition");
-  // console.log(newEnemyPosition);
   setRandomNewEnemyPosition([false, newEnemyPosition]);
   return newEnemyPosition;
 }

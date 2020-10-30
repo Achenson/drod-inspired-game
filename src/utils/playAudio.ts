@@ -5,20 +5,19 @@ export default function playAudio(
   delay: number = 0
 ) {
   if (isAudioOn) {
+    // it refers to the same audio sfx only
     if (shouldPreviousAudioStop) {
       audioVar.pause();
       //   the time position at which playback will begin once the play()  is called.
       audioVar.currentTime = 0;
     }
 
-    if(!delay) {
+    if (!delay) {
       audioVar.play();
     } else {
-      setTimeout( () => {
-        audioVar.play()
-      }, delay)
+      setTimeout(() => {
+        audioVar.play();
+      }, delay);
     }
-
-
   }
 }

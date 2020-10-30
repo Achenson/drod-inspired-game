@@ -46,10 +46,8 @@ export default function handleKeysOrBtns(
   switch (command) {
     // rewind one round back
     case "KeyR":
-      console.log("KeyR");
       setTextOnDisplay("");
       setCurrentTurn(oTB.currentTurn);
-      // setEnemiesKilled(oTB.enemiesKilled);
       setEnemies([...oTB.enemies]);
       setEnemiesDirections([...oTB.enemiesDirections]);
       setLastEnemyKilled(oTB.lastEnemyKilled);
@@ -60,54 +58,41 @@ export default function handleKeysOrBtns(
       });
       setRandomNewEnemyPosition([true, randomNewEnemyPosition[1]]);
       setSavedEnemiesDirections([true, [...savedEnemiesDirections[1]]]);
-
       break;
     case "KeyQ":
-      console.log("q");
       turnCourseWrapper(Directions.anticlockwise);
       break;
     case "KeyW":
-      console.log("w");
       turnCourseWrapper(Directions.clockwise);
       break;
     case "Numpad7":
-      console.log("numpad 7");
       turnCourseWrapper(Directions.nw);
       break;
     case "Numpad8":
-      console.log("numpad 8");
       turnCourseWrapper(Directions.n);
       break;
     case "Numpad9":
-      console.log("numpad 9");
       turnCourseWrapper(Directions.ne);
       break;
     case "Numpad4":
-      console.log("numpad 4");
       turnCourseWrapper(Directions.w);
       break;
     case "Numpad5":
-      console.log("numpad 5");
       turnCourseWrapper(Directions.wait);
       break;
     case "Numpad6":
-      console.log("numpad 6");
       turnCourseWrapper(Directions.e);
       break;
     case "Numpad1":
-      console.log("numpad 1");
       turnCourseWrapper(Directions.sw);
       break;
     case "Numpad2":
-      console.log("numpad 2");
       turnCourseWrapper(Directions.s);
       break;
     case "Numpad3":
-      console.log("numpad 3");
       turnCourseWrapper(Directions.se);
       break;
     case "KeyN":
-      console.log("New Game");
       newGame();
       break;
   }

@@ -1,10 +1,8 @@
 import { Directions } from "./interfaces";
 import { HeroObj } from "./interfaces";
 
-
 import moveHero from "./moveHero";
 import moveEnemies from "./moveEnemies";
-
 import createEnemy from "./createEnemy";
 import enemiesDirections2ndTurn from "./enemiesDirections2ndTurn";
 import makeTopScore from "./makeTopScore";
@@ -35,15 +33,18 @@ export default function turnCourse(
     }>
   >,
   setTextOnDisplay: React.Dispatch<React.SetStateAction<string>>,
-  topScore:  number | React.Dispatch<React.SetStateAction<number>>,
-  setTopScore:  number | React.Dispatch<React.SetStateAction<number>>,
+  topScore: number | React.Dispatch<React.SetStateAction<number>>,
+  setTopScore: number | React.Dispatch<React.SetStateAction<number>>,
   randomNewEnemyPosition: [boolean, number],
-  setRandomNewEnemyPosition: React.Dispatch<React.SetStateAction<[boolean, number]>>,
+  setRandomNewEnemyPosition: React.Dispatch<
+    React.SetStateAction<[boolean, number]>
+  >,
   setEnemiesDirections: React.Dispatch<React.SetStateAction<number[]>>,
   savedEnemiesDirections: [boolean, number[]],
-  setSavedEnemiesDirections: React.Dispatch<React.SetStateAction<[boolean, number[]]>>
- 
-  ) {
+  setSavedEnemiesDirections: React.Dispatch<
+    React.SetStateAction<[boolean, number[]]>
+  >
+) {
   if (!hero.alive) {
     return;
   }
@@ -70,7 +71,7 @@ export default function turnCourse(
     setLastEnemyKilled,
     enemiesDirections,
     isAudioOn,
-    setOneTurnBack,
+    setOneTurnBack
   );
 
   if (!wasMovementLegal) {
@@ -93,7 +94,6 @@ export default function turnCourse(
     newEnemies,
     boardSize,
     adjacentTilesRelativePositions,
-    // hero.swordPosition,
     swordIndexToMove,
     heroIndexToMove,
     enemiesDirections
@@ -103,8 +103,6 @@ export default function turnCourse(
   // !!!! nextEnemiesPostions & heroIndexToMove belong to the same turn
   if (nextEnemiesPositions.indexOf(heroIndexToMove) > -1) {
     setHero({ ...hero, heroPosition: heroIndexToMove, alive: false });
-
-    // setCurrentTurn((n) => n + 1);
 
     makeTopScore(
       currentTurn,
