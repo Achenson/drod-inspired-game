@@ -1,5 +1,5 @@
 # drod-inspired-game
-Deadly Tomb of Death - v.1.0
+Deadly Tomb of Death - v1.0
 
 Deadly Tomb of Death is a puzzle roguelike game heavily inspired by [Deadly Rooms of Death](https://en.wikipedia.org/wiki/Deadly_Rooms_of_Death).
 
