@@ -77,7 +77,7 @@ DONE delete enemies killed in MainUI DONE
 X new game confirmation? X
 X controls -> light out when move not possible? X
 X DEV mode: Board -> div commented out X
-check if merriweather font works -> app title?
+DONE check if merriweather font works -> app title? DONE font left for reference even that its not used
 DONE top score: change string to number type? DONE
 DONE silver medal not visible enough? DONE
 XXX different upper UI for big and small screens?? XXX
@@ -127,7 +127,7 @@ X line on Hero when in diagonal position? check other browsers - not on chrome X
 DONE Hero looks totally different on chrome DONE
 DONE Hero's hand larger or no green "borders" in firefox DONE
 React-ridge-state - state management, can be used outside React components
-improve displaying smaller text
+X improve displaying smaller textX 
 DONE makeTopScore on new game DONE
 DONE "black tile" DONE
 DONE bug - bad sword rendering when using pointer controls - useState used,DONE 
