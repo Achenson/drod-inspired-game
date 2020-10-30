@@ -25,7 +25,7 @@ import TopDisplay from "./TopDisplay";
 
 interface Props {}
 
-function MainUI({}: Props): JSX.Element {
+function MainUI(): JSX.Element {
   const [isAudioOn, setIsAudioOn] = useNumberStorage("isAudioOn", 1);
 
   useEffect(() => {
