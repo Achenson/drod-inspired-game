@@ -9,7 +9,7 @@ Technologies used: React, Typescript, TailwindCSS
 
 ## Live app
 
-...
+https://achenson.github.io/drod-inspired-game/
 
 ## How to run locally
 
