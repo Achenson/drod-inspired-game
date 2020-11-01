@@ -77,12 +77,12 @@ function Help({
           survived).{" "}
         </p>
         <p className="mb-2">
-          DTOD' gameplay is turn-based. First goes the Player's action - eight
+          DTOD's gameplay is turn-based. First goes the Player's action - eight
           directional movement, rotation or waiting. Moving into corners is
           forbidden. Additionally, you can go back one turn - even after dying!
         </p>
         <p className="mb-2">
-          The enemies movement follows immediatelly - enemies will roam randomly
+          Enemies' movement follows immediatelly - enemies will roam randomly
           unless the Hero is in adjacent tile <i>after</i> Player's action.
           Then, after every second turn, new enemy arrives randomly at the edge
           of the board.
